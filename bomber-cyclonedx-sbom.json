@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.2",
-  "serialNumber": "urn:uuid:13a87eff-aca5-412d-b50c-fdff72c6fd28",
+  "serialNumber": "urn:uuid:546cde01-602d-4610-8b19-3b1d0ea4d14d",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-07-08T10:07:18-06:00",
+    "timestamp": "2022-07-08T12:43:22-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -31,11 +31,11 @@
       }
     ],
     "component": {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708100051-a20e1a9c5d75",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708100712-e3805779bcea",
       "type": "application",
       "name": "github.com/devops-kung-fu/bomber",
-      "version": "v0.0.0-20220708100051-a20e1a9c5d75",
-      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708100051-a20e1a9c5d75",
+      "version": "v0.0.0-20220708100712-e3805779bcea",
+      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708100712-e3805779bcea",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/bomber",
@@ -47,7 +47,7 @@
   "components": [],
   "dependencies": [
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708100051-a20e1a9c5d75"
+      "ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708100712-e3805779bcea"
     }
   ]
 }

@@ -76,3 +76,7 @@ type Tool struct {
 	Version string `json:"version"`
 	Hashes  []Hash `json:"hashes"`
 }
+
+func NewCycloneDX() (bom Cyclonedx) {
+	return Cyclonedx{}
+}

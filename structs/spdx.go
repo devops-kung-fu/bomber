@@ -2,26 +2,24 @@ package structs
 
 //SPDX represents a SPDX Software Bill of Materials
 type SPDX struct {
-	SPDXVersion         string         `json:"spdxVersion"`
-	DataLicense         string         `json:"dataLicense"`
-	SPDXID              string         `json:"SPDXID"`
-	DocumentName        string         `json:"documentName"`
-	DocumentNamespace   string         `json:"documentNamespace"`
-	ExternalDocumentRef string         `json:"externalDocumentRef,omitempty"`
-	CreationInfo        CreationInfo   `json:"creationInfo"`
-	DocumentComment     string         `json:"documentComment,omitempty"`
-	Packages            []Package      `json:"packages"`
-	Files               []File         `json:"files,omitempty"`
-	Relationships       []Relationship `json:"relationships,omitempty"`
-}
-
-type CreationInfo struct {
-	LicenseListVersion string `json:"licenseListVersion,omitempty"`
-	Person             string `json:"person,omitempty"`
-	Organization       string `json:"organization,omitempty"`
-	Tool               string `json:"tool,omitempty"`
-	Created            string `json:"created"`
-	CreatorComment     string `json:"creatorComment,omitempty"`
+	SPDXVersion         string `json:"spdxVersion"`
+	DataLicense         string `json:"dataLicense"`
+	SPDXID              string `json:"SPDXID"`
+	DocumentName        string `json:"documentName"`
+	DocumentNamespace   string `json:"documentNamespace"`
+	ExternalDocumentRef string `json:"externalDocumentRef,omitempty"`
+	CreationInfo        struct {
+		LicenseListVersion string `json:"licenseListVersion,omitempty"`
+		Person             string `json:"person,omitempty"`
+		Organization       string `json:"organization,omitempty"`
+		Tool               string `json:"tool,omitempty"`
+		Created            string `json:"created"`
+		CreatorComment     string `json:"creatorComment,omitempty"`
+	} `json:"creationInfo"`
+	DocumentComment string         `json:"documentComment,omitempty"`
+	Packages        []Package      `json:"packages"`
+	Files           []File         `json:"files,omitempty"`
+	Relationships   []Relationship `json:"relationships,omitempty"`
 }
 
 type Package struct {
@@ -77,4 +75,8 @@ type Relationship struct {
 	SpdxElementID      string `json:"spdxElementId"`
 	RelatedSpdxElement string `json:"relatedSpdxElement"`
 	RelationshipType   string `json:"relationshipType"`
+}
+
+func NewSPDX() (bom SPDX) {
+	return SPDX{}
 }
