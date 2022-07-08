@@ -83,11 +83,13 @@ type Relationship struct {
 	RelationshipType   string `json:"relationshipType"`
 }
 
-func NewSPDX() *BOM {
+//NewBOM creates a new SPDX bom
+func NewBOM() *BOM {
 	bom := BOM{}
 	return &bom
 }
 
+//ToCycloneDX converts from a SPDX BoM to a CycloneDX BoM
 func ToCycloneDX(bom *BOM) *cyclone.BOM {
 	cyclonedx := cyclone.NewBOM()
 	log.Printf("Processing SPDX BOM. Name: %s , Spec %s", bom.DocumentName, bom.SPDXVersion)

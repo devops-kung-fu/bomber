@@ -7,11 +7,11 @@ import (
 )
 
 func TestNewSPDX(t *testing.T) {
-	bom := NewSPDX()
+	bom := NewBOM()
 	assert.NotNil(t, bom)
 }
 
 func TestToCycloneDX(t *testing.T) {
-	bom := ToCycloneDX(NewSPDX())
+	bom := ToCycloneDX(NewBOM())
 	assert.NotNil(t, bom)
 }
