@@ -1,0 +1,49 @@
+  version: 2.4.0
+  sources:
+    - source: github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
+    - source: github.com/devops-kung-fu/hinge@latest
+    - source: github.com/kisielk/errcheck@latest      
+    - source: golang.org/x/lint/golint@latest
+    - source: github.com/fzipp/gocyclo/cmd/gocyclo@latest
+  hooks:
+    - type: pre-commit
+      actions:
+        - name: "git: Pull (Ensure there are no upstream changes that are not local)"
+          exec: git
+          args: ["pull"]  
+        - name: "go: Tidy mod file"
+          exec: go
+          args: ["mod", "tidy"]
+        - name: "go: Update all dependencies to latest"
+          exec: go
+          args: ["get", "-u", "./..."]
+        - name: "gofmt: Run gofmt to format the code"
+          exec: gofmt
+          args: ["-s", "-w", "**/*.go"]
+        - name: "golint: Lint all go files"
+          exec: golint
+          args: ["./..."] #to error out, add the arg "-set_exit_status"
+        - name: "errcheck: Ensure that errors are checked"
+          exec: errcheck
+          args: ["-ignoretests", "./..."]
+        - name: "gocyclo: Check cyclomatic complexities"
+          exec: gocyclo
+          args: ["-over", "5", "."]
+        - name: Hinge
+          exec: hinge
+          args: ["."]
+        - name: "go: Build (Ensure pulled modules do not break the build)"
+          exec: go
+          args: ["build", "-v", "./..."]
+        - name: "go: Run all tests"
+          exec: go
+          args: ["test", "-v", "-coverprofile=coverage.out", "./..."]
+        - name: "go: Test coverage"
+          exec: go
+          args: ["tool", "cover", "-func=coverage.out"]
+        - name: "cyclone-dx: Generate a Software Bill of Materials (SBoM)"
+          exec: cyclonedx-gomod
+          args: ["-json", "-output", "bomber-cyclonedx-sbom.json"]
+        - name: "git: Add all changed files during the pre-commit stage"
+          exec: git
+          args: ["add", "."]

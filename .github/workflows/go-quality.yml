@@ -1,0 +1,34 @@
+name: Go Quality Checks
+on: push
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.18'
+      - name: Install Dependencies
+        run: |
+          go version
+          go install golang.org/x/lint/golint@latest
+          go install github.com/fzipp/gocyclo/cmd/gocyclo@latest
+      - name: Tests
+        run: |
+          go test -v -coverprofile=coverage.out ./...
+          go tool cover -func=coverage.out
+      - name: CodeCov
+        run: bash <(curl -s https://codecov.io/bash)
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Build
+        run: go build ./...
+      - name: Vet
+        run: go vet -v ./...
+      - name: Lint
+        run: golint ./...
+      - name: gocyclo
+        run: gocyclo .
+        
