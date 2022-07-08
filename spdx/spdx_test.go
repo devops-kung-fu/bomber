@@ -1,4 +1,4 @@
-package structs
+package spdx
 
 import (
 	"testing"
@@ -8,6 +8,10 @@ import (
 
 func TestNewSPDX(t *testing.T) {
 	bom := NewSPDX()
-	assert.IsType(t, SPDX{}, bom)
+	assert.NotNil(t, bom)
+}
+
+func TestToCycloneDX(t *testing.T) {
+	bom := ToCycloneDX(NewSPDX())
 	assert.NotNil(t, bom)
 }

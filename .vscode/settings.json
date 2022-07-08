@@ -9,6 +9,7 @@
         "ignoretests",
         "kisielk",
         "sbom",
-        "SPDXID"
+        "SPDXID",
+        "structs"
     ]
 }

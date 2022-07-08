@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.2",
-  "serialNumber": "urn:uuid:546cde01-602d-4610-8b19-3b1d0ea4d14d",
+  "serialNumber": "urn:uuid:32e6322c-0774-4e88-a5b3-2786896693fa",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-07-08T12:43:22-06:00",
+    "timestamp": "2022-07-08T13:58:03-06:00",
     "tools": [
       {
         "vendor": "CycloneDX",
@@ -31,11 +31,11 @@
       }
     ],
     "component": {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708100712-e3805779bcea",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708124317-976ad3ac1b1a",
       "type": "application",
       "name": "github.com/devops-kung-fu/bomber",
-      "version": "v0.0.0-20220708100712-e3805779bcea",
-      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708100712-e3805779bcea",
+      "version": "v0.0.0-20220708124317-976ad3ac1b1a",
+      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708124317-976ad3ac1b1a",
       "externalReferences": [
         {
           "url": "https://github.com/devops-kung-fu/bomber",
@@ -44,10 +44,37 @@
       ]
     }
   },
-  "components": [],
+  "components": [
+    {
+      "bom-ref": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0",
+      "type": "library",
+      "name": "github.com/CycloneDX/cyclonedx-go",
+      "version": "v0.6.0",
+      "scope": "required",
+      "hashes": [
+        {
+          "alg": "SHA-256",
+          "content": "4a2cd619b6731530bf3bfd72874ef65d004cc5fbeca16a9dfffa0a088cb31721"
+        }
+      ],
+      "purl": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0",
+      "externalReferences": [
+        {
+          "url": "https://github.com/CycloneDX/cyclonedx-go",
+          "type": "vcs"
+        }
+      ]
+    }
+  ],
   "dependencies": [
     {
-      "ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708100712-e3805779bcea"
+      "ref": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0"
+    },
+    {
+      "ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220708124317-976ad3ac1b1a",
+      "dependsOn": [
+        "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0"
+      ]
     }
   ]
 }

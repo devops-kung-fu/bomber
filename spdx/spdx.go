@@ -1,7 +1,13 @@
-package structs
+package spdx
+
+import (
+	"log"
+
+	cyclone "github.com/CycloneDX/cyclonedx-go"
+)
 
 //SPDX represents a SPDX Software Bill of Materials
-type SPDX struct {
+type BOM struct {
 	SPDXVersion         string `json:"spdxVersion"`
 	DataLicense         string `json:"dataLicense"`
 	SPDXID              string `json:"SPDXID"`
@@ -77,6 +83,13 @@ type Relationship struct {
 	RelationshipType   string `json:"relationshipType"`
 }
 
-func NewSPDX() (bom SPDX) {
-	return SPDX{}
+func NewSPDX() *BOM {
+	bom := BOM{}
+	return &bom
+}
+
+func ToCycloneDX(bom *BOM) *cyclone.BOM {
+	cyclonedx := cyclone.NewBOM()
+	log.Printf("Processing SPDX BOM. Name: %s , Spec %s", bom.DocumentName, bom.SPDXVersion)
+	return cyclonedx
 }
