@@ -1,4 +1,4 @@
-# Contributing to SHS
+# Contributing
 
 ## We Develop with Github
 
