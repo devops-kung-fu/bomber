@@ -18,10 +18,9 @@ var (
 	//Afs stores a global OS Filesystem that is used throughout bomber
 	Afs = &afero.Afero{Fs: afero.NewOsFs()}
 	//Verbose determines if the execution of hing should output verbose information
-	Verbose  bool
-	debug    bool
-	provider string
-	rootCmd  = &cobra.Command{
+	Verbose, debug bool
+	provider       string
+	rootCmd        = &cobra.Command{
 		Use:     "bomber [flags] file",
 		Example: "  bomber test.spdx",
 		Short:   "Scans SBoMs for security vulnerabilities.",
@@ -41,11 +40,6 @@ var (
 				fmt.Println()
 			})
 		},
-		// Run: func(cmd *cobra.Command, args []string) {
-		// 	util.DoIf(Verbose, func() {
-
-		// 	})
-		// },
 	}
 )
 
@@ -60,5 +54,4 @@ func Execute() {
 func init() {
 	rootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", true, "Displays command line output.")
 	rootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "Displays debug level log messages.")
-	rootCmd.PersistentFlags().StringVarP(&provider, "provider", "p", "sonatype", "The provider to use when scanning.")
 }

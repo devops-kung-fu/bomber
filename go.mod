@@ -7,6 +7,7 @@ require (
 	github.com/devops-kung-fu/common v0.2.3
 	github.com/fatih/color v1.13.0
 	github.com/gookit/color v1.5.1
+	github.com/kirinlabs/HttpRequest v1.1.1
 	github.com/rodaine/table v1.0.1
 	github.com/spf13/afero v1.9.2
 	github.com/spf13/cobra v1.5.0

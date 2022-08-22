@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:f3037b5d-883b-46be-ae54-1a32a81eedcb",
+  "serialNumber": "urn:uuid:45915788-1b1a-4bed-944f-c056d520189c",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-08-22T12:59:08-06:00",
+    "timestamp": "2022-08-22T14:11:57-06:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -100,12 +100,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822172941-ea944581f5d1?package-id=8afb511bdded2220",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822185839-8f29b202fe46?package-id=94d990b57245e90",
       "type": "library",
       "name": "github.com/devops-kung-fu/bomber",
-      "version": "v0.0.0-20220822172941-ea944581f5d1",
-      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220822172941-ea944581f5d1:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822172941-ea944581f5d1",
+      "version": "v0.0.0-20220822185839-8f29b202fe46",
+      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822185839-8f29b202fe46",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -125,19 +125,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220822172941-ea944581f5d1:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220822172941-ea944581f5d1:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220822172941-ea944581f5d1:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220822172941-ea944581f5d1:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -432,6 +432,128 @@
       ]
     },
     {
+      "bom-ref": "pkg:golang/github.com/kirinlabs/httprequest@v1.1.1?package-id=5f684bc33f43ed95",
+      "type": "library",
+      "name": "github.com/kirinlabs/HttpRequest",
+      "version": "v1.1.1",
+      "cpe": "cpe:2.3:a:kirinlabs:HttpRequest:v1.1.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/kirinlabs/HttpRequest@v1.1.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "bomber"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.19"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:eBbFzpRd/Y7vQhRY30frHK3yAJiT1wDlB31Ryzyklc0="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/bomber"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/kirinlabs/httprequest@v1.1.1?package-id=72b49980430445f0",
+      "type": "library",
+      "name": "github.com/kirinlabs/HttpRequest",
+      "version": "v1.1.1",
+      "cpe": "cpe:2.3:a:kirinlabs:HttpRequest:v1.1.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/kirinlabs/HttpRequest@v1.1.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.13?package-id=76f94dce3957d82",
+      "type": "library",
+      "name": "github.com/mattn/go-colorable",
+      "version": "v0.1.13",
+      "cpe": "cpe:2.3:a:mattn:go-colorable:v0.1.13:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.13",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:mattn:go_colorable:v0.1.13:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "bomber"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.19"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:fFA4WZxdEF4tXPZVKMLwD8oUnCTTo08duU7wxecdEvA="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/bomber"
+        }
+      ]
+    },
+    {
       "bom-ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.13?package-id=dbe335cdb67f7fce",
       "type": "library",
       "name": "github.com/mattn/go-colorable",
@@ -462,62 +584,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.9?package-id=cff1f298a9e7f0f2",
-      "type": "library",
-      "name": "github.com/mattn/go-colorable",
-      "version": "v0.1.9",
-      "cpe": "cpe:2.3:a:mattn:go-colorable:v0.1.9:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/mattn/go-colorable@v0.1.9",
-      "properties": [
-        {
-          "name": "syft:package:foundBy",
-          "value": "go-module-binary-cataloger"
-        },
-        {
-          "name": "syft:package:language",
-          "value": "go"
-        },
-        {
-          "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
-        },
-        {
-          "name": "syft:package:type",
-          "value": "go-module"
-        },
-        {
-          "name": "syft:cpe23",
-          "value": "cpe:2.3:a:mattn:go_colorable:v0.1.9:*:*:*:*:*:*:*"
-        },
-        {
-          "name": "syft:location:0:path",
-          "value": "bomber"
-        },
-        {
-          "name": "syft:metadata:architecture",
-          "value": "amd64"
-        },
-        {
-          "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19"
-        },
-        {
-          "name": "syft:metadata:h1Digest",
-          "value": "h1:sqDoxXbdeALODt0DAeJCVp38ps9ZogZEAXjus69YV3U="
-        },
-        {
-          "name": "syft:metadata:mainModule",
-          "value": "github.com/devops-kung-fu/bomber"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/mattn/go-isatty@v0.0.14?package-id=ddcc704073b83fac",
+      "bom-ref": "pkg:golang/github.com/mattn/go-isatty@v0.0.16?package-id=76782c25d49570d0",
       "type": "library",
       "name": "github.com/mattn/go-isatty",
-      "version": "v0.0.14",
-      "cpe": "cpe:2.3:a:mattn:go-isatty:v0.0.14:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.14",
+      "version": "v0.0.16",
+      "cpe": "cpe:2.3:a:mattn:go-isatty:v0.0.16:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.16",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -537,7 +609,7 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:mattn:go_isatty:v0.0.14:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:mattn:go_isatty:v0.0.16:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -553,7 +625,7 @@
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:yVuAays6BHfxijgZPzw+3Zlu5yQgKGP2/hcQbHb7S9Y="
+          "value": "h1:bq3VjFmv/sOjHtdEhmkEV4x1AJtvUvOJ2PFAZ5+peKQ="
         },
         {
           "name": "syft:metadata:mainModule",

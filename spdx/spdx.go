@@ -78,5 +78,12 @@ type Relationship struct {
 }
 
 func (bom *BOM) Purls() (purls []string) {
+	for _, pkg := range bom.Packages {
+		for _, extRef := range pkg.ExternalRef {
+			if extRef.ReferenceType == "purl" {
+				purls = append(purls, extRef.ReferenceLocator)
+			}
+		}
+	}
 	return
 }
