@@ -46,9 +46,9 @@
    "purl": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0"
   },
   {
-   "id": "94d990b57245e90",
+   "id": "d54d291744c0bada",
    "name": "github.com/devops-kung-fu/bomber",
-   "version": "v0.0.0-20220822185839-8f29b202fe46",
+   "version": "v0.0.0-20220822201150-4ccd2bccb543",
    "type": "go-module",
    "foundBy": "go-module-binary-cataloger",
    "locations": [
@@ -59,13 +59,13 @@
    "licenses": [],
    "language": "go",
    "cpes": [
-    "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*"
+    "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220822201150-4ccd2bccb543:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220822201150-4ccd2bccb543:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220822201150-4ccd2bccb543:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220822201150-4ccd2bccb543:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:bomber:v0.0.0-20220822201150-4ccd2bccb543:*:*:*:*:*:*:*"
    ],
-   "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822185839-8f29b202fe46",
+   "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822201150-4ccd2bccb543",
    "metadataType": "GolangBinMetadata",
    "metadata": {
     "goBuildSettings": {
@@ -80,8 +80,8 @@
      "GOOS": "darwin",
      "vcs": "git",
      "vcs.modified": "true",
-     "vcs.revision": "8f29b202fe460423ee69ba24e7505a00526a118a",
-     "vcs.time": "2022-08-22T18:58:39Z"
+     "vcs.revision": "4ccd2bccb5436b9c898c234d881baf4758336335",
+     "vcs.time": "2022-08-22T20:11:50Z"
     },
     "goCompiledVersion": "go1.19",
     "architecture": "amd64",
@@ -692,9 +692,9 @@
    "verbosity": 0,
    "quiet": false,
    "output": [
-    "json=sbom/hookz.syft.json",
-    "spdx-json=sbom/hookz.spdx.json",
-    "cyclonedx-json=sbom/hookz.cyclonedx.json"
+    "json=sbom/bomber.syft.json",
+    "spdx-json=sbom/bomber.spdx.json",
+    "cyclonedx-json=sbom/bomber.cyclonedx.json"
    ],
    "output-template-path": "",
    "file": "",

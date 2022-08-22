@@ -17,3 +17,5 @@
 .DS_Store
 
 bomber
+
+*.env

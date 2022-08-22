@@ -19,7 +19,7 @@
           args: ["get", "-u", "./..."]
         - name: "syft: Generate a Software Bill of Materials (SBoM)"
           exec: syft
-          args: [".","-o ","json=sbom/hookz.syft.json","-o", "spdx-json=sbom/hookz.spdx.json", "-o", "cyclonedx-json=sbom/hookz.cyclonedx.json"]
+          args: [".","-o ","json=sbom/bomber.syft.json","-o", "spdx-json=sbom/bomber.spdx.json", "-o", "cyclonedx-json=sbom/bomber.cyclonedx.json"]
         - name: "gofmt: Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]

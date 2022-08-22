@@ -19,7 +19,6 @@ var (
 	Afs = &afero.Afero{Fs: afero.NewOsFs()}
 	//Verbose determines if the execution of hing should output verbose information
 	Verbose, debug bool
-	provider       string
 	rootCmd        = &cobra.Command{
 		Use:     "bomber [flags] file",
 		Example: "  bomber test.spdx",
@@ -37,6 +36,9 @@ var (
 				fmt.Println("DKFM - DevOps Kung Fu Mafia")
 				fmt.Println("https://github.com/devops-kung-fu/bomber")
 				fmt.Printf("Version: %s\n", version)
+				fmt.Println()
+				fmt.Println("Uses vulnerability information provided by the Sonatype OSS Index")
+				fmt.Println("https://ossindex.sonatype.org")
 				fmt.Println()
 			})
 		},

@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:45915788-1b1a-4bed-944f-c056d520189c",
+  "serialNumber": "urn:uuid:d12ae45c-1dde-49b5-978d-74a86d4e8dd1",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-08-22T14:11:57-06:00",
+    "timestamp": "2022-08-22T16:11:15-06:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -100,12 +100,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822185839-8f29b202fe46?package-id=94d990b57245e90",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822201150-4ccd2bccb543?package-id=d54d291744c0bada",
       "type": "library",
       "name": "github.com/devops-kung-fu/bomber",
-      "version": "v0.0.0-20220822185839-8f29b202fe46",
-      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822185839-8f29b202fe46",
+      "version": "v0.0.0-20220822201150-4ccd2bccb543",
+      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220822201150-4ccd2bccb543:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822201150-4ccd2bccb543",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -125,19 +125,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220822201150-4ccd2bccb543:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220822201150-4ccd2bccb543:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220822201150-4ccd2bccb543:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220822185839-8f29b202fe46:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220822201150-4ccd2bccb543:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",

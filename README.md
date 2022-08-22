@@ -48,6 +48,25 @@ Use the [Makefile](Makefile) to build, test, or do pre-commit checks.
 
 Remember that this is a go module, so there is no entry point. You can execute any test function though in your preferred IDE.
 
+### Testing
+
+#### Environment Variables
+
+The testing framework is set up to use environment variables that are found in a file called ```test.env``` in the **root directory** of the project. This file has been added to the ```.gitignore``` file in this project so it will be ignored if it exists in your file structure when committing the code. If you are running tests, this file should exist and have the following values configured:
+
+``` bash
+
+BOMBER_PROVIDER_USERNAME={{your OSS Index user name}}
+BOMBER_PROVIDER_TOKEN={{your OSS Index API Key}}
+
+```
+To load this file, you use the following command in your terminal before opening an editor such as Visual Studio Code (from your terminal).
+
+``` bash
+
+  export $(cat *.env)
+
+```
 
 ## Software Bill of Materials
 
