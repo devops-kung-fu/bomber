@@ -41,11 +41,11 @@ var (
 				fmt.Println()
 			})
 		},
-		Run: func(cmd *cobra.Command, args []string) {
-			util.DoIf(Verbose, func() {
-				util.PrintSuccess("Done!")
-			})
-		},
+		// Run: func(cmd *cobra.Command, args []string) {
+		// 	util.DoIf(Verbose, func() {
+
+		// 	})
+		// },
 	}
 )
 
