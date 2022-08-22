@@ -9,7 +9,12 @@
 [![SBOM](https://img.shields.io/badge/CyloneDX-SBoM-informational)](bomber-cyclonedx-sbom.json)
 [![SBOM](https://img.shields.io/badge/SPDX-SBoM-informational)](bomber-spdx-sbom.json)
 
-```bomber``` is a go module that converts between SPDX and CycloneDX formats
+```bomber``` is an application that scans SBoMs for security vulnerabilities.
+
+## Overview
+
+* Uses Sonatype OSS Index
+
 
 ## Development
 

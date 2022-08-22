@@ -1,6 +1,6 @@
   version: 2.4.0
   sources:
-    - source: github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
+    - source: github.com/anchore/syft/cmd/syft@latest
     - source: github.com/devops-kung-fu/hinge@latest
     - source: github.com/kisielk/errcheck@latest      
     - source: golang.org/x/lint/golint@latest
@@ -17,6 +17,9 @@
         - name: "go: Update all dependencies to latest"
           exec: go
           args: ["get", "-u", "./..."]
+        - name: "syft: Generate a Software Bill of Materials (SBoM)"
+          exec: syft
+          args: [".","-o ","json=sbom/hookz.syft.json","-o", "spdx-json=sbom/hookz.spdx.json", "-o", "cyclonedx-json=sbom/hookz.cyclonedx.json"]
         - name: "gofmt: Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
