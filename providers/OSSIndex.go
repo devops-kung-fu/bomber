@@ -28,7 +28,7 @@ func OSSIndex(purls []string, username, token string) (coordinateResponses Coord
 	j := len(purls)
 	for i := 0; i < j; i += 128 {
 		z := i + 128
-		if z > 721 {
+		if z > j {
 			z = j
 		}
 		p := purls[i:z]

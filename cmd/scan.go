@@ -41,25 +41,27 @@ var (
 				os.Exit(1)
 			}
 			vulnCount := 0
-
-			headerFmt := color.New(color.FgGreen, color.Underline).SprintfFunc()
-			columnFmt := color.New(color.FgYellow).SprintfFunc()
-
-			tbl := table.New("purl", "description", "vulnerabilities")
-			tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt)
-
 			for _, r := range response {
 				vulns := len(r.Vulnerabilities)
 				vulnCount += vulns
-				if vulns > 0 {
-					tbl.AddRow(r.Coordinates, r.Description, vulns)
-				}
 			}
 
-			tbl.Print()
-			fmt.Println()
-
 			if vulnCount > 0 {
+				headerFmt := color.New(color.FgGreen, color.Underline).SprintfFunc()
+				columnFmt := color.New(color.FgYellow).SprintfFunc()
+
+				tbl := table.New("purl", "description", "vulnerabilities")
+				tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt)
+
+				for _, r := range response {
+					vulns := len(r.Vulnerabilities)
+					if vulns > 0 {
+						tbl.AddRow(r.Coordinates, r.Description, vulns)
+					}
+				}
+
+				tbl.Print()
+				fmt.Println()
 				goocolor.Red.Printf("Vulnerabilities found: %v\n\n", vulnCount)
 			} else {
 				goocolor.Green.Println("No vulnerabilities found!\n")

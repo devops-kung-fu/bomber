@@ -1,7 +1,7 @@
 ![](img/bomber128x128.png)
 
 # bomber
-[![](https://img.shields.io/badge/Status-UNSTABLE-orange)](CONTRIBUTING.md)
+[![](https://img.shields.io/badge/Status-ALPHA-yellow)](CONTRIBUTING.md)
 [![GoDoc](https://godoc.org/github.com/devops-kung-fu/bomber?status.svg)](https://pkg.go.dev/github.com/devops-kung-fu/bomber)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/devops-kung-fu/bomber) 
 [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/bomber)](https://goreportcard.com/report/github.com/devops-kung-fu/bomber) 
@@ -14,7 +14,6 @@
 ## Overview
 
 * Uses Sonatype OSS Index
-
 
 ## Development
 
