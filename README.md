@@ -2,12 +2,12 @@
 
 # bomber
 [![](https://img.shields.io/badge/Status-BETA-yellow)](CONTRIBUTING.md)
-[![GoDoc](https://godoc.org/github.com/devops-kung-fu/bomber?status.svg)](https://pkg.go.dev/github.com/devops-kung-fu/bomber)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/devops-kung-fu/bomber) 
 [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/bomber)](https://goreportcard.com/report/github.com/devops-kung-fu/bomber) 
 [![codecov](https://codecov.io/gh/devops-kung-fu/bomber/branch/main/graph/badge.svg?token=P9WBOBQTOB)](https://codecov.io/gh/devops-kung-fu/bomber) 
-[![SBOM](https://img.shields.io/badge/CyloneDX-SBoM-informational)](bomber-cyclonedx-sbom.json)
-[![SBOM](https://img.shields.io/badge/SPDX-SBoM-informational)](bomber-spdx-sbom.json)
+[![SBOM](https://img.shields.io/badge/SPDX-SBoM-informational)](sbom/bomber.spdx.json)
+[![SBOM](https://img.shields.io/badge/CyloneDX-SBoM-informational)](sbom/bomber.cyclonedx.json)
+[![SBOM](https://img.shields.io/badge/Syft-SBoM-informational)](sbom/bomber.syft.json)
 
 ```bomber``` is an application that scans SBoMs for security vulnerabilities.
 
