@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	version = "0.0.1"
+	version = "0.1.1"
 	//Afs stores a global OS Filesystem that is used throughout bomber
 	Afs = &afero.Afero{Fs: afero.NewOsFs()}
 	//Verbose determines if the execution of hing should output verbose information
@@ -36,9 +36,6 @@ var (
 				fmt.Println("DKFM - DevOps Kung Fu Mafia")
 				fmt.Println("https://github.com/devops-kung-fu/bomber")
 				fmt.Printf("Version: %s\n", version)
-				fmt.Println()
-				fmt.Println("Uses vulnerability information provided by the Sonatype OSS Index")
-				fmt.Println("https://ossindex.sonatype.org")
 				fmt.Println()
 			})
 		},

@@ -26,6 +26,11 @@ var (
 			if token == "" {
 				token = os.Getenv("BOMBER_PROVIDER_TOKEN")
 			}
+			if username == "" && token == "" {
+				goocolor.Red.Println("Both a username and token are required\n")
+				_ = cmd.Help()
+				os.Exit(1)
+			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
 			purls, err := lib.Load(Afs, args)
@@ -33,7 +38,14 @@ var (
 				util.PrintErr(err)
 				os.Exit(1)
 			}
-			util.PrintInfof("Scanning %v packages for vulnerabilities...\n\n", len(purls))
+			if len(purls) > 0 {
+				util.PrintInfof("Scanning %v packages for vulnerabilities...\n\n", len(purls))
+			} else {
+				util.PrintInfo("No valid SBOMs were detected. Nothing has been scanned")
+			}
+
+			providers.OutputCredits()
+			fmt.Println()
 
 			response, err := providers.OSSIndex(purls, username, token)
 			if err != nil {
@@ -63,10 +75,9 @@ var (
 				tbl.Print()
 				fmt.Println()
 				goocolor.Red.Printf("Vulnerabilities found: %v\n\n", vulnCount)
-			} else {
+			} else if vulnCount > 0 && len(response) > 0 {
 				goocolor.Green.Println("No vulnerabilities found!\n")
 			}
-			util.PrintSuccess("Done")
 
 		},
 	}
