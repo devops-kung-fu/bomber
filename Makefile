@@ -15,7 +15,7 @@ title:
 build: ## Builds the application
 	go get -u ./...
 	go mod tidy
-	go build ./...
+	go build
 
 test: ## Runs tests and coverage
 	go test -v -coverprofile=coverage.out ./... && go tool cover -func=coverage.out
