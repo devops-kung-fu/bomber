@@ -3,7 +3,7 @@
  "name": ".",
  "spdxVersion": "SPDX-2.2",
  "creationInfo": {
-  "created": "2022-08-23T01:21:27.685599Z",
+  "created": "2022-08-23T01:24:29.738399Z",
   "creators": [
    "Organization: Anchore, Inc",
    "Tool: syft-[not provided]"
@@ -11,7 +11,7 @@
   "licenseListVersion": "3.18"
  },
  "dataLicense": "CC0-1.0",
- "documentNamespace": "https://anchore.com/syft/dir/83a72527-6a0a-4339-a3ca-60e47688c667",
+ "documentNamespace": "https://anchore.com/syft/dir/c2cc138f-14b6-4b12-9762-5653e107c21d",
  "packages": [
   {
    "SPDXID": "SPDXRef-135cc8bc545c374",
