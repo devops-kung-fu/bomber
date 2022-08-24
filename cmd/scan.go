@@ -62,13 +62,12 @@ var (
 				headerFmt := color.New(color.FgGreen, color.Underline).SprintfFunc()
 				columnFmt := color.New(color.FgYellow).SprintfFunc()
 
-				tbl := table.New("purl", "description", "vulnerabilities")
+				tbl := table.New("purl", "description", "vulnerabilities", "score")
 				tbl.WithHeaderFormatter(headerFmt).WithFirstColumnFormatter(columnFmt)
 
 				for _, r := range response {
-					vulns := len(r.Vulnerabilities)
-					if vulns > 0 {
-						tbl.AddRow(r.Coordinates, r.Description, vulns)
+					if len(r.Vulnerabilities) > 0 {
+						tbl.AddRow(r.Coordinates, r.Description, len(r.Vulnerabilities))
 					}
 				}
 

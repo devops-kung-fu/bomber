@@ -8,7 +8,9 @@
         "gomod",
         "ignoretests",
         "kisielk",
+        "OSSINDEX",
         "sbom",
+        "Sonatype",
         "SPDXID",
         "structs",
         "Syft"

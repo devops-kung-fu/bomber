@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:f8bce142-c67d-4b7f-9459-2c70442ab1c3",
+  "serialNumber": "urn:uuid:e4121d54-d802-4988-9c5c-7a28a18e389d",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-08-22T19:24:29-06:00",
+    "timestamp": "2022-08-23T21:35:55-06:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -100,12 +100,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822221108-8b80c24aea2e?package-id=9224fde34264bf03",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220823194327-a4c228ea261b?package-id=9972fdef02590be8",
       "type": "library",
       "name": "github.com/devops-kung-fu/bomber",
-      "version": "v0.0.0-20220822221108-8b80c24aea2e",
-      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220822221108-8b80c24aea2e:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220822221108-8b80c24aea2e",
+      "version": "v0.0.0-20220823194327-a4c228ea261b",
+      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220823194327-a4c228ea261b:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220823194327-a4c228ea261b",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -125,19 +125,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220822221108-8b80c24aea2e:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220823194327-a4c228ea261b:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220822221108-8b80c24aea2e:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220823194327-a4c228ea261b:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220822221108-8b80c24aea2e:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220823194327-a4c228ea261b:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220822221108-8b80c24aea2e:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220823194327-a4c228ea261b:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -1070,12 +1070,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/sys@v0.0.0-20220818161305-2296e01440c6?package-id=79829e2e02668386",
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.0.0-20220823224334-20c2bfdbfe24?package-id=819bd8c5efd51da2",
       "type": "library",
       "name": "golang.org/x/sys",
-      "version": "v0.0.0-20220818161305-2296e01440c6",
-      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220818161305-2296e01440c6:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/golang.org/x/sys@v0.0.0-20220818161305-2296e01440c6",
+      "version": "v0.0.0-20220823224334-20c2bfdbfe24",
+      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220823224334-20c2bfdbfe24:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/sys@v0.0.0-20220823224334-20c2bfdbfe24",
       "properties": [
         {
           "name": "syft:package:foundBy",
