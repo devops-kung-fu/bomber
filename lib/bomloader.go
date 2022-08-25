@@ -3,6 +3,7 @@ package lib
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"log"
 	"path/filepath"
 
@@ -20,7 +21,7 @@ func Load(afs *afero.Afero, args []string) (purls []string, err error) {
 		if isDir {
 			values, err := loadFolderPurls(afs, arg)
 			if err != nil {
-				return nil, err
+				return nil, nil
 			}
 			purls = append(purls, values...)
 		} else {
@@ -49,24 +50,29 @@ func loadFolderPurls(afs *afero.Afero, arg string) (purls []string, err error) {
 }
 
 func loadFilePurls(afs *afero.Afero, arg string) (purls []string, err error) {
+	log.Printf("Reading: %v", arg)
 	b, err := afs.ReadFile(arg)
 	if err != nil {
 		return nil, err
 	}
 	if bytes.Contains(b, []byte("\"bomFormat\": \"CycloneDX\",")) {
+		log.Println("Detected CycloneDX")
 		var sbom cyclone.BOM
 		err = json.Unmarshal(b, &sbom)
 		return cyclonedx.Purls(&sbom), err
 	} else if bytes.Contains(b, []byte("\"SPDXID\": \"SPDXRef-DOCUMENT\",")) {
+		log.Println("Detected SPDX")
 		var sbom spdx.BOM
 		_ = json.Unmarshal(b, &sbom)
 		return sbom.Purls(), err
 	} else if bytes.Contains(b, []byte("\"url\": \"https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-3.3.2.json\"")) {
+		log.Println("Detected Syft")
 		var sbom syft.BOM
 		err = json.Unmarshal(b, &sbom)
 		return sbom.Purls(), err
 	}
-	return
+	log.Printf("WARNING: %v doesn't look like an SBOM", arg)
+	return nil, fmt.Errorf("%v is not an SBOM recognized by bomber", arg)
 }
 
 func removeDuplicates[T string | int](sliceList []T) []T {

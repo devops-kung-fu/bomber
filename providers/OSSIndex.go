@@ -2,7 +2,6 @@ package providers
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 
 	"github.com/kirinlabs/HttpRequest"
@@ -37,9 +36,8 @@ type Vulnerability struct {
 	ExternalReferences []interface{} `json:"externalReferences"`
 }
 
-func OutputCredits() {
-	fmt.Println("Uses vulnerability information provided by the Sonatype OSS Index")
-	fmt.Println("https://ossindex.sonatype.org")
+func OutputCredits() string {
+	return "Sonatype OSS Index (https://ossindex.sonatype.org)"
 }
 
 func OSSIndex(purls []string, username, token string) (coordinateResponses CoordinateResponses, err error) {
