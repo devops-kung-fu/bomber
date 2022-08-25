@@ -13,7 +13,8 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/devops-kung-fu/bomber/lib"
-	"github.com/devops-kung-fu/bomber/providers"
+	"github.com/devops-kung-fu/bomber/models"
+	ossindex "github.com/devops-kung-fu/bomber/providers/ossindex"
 )
 
 var (
@@ -43,9 +44,9 @@ var (
 			}
 			if len(purls) > 0 {
 				util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
-				util.PrintInfo("Vulnerability Provider:", providers.OutputCredits(), "\n")
+				util.PrintInfo("Vulnerability Provider:", ossindex.Info(), "\n")
 
-				response, err := providers.OSSIndex(purls, username, token)
+				response, err := ossindex.Scan(purls, username, token)
 				if err != nil {
 					util.PrintErr(err)
 					os.Exit(1)
@@ -83,7 +84,7 @@ func init() {
 	// rootCmd.PersistentFlags().BoolVar(&detailed, "detailed", false, "Displays detailed vulnerability findings.")
 }
 
-func RenderDetails(response providers.CoordinateResponses) {
+func RenderDetails(response []models.Package) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	t.Style().Options.DrawBorder = false
@@ -96,7 +97,7 @@ func RenderDetails(response providers.CoordinateResponses) {
 	})
 	for _, r := range response {
 		if len(r.Vulnerabilities) > 0 {
-			t.AppendRow([]interface{}{"Package", r.Coordinates})
+			t.AppendRow([]interface{}{"Package", r.Purl})
 			t.AppendRow([]interface{}{"Description", r.Description})
 			t.AppendRow([]interface{}{"Vulnerabilities", fmt.Sprint(len(r.Vulnerabilities))})
 			for _, v := range r.Vulnerabilities {
@@ -111,13 +112,13 @@ func RenderDetails(response providers.CoordinateResponses) {
 	t.Render()
 }
 
-func RenderSummary(response providers.CoordinateResponses) {
+func RenderSummary(response []models.Package) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"Type", "Name", "Version", "Severity", "Vulnerability"})
 	for _, r := range response {
 		if len(r.Vulnerabilities) > 0 {
-			purl, err := packageurl.FromString(r.Coordinates)
+			purl, err := packageurl.FromString(r.Purl)
 			if err != nil {
 				log.Println(err)
 			}

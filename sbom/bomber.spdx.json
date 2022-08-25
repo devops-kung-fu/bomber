@@ -3,7 +3,7 @@
  "name": ".",
  "spdxVersion": "SPDX-2.2",
  "creationInfo": {
-  "created": "2022-08-25T16:14:28.262475Z",
+  "created": "2022-08-25T19:40:30.902843Z",
   "creators": [
    "Organization: Anchore, Inc",
    "Tool: syft-[not provided]"
@@ -11,7 +11,7 @@
   "licenseListVersion": "3.18"
  },
  "dataLicense": "CC0-1.0",
- "documentNamespace": "https://anchore.com/syft/dir/7ce3c03e-9a01-4a5f-9b58-979eb4a6c42a",
+ "documentNamespace": "https://anchore.com/syft/dir/c2229716-6b11-421f-bd69-62a0cd3bcc7a",
  "packages": [
   {
    "SPDXID": "SPDXRef-135cc8bc545c374",
@@ -95,46 +95,46 @@
    "versionInfo": "v1.1.1"
   },
   {
-   "SPDXID": "SPDXRef-cc25390686197b11",
+   "SPDXID": "SPDXRef-32cd50bc937d6ab7",
    "name": "github.com/devops-kung-fu/bomber",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220824033541-7daf670102bb:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220825161846-bd674552f2cd:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220824033541-7daf670102bb:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220825161846-bd674552f2cd:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220824033541-7daf670102bb:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220825161846-bd674552f2cd:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220824033541-7daf670102bb:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220825161846-bd674552f2cd:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops:bomber:v0.0.0-20220824033541-7daf670102bb:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops:bomber:v0.0.0-20220825161846-bd674552f2cd:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220824033541-7daf670102bb",
+     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220825161846-bd674552f2cd",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.0.0-20220824033541-7daf670102bb"
+   "versionInfo": "v0.0.0-20220825161846-bd674552f2cd"
   },
   {
    "SPDXID": "SPDXRef-b752bd20a7f80e7c",
@@ -560,26 +560,26 @@
    "versionInfo": "v1.0.0"
   },
   {
-   "SPDXID": "SPDXRef-636764e54f9dd997",
+   "SPDXID": "SPDXRef-c5ab83c38da26ade",
    "name": "github.com/rivo/uniseg",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:rivo:uniseg:v0.2.0:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:rivo:uniseg:v0.3.4:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/rivo/uniseg@v0.2.0",
+     "referenceLocator": "pkg:golang/github.com/rivo/uniseg@v0.3.4",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.2.0"
+   "versionInfo": "v0.3.4"
   },
   {
    "SPDXID": "SPDXRef-118031f15e598b16",
