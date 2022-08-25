@@ -7,10 +7,16 @@
         "gofmt",
         "gomod",
         "ignoretests",
+        "Infof",
         "kisielk",
+        "OSSINDEX",
+        "packageurl",
         "sbom",
+        "Sonatype",
         "SPDXID",
         "structs",
-        "Syft"
+        "Syft",
+        "vuln",
+        "vulns"
     ]
 }
