@@ -46,6 +46,25 @@
    "purl": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0"
   },
   {
+   "id": "82cf8b15f7c32de3",
+   "name": "github.com/davecgh/go-spew",
+   "version": "v1.1.1",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:davecgh:go-spew:v1.1.1:*:*:*:*:*:*:*",
+    "cpe:2.3:a:davecgh:go_spew:v1.1.1:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/davecgh/go-spew@v1.1.1"
+  },
+  {
    "id": "cc25390686197b11",
    "name": "github.com/devops-kung-fu/bomber",
    "version": "v0.0.0-20220824033541-7daf670102bb",
@@ -387,6 +406,25 @@
    "purl": "pkg:golang/github.com/package-url/packageurl-go@v0.1.0"
   },
   {
+   "id": "fc0265ef2c7b8e50",
+   "name": "github.com/pmezard/go-difflib",
+   "version": "v1.0.0",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:pmezard:go-difflib:v1.0.0:*:*:*:*:*:*:*",
+    "cpe:2.3:a:pmezard:go_difflib:v1.0.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/pmezard/go-difflib@v1.0.0"
+  },
+  {
    "id": "636764e54f9dd997",
    "name": "github.com/rivo/uniseg",
    "version": "v0.2.0",
@@ -559,6 +597,24 @@
    "purl": "pkg:golang/github.com/spf13/pflag@v1.0.5"
   },
   {
+   "id": "384b2b91069c12ca",
+   "name": "github.com/stretchr/testify",
+   "version": "v1.8.0",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [
+    "cpe:2.3:a:stretchr:testify:v1.8.0:*:*:*:*:*:*:*"
+   ],
+   "purl": "pkg:golang/github.com/stretchr/testify@v1.8.0"
+  },
+  {
    "id": "1aa4a305c1f6bd59",
    "name": "github.com/xo/terminfo",
    "version": "v0.0.0-20210125001918-ca9a967f8778",
@@ -661,6 +717,22 @@
     "cpe:2.3:a:golang:x\\/text:v0.3.7:*:*:*:*:*:*:*"
    ],
    "purl": "pkg:golang/golang.org/x/text@v0.3.7"
+  },
+  {
+   "id": "7d36a1c0c358a2f8",
+   "name": "gopkg.in/yaml.v3",
+   "version": "v3.0.1",
+   "type": "go-module",
+   "foundBy": "go-mod-file-cataloger",
+   "locations": [
+    {
+     "path": "go.mod"
+    }
+   ],
+   "licenses": [],
+   "language": "go",
+   "cpes": [],
+   "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1"
   }
  ],
  "artifactRelationships": [],

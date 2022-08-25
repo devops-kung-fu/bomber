@@ -3,7 +3,7 @@
  "name": ".",
  "spdxVersion": "SPDX-2.2",
  "creationInfo": {
-  "created": "2022-08-25T15:51:38.279973Z",
+  "created": "2022-08-25T16:14:28.262475Z",
   "creators": [
    "Organization: Anchore, Inc",
    "Tool: syft-[not provided]"
@@ -11,7 +11,7 @@
   "licenseListVersion": "3.18"
  },
  "dataLicense": "CC0-1.0",
- "documentNamespace": "https://anchore.com/syft/dir/bd3ec80e-37da-4e45-be08-26c54c8db2c5",
+ "documentNamespace": "https://anchore.com/syft/dir/7ce3c03e-9a01-4a5f-9b58-979eb4a6c42a",
  "packages": [
   {
    "SPDXID": "SPDXRef-135cc8bc545c374",
@@ -66,6 +66,33 @@
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
    "versionInfo": "v0.6.0"
+  },
+  {
+   "SPDXID": "SPDXRef-82cf8b15f7c32de3",
+   "name": "github.com/davecgh/go-spew",
+   "licenseConcluded": "NONE",
+   "downloadLocation": "NOASSERTION",
+   "externalRefs": [
+    {
+     "referenceCategory": "SECURITY",
+     "referenceLocator": "cpe:2.3:a:davecgh:go-spew:v1.1.1:*:*:*:*:*:*:*",
+     "referenceType": "cpe23Type"
+    },
+    {
+     "referenceCategory": "SECURITY",
+     "referenceLocator": "cpe:2.3:a:davecgh:go_spew:v1.1.1:*:*:*:*:*:*:*",
+     "referenceType": "cpe23Type"
+    },
+    {
+     "referenceCategory": "PACKAGE_MANAGER",
+     "referenceLocator": "pkg:golang/github.com/davecgh/go-spew@v1.1.1",
+     "referenceType": "purl"
+    }
+   ],
+   "filesAnalyzed": false,
+   "licenseDeclared": "NONE",
+   "sourceInfo": "acquired package info from go module information: go.mod",
+   "versionInfo": "v1.1.1"
   },
   {
    "SPDXID": "SPDXRef-cc25390686197b11",
@@ -506,6 +533,33 @@
    "versionInfo": "v0.1.0"
   },
   {
+   "SPDXID": "SPDXRef-fc0265ef2c7b8e50",
+   "name": "github.com/pmezard/go-difflib",
+   "licenseConcluded": "NONE",
+   "downloadLocation": "NOASSERTION",
+   "externalRefs": [
+    {
+     "referenceCategory": "SECURITY",
+     "referenceLocator": "cpe:2.3:a:pmezard:go-difflib:v1.0.0:*:*:*:*:*:*:*",
+     "referenceType": "cpe23Type"
+    },
+    {
+     "referenceCategory": "SECURITY",
+     "referenceLocator": "cpe:2.3:a:pmezard:go_difflib:v1.0.0:*:*:*:*:*:*:*",
+     "referenceType": "cpe23Type"
+    },
+    {
+     "referenceCategory": "PACKAGE_MANAGER",
+     "referenceLocator": "pkg:golang/github.com/pmezard/go-difflib@v1.0.0",
+     "referenceType": "purl"
+    }
+   ],
+   "filesAnalyzed": false,
+   "licenseDeclared": "NONE",
+   "sourceInfo": "acquired package info from go module information: go.mod",
+   "versionInfo": "v1.0.0"
+  },
+  {
    "SPDXID": "SPDXRef-636764e54f9dd997",
    "name": "github.com/rivo/uniseg",
    "licenseConcluded": "NONE",
@@ -682,6 +736,28 @@
    "versionInfo": "v1.0.5"
   },
   {
+   "SPDXID": "SPDXRef-384b2b91069c12ca",
+   "name": "github.com/stretchr/testify",
+   "licenseConcluded": "NONE",
+   "downloadLocation": "NOASSERTION",
+   "externalRefs": [
+    {
+     "referenceCategory": "SECURITY",
+     "referenceLocator": "cpe:2.3:a:stretchr:testify:v1.8.0:*:*:*:*:*:*:*",
+     "referenceType": "cpe23Type"
+    },
+    {
+     "referenceCategory": "PACKAGE_MANAGER",
+     "referenceLocator": "pkg:golang/github.com/stretchr/testify@v1.8.0",
+     "referenceType": "purl"
+    }
+   ],
+   "filesAnalyzed": false,
+   "licenseDeclared": "NONE",
+   "sourceInfo": "acquired package info from go module information: go.mod",
+   "versionInfo": "v1.8.0"
+  },
+  {
    "SPDXID": "SPDXRef-1aa4a305c1f6bd59",
    "name": "github.com/xo/terminfo",
    "licenseConcluded": "NONE",
@@ -790,6 +866,23 @@
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
    "versionInfo": "v0.3.7"
+  },
+  {
+   "SPDXID": "SPDXRef-7d36a1c0c358a2f8",
+   "name": "gopkg.in/yaml.v3",
+   "licenseConcluded": "NONE",
+   "downloadLocation": "NOASSERTION",
+   "externalRefs": [
+    {
+     "referenceCategory": "PACKAGE_MANAGER",
+     "referenceLocator": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+     "referenceType": "purl"
+    }
+   ],
+   "filesAnalyzed": false,
+   "licenseDeclared": "NONE",
+   "sourceInfo": "acquired package info from go module information: go.mod",
+   "versionInfo": "v3.0.1"
   }
  ]
 }
