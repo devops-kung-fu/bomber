@@ -1,4 +1,4 @@
-package osv
+package snyk
 
 import (
 	"testing"
@@ -8,5 +8,5 @@ import (
 
 func TestInfo(t *testing.T) {
 	info := Info()
-	assert.Equal(t, "UNDER DEVELOPMENT: OSV Vulnerability Database (https://osv.dev)", info)
+	assert.Equal(t, "Snyk (https://snyk.com)", info)
 }

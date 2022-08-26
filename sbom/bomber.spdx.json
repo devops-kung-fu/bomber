@@ -3,7 +3,7 @@
  "name": ".",
  "spdxVersion": "SPDX-2.2",
  "creationInfo": {
-  "created": "2022-08-25T19:40:30.902843Z",
+  "created": "2022-08-26T18:50:20.556961Z",
   "creators": [
    "Organization: Anchore, Inc",
    "Tool: syft-[not provided]"
@@ -11,7 +11,7 @@
   "licenseListVersion": "3.18"
  },
  "dataLicense": "CC0-1.0",
- "documentNamespace": "https://anchore.com/syft/dir/c2229716-6b11-421f-bd69-62a0cd3bcc7a",
+ "documentNamespace": "https://anchore.com/syft/dir/43b8ff5d-b1ff-4024-88ce-9aa3c8c691bf",
  "packages": [
   {
    "SPDXID": "SPDXRef-135cc8bc545c374",
@@ -95,46 +95,46 @@
    "versionInfo": "v1.1.1"
   },
   {
-   "SPDXID": "SPDXRef-32cd50bc937d6ab7",
+   "SPDXID": "SPDXRef-e062d4581b622b3d",
    "name": "github.com/devops-kung-fu/bomber",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220825161846-bd674552f2cd:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220825194016-8e16e2783b17:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220825161846-bd674552f2cd:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220825194016-8e16e2783b17:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220825161846-bd674552f2cd:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220825194016-8e16e2783b17:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220825161846-bd674552f2cd:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220825194016-8e16e2783b17:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops:bomber:v0.0.0-20220825161846-bd674552f2cd:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops:bomber:v0.0.0-20220825194016-8e16e2783b17:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220825161846-bd674552f2cd",
+     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220825194016-8e16e2783b17",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.0.0-20220825161846-bd674552f2cd"
+   "versionInfo": "v0.0.0-20220825194016-8e16e2783b17"
   },
   {
    "SPDXID": "SPDXRef-b752bd20a7f80e7c",
@@ -802,26 +802,26 @@
    "versionInfo": "v0.0.0-20210125001918-ca9a967f8778"
   },
   {
-   "SPDXID": "SPDXRef-819bd8c5efd51da2",
+   "SPDXID": "SPDXRef-2986c4fe8f99de65",
    "name": "golang.org/x/sys",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220823224334-20c2bfdbfe24:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220825204002-c680a09ffe64:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220823224334-20c2bfdbfe24",
+     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220825204002-c680a09ffe64",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v0.0.0-20220823224334-20c2bfdbfe24"
+   "versionInfo": "v0.0.0-20220825204002-c680a09ffe64"
   },
   {
    "SPDXID": "SPDXRef-aede29b9184a1572",

@@ -15,25 +15,36 @@ import (
 	"github.com/devops-kung-fu/bomber/lib"
 	"github.com/devops-kung-fu/bomber/models"
 	ossindex "github.com/devops-kung-fu/bomber/providers/ossindex"
+	"github.com/devops-kung-fu/bomber/providers/osv"
+	"github.com/devops-kung-fu/bomber/providers/snyk"
 )
 
 var (
-	token, username string
+	token, username, provider string
 	// summary, detailed bool
 	scanCmd = &cobra.Command{
 		Use:   "scan",
 		Short: "Scans a provided SBoM file or folder containing SBoMs for vulnerabilities.",
 		PreRun: func(cmd *cobra.Command, args []string) {
+			//TODO: make sure the provider is valid or barf out
 			if username == "" {
 				username = os.Getenv("BOMBER_PROVIDER_USERNAME")
 			}
 			if token == "" {
 				token = os.Getenv("BOMBER_PROVIDER_TOKEN")
 			}
-			if username == "" && token == "" {
-				color.Red.Println("Both a username and token are required\n")
-				_ = cmd.Help()
-				os.Exit(1)
+			if provider == "ossindex" {
+				if username == "" && token == "" {
+					color.Red.Println("The OSS Index provider requires a username and token\n")
+					_ = cmd.Help()
+					os.Exit(1)
+				}
+			} else if provider == "snyk" {
+				if token == "" {
+					color.Red.Println("The Snyk provider requires a token\n")
+					_ = cmd.Help()
+					os.Exit(1)
+				}
 			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
@@ -43,10 +54,20 @@ var (
 				os.Exit(1)
 			}
 			if len(purls) > 0 {
-				util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
-				util.PrintInfo("Vulnerability Provider:", ossindex.Info(), "\n")
+				var response []models.Package
 
-				response, err := ossindex.Scan(purls, username, token)
+				util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
+				if provider == "snyk" {
+					util.PrintInfo("Vulnerability Provider:", snyk.Info(), "\n")
+					response, err = snyk.Scan(purls, username, token)
+				} else if provider == "ossindex" {
+					util.PrintInfo("Vulnerability Provider:", ossindex.Info(), "\n")
+					response, err = ossindex.Scan(purls, username, token)
+				} else {
+					util.PrintInfo("Vulnerability Provider:", osv.Info(), "\n")
+					response, err = osv.Scan(purls, username, token)
+				}
+
 				if err != nil {
 					util.PrintErr(err)
 					os.Exit(1)
@@ -58,11 +79,7 @@ var (
 				}
 
 				if vulnCount > 0 {
-					// if summary {
 					RenderSummary(response)
-					// } else if detailed {
-					// RenderDetails(response)
-					// }
 					fmt.Println()
 					color.Red.Printf("Vulnerabilities found: %v\n\n", vulnCount)
 				} else {
@@ -80,8 +97,7 @@ func init() {
 	rootCmd.AddCommand(scanCmd)
 	scanCmd.PersistentFlags().StringVar(&username, "username", "", "The user name of the provider being used.")
 	scanCmd.PersistentFlags().StringVar(&token, "token", "", "The API token of the provider being used.")
-	// rootCmd.PersistentFlags().BoolVar(&summary, "summary", false, "Displays a summary of any findings.")
-	// rootCmd.PersistentFlags().BoolVar(&detailed, "detailed", false, "Displays detailed vulnerability findings.")
+	scanCmd.PersistentFlags().StringVar(&provider, "provider", "ossindex", "The vulnerability provider (ossindex, snyk, osv).")
 }
 
 func RenderDetails(response []models.Package) {
@@ -113,6 +129,7 @@ func RenderDetails(response []models.Package) {
 }
 
 func RenderSummary(response []models.Package) {
+	log.Println("Rendering Packages:", response)
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"Type", "Name", "Version", "Severity", "Vulnerability"})

@@ -19,7 +19,7 @@ func Info() string {
 	return "Sonatype OSS Index (https://ossindex.sonatype.org)"
 }
 
-func Scan(purls []string, username, token string) (coordinateResponses []models.Package, err error) {
+func Scan(purls []string, username, token string) (packages []models.Package, err error) {
 	j := len(purls)
 	for i := 0; i < j; i += 128 {
 		z := i + 128
@@ -47,7 +47,7 @@ func Scan(purls []string, username, token string) (coordinateResponses []models.
 		var responses []models.Package
 		err = json.Unmarshal(body, &responses)
 
-		coordinateResponses = append(coordinateResponses, responses...)
+		packages = append(packages, responses...)
 	}
 	return
 }

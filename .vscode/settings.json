@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "Afero",
         "coverprofile",
         "cyclomatic",
         "cyclonedx",
@@ -16,6 +17,7 @@
         "SPDXID",
         "structs",
         "Syft",
+        "synk",
         "vuln",
         "vulns"
     ]
