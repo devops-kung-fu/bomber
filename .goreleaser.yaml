@@ -2,7 +2,7 @@ project_name: bomber
 
 builds:
   - 
-    binary: hookz
+    binary: bomber
     goos:
       - darwin
       - linux

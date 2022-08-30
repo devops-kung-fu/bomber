@@ -40,7 +40,7 @@ jobs:
         name: Generate SBOM
         uses: anchore/sbom-action@v0
         with:
-          artifact-name: hookz.spdx.json
+          artifact-name: bomber.spdx.json
           path: .
       - 
         name: Release SBOM
