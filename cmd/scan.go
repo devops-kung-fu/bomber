@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
+	"time"
 
+	"github.com/briandowns/spinner"
 	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/jedib0t/go-pretty/v6/table"
@@ -57,6 +60,10 @@ var (
 				var response []models.Package
 
 				util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
+
+				s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
+				s.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", provider)
+				s.Start()
 				if provider == "snyk" {
 					util.PrintInfo("Vulnerability Provider:", snyk.Info(), "\n")
 					response, err = snyk.Scan(purls, username, token)
@@ -67,7 +74,7 @@ var (
 					util.PrintInfo("Vulnerability Provider:", osv.Info(), "\n")
 					response, err = osv.Scan(purls, username, token)
 				}
-
+				s.Stop()
 				if err != nil {
 					util.PrintErr(err)
 					os.Exit(1)
@@ -82,8 +89,16 @@ var (
 					RenderSummary(response)
 					fmt.Println()
 					color.Red.Printf("Vulnerabilities found: %v\n\n", vulnCount)
+					fmt.Println()
+					fmt.Println("NOTE: The list of vulnerabilities displayed may differ from provider to provider. This list")
+					fmt.Println("may not contain all possible vulnerabilities. Please try the other providers that bomber")
+					fmt.Println("supports (osv, ossindex, snyk)")
 				} else {
-					color.Green.Println("No vulnerabilities found!\n")
+					color.Green.Printf("No vulnerabilities found using the %v provider\n", provider)
+					fmt.Println()
+					fmt.Printf("NOTE: Just because bomber didn't find any vulnerabilities using the %v provider does\n", provider)
+					fmt.Println("not mean that there are no vulnerabilities. Please try the other providers that bomber")
+					fmt.Println("supports (osv, ossindex, snyk)")
 				}
 			} else {
 				util.PrintInfo("No packages were detected. Nothing has been scanned.")
@@ -97,7 +112,7 @@ func init() {
 	rootCmd.AddCommand(scanCmd)
 	scanCmd.PersistentFlags().StringVar(&username, "username", "", "The user name of the provider being used.")
 	scanCmd.PersistentFlags().StringVar(&token, "token", "", "The API token of the provider being used.")
-	scanCmd.PersistentFlags().StringVar(&provider, "provider", "ossindex", "The vulnerability provider (ossindex, snyk, osv).")
+	scanCmd.PersistentFlags().StringVar(&provider, "provider", "osv", "The vulnerability provider (ossindex, snyk, osv).")
 }
 
 func RenderDetails(response []models.Package) {
@@ -140,7 +155,10 @@ func RenderSummary(response []models.Package) {
 				log.Println(err)
 			}
 			for _, v := range r.Vulnerabilities {
-				t.AppendRow([]interface{}{purl.Type, purl.Name, purl.Version, v.CvssScore, v.Cwe})
+				if provider == "ossindex" {
+					v.Severity = strings.TrimSuffix(fmt.Sprintf("%f", v.CvssScore), "00000")
+				}
+				t.AppendRow([]interface{}{purl.Type, purl.Name, purl.Version, v.Severity, v.Cwe})
 			}
 		}
 	}

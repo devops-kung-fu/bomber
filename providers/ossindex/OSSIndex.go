@@ -1,8 +1,8 @@
 package ossindex
 
 import (
-	"encoding/json"
 	"log"
+	"encoding/json"
 
 	"github.com/kirinlabs/HttpRequest"
 
@@ -41,13 +41,20 @@ func Scan(purls []string, username, token string) (packages []models.Package, er
 		log.Printf("OSSIndex Response Status: %v", resp.StatusCode())
 
 		body, err := resp.Body()
-		if err != nil {
-			return nil, err
+		if resp.StatusCode() == 200 {
+			if err != nil {
+				return nil, err
+			}
+			var responses []models.Package
+			err = json.Unmarshal(body, &responses)
+			// for _, pkg := range responses {
+			// 	for _, vv := rnge pkg.Vulnerabilities {
+			// 		log.Println("SEVERITY:", vv.Severity, fmt.Sprintf("%f", vv.CvssScore))
+			// 		vv.Severity = 
+			// 	}
+			// }
+			packages = append(packages, responses...)
 		}
-		var responses []models.Package
-		err = json.Unmarshal(body, &responses)
-
-		packages = append(packages, responses...)
 	}
 	return
 }

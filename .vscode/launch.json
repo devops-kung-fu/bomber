@@ -5,36 +5,52 @@
     "version": "0.2.0",
     "configurations": [    
         {
-            "name": "Debug",
+            "name": "Debug Folder (OSV)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "scan", "./sbom"]
+            "args": ["--debug=true", "scan", "./sbom/test"]
         },
         {
-            "name": "Debug (Snyk)",
+            "name": "Debug Folder (Snyk)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=snyk", "--debug=true", "scan", "./sbom"]
+            "args": ["--provider=snyk", "--debug=true", "scan", "./sbom/test"]
         },
         {
-            "name": "Debug (OSV)",
+            "name": "Debug Folder (ossindex)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=osv", "--debug=true", "scan", "./sbom"]
+            "args": ["--provider=ossindex", "--debug=true", "scan", "./sbom"]
         },
         {
-            "name": "Debug (OSV - Bad SBOM)",
+            "name": "Debug File (OSV - railsgoat)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=osv", "--debug=true", "scan", "/Users/dj/Desktop/bad-bom.json"]
-        }
+            "args": ["--provider=osv", "--debug=true", "scan", "./sbom/test/railsgoat.cyclonedx.json"]
+        },
+        {
+            "name": "Debug File (OSV - ubuntu-latest.cyclonedx.json)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "args": ["--provider=osv", "--debug=true", "scan", "./sbom/test/ubuntu-latest.cyclonedx.json"]
+        },
+        {
+            "name": "Debug File (ossindex - railsgoat)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "args": ["--provider=ossindex", "--debug=true", "scan", "./sbom/test/railsgoat.cyclonedx.json"]
+        },
     ]
 }

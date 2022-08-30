@@ -17,4 +17,5 @@ type Vulnerability struct {
 	Cwe                string        `json:"cwe"`
 	Reference          string        `json:"reference"`
 	ExternalReferences []interface{} `json:"externalReferences"`
+	Severity           string        `json:"severity"`
 }

@@ -94,7 +94,7 @@ const (
 )
 
 func Info() string {
-	return "UNDER DEVELOPMENT: OSV Vulnerability Database (https://osv.dev)"
+	return "OSV Vulnerability Database (https://osv.dev) - EXPERIMENTAL"
 }
 
 func Scan(purls []string, username, token string) (packages []models.Package, err error) {
@@ -135,7 +135,8 @@ func Scan(purls []string, username, token string) (packages []models.Package, er
 				}
 				for _, v := range response.Vulns {
 					vuln := models.Vulnerability{
-						Cwe: strings.Join(v.Aliases, ","),
+						Cwe:      strings.Join(append(v.Aliases, v.DatabaseSpecific.CweIDS...), ","),
+						Severity: v.DatabaseSpecific.Severity,
 					}
 					pkg.Vulnerabilities = append(pkg.Vulnerabilities, vuln)
 				}

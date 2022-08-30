@@ -10,9 +10,9 @@ import (
 	cyclone "github.com/CycloneDX/cyclonedx-go"
 	"github.com/spf13/afero"
 
-	"github.com/devops-kung-fu/bomber/cyclonedx"
-	"github.com/devops-kung-fu/bomber/spdx"
-	"github.com/devops-kung-fu/bomber/syft"
+	cyclonedx "github.com/devops-kung-fu/bomber/formats/cyclonedx"
+	spdx "github.com/devops-kung-fu/bomber/formats/spdx"
+	syft "github.com/devops-kung-fu/bomber/formats/syft"
 )
 
 func Load(afs *afero.Afero, args []string) (purls []string, err error) {
@@ -60,7 +60,8 @@ func loadFilePurls(afs *afero.Afero, arg string) (purls []string, err error) {
 		var sbom cyclone.BOM
 		err = json.Unmarshal(b, &sbom)
 		return cyclonedx.Purls(&sbom), err
-	} else if bytes.Contains(b, []byte("\"SPDXID\": \"SPDXRef-DOCUMENT\",")) {
+		//} else if bytes.Contains(b, []byte("\"SPDXID\": \"SPDXRef-DOCUMENT\",")) {
+	} else if bytes.Contains(b, []byte("{\"SPDXID\"")) {
 		log.Println("Detected SPDX")
 		var sbom spdx.BOM
 		_ = json.Unmarshal(b, &sbom)
