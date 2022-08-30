@@ -17,10 +17,6 @@ So you've asked a vendor for an Software Bill of Materials (SBOM) for one of the
 
 The first thing you're going to want to do is see if any of the components listed inside the SBOM have security vulnerabilities. This will help you identify what kind of risk you will be taking on by using the product. Finding security vulnerabilities for components identified in an SBOM is exactly what ```bomber``` is meant to do. It can read any JSON based [SPDX](https://spdx.dev), [CycloneDX](https://cyclonedx.org), or [Syft](https://github.com/anchore/syft) formatted SBOM and tell you pretty quickly if there are any vulnerabilities. 
 
-Powered by the [Sonatype OSS Index](https://ossindex.sonatype.org), ```bomber``` can tell you what the component is used for, how many vulnerabilities it has, and what they are.
-
-All you need is to download and install ```bomber``` and get yourself a free account for accessing the [Sonatype OSS Index](https://ossindex.sonatype.org).
-
 ### What SBOM formats are supported?
 
 There are quite a few SBOM formats available today. ```bomber``` supports the following:
@@ -29,9 +25,54 @@ There are quite a few SBOM formats available today. ```bomber``` supports the fo
 - [CycloneDX](https://cyclonedx.org)
 - [Syft](https://github.com/anchore/syft)
 
-### What ecosystems are supported?
+## Providers
 
-Since ```bomber``` uses the [Sonatype OSS Index](https://ossindex.sonatype.org), it will give results for the ecosystems that it supports. At this time, the following can be scanned with ```bomber```
+```bomber``` supports multiple sources for vulnerability information. We call these *providers*. Currently, ```bomber``` uses OSV as the default provider, but you can also use the [Sonatype OSS Index](https://ossindex.sonatype.org). We are working on supporting [Snyk](https://snyk.com), but do not have that functionality working yet.
+
+Please note that *each provider supports different ecosystems*, so if you're not seeing any vulnerabilities in one, try another. It is also important to understand that each provider may report different vulnerabilities. If in doubt, look at a few of them.
+
+If ```bomber``` does not find any vulnerabilities, it doesn't mean that there are none. All it means is that the provider being used didn't detect any, or it doesn't support the ecosystem.
+
+### What is an ecosystem?
+
+An ecosystem is simply the package manager, or type of package. Examples include rpm, npm, gems, etc. Each provider supports different ecosystems.
+
+### OSV 
+
+[OSV](https://osv.dev) is the default provider for ```bomber```. It is an open, precise, and distributed approach to producing and consuming vulnerability information for open source. 
+
+**You don't need to register for any service, get a password, or a token.** Just use ```bomber``` without a provider flag and away you go like this:
+
+``` bash
+bomber scan test.cyclonedx.json
+```
+
+#### Supported ecosystems
+
+At this time, the [OSV](https://osv.dev) supports the following ecosystems:
+
+- Android
+- crates.io
+- Debian
+- Go
+- Maven
+- NPM
+- NuGet
+- Packagist
+- PyPI
+- RubyGems
+
+and others...
+
+### Sonatype OSS Index
+
+In order to use ```bomber``` with the [Sonatype OSS Index](https://ossindex.sonatype.org) you need to get an account. Head over to the site, and create a free account, and make note of your ```username``` (this will be the email that you registered with). 
+
+Once you log in, you'll want to navigate to your [settings](https://ossindex.sonatype.org/user/settings) and make note of your API ```token```. **Please don't share your token with anyone.**
+
+#### Supported ecosystems
+
+At this time, the [Sonatype OSS Index](https://ossindex.sonatype.org) supports the following ecosystems:
 
 - Maven
 - NPM
@@ -47,12 +88,6 @@ Since ```bomber``` uses the [Sonatype OSS Index](https://ossindex.sonatype.org),
 - CRAN
 - RPM
 - Swift
-
-## Prerequisites
-
-In order to use ```bomber``` you need to get an account for the [Sonatype OSS Index](https://ossindex.sonatype.org). Head over to the site, and create a free account, and make note of your ```username``` (this will be the email that you registered with). 
-
-Once you log in, you'll want to navigate to your [settings](https://ossindex.sonatype.org/user/settings) and make note of your API ```token```. **Please don't share your token with anyone. **
 
 ## Installation
 
@@ -77,26 +112,24 @@ To install ```bomber```,  [download the latest release](https://github.com/devop
 dpkg -i bomber_0.1.0_linux_arm64.deb
 ```
 
-
-
-
 ## Using bomber
-
-Now that we've installed ```bomber``` and have our ```username``` and ```token``` from the [Sonatype OSS Index](https://ossindex.sonatype.org), we can scan an SBOM for vulnerabilities.
 
 You can scan either an entire folder of SBOMs or an individual SBOM with ```bomber```.  ```bomber``` doesn't care if you have multiple formats in a single folder. It'll sort everything out for you.
 
 ### Single SBOM scan
 
 ``` bash
-bomber scan --username=xxx --token=xxx spdx-sbom.json
-```
+# Using OSV (the default provider) which does not require any credentials
+bomber scan spdx.sbom.json
 
-If there are vulnerabilities you'll see an output similar to the following:
+# Using a provider that requires credentials (ossindex, snyk)
+bomber scan --provider=xxx --username=xxx --token=xxx spdx-sbom.json
+```
+If the provider finds vulnerabilities you'll see an output similar to the following:
 
 ![](img/bomber-example.png)
 
-If the [Sonatype OSS Index](https://ossindex.sonatype.org) doesn't return any vulnerabilities you'll see something like the following:
+If the provider doesn't return any vulnerabilities you'll see something like the following:
 
 ![](img/bomber-example-novulns.png)
 
@@ -114,6 +147,16 @@ You'll see a similar result to what a Single SBOM scan will provide.
 ### Advanced stuff
 
 If you wish, you can set two environment variables to store your credentials, and not have to type them on the command line. Check out the [Environment Variables](####Environment-Variables) information later in this README.
+
+### Messing around
+
+If you want to kick the tires on ```bomber``` you'll find a selection of test SBOMs in the [test](sbom/test/) folder.
+
+## Known Issues
+
+- Hate to say it, but SPDX is wonky. If you don't get any results on an SPDX file, try using a CycloneDX file. This is something we are investigating. One of the problems is that ```bomber``` uses [PURLs](https://github.com/package-url/purl-spec) from SBOM's to send to a provider to retrieve vulnerabilities. SPDX has an odd way of treating PURLs as they are embedded in External References deep in the file format. If a PURL isn't there, nothing will scan.
+- OSV. It's great, but the API is also wonky. They have a batch endpoint that would make it a ton quicker to get information back, but it doesn't work. ```bomber``` needs to send one PURL at a time to get vulnerabilities back, so in a big SBOM it will take some time.
+- OSV has another issue where the ecosystem doesn't always return vulnerabilities when you pass it to their API. We had to remove passing this to the API to get anything to return. They also don't echo back the ecosystem so we can't check to ensure that if we pass one ecosystem to it, that we are getting a vulnerability for the same one back.
 
 ## Development
 
@@ -141,6 +184,10 @@ hookz init --verbose --debug --verbose-output
 ```
 This will configure the ```pre-commit``` hooks to check code quality, tests, update all dependencies, etc. before code gets committed to the remote repository.
 
+### Debugging
+
+The project is set up to work really well with [Visual Studio Code](https://code.visualstudio.com). Once you open the ```bomber``` folder in Visual Studio Code, go ahead and use the debugger to run any one of the pre-set configurations. They are all hooked into the test SBOM's that come with the source code.
+
 ### Building
 
 Use the [Makefile](Makefile) to build, test, or do pre-commit checks.
@@ -167,7 +214,7 @@ To load this file, you use the following command in your terminal before opening
 
 ```bomber``` uses the CycloneDX and SPDX to generate a Software Bill of Materials every time a developer commits code to this repository (as long as [Hookz](https://github.com/devops-kung-fu/hookz)is being used and is has been initialized in the working directory). More information for CycloneDX is available [here](https://cyclonedx.org). SPDX information is available [here](https://spdx.dev).
 
-The current CycloneDX SBoM for ```bomber``` is available [here](bomber-cyclonedx-sbom.json), and the SPDX formatted SBoM is available [here](bomber-spdx-sbom.json).
+The current CycloneDX SBoM for ```bomber``` is available [here](./sbom/bomber.cyclonedx.json), and the SPDX formatted SBoM is available [here](./sbom/bomber.spdx.json).
 
 ## Credits
 
