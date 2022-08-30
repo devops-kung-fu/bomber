@@ -14,6 +14,7 @@ import (
 	"github.com/jedib0t/go-pretty/v6/text"
 	"github.com/package-url/packageurl-go"
 	"github.com/spf13/cobra"
+	"k8s.io/utils/strings/slices"
 
 	"github.com/devops-kung-fu/bomber/lib"
 	"github.com/devops-kung-fu/bomber/models"
@@ -24,6 +25,7 @@ import (
 
 var (
 	token, username, provider string
+	severitySummary           = models.SeveritySummary{}
 	// summary, detailed bool
 	scanCmd = &cobra.Command{
 		Use:   "scan",
@@ -59,8 +61,18 @@ var (
 			if len(purls) > 0 {
 				var response []models.Package
 
+				ecosystems := []string{}
+				for _, p := range purls {
+					purl, err := packageurl.FromString(p)
+					if err != nil {
+						log.Println(err)
+					}
+					if !slices.Contains(ecosystems, purl.Type) {
+						ecosystems = append(ecosystems, purl.Type)
+					}
+				}
+				util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
 				util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
-
 				s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
 				s.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", provider)
 				s.Start()
@@ -81,14 +93,15 @@ var (
 				}
 				vulnCount := 0
 				for _, r := range response {
+
 					vulns := len(r.Vulnerabilities)
 					vulnCount += vulns
 				}
-
 				if vulnCount > 0 {
 					RenderSummary(response)
 					fmt.Println()
 					color.Red.Printf("Vulnerabilities found: %v\n\n", vulnCount)
+					renderSeveritySummary()
 					fmt.Println()
 					fmt.Println("NOTE: The list of vulnerabilities displayed may differ from provider to provider. This list")
 					fmt.Println("may not contain all possible vulnerabilities. Please try the other providers that bomber")
@@ -115,6 +128,7 @@ func init() {
 	scanCmd.PersistentFlags().StringVar(&provider, "provider", "osv", "The vulnerability provider (ossindex, snyk, osv).")
 }
 
+// RenderDetails will render enhanced details of the vulnerabilities found. Not implemented yet.
 func RenderDetails(response []models.Package) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
@@ -156,8 +170,9 @@ func RenderSummary(response []models.Package) {
 			}
 			for _, v := range r.Vulnerabilities {
 				if provider == "ossindex" {
-					v.Severity = strings.TrimSuffix(fmt.Sprintf("%f", v.CvssScore), "00000")
+					v.Severity = ratingScale(v.CvssScore)
 				}
+				adjustSummary(v.Severity)
 				t.AppendRow([]interface{}{purl.Type, purl.Name, purl.Version, v.Severity, v.Cwe})
 			}
 		}
@@ -177,10 +192,56 @@ func RenderSummary(response []models.Package) {
 	t.SetColumnConfigs([]table.ColumnConfig{
 		{Number: 1, AutoMerge: true},
 		{Number: 2, AutoMerge: true},
-		{Number: 3, AutoMerge: true},
 	})
 	t.Style().Options.SeparateRows = true
 	t.Style().Format.Header = text.FormatDefault
 	t.Style().Color.Header = text.Colors{text.Bold}
 	t.Render()
+}
+
+func renderSeveritySummary() {
+	log.Println("Rendering Severity Summary")
+	t := table.NewWriter()
+	t.SetOutputMirror(os.Stdout)
+	t.AppendHeader(table.Row{"Rating", "Count"})
+	t.AppendRow([]interface{}{"CRITICAL", severitySummary.Critical})
+	t.AppendRow([]interface{}{"HIGH", severitySummary.High})
+	t.AppendRow([]interface{}{"MEDIUM", severitySummary.Medium})
+	t.AppendRow([]interface{}{"LOW", severitySummary.Low})
+	if severitySummary.None > 0 {
+		t.AppendRow([]interface{}{"NONE", severitySummary.None})
+	}
+	t.SetStyle(table.StyleRounded)
+	t.Style().Options.SeparateRows = true
+	t.Style().Format.Header = text.FormatDefault
+	t.Style().Color.Header = text.Colors{text.Bold}
+	t.Render()
+}
+
+func ratingScale(score float64) string {
+	if score > 0 && score <= 3.9 {
+		return "LOW"
+	} else if score >= 4.0 && score <= 6.9 {
+		return "MEDIUM"
+	} else if score >= 7.0 && score <= 8.9 {
+		return "HIGH"
+	} else if score >= 9.0 && score <= 10.0 {
+		return "CRITICAL"
+	}
+	return "NONE"
+}
+
+func adjustSummary(severity string) {
+	switch severity {
+	case "LOW":
+		severitySummary.Low = severitySummary.Low + 1
+	case "MEDIUM":
+		severitySummary.Medium++
+	case "HIGH":
+		severitySummary.High++
+	case "CRITICAL":
+		severitySummary.Critical++
+	default:
+		severitySummary.None++
+	}
 }

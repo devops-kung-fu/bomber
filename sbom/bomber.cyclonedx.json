@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:4c0709c3-383e-4ea3-8034-e4444d9d1222",
+  "serialNumber": "urn:uuid:adf90662-c555-4b39-b892-794927ab3506",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-08-30T11:30:44-06:00",
+    "timestamp": "2022-08-30T12:12:34-06:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -202,12 +202,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220830155947-326b2d27bb62?package-id=7a2a9e2babc3251",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220830173600-697ad6dae951?package-id=673dd272d675f76d",
       "type": "library",
       "name": "github.com/devops-kung-fu/bomber",
-      "version": "v0.0.0-20220830155947-326b2d27bb62",
-      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220830155947-326b2d27bb62:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220830155947-326b2d27bb62",
+      "version": "v0.0.0-20220830173600-697ad6dae951",
+      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220830173600-697ad6dae951:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220830173600-697ad6dae951",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -227,19 +227,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220830155947-326b2d27bb62:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220830173600-697ad6dae951:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220830155947-326b2d27bb62:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220830173600-697ad6dae951:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220830155947-326b2d27bb62:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220830173600-697ad6dae951:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220830155947-326b2d27bb62:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220830173600-697ad6dae951:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -1603,6 +1603,76 @@
       "name": "gopkg.in/yaml.v3",
       "version": "v3.0.1",
       "purl": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20220823124924-e9cbc92d1a73?package-id=9d2ec6d4636bfdca",
+      "type": "library",
+      "name": "k8s.io/utils",
+      "version": "v0.0.0-20220823124924-e9cbc92d1a73",
+      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20220823124924-e9cbc92d1a73",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangBinMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "bomber"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.19"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:H9TCJUUx+2VA0ZiD9lvtaX8fthFsMoD+Izn93E/hm8U="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/bomber"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20220823124924-e9cbc92d1a73?package-id=18032699c7963fd2",
+      "type": "library",
+      "name": "k8s.io/utils",
+      "version": "v0.0.0-20220823124924-e9cbc92d1a73",
+      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20220823124924-e9cbc92d1a73",
       "properties": [
         {
           "name": "syft:package:foundBy",

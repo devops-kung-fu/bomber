@@ -13,6 +13,7 @@ require (
 	github.com/spf13/afero v1.9.2
 	github.com/spf13/cobra v1.5.0
 	github.com/stretchr/testify v1.8.0
+	k8s.io/utils v0.0.0-20220823124924-e9cbc92d1a73
 )
 
 require (
