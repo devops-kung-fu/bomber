@@ -19,3 +19,11 @@ type Vulnerability struct {
 	ExternalReferences []interface{} `json:"externalReferences"`
 	Severity           string        `json:"severity"`
 }
+
+type SeveritySummary struct {
+	None     int
+	Low      int
+	Medium   int
+	High     int
+	Critical int
+}
