@@ -31,7 +31,7 @@
           args: ["-ignoretests", "./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
-          args: ["-over", "5", "."]
+          args: ["-over", "7", "."]
         - name: Hinge
           exec: hinge
           args: ["."]
