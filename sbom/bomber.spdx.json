@@ -3,7 +3,7 @@
  "name": ".",
  "spdxVersion": "SPDX-2.2",
  "creationInfo": {
-  "created": "2022-08-30T18:12:34.580348Z",
+  "created": "2022-08-30T18:56:39.550112Z",
   "creators": [
    "Organization: Anchore, Inc",
    "Tool: syft-[not provided]"
@@ -11,7 +11,7 @@
   "licenseListVersion": "3.18"
  },
  "dataLicense": "CC0-1.0",
- "documentNamespace": "https://anchore.com/syft/dir/9ba284cb-1d4d-4a91-8504-c524f7e759b5",
+ "documentNamespace": "https://anchore.com/syft/dir/3d6bf186-86c2-401f-9e1c-b4ed5e9e822c",
  "packages": [
   {
    "SPDXID": "SPDXRef-135cc8bc545c374",
@@ -139,46 +139,46 @@
    "versionInfo": "v1.1.1"
   },
   {
-   "SPDXID": "SPDXRef-673dd272d675f76d",
+   "SPDXID": "SPDXRef-58cc7600bb924944",
    "name": "github.com/devops-kung-fu/bomber",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220830173600-697ad6dae951:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220830181417-92636f920a69:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220830173600-697ad6dae951:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220830181417-92636f920a69:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220830173600-697ad6dae951:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220830181417-92636f920a69:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220830173600-697ad6dae951:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220830181417-92636f920a69:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops:bomber:v0.0.0-20220830173600-697ad6dae951:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops:bomber:v0.0.0-20220830181417-92636f920a69:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220830173600-697ad6dae951",
+     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220830181417-92636f920a69",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.0.0-20220830173600-697ad6dae951"
+   "versionInfo": "v0.0.0-20220830181417-92636f920a69"
   },
   {
    "SPDXID": "SPDXRef-b752bd20a7f80e7c",

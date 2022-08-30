@@ -23,7 +23,7 @@ type Vulnerability struct {
 type SeveritySummary struct {
 	None     int
 	Low      int
-	Medium   int
+	Moderate int
 	High     int
 	Critical int
 }
