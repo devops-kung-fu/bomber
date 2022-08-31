@@ -4,10 +4,10 @@
 [![](https://img.shields.io/badge/Status-BETA-yellow)](CONTRIBUTING.md)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/devops-kung-fu/bomber) 
 [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/bomber)](https://goreportcard.com/report/github.com/devops-kung-fu/bomber) 
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/6409/badge)](https://bestpractices.coreinfrastructure.org/projects/6409)
 [![codecov](https://codecov.io/gh/devops-kung-fu/bomber/branch/main/graph/badge.svg?token=P9WBOBQTOB)](https://codecov.io/gh/devops-kung-fu/bomber) 
-[![SBOM](https://img.shields.io/badge/SPDX-SBoM-informational)](sbom/bomber.spdx.json)
 [![SBOM](https://img.shields.io/badge/CyloneDX-SBoM-informational)](sbom/bomber.cyclonedx.json)
-[![SBOM](https://img.shields.io/badge/Syft-SBoM-informational)](sbom/bomber.syft.json)
+
 
 ```bomber``` is an application that scans SBoMs for security vulnerabilities.
 
@@ -27,7 +27,7 @@ There are quite a few SBOM formats available today. ```bomber``` supports the fo
 
 ## Providers
 
-```bomber``` supports multiple sources for vulnerability information. We call these *providers*. Currently, ```bomber``` uses OSV as the default provider, but you can also use the [Sonatype OSS Index](https://ossindex.sonatype.org). We are working on supporting [Snyk](https://snyk.com), but do not have that functionality working yet.
+```bomber``` supports multiple sources for vulnerability information. We call these *providers*. Currently, ```bomber``` uses OSV as the default provider, but you can also use the [Sonatype OSS Index](https://ossindex.sonatype.org). 
 
 Please note that *each provider supports different ecosystems*, so if you're not seeing any vulnerabilities in one, try another. It is also important to understand that each provider may report different vulnerabilities. If in doubt, look at a few of them.
 
@@ -122,7 +122,7 @@ You can scan either an entire folder of SBOMs or an individual SBOM with ```bomb
 # Using OSV (the default provider) which does not require any credentials
 bomber scan spdx.sbom.json
 
-# Using a provider that requires credentials (ossindex, snyk)
+# Using a provider that requires credentials (ossindex)
 bomber scan --provider=xxx --username=xxx --token=xxx spdx-sbom.json
 ```
 If the provider finds vulnerabilities you'll see an output similar to the following:

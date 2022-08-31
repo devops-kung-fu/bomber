@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 type Package struct {
 	Purl            string          `json:"coordinates"`
 	Reference       string          `json:"reference"`
@@ -20,10 +22,21 @@ type Vulnerability struct {
 	Severity           string        `json:"severity"`
 }
 
-type SeveritySummary struct {
+type Summary struct {
 	None     int
 	Low      int
 	Moderate int
 	High     int
 	Critical int
+}
+
+type Bomber struct {
+	Meta     Meta
+	Summary  Summary
+	Packages []Package
+}
+
+type Meta struct {
+	Version string
+	Date    time.Time
 }
