@@ -105,7 +105,9 @@ var (
 					vulns := len(r.Vulnerabilities)
 					vulnCount += vulns
 					p = r
-					p.Vulnerabilities = nil
+					if provider == "ossindex" {
+						p.Vulnerabilities = nil
+					}
 					for _, v := range r.Vulnerabilities {
 						vv = v
 						if provider == "ossindex" {
@@ -201,6 +203,9 @@ func init() {
 // }
 
 func renderSummary(response []models.Package) {
+	if len(response) == 0 {
+		return
+	}
 	log.Println("Rendering Packages:", response)
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
