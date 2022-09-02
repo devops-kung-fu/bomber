@@ -4,22 +4,22 @@ import "time"
 
 type Package struct {
 	Purl            string          `json:"coordinates"`
-	Reference       string          `json:"reference"`
-	Description     string          `json:"description"`
+	Reference       string          `json:"reference,omitempty"`
+	Description     string          `json:"description,omitempty"`
 	Vulnerabilities []Vulnerability `json:"vulnerabilities"`
 }
 
 type Vulnerability struct {
-	ID                 string        `json:"id"`
-	DisplayName        string        `json:"displayName"`
-	Title              string        `json:"title"`
-	Description        string        `json:"description"`
-	CvssScore          float64       `json:"cvssScore"`
-	CvssVector         string        `json:"cvssVector"`
-	Cwe                string        `json:"cwe"`
-	Reference          string        `json:"reference"`
-	ExternalReferences []interface{} `json:"externalReferences"`
-	Severity           string        `json:"severity"`
+	ID                 string        `json:"id,omitempty"`
+	DisplayName        string        `json:"displayName,omitempty"`
+	Title              string        `json:"title,omitempty"`
+	Description        string        `json:"description,omitempty"`
+	CvssScore          float64       `json:"cvssScore,omitempty"`
+	CvssVector         string        `json:"cvssVector,omitempty"`
+	Cwe                string        `json:"cwe,omitempty"`
+	Reference          string        `json:"reference,omitempty"`
+	ExternalReferences []interface{} `json:"externalReferences,omitempty"`
+	Severity           string        `json:"severity,omitempty"`
 }
 
 type Summary struct {
@@ -31,12 +31,14 @@ type Summary struct {
 }
 
 type Bomber struct {
-	Meta     Meta
-	Summary  Summary
-	Packages []Package
+	Meta     Meta      `json:"meta,omitempty"`
+	Summary  Summary   `json:"summary,omitempty"`
+	Packages []Package `json:"packages,omitempty"`
 }
 
 type Meta struct {
-	Version string
-	Date    time.Time
+	Generator string
+	URL       string
+	Version   string
+	Date      time.Time
 }

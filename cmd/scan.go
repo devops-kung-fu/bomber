@@ -296,8 +296,10 @@ func renderOutput(packages []models.Package) (err error) {
 
 		output := models.Bomber{
 			Meta: models.Meta{
-				Version: version,
-				Date:    time.Now(),
+				Generator: "bomber",
+				URL:       "https://github.com/devops-kung-fu/bomber",
+				Version:   version,
+				Date:      time.Now(),
 			},
 			Summary:  severitySummary,
 			Packages: packages,
