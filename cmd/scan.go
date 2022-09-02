@@ -1,6 +1,9 @@
 package cmd
 
 import (
+	"bytes"
+	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -20,36 +23,33 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 	ossindex "github.com/devops-kung-fu/bomber/providers/ossindex"
 	"github.com/devops-kung-fu/bomber/providers/osv"
-	"github.com/devops-kung-fu/bomber/providers/snyk"
 )
 
 var (
 	token, username, provider string
-	severitySummary           = models.SeveritySummary{}
+	severitySummary           = models.Summary{}
 	// summary, detailed bool
 	scanCmd = &cobra.Command{
 		Use:   "scan",
 		Short: "Scans a provided SBoM file or folder containing SBoMs for vulnerabilities.",
 		PreRun: func(cmd *cobra.Command, args []string) {
-			//TODO: make sure the provider is valid or barf out
-			if username == "" {
-				username = os.Getenv("BOMBER_PROVIDER_USERNAME")
+			provider = strings.ToLower(provider)
+			output = strings.ToLower(output)
+			if !slices.Contains([]string{"osv", "ossindex"}, provider) {
+				color.Red.Printf("%s is not a valid provider type.\n\n", provider)
+				_ = cmd.Help()
+				os.Exit(1)
 			}
-			if token == "" {
-				token = os.Getenv("BOMBER_PROVIDER_TOKEN")
+			if !slices.Contains([]string{"json", "xml", "stdout"}, output) {
+				color.Red.Printf("%s is not a valid output type.\n\n", output)
+				_ = cmd.Help()
+				os.Exit(1)
 			}
-			if provider == "ossindex" {
-				if username == "" && token == "" {
-					color.Red.Println("The OSS Index provider requires a username and token\n")
-					_ = cmd.Help()
-					os.Exit(1)
-				}
-			} else if provider == "snyk" {
-				if token == "" {
-					color.Red.Println("The Snyk provider requires a token\n")
-					_ = cmd.Help()
-					os.Exit(1)
-				}
+			err := validateUser()
+			if err != nil {
+				color.Red.Println(err)
+				_ = cmd.Help()
+				os.Exit(1)
 			}
 		},
 		Run: func(cmd *cobra.Command, args []string) {
@@ -71,48 +71,78 @@ var (
 						ecosystems = append(ecosystems, purl.Type)
 					}
 				}
-				util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
-				util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
 				s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
-				s.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", provider)
-				s.Start()
-				if provider == "snyk" {
-					util.PrintInfo("Vulnerability Provider:", snyk.Info(), "\n")
-					response, err = snyk.Scan(purls, username, token)
-				} else if provider == "ossindex" {
-					util.PrintInfo("Vulnerability Provider:", ossindex.Info(), "\n")
+				util.DoIf(output == "stdout", func() {
+					util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
+					util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
+					s.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", provider)
+					s.Start()
+				})
+
+				if provider == "ossindex" {
+					util.DoIf(output == "stdout", func() {
+						util.PrintInfo("Vulnerability Provider:", ossindex.Info(), "\n")
+					})
 					response, err = ossindex.Scan(purls, username, token)
 				} else {
-					util.PrintInfo("Vulnerability Provider:", osv.Info(), "\n")
+					util.DoIf(output == "stdout", func() {
+						util.PrintInfo("Vulnerability Provider:", osv.Info(), "\n")
+					})
 					response, err = osv.Scan(purls, username, token)
 				}
-				s.Stop()
+				util.DoIf(output != "json", func() {
+					s.Stop()
+				})
 				if err != nil {
 					util.PrintErr(err)
 					os.Exit(1)
 				}
 				vulnCount := 0
+				var p models.Package
+				var vv models.Vulnerability
+				var packages []models.Package
 				for _, r := range response {
-
 					vulns := len(r.Vulnerabilities)
 					vulnCount += vulns
+					p = r
+					if provider == "ossindex" {
+						p.Vulnerabilities = nil
+					}
+					for _, v := range r.Vulnerabilities {
+						vv = v
+						if provider == "ossindex" {
+							vv.Severity = ratingScale(v.CvssScore)
+							p.Vulnerabilities = append(p.Vulnerabilities, vv)
+						}
+						adjustSummary(vv.Severity)
+					}
+					if vulns > 0 {
+						packages = append(packages, p)
+					}
 				}
-				if vulnCount > 0 {
-					RenderSummary(response)
-					fmt.Println()
-					color.Red.Printf("Vulnerabilities found: %v\n\n", vulnCount)
-					renderSeveritySummary()
-					fmt.Println()
-					fmt.Println("NOTE: The list of vulnerabilities displayed may differ from provider to provider. This list")
-					fmt.Println("may not contain all possible vulnerabilities. Please try the other providers that bomber")
-					fmt.Println("supports (osv, ossindex, snyk)")
-				} else {
-					color.Green.Printf("No vulnerabilities found using the %v provider\n", provider)
-					fmt.Println()
-					fmt.Printf("NOTE: Just because bomber didn't find any vulnerabilities using the %v provider does\n", provider)
-					fmt.Println("not mean that there are no vulnerabilities. Please try the other providers that bomber")
-					fmt.Println("supports (osv, ossindex, snyk)")
+				err := renderOutput(packages)
+				if err != nil {
+					log.Println(err)
 				}
+				util.DoIf(output == "stdout", func() {
+					if vulnCount > 0 {
+						fmt.Println()
+						color.Red.Printf("Total vulnerabilities found: %v\n", vulnCount)
+						fmt.Println()
+						renderSeveritySummary()
+						fmt.Println()
+						fmt.Println("NOTE: The list of vulnerabilities displayed may differ from provider to provider. This list")
+						fmt.Println("may not contain all possible vulnerabilities. Please try the other providers that bomber")
+						fmt.Println("supports (osv, ossindex)")
+					} else if output != "json" {
+						color.Green.Printf("No vulnerabilities found using the %v provider\n", provider)
+						fmt.Println()
+						fmt.Printf("NOTE: Just because bomber didn't find any vulnerabilities using the %v provider does\n", provider)
+						fmt.Println("not mean that there are no vulnerabilities. Please try the other providers that bomber")
+						fmt.Println("supports (osv, ossindex)")
+					}
+				})
+
 			} else {
 				util.PrintInfo("No packages were detected. Nothing has been scanned.")
 			}
@@ -121,60 +151,72 @@ var (
 	}
 )
 
+func validateUser() (err error) {
+	if username == "" {
+		username = os.Getenv("BOMBER_PROVIDER_USERNAME")
+	}
+	if token == "" {
+		token = os.Getenv("BOMBER_PROVIDER_TOKEN")
+	}
+	if provider == "ossindex" {
+		if username == "" && token == "" {
+			err = errors.New("the OSS Index provider requires a username and token")
+		}
+	}
+	return
+}
+
 func init() {
 	rootCmd.AddCommand(scanCmd)
-	scanCmd.PersistentFlags().StringVar(&username, "username", "", "The user name of the provider being used.")
-	scanCmd.PersistentFlags().StringVar(&token, "token", "", "The API token of the provider being used.")
-	scanCmd.PersistentFlags().StringVar(&provider, "provider", "osv", "The vulnerability provider (ossindex, snyk, osv).")
+	scanCmd.PersistentFlags().StringVar(&username, "username", "", "The user name for the provider being used.")
+	scanCmd.PersistentFlags().StringVar(&token, "token", "", "The API token for the provider being used.")
+	scanCmd.PersistentFlags().StringVar(&provider, "provider", "osv", "The vulnerability provider (ossindex, osv).")
 }
 
 // RenderDetails will render enhanced details of the vulnerabilities found. Not implemented yet.
-func RenderDetails(response []models.Package) {
-	t := table.NewWriter()
-	t.SetOutputMirror(os.Stdout)
-	t.Style().Options.DrawBorder = false
-	t.SetColumnConfigs([]table.ColumnConfig{
-		{
-			Number:   2,
-			WidthMin: 6,
-			WidthMax: 64,
-		},
-	})
-	for _, r := range response {
-		if len(r.Vulnerabilities) > 0 {
-			t.AppendRow([]interface{}{"Package", r.Purl})
-			t.AppendRow([]interface{}{"Description", r.Description})
-			t.AppendRow([]interface{}{"Vulnerabilities", fmt.Sprint(len(r.Vulnerabilities))})
-			for _, v := range r.Vulnerabilities {
-				t.AppendRow([]interface{}{"CVSS Score", v.CvssScore})
-				t.AppendRow([]interface{}{"CWE", v.Cwe})
-				t.AppendRow([]interface{}{"Description", v.Description})
-			}
-			t.AppendSeparator()
-		}
-	}
-	t.Style().Options.SeparateRows = true
-	t.Render()
-}
+// func renderDetails(response []models.Package) {
+// 	t := table.NewWriter()
+// 	t.SetOutputMirror(os.Stdout)
+// 	t.Style().Options.DrawBorder = false
+// 	t.SetColumnConfigs([]table.ColumnConfig{
+// 		{
+// 			Number:   2,
+// 			WidthMin: 6,
+// 			WidthMax: 64,
+// 		},
+// 	})
+// 	for _, r := range response {
+// 		if len(r.Vulnerabilities) > 0 {
+// 			t.AppendRow([]interface{}{"Package", r.Purl})
+// 			t.AppendRow([]interface{}{"Description", r.Description})
+// 			t.AppendRow([]interface{}{"Vulnerabilities", fmt.Sprint(len(r.Vulnerabilities))})
+// 			for _, v := range r.Vulnerabilities {
+// 				t.AppendRow([]interface{}{"CVSS Score", v.CvssScore})
+// 				t.AppendRow([]interface{}{"CWE", v.Cwe})
+// 				t.AppendRow([]interface{}{"Description", v.Description})
+// 			}
+// 			t.AppendSeparator()
+// 		}
+// 	}
+// 	t.Style().Options.SeparateRows = true
+// 	t.Render()
+// }
 
-func RenderSummary(response []models.Package) {
+func renderSummary(response []models.Package) {
+	if len(response) == 0 {
+		return
+	}
 	log.Println("Rendering Packages:", response)
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"Type", "Name", "Version", "Severity", "Vulnerability"})
 	for _, r := range response {
-		if len(r.Vulnerabilities) > 0 {
-			purl, err := packageurl.FromString(r.Purl)
-			if err != nil {
-				log.Println(err)
-			}
-			for _, v := range r.Vulnerabilities {
-				if provider == "ossindex" {
-					v.Severity = ratingScale(v.CvssScore)
-				}
-				adjustSummary(v.Severity)
-				t.AppendRow([]interface{}{purl.Type, purl.Name, purl.Version, v.Severity, v.Cwe})
-			}
+		purl, err := packageurl.FromString(r.Purl)
+		if err != nil {
+			log.Println(err)
+		}
+		for _, v := range r.Vulnerabilities {
+			t.AppendRow([]interface{}{purl.Type, purl.Name, purl.Version, v.Severity, v.ID})
 		}
 	}
 	t.SetStyle(table.StyleRounded)
@@ -244,4 +286,40 @@ func adjustSummary(severity string) {
 	default:
 		severitySummary.None++
 	}
+}
+
+func renderOutput(packages []models.Package) (err error) {
+	if output == "stdout" {
+		renderSummary(packages)
+		return
+	} else if output == "json" {
+
+		output := models.Bomber{
+			Meta: models.Meta{
+				Generator: "bomber",
+				URL:       "https://github.com/devops-kung-fu/bomber",
+				Version:   version,
+				Provider:  provider,
+				Date:      time.Now(),
+			},
+			Summary:  severitySummary,
+			Packages: packages,
+		}
+
+		b, err := json.Marshal(output)
+		if err != nil {
+			log.Println(err)
+			return err
+		}
+
+		var prettyJSON bytes.Buffer
+		error := json.Indent(&prettyJSON, b, "", "\t")
+		if error != nil {
+			log.Println("JSON parse error: ", error)
+			return err
+		}
+
+		fmt.Println(string(prettyJSON.Bytes()))
+	}
+	return
 }

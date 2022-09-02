@@ -135,8 +135,11 @@ func Scan(purls []string, username, token string) (packages []models.Package, er
 				}
 				for _, v := range response.Vulns {
 					vuln := models.Vulnerability{
-						Cwe:      strings.Join(append(v.Aliases, v.DatabaseSpecific.CweIDS...), ","),
-						Severity: v.DatabaseSpecific.Severity,
+						ID:          strings.Join(v.Aliases, ","),
+						Title:       v.Summary,
+						Description: v.Details,
+						Cwe:         strings.Join(v.DatabaseSpecific.CweIDS, ","),
+						Severity:    v.DatabaseSpecific.Severity,
 					}
 					pkg.Vulnerabilities = append(pkg.Vulnerabilities, vuln)
 				}
