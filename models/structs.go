@@ -20,14 +20,13 @@ type Vulnerability struct {
 	Reference          string        `json:"reference,omitempty"`
 	ExternalReferences []interface{} `json:"externalReferences,omitempty"`
 	Severity           string        `json:"severity,omitempty"`
-}
 
 type Summary struct {
-	None     int
-	Low      int
-	Moderate int
-	High     int
-	Critical int
+	Unspecified int
+	Low         int
+	Moderate    int
+	High        int
+	Critical    int
 }
 
 type Bomber struct {

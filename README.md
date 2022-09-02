@@ -27,11 +27,11 @@ There are quite a few SBOM formats available today. ```bomber``` supports the fo
 
 ## Providers
 
-```bomber``` supports multiple sources for vulnerability information. We call these *providers*. Currently, ```bomber``` uses OSV as the default provider, but you can also use the [Sonatype OSS Index](https://ossindex.sonatype.org). 
+```bomber``` supports multiple sources for vulnerability information. We call these *providers*. Currently, ```bomber``` uses [OSV](https://osv.dev) as the default provider, but you can also use the [Sonatype OSS Index](https://ossindex.sonatype.org). 
 
 Please note that *each provider supports different ecosystems*, so if you're not seeing any vulnerabilities in one, try another. It is also important to understand that each provider may report different vulnerabilities. If in doubt, look at a few of them.
 
-If ```bomber``` does not find any vulnerabilities, it doesn't mean that there are none. All it means is that the provider being used didn't detect any, or it doesn't support the ecosystem.
+If ```bomber``` does not find any vulnerabilities, it doesn't mean that there aren't any. All it means is that the provider being used didn't detect any, or it doesn't support the ecosystem. Some providers have vulnerabilities that come back with no Severity information. In this case, the Severity will be listed as "UNDEFINED"
 
 ### What is an ecosystem?
 
@@ -63,6 +63,12 @@ At this time, the [OSV](https://osv.dev) supports the following ecosystems:
 - RubyGems
 
 and others...
+
+#### OSV Notes
+
+The OSV provider is pretty slow right now when processing large SBOMs. At the time of this writing, their batch endpoint is not functioning, so ```bomber ``` needs to call their API one package at a time. 
+
+Additionally, there are cases where OSV does not return a Severity, or a CVE/CWE. In these rare cases, ```bomber``` will output "UNSPECIFIED", and "UNDEFINED" respectively.
 
 ### Sonatype OSS Index
 

@@ -141,6 +141,15 @@ func Scan(purls []string, username, token string) (packages []models.Package, er
 						Cwe:         strings.Join(v.DatabaseSpecific.CweIDS, ","),
 						Severity:    v.DatabaseSpecific.Severity,
 					}
+					if vuln.Severity == "" {
+						vuln.Severity = "UNSPECIFIED"
+					}
+					if vuln.ID == "" {
+						vuln.ID = strings.Join(v.DatabaseSpecific.CweIDS, ",")
+					}
+					if vuln.ID == "" {
+						vuln.ID = "NOT PROVIDED"
+					}
 					pkg.Vulnerabilities = append(pkg.Vulnerabilities, vuln)
 				}
 				packages = append(packages, pkg)

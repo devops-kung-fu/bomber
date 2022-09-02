@@ -250,8 +250,8 @@ func renderSeveritySummary() {
 	t.AppendRow([]interface{}{"HIGH", severitySummary.High})
 	t.AppendRow([]interface{}{"MODERATE", severitySummary.Moderate})
 	t.AppendRow([]interface{}{"LOW", severitySummary.Low})
-	if severitySummary.None > 0 {
-		t.AppendRow([]interface{}{"NONE", severitySummary.None})
+	if severitySummary.Unspecified > 0 {
+		t.AppendRow([]interface{}{"UNSPECIFIED", severitySummary.Unspecified})
 	}
 	t.SetStyle(table.StyleRounded)
 	t.Style().Options.SeparateRows = true
@@ -270,7 +270,7 @@ func ratingScale(score float64) string {
 	} else if score >= 9.0 && score <= 10.0 {
 		return "CRITICAL"
 	}
-	return "NONE"
+	return "UNSPECIFIED"
 }
 
 func adjustSummary(severity string) {
@@ -284,8 +284,44 @@ func adjustSummary(severity string) {
 	case "CRITICAL":
 		severitySummary.Critical++
 	default:
-		severitySummary.None++
+		severitySummary.Unspecified++
 	}
+}
+
+func renderOutput(packages []models.Package) (err error) {
+	if output == "stdout" {
+		renderSummary(packages)
+		return
+	} else if output == "json" {
+
+		output := models.Bomber{
+			Meta: models.Meta{
+				Generator: "bomber",
+				URL:       "https://github.com/devops-kung-fu/bomber",
+				Version:   version,
+				Provider:  provider,
+				Date:      time.Now(),
+			},
+			Summary:  severitySummary,
+			Packages: packages,
+		}
+
+		b, err := json.Marshal(output)
+		if err != nil {
+			log.Println(err)
+			return err
+		}
+
+		var prettyJSON bytes.Buffer
+		error := json.Indent(&prettyJSON, b, "", "\t")
+		if error != nil {
+			log.Println("JSON parse error: ", error)
+			return err
+		}
+
+		fmt.Println(string(prettyJSON.Bytes()))
+	}
+	return
 }
 
 func renderOutput(packages []models.Package) (err error) {
