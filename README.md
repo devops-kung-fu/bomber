@@ -148,9 +148,21 @@ You'll see a similar result to what a Single SBOM scan will provide.
 
 If you wish, you can set two environment variables to store your credentials, and not have to type them on the command line. Check out the [Environment Variables](####Environment-Variables) information later in this README.
 
+### Output to JSON
+
+```bomber``` can output vulnerability data in JSON format using the ```--output``` flag. The default output is to STDOUT. There is a ton of more inforamation in the JSON output than what gets displayed in the terminal. You'll be able to see a package description and what it's purpose is, what the vulnerability name is, a summary of the vulnerability, and more.
+
+![](img/bomber-json.png)
+
+Example command:
+
+``` bash
+bomber scan bad-bom.json --output=json
+```
+
 ### Messing around
 
-If you want to kick the tires on ```bomber``` you'll find a selection of test SBOMs in the [test](sbom/test/) folder.
+If you want to kick the tires on ```bomber``` you'll find a selection of test SBOMs in the [test](sbom/test/) folder. 
 
 ## Known Issues
 
