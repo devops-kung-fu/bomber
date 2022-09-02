@@ -40,5 +40,6 @@ type Meta struct {
 	Generator string
 	URL       string
 	Version   string
+	Provider  string
 	Date      time.Time
 }

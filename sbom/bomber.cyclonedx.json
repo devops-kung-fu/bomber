@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:06912f8e-7d4b-4111-ab98-50f22a851065",
+  "serialNumber": "urn:uuid:c98e06dc-fb4f-47f0-94fa-3c0e8f2e3eed",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-09-01T22:33:21-06:00",
+    "timestamp": "2022-09-01T22:49:08-06:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -202,12 +202,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220831200817-03bd2324a606?package-id=aaaf2709db2c6503",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220902043306-52eb5df6a043?package-id=6b0e84d48ef62364",
       "type": "library",
       "name": "github.com/devops-kung-fu/bomber",
-      "version": "v0.0.0-20220831200817-03bd2324a606",
-      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220831200817-03bd2324a606:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220831200817-03bd2324a606",
+      "version": "v0.0.0-20220902043306-52eb5df6a043",
+      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220902043306-52eb5df6a043:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220902043306-52eb5df6a043",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -227,19 +227,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220831200817-03bd2324a606:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220902043306-52eb5df6a043:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220831200817-03bd2324a606:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220902043306-52eb5df6a043:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220831200817-03bd2324a606:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220902043306-52eb5df6a043:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220831200817-03bd2324a606:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220902043306-52eb5df6a043:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -260,12 +260,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.3?package-id=b752bd20a7f80e7c",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.4?package-id=bb645f3c8a1573cf",
       "type": "library",
       "name": "github.com/devops-kung-fu/common",
-      "version": "v0.2.3",
-      "cpe": "cpe:2.3:a:devops-kung-fu:common:v0.2.3:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.3",
+      "version": "v0.2.4",
+      "cpe": "cpe:2.3:a:devops-kung-fu:common:v0.2.4:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.4",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -285,19 +285,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung_fu:common:v0.2.3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung_fu:common:v0.2.4:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops-kung:common:v0.2.3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops-kung:common:v0.2.4:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung:common:v0.2.3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung:common:v0.2.4:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops:common:v0.2.3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops:common:v0.2.4:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -313,7 +313,7 @@
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:xUJdi1A7kP1nPaFq/GZTEABvtxuaDRVUlaKSRUglxuw="
+          "value": "h1:nhAQGDUiKW9h1Jh+jfCprRaF+T6C/k96HNYjeXt3dUI="
         },
         {
           "name": "syft:metadata:mainModule",

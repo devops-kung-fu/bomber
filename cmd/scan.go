@@ -299,6 +299,7 @@ func renderOutput(packages []models.Package) (err error) {
 				Generator: "bomber",
 				URL:       "https://github.com/devops-kung-fu/bomber",
 				Version:   version,
+				Provider:  provider,
 				Date:      time.Now(),
 			},
 			Summary:  severitySummary,

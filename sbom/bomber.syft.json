@@ -108,9 +108,9 @@
    "purl": "pkg:golang/github.com/davecgh/go-spew@v1.1.1"
   },
   {
-   "id": "aaaf2709db2c6503",
+   "id": "6b0e84d48ef62364",
    "name": "github.com/devops-kung-fu/bomber",
-   "version": "v0.0.0-20220831200817-03bd2324a606",
+   "version": "v0.0.0-20220902043306-52eb5df6a043",
    "type": "go-module",
    "foundBy": "go-module-binary-cataloger",
    "locations": [
@@ -121,13 +121,13 @@
    "licenses": [],
    "language": "go",
    "cpes": [
-    "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220831200817-03bd2324a606:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220831200817-03bd2324a606:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220831200817-03bd2324a606:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220831200817-03bd2324a606:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops:bomber:v0.0.0-20220831200817-03bd2324a606:*:*:*:*:*:*:*"
+    "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220902043306-52eb5df6a043:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220902043306-52eb5df6a043:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220902043306-52eb5df6a043:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220902043306-52eb5df6a043:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:bomber:v0.0.0-20220902043306-52eb5df6a043:*:*:*:*:*:*:*"
    ],
-   "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220831200817-03bd2324a606",
+   "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220902043306-52eb5df6a043",
    "metadataType": "GolangBinMetadata",
    "metadata": {
     "goBuildSettings": {
@@ -142,8 +142,8 @@
      "GOOS": "darwin",
      "vcs": "git",
      "vcs.modified": "true",
-     "vcs.revision": "03bd2324a606725e6c7606eb62ace268d2e5478e",
-     "vcs.time": "2022-08-31T20:08:17Z"
+     "vcs.revision": "52eb5df6a0439853d5c638a0d3359dde88aec041",
+     "vcs.time": "2022-09-02T04:33:06Z"
     },
     "goCompiledVersion": "go1.19",
     "architecture": "amd64",
@@ -151,9 +151,9 @@
    }
   },
   {
-   "id": "b752bd20a7f80e7c",
+   "id": "bb645f3c8a1573cf",
    "name": "github.com/devops-kung-fu/common",
-   "version": "v0.2.3",
+   "version": "v0.2.4",
    "type": "go-module",
    "foundBy": "go-module-binary-cataloger",
    "locations": [
@@ -164,18 +164,18 @@
    "licenses": [],
    "language": "go",
    "cpes": [
-    "cpe:2.3:a:devops-kung-fu:common:v0.2.3:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops_kung_fu:common:v0.2.3:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops-kung:common:v0.2.3:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops_kung:common:v0.2.3:*:*:*:*:*:*:*",
-    "cpe:2.3:a:devops:common:v0.2.3:*:*:*:*:*:*:*"
+    "cpe:2.3:a:devops-kung-fu:common:v0.2.4:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung_fu:common:v0.2.4:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops-kung:common:v0.2.4:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops_kung:common:v0.2.4:*:*:*:*:*:*:*",
+    "cpe:2.3:a:devops:common:v0.2.4:*:*:*:*:*:*:*"
    ],
-   "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.3",
+   "purl": "pkg:golang/github.com/devops-kung-fu/common@v0.2.4",
    "metadataType": "GolangBinMetadata",
    "metadata": {
     "goCompiledVersion": "go1.19",
     "architecture": "amd64",
-    "h1Digest": "h1:xUJdi1A7kP1nPaFq/GZTEABvtxuaDRVUlaKSRUglxuw=",
+    "h1Digest": "h1:nhAQGDUiKW9h1Jh+jfCprRaF+T6C/k96HNYjeXt3dUI=",
     "mainModule": "github.com/devops-kung-fu/bomber"
    }
   },
