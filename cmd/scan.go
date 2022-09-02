@@ -250,8 +250,8 @@ func renderSeveritySummary() {
 	t.AppendRow([]interface{}{"HIGH", severitySummary.High})
 	t.AppendRow([]interface{}{"MODERATE", severitySummary.Moderate})
 	t.AppendRow([]interface{}{"LOW", severitySummary.Low})
-	if severitySummary.None > 0 {
-		t.AppendRow([]interface{}{"NONE", severitySummary.None})
+	if severitySummary.Unspecified > 0 {
+		t.AppendRow([]interface{}{"UNSPECIFIED", severitySummary.Unspecified})
 	}
 	t.SetStyle(table.StyleRounded)
 	t.Style().Options.SeparateRows = true
@@ -270,7 +270,7 @@ func ratingScale(score float64) string {
 	} else if score >= 9.0 && score <= 10.0 {
 		return "CRITICAL"
 	}
-	return "NONE"
+	return "UNSPECIFIED"
 }
 
 func adjustSummary(severity string) {
@@ -284,7 +284,7 @@ func adjustSummary(severity string) {
 	case "CRITICAL":
 		severitySummary.Critical++
 	default:
-		severitySummary.None++
+		severitySummary.Unspecified++
 	}
 }
 
