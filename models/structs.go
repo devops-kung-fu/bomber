@@ -37,9 +37,9 @@ type Bomber struct {
 }
 
 type Meta struct {
-	Generator string
-	URL       string
-	Version   string
-	Provider  string
-	Date      time.Time
+	Generator string    `json:"generator"`
+	URL       string    `json:"url"`
+	Version   string    `json:"version"`
+	Provider  string    `json:"provider"`
+	Date      time.Time `json:"date"`
 }
