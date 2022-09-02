@@ -323,39 +323,3 @@ func renderOutput(packages []models.Package) (err error) {
 	}
 	return
 }
-
-func renderOutput(packages []models.Package) (err error) {
-	if output == "stdout" {
-		renderSummary(packages)
-		return
-	} else if output == "json" {
-
-		output := models.Bomber{
-			Meta: models.Meta{
-				Generator: "bomber",
-				URL:       "https://github.com/devops-kung-fu/bomber",
-				Version:   version,
-				Provider:  provider,
-				Date:      time.Now(),
-			},
-			Summary:  severitySummary,
-			Packages: packages,
-		}
-
-		b, err := json.Marshal(output)
-		if err != nil {
-			log.Println(err)
-			return err
-		}
-
-		var prettyJSON bytes.Buffer
-		error := json.Indent(&prettyJSON, b, "", "\t")
-		if error != nil {
-			log.Println("JSON parse error: ", error)
-			return err
-		}
-
-		fmt.Println(string(prettyJSON.Bytes()))
-	}
-	return
-}

@@ -20,6 +20,7 @@ type Vulnerability struct {
 	Reference          string        `json:"reference,omitempty"`
 	ExternalReferences []interface{} `json:"externalReferences,omitempty"`
 	Severity           string        `json:"severity,omitempty"`
+}
 
 type Summary struct {
 	Unspecified int
