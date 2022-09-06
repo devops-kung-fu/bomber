@@ -43,3 +43,8 @@ type Meta struct {
 	Provider  string    `json:"provider"`
 	Date      time.Time `json:"date"`
 }
+
+type Credentials struct {
+	Username string
+	Token    string
+}
