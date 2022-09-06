@@ -210,8 +210,6 @@ The project is set up to work really well with [Visual Studio Code](https://code
 
 Use the [Makefile](Makefile) to build, test, or do pre-commit checks.
 
-Remember that this is a go module, so there is no entry point. You can execute any test function though in your preferred IDE.
-
 ### Testing
 
 #### Environment Variables
