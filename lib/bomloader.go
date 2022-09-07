@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 
 	cyclone "github.com/CycloneDX/cyclonedx-go"
+	"github.com/devops-kung-fu/common/slices"
 	"github.com/spf13/afero"
 
 	cyclonedx "github.com/devops-kung-fu/bomber/formats/cyclonedx"
@@ -27,7 +28,7 @@ func Load(afs *afero.Afero, args []string) (purls []string, err error) {
 		} else {
 			purls, err = loadFilePurls(afs, arg)
 		}
-		purls = removeDuplicates(purls)
+		purls = slices.RemoveDuplicates(purls)
 	}
 	return
 }
@@ -74,16 +75,4 @@ func loadFilePurls(afs *afero.Afero, arg string) (purls []string, err error) {
 	}
 	log.Printf("WARNING: %v doesn't look like an SBOM", arg)
 	return nil, fmt.Errorf("%v is not an SBOM recognized by bomber", arg)
-}
-
-func removeDuplicates[T string | int](sliceList []T) []T {
-	allKeys := make(map[T]bool)
-	list := []T{}
-	for _, item := range sliceList {
-		if _, value := allKeys[item]; !value {
-			allKeys[item] = true
-			list = append(list, item)
-		}
-	}
-	return list
 }
