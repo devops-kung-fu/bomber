@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:2c624d66-de7d-4ad3-b323-4037ff6ce352",
+  "serialNumber": "urn:uuid:ea871c1a-d11b-45fc-b573-dd7ac8c29287",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-09-06T17:45:39-06:00",
+    "timestamp": "2022-09-07T14:21:50-06:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -1500,12 +1500,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/sys@v0.0.0-20220906165534-d0df966e6959?package-id=3fc3929a4994d268",
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.0.0-20220907062415-87db552b00fd?package-id=90e05f4b645cdef4",
       "type": "library",
       "name": "golang.org/x/sys",
-      "version": "v0.0.0-20220906165534-d0df966e6959",
-      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220906165534-d0df966e6959:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/golang.org/x/sys@v0.0.0-20220906165534-d0df966e6959",
+      "version": "v0.0.0-20220907062415-87db552b00fd",
+      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220907062415-87db552b00fd:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/sys@v0.0.0-20220907062415-87db552b00fd",
       "properties": [
         {
           "name": "syft:package:foundBy",

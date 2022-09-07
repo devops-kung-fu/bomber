@@ -3,7 +3,7 @@
  "name": ".",
  "spdxVersion": "SPDX-2.2",
  "creationInfo": {
-  "created": "2022-09-06T23:45:39.247955Z",
+  "created": "2022-09-07T20:21:50.107518Z",
   "creators": [
    "Organization: Anchore, Inc",
    "Tool: syft-[not provided]"
@@ -11,7 +11,7 @@
   "licenseListVersion": "3.18"
  },
  "dataLicense": "CC0-1.0",
- "documentNamespace": "https://anchore.com/syft/dir/67f0d87b-fac6-4906-ae8c-d0d430bd5d45",
+ "documentNamespace": "https://anchore.com/syft/dir/c29b2f20-5544-4f7b-9b70-3f44d5df98d2",
  "packages": [
   {
    "SPDXID": "SPDXRef-135cc8bc545c374",
@@ -1020,26 +1020,26 @@
    "versionInfo": "v0.0.0-20220829200755-d48e67d00261"
   },
   {
-   "SPDXID": "SPDXRef-3fc3929a4994d268",
+   "SPDXID": "SPDXRef-90e05f4b645cdef4",
    "name": "golang.org/x/sys",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220906165534-d0df966e6959:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220907062415-87db552b00fd:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220906165534-d0df966e6959",
+     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220907062415-87db552b00fd",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v0.0.0-20220906165534-d0df966e6959"
+   "versionInfo": "v0.0.0-20220907062415-87db552b00fd"
   },
   {
    "SPDXID": "SPDXRef-aede29b9184a1572",

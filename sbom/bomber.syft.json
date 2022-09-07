@@ -859,9 +859,9 @@
    }
   },
   {
-   "id": "3fc3929a4994d268",
+   "id": "90e05f4b645cdef4",
    "name": "golang.org/x/sys",
-   "version": "v0.0.0-20220906165534-d0df966e6959",
+   "version": "v0.0.0-20220907062415-87db552b00fd",
    "type": "go-module",
    "foundBy": "go-mod-file-cataloger",
    "locations": [
@@ -872,9 +872,9 @@
    "licenses": [],
    "language": "go",
    "cpes": [
-    "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220906165534-d0df966e6959:*:*:*:*:*:*:*"
+    "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220907062415-87db552b00fd:*:*:*:*:*:*:*"
    ],
-   "purl": "pkg:golang/golang.org/x/sys@v0.0.0-20220906165534-d0df966e6959"
+   "purl": "pkg:golang/golang.org/x/sys@v0.0.0-20220907062415-87db552b00fd"
   },
   {
    "id": "aede29b9184a1572",
