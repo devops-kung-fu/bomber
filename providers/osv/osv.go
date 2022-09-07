@@ -2,6 +2,7 @@ package osv
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"strings"
 
@@ -12,6 +13,10 @@ import (
 )
 
 const OSV_URL = "https://api.osv.dev/v1/query"
+
+type OSVProvider struct {
+	Name string
+}
 
 type OSVQuery struct {
 	Version string     `json:"version"`
@@ -93,16 +98,18 @@ const (
 	Web      Type = "WEB"
 )
 
-func Info() string {
+// Provides basic information about the OSVProvider
+func (OSVProvider) Info() string {
 	return "OSV Vulnerability Database (https://osv.dev) - EXPERIMENTAL"
 }
 
-func Scan(purls []string, username, token string) (packages []models.Package, err error) {
-
+// Scan scans a list of Purls for vulnerabilities against OSV.dev. Note that credentials are not needed for OSV, so can be nil.
+func (OSVProvider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
 	for _, pp := range purls {
-		purl, err := packageurl.FromString(pp)
-		if err != nil {
-			log.Println(err)
+		purl, e := packageurl.FromString(pp)
+		if e != nil {
+			err = e
+			return
 		}
 		p := OSVPackage{
 			Name: purl.Name,
@@ -113,22 +120,21 @@ func Scan(purls []string, username, token string) (packages []models.Package, er
 		}
 		req := HttpRequest.NewRequest()
 		log.Println(q)
-		resp, err := req.JSON().Post(OSV_URL, q)
-
+		resp, _ := req.JSON().Post(OSV_URL, q)
 		defer func() {
-			err = resp.Close()
+			_ = resp.Close()
 		}()
 
 		log.Printf("OSV Response Status: %v", resp.StatusCode())
 
-		body, err := resp.Body()
-		if err != nil {
-			return nil, err
-		}
+		body, _ := resp.Body()
 		if resp.StatusCode() == 200 {
 			log.Println("Body:", string(body))
 			var response Response
 			err = json.Unmarshal(body, &response)
+			if err != nil {
+				return
+			}
 			if len(response.Vulns) > 0 {
 				pkg := models.Package{
 					Purl: pp,
@@ -154,6 +160,9 @@ func Scan(purls []string, username, token string) (packages []models.Package, er
 				}
 				packages = append(packages, pkg)
 			}
+		} else {
+			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.Response().Status)
+			break
 		}
 	}
 	return

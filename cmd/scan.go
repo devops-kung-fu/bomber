@@ -3,10 +3,10 @@ package cmd
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
 	"os"
+	"reflect"
 	"strings"
 	"time"
 
@@ -21,36 +21,32 @@ import (
 
 	"github.com/devops-kung-fu/bomber/lib"
 	"github.com/devops-kung-fu/bomber/models"
-	ossindex "github.com/devops-kung-fu/bomber/providers/ossindex"
-	"github.com/devops-kung-fu/bomber/providers/osv"
+	"github.com/devops-kung-fu/bomber/providers"
 )
 
 var (
-	token, username, provider string
-	severitySummary           = models.Summary{}
+	providerName    string
+	severitySummary = models.Summary{}
+	credentials     = models.Credentials{}
+	provider        models.Provider
+
 	// summary, detailed bool
 	scanCmd = &cobra.Command{
 		Use:   "scan",
 		Short: "Scans a provided SBoM file or folder containing SBoMs for vulnerabilities.",
 		PreRun: func(cmd *cobra.Command, args []string) {
-			provider = strings.ToLower(provider)
-			output = strings.ToLower(output)
-			if !slices.Contains([]string{"osv", "ossindex"}, provider) {
-				color.Red.Printf("%s is not a valid provider type.\n\n", provider)
-				_ = cmd.Help()
-				os.Exit(1)
-			}
 			if !slices.Contains([]string{"json", "xml", "stdout"}, output) {
 				color.Red.Printf("%s is not a valid output type.\n\n", output)
 				_ = cmd.Help()
 				os.Exit(1)
 			}
-			err := validateUser()
+			p, err := providers.NewProvider(providerName)
 			if err != nil {
-				color.Red.Println(err)
+				color.Red.Printf("%v\n\n", err)
 				_ = cmd.Help()
 				os.Exit(1)
 			}
+			provider = p
 		},
 		Run: func(cmd *cobra.Command, args []string) {
 			purls, err := lib.Load(Afs, args)
@@ -75,21 +71,15 @@ var (
 				util.DoIf(output == "stdout", func() {
 					util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
 					util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
-					s.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", provider)
+					s.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", providerName)
 					s.Start()
 				})
 
-				if provider == "ossindex" {
-					util.DoIf(output == "stdout", func() {
-						util.PrintInfo("Vulnerability Provider:", ossindex.Info(), "\n")
-					})
-					response, err = ossindex.Scan(purls, username, token)
-				} else {
-					util.DoIf(output == "stdout", func() {
-						util.PrintInfo("Vulnerability Provider:", osv.Info(), "\n")
-					})
-					response, err = osv.Scan(purls, username, token)
-				}
+				util.DoIf(output == "stdout", func() {
+					util.PrintInfo("Vulnerability Provider:", provider.Info(), "\n")
+				})
+				response, err = provider.Scan(purls, &credentials)
+
 				util.DoIf(output != "json", func() {
 					s.Stop()
 				})
@@ -105,16 +95,17 @@ var (
 					vulns := len(r.Vulnerabilities)
 					vulnCount += vulns
 					p = r
-					if provider == "ossindex" {
+					//TODO: This processing should be done in the provider itself
+					if reflect.TypeOf(provider).Name() == "OSSIndexProvider" {
 						p.Vulnerabilities = nil
 					}
 					for _, v := range r.Vulnerabilities {
 						vv = v
-						if provider == "ossindex" {
-							vv.Severity = ratingScale(v.CvssScore)
+						if reflect.TypeOf(provider).Name() == "OSSIndexProvider" {
+							vv.Severity = lib.Rating(v.CvssScore)
 							p.Vulnerabilities = append(p.Vulnerabilities, vv)
 						}
-						adjustSummary(vv.Severity)
+						lib.AdjustSummary(vv.Severity, &severitySummary)
 					}
 					if vulns > 0 {
 						packages = append(packages, p)
@@ -135,7 +126,7 @@ var (
 						fmt.Println("may not contain all possible vulnerabilities. Please try the other providers that bomber")
 						fmt.Println("supports (osv, ossindex)")
 					} else if output != "json" {
-						color.Green.Printf("No vulnerabilities found using the %v provider\n", provider)
+						color.Green.Printf("No vulnerabilities found using the %v provider\n", providerName)
 						fmt.Println()
 						fmt.Printf("NOTE: Just because bomber didn't find any vulnerabilities using the %v provider does\n", provider)
 						fmt.Println("not mean that there are no vulnerabilities. Please try the other providers that bomber")
@@ -151,26 +142,11 @@ var (
 	}
 )
 
-func validateUser() (err error) {
-	if username == "" {
-		username = os.Getenv("BOMBER_PROVIDER_USERNAME")
-	}
-	if token == "" {
-		token = os.Getenv("BOMBER_PROVIDER_TOKEN")
-	}
-	if provider == "ossindex" {
-		if username == "" && token == "" {
-			err = errors.New("the OSS Index provider requires a username and token")
-		}
-	}
-	return
-}
-
 func init() {
 	rootCmd.AddCommand(scanCmd)
-	scanCmd.PersistentFlags().StringVar(&username, "username", "", "The user name for the provider being used.")
-	scanCmd.PersistentFlags().StringVar(&token, "token", "", "The API token for the provider being used.")
-	scanCmd.PersistentFlags().StringVar(&provider, "provider", "osv", "The vulnerability provider (ossindex, osv).")
+	scanCmd.PersistentFlags().StringVar(&credentials.Username, "username", "", "The user name for the provider being used.")
+	scanCmd.PersistentFlags().StringVar(&credentials.Token, "token", "", "The API token for the provider being used.")
+	scanCmd.PersistentFlags().StringVar(&providerName, "provider", "osv", "The vulnerability provider (ossindex, osv).")
 }
 
 // RenderDetails will render enhanced details of the vulnerabilities found. Not implemented yet.
@@ -260,34 +236,6 @@ func renderSeveritySummary() {
 	t.Render()
 }
 
-func ratingScale(score float64) string {
-	if score > 0 && score <= 3.9 {
-		return "LOW"
-	} else if score >= 4.0 && score <= 6.9 {
-		return "MODERATE"
-	} else if score >= 7.0 && score <= 8.9 {
-		return "HIGH"
-	} else if score >= 9.0 && score <= 10.0 {
-		return "CRITICAL"
-	}
-	return "UNSPECIFIED"
-}
-
-func adjustSummary(severity string) {
-	switch severity {
-	case "LOW":
-		severitySummary.Low++
-	case "MODERATE":
-		severitySummary.Moderate++
-	case "HIGH":
-		severitySummary.High++
-	case "CRITICAL":
-		severitySummary.Critical++
-	default:
-		severitySummary.Unspecified++
-	}
-}
-
 func renderOutput(packages []models.Package) (err error) {
 	if output == "stdout" {
 		renderSummary(packages)
@@ -299,7 +247,7 @@ func renderOutput(packages []models.Package) (err error) {
 				Generator: "bomber",
 				URL:       "https://github.com/devops-kung-fu/bomber",
 				Version:   version,
-				Provider:  provider,
+				Provider:  providerName,
 				Date:      time.Now(),
 			},
 			Summary:  severitySummary,

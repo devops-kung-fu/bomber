@@ -1,8 +1,11 @@
 package ossindex
 
 import (
-	"log"
 	"encoding/json"
+	"errors"
+	"fmt"
+	"log"
+	"os"
 
 	"github.com/kirinlabs/HttpRequest"
 
@@ -11,50 +14,73 @@ import (
 
 const OSSINDEX_URL = "https://ossindex.sonatype.org/api/v3/authorized/component-report"
 
+type OSSIndexProvider struct{}
+
 type CoordinateRequest struct {
 	Coordinates []string `json:"coordinates"`
 }
 
-func Info() string {
+// Provides basic information about the OSSIndexProvider
+func (OSSIndexProvider) Info() string {
 	return "Sonatype OSS Index (https://ossindex.sonatype.org)"
 }
 
-func Scan(purls []string, username, token string) (packages []models.Package, err error) {
-	j := len(purls)
-	for i := 0; i < j; i += 128 {
-		z := i + 128
-		if z > j {
-			z = j
+// Scan scans a slice of Purls for vulnerabilities against the OSS Index
+func (OSSIndexProvider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
+	err = validateCredentials(credentials)
+	if err != nil {
+		return
+	}
+	totalPurls := len(purls)
+	for startIndex := 0; startIndex < totalPurls; startIndex += 128 {
+		endIndex := startIndex + 128
+		if endIndex > totalPurls {
+			endIndex = totalPurls
 		}
-		p := purls[i:z]
+		p := purls[startIndex:endIndex]
 		var coordinates CoordinateRequest
 		coordinates.Coordinates = append(coordinates.Coordinates, p...)
 		req := HttpRequest.NewRequest()
-		req.SetBasicAuth(username, token)
+		req.SetBasicAuth(credentials.Username, credentials.Token)
 
-		resp, err := req.JSON().Post(OSSINDEX_URL, coordinates)
-
+		resp, _ := req.JSON().Post(OSSINDEX_URL, coordinates)
 		defer func() {
-			err = resp.Close()
+			_ = resp.Close()
 		}()
 
 		log.Printf("OSSIndex Response Status: %v", resp.StatusCode())
-
-		body, err := resp.Body()
+		body, _ := resp.Body()
 		if resp.StatusCode() == 200 {
-			if err != nil {
-				return nil, err
-			}
 			var responses []models.Package
 			err = json.Unmarshal(body, &responses)
+			if err != nil {
+				return
+			}
 			// for _, pkg := range responses {
 			// 	for _, vv := rnge pkg.Vulnerabilities {
 			// 		log.Println("SEVERITY:", vv.Severity, fmt.Sprintf("%f", vv.CvssScore))
-			// 		vv.Severity = 
+			// 		vv.Severity =
 			// 	}
 			// }
 			packages = append(packages, responses...)
+		} else {
+			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.Response().Status)
+			break
 		}
+	}
+	return
+}
+
+func validateCredentials(credentials *models.Credentials) (err error) {
+	if credentials.Username == "" {
+		credentials.Username = os.Getenv("BOMBER_PROVIDER_USERNAME")
+	}
+	if credentials.Token == "" {
+		credentials.Token = os.Getenv("BOMBER_PROVIDER_TOKEN")
+	}
+
+	if credentials.Username == "" && credentials.Token == "" {
+		err = errors.New("bomber requires a username and token to use the OSS Index provider")
 	}
 	return
 }
