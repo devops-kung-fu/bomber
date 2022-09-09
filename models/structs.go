@@ -30,7 +30,7 @@ type Summary struct {
 	Critical    int
 }
 
-type Bomber struct {
+type Results struct {
 	Meta     Meta      `json:"meta,omitempty"`
 	Summary  Summary   `json:"summary,omitempty"`
 	Packages []Package `json:"packages,omitempty"`
@@ -47,4 +47,18 @@ type Meta struct {
 type Credentials struct {
 	Username string
 	Token    string
+}
+
+func NewResults(packages []Package, summary Summary, version, providerName string) Results {
+	return Results{
+		Meta: Meta{
+			Generator: "bomber",
+			URL:       "https://github.com/devops-kung-fu/bomber",
+			Version:   version,
+			Provider:  providerName,
+			Date:      time.Now(),
+		},
+		Summary:  summary,
+		Packages: packages,
+	}
 }

@@ -100,7 +100,7 @@ const (
 
 // Provides basic information about the OSVProvider
 func (OSVProvider) Info() string {
-	return "OSV Vulnerability Database (https://osv.dev) - EXPERIMENTAL"
+	return "OSV Vulnerability Database (https://osv.dev)"
 }
 
 // Scan scans a list of Purls for vulnerabilities against OSV.dev. Note that credentials are not needed for OSV, so can be nil.
