@@ -89,8 +89,8 @@ func (bom *BOM) Purls() (purls []string) {
 	return
 }
 
-// SPDXTestBytes creates a byte array containing a SPDX document used for testing
-func SPDXTestBytes() []byte {
+// TestBytes creates a byte array containing a SPDX document used for testing
+func TestBytes() []byte {
 	SPDXString := `
 	{
 		"SPDXID": "SPDXRef-DOCUMENT",

@@ -9,7 +9,7 @@ import (
 
 func TestPurls(t *testing.T) {
 	var sbom BOM
-	err := json.Unmarshal(SPDXTestBytes(), &sbom)
+	err := json.Unmarshal(TestBytes(), &sbom)
 	assert.NoError(t, err)
 	assert.NotNil(t, sbom)
 

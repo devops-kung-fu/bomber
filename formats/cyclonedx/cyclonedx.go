@@ -12,8 +12,8 @@ func Purls(bom *cyclone.BOM) (purls []string) {
 	return
 }
 
-// CycloneDXTestBytes creates a byte array containing a CycloneDX document used for testing
-func CycloneDXTestBytes() []byte {
+// TestBytes creates a byte array containing a CycloneDX document used for testing
+func TestBytes() []byte {
 	cycloneDXString := `
 	{
 		"bomFormat": "CycloneDX",

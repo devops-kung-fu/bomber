@@ -10,7 +10,7 @@ import (
 
 func TestPurls(t *testing.T) {
 	var sbom cyclone.BOM
-	err := json.Unmarshal(CycloneDXTestBytes(), &sbom)
+	err := json.Unmarshal(TestBytes(), &sbom)
 	assert.NoError(t, err)
 	assert.NotNil(t, sbom)
 

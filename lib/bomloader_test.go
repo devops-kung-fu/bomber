@@ -13,7 +13,7 @@ import (
 func TestLoad_cyclonedx(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	err := afs.WriteFile("/test-cyclonedx.json", cyclonedx.CycloneDXTestBytes(), 0644)
+	err := afs.WriteFile("/test-cyclonedx.json", cyclonedx.TestBytes(), 0644)
 	assert.NoError(t, err)
 
 	files, _ := afs.ReadDir("/")
@@ -30,7 +30,7 @@ func TestLoad_cyclonedx(t *testing.T) {
 func TestLoad_SPDX(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	err := afs.WriteFile("/test-spdx.json", spdx.SPDXTestBytes(), 0644)
+	err := afs.WriteFile("/test-spdx.json", spdx.TestBytes(), 0644)
 	assert.NoError(t, err)
 
 	files, _ := afs.ReadDir("/")
