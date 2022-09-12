@@ -44,6 +44,21 @@ func TestLoad_SPDX(t *testing.T) {
 	assert.Error(t, err)
 }
 
+func TestLoad_BadJSON_SPDX(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	fudgedFile := spdx.TestBytes()
+	bogusString := "bogus"
+	fudgedFile = append(fudgedFile, bogusString...)
+
+	err := afs.WriteFile("/test-spdx.json", fudgedFile, 0644)
+	assert.NoError(t, err)
+
+	_, err = loadFilePurls(afs, "/test-spdx.json")
+	assert.Error(t, err)
+	assert.Equal(t, "/test-spdx.json is not an SBOM recognized by bomber", err.Error())
+}
+
 func TestLoad_garbage(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
@@ -60,11 +75,4 @@ func Test_loadFilePurls(t *testing.T) {
 
 	_, err := loadFilePurls(afs, "no-file.json")
 	assert.Error(t, err)
-}
-
-func spdxTestBytes() []byte {
-	spdxString := `
-	
-	`
-	return []byte(spdxString)
 }

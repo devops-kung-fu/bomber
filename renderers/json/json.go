@@ -9,8 +9,10 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
+// Renderer contains methods to render to JSON format
 type Renderer struct{}
 
+// Render renders pretty printed JSON to the STDOUT
 func (Renderer) Render(results models.Results) (err error) {
 	b, err := json.Marshal(results)
 	if err != nil {
@@ -25,6 +27,6 @@ func (Renderer) Render(results models.Results) (err error) {
 		return err
 	}
 
-	fmt.Println(string(prettyJSON.Bytes()))
+	fmt.Println(prettyJSON.String())
 	return
 }

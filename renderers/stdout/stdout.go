@@ -13,8 +13,10 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
+// Renderer contains methods to render a pretty tabular summary to STDOUT
 type Renderer struct{}
 
+// Render renders a pretty tabular summary to STDOUT
 func (Renderer) Render(results models.Results) (err error) {
 	if len(results.Packages) == 0 {
 		return

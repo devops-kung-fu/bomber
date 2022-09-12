@@ -2,6 +2,7 @@ package models
 
 import "time"
 
+// Package encapsulates information about a package/component and it's vulnerabilities
 type Package struct {
 	Purl            string          `json:"coordinates"`
 	Reference       string          `json:"reference,omitempty"`
@@ -9,6 +10,7 @@ type Package struct {
 	Vulnerabilities []Vulnerability `json:"vulnerabilities"`
 }
 
+// Vulnerability encapsulates the information describing a detected vulnerability
 type Vulnerability struct {
 	ID                 string        `json:"id,omitempty"`
 	DisplayName        string        `json:"displayName,omitempty"`
@@ -22,6 +24,7 @@ type Vulnerability struct {
 	Severity           string        `json:"severity,omitempty"`
 }
 
+// Summary is a struct used to keep track of severity counts
 type Summary struct {
 	Unspecified int
 	Low         int

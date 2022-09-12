@@ -8,14 +8,15 @@ import (
 	"github.com/devops-kung-fu/bomber/renderers/stdout"
 )
 
-func NewRenderer(name string) (renderer models.Renderer, err error) {
-	switch name {
+// NewRenderer will return a Renderer interface for the requested output
+func NewRenderer(output string) (renderer models.Renderer, err error) {
+	switch output {
 	case "stdout":
 		renderer = stdout.Renderer{}
 	case "json":
 		renderer = json.Renderer{}
 	default:
-		err = fmt.Errorf("%s is not a valid output type", name)
+		err = fmt.Errorf("%s is not a valid output type", output)
 	}
 	return
 }
