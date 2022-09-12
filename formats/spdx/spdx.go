@@ -45,7 +45,7 @@ type Package struct {
 	Summary              string        `json:"summary,omitempty"`
 	Description          string        `json:"description,omitempty"`
 	Comment              string        `json:"comment,omitempty"`
-	ExternalRef          []ExternalRef `json:"externalRef,omitempty"`
+	ExternalRefs         []ExternalRef `json:"externalRefs,omitempty"`
 	AttributionText      string        `json:"attributionText,omitempty"`
 }
 
@@ -79,11 +79,42 @@ type Relationship struct {
 
 func (bom *BOM) Purls() (purls []string) {
 	for _, pkg := range bom.Packages {
-		for _, extRef := range pkg.ExternalRef {
+		for _, extRef := range pkg.ExternalRefs {
 			if extRef.ReferenceType == "purl" {
 				purls = append(purls, extRef.ReferenceLocator)
 			}
 		}
 	}
 	return
+}
+
+func SPDXTestBytes() []byte {
+	SPDXString := `
+	{
+		"SPDXID": "SPDXRef-DOCUMENT",
+		"name": ".",
+		"spdxVersion": "SPDX-2.2",
+		"creationInfo": {
+			"created": "2022-09-07T20:21:50.107518Z",
+			"creators": [
+				"Organization: Anchore, Inc",
+				"Tool: syft-[not provided]"
+			],
+			"licenseListVersion": "3.18"
+		},
+		"dataLicense": "CC0-1.0",
+		"documentNamespace": "https://anchore.com/syft/dir/c29b2f20-5544-4f7b-9b70-3f44d5df98d2",
+		"packages": [{
+			"SPDXID": "SPDXRef-135cc8bc545c374",
+			"name": "github.com/CycloneDX/cyclonedx-go",
+			"licenseConcluded": "NONE",
+			"downloadLocation": "NOASSERTION",
+			"externalRefs": [{
+				"referenceCategory": "PACKAGE_MANAGER",
+				"referenceLocator": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0",
+				"referenceType": "purl"
+			}]
+		}]
+	}`
+	return []byte(SPDXString)
 }

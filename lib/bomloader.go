@@ -62,7 +62,7 @@ func loadFilePurls(afs *afero.Afero, arg string) (purls []string, err error) {
 		err = json.Unmarshal(b, &sbom)
 		return cyclonedx.Purls(&sbom), err
 		//} else if bytes.Contains(b, []byte("\"SPDXID\": \"SPDXRef-DOCUMENT\",")) {
-	} else if bytes.Contains(b, []byte("{\"SPDXID\"")) {
+	} else if bytes.Contains(b, []byte("SPDXRef-DOCUMENT")) {
 		log.Println("Detected SPDX")
 		var sbom spdx.BOM
 		_ = json.Unmarshal(b, &sbom)
