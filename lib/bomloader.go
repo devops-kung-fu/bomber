@@ -16,6 +16,7 @@ import (
 	syft "github.com/devops-kung-fu/bomber/formats/syft"
 )
 
+// Load retrieves a slice of Purls from various types of SBOMs
 func Load(afs *afero.Afero, args []string) (purls []string, err error) {
 	for _, arg := range args {
 		isDir, _ := afs.IsDir(arg)

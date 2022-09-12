@@ -4,6 +4,7 @@ import (
 	cyclone "github.com/CycloneDX/cyclonedx-go"
 )
 
+// Purls returns a slice of Purls from a CycloneDX formatted SBOM
 func Purls(bom *cyclone.BOM) (purls []string) {
 	for _, component := range *bom.Components {
 		purls = append(purls, component.PackageURL)
@@ -11,6 +12,7 @@ func Purls(bom *cyclone.BOM) (purls []string) {
 	return
 }
 
+// CycloneDXTestBytes creates a byte array containing a CycloneDX document used for testing
 func CycloneDXTestBytes() []byte {
 	cycloneDXString := `
 	{

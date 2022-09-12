@@ -77,6 +77,7 @@ type Relationship struct {
 	RelationshipType   string `json:"relationshipType"`
 }
 
+// Purls returns a slice of Purls from a SPDX formatted SBOM
 func (bom *BOM) Purls() (purls []string) {
 	for _, pkg := range bom.Packages {
 		for _, extRef := range pkg.ExternalRefs {
@@ -88,6 +89,7 @@ func (bom *BOM) Purls() (purls []string) {
 	return
 }
 
+// SPDXTestBytes creates a byte array containing a SPDX document used for testing
 func SPDXTestBytes() []byte {
 	SPDXString := `
 	{
