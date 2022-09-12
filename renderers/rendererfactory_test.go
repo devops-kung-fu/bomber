@@ -12,11 +12,11 @@ import (
 func TestNewProvider(t *testing.T) {
 	renderer, err := NewRenderer("stdout")
 	assert.NoError(t, err)
-	assert.IsType(t, stdout.StdoutRenderer{}, renderer)
+	assert.IsType(t, stdout.Renderer{}, renderer)
 
 	renderer, err = NewRenderer("json")
 	assert.NoError(t, err)
-	assert.IsType(t, json.JsonRenderer{}, renderer)
+	assert.IsType(t, json.Renderer{}, renderer)
 
 	_, err = NewRenderer("test")
 	assert.Error(t, err)

@@ -12,12 +12,12 @@ import (
 func TestNewProvider(t *testing.T) {
 	provider, err := NewProvider("ossindex")
 	assert.NoError(t, err)
-	assert.IsType(t, ossindex.OSSIndexProvider{}, provider)
+	assert.IsType(t, ossindex.Provider{}, provider)
 
 	provider, err = NewProvider("osv")
 	assert.NoError(t, err)
-	assert.IsType(t, osv.OSVProvider{}, provider)
+	assert.IsType(t, osv.Provider{}, provider)
 
-	provider, err = NewProvider("test")
+	_, err = NewProvider("test")
 	assert.Error(t, err)
 }

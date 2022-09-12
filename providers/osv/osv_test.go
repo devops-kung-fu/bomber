@@ -7,7 +7,7 @@ import (
 )
 
 func TestInfo(t *testing.T) {
-	provider := OSVProvider{}
+	provider := Provider{}
 	info := provider.Info()
 	assert.Equal(t, "OSV Vulnerability Database (https://osv.dev)", info)
 }

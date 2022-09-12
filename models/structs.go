@@ -30,12 +30,14 @@ type Summary struct {
 	Critical    int
 }
 
+// Results is the high level JSON object used to define vulnerabilities processed by bomber.
 type Results struct {
 	Meta     Meta      `json:"meta,omitempty"`
 	Summary  Summary   `json:"summary,omitempty"`
 	Packages []Package `json:"packages,omitempty"`
 }
 
+// Meta contains system and execution information about the results from bomber
 type Meta struct {
 	Generator string    `json:"generator"`
 	URL       string    `json:"url"`
@@ -44,11 +46,13 @@ type Meta struct {
 	Date      time.Time `json:"date"`
 }
 
+// Credentials the user credentials used by a provider to authenticate to an API
 type Credentials struct {
 	Username string
 	Token    string
 }
 
+// NewResults defines the high level output of bomber
 func NewResults(packages []Package, summary Summary, version, providerName string) Results {
 	return Results{
 		Meta: Meta{

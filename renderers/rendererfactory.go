@@ -11,9 +11,9 @@ import (
 func NewRenderer(name string) (renderer models.Renderer, err error) {
 	switch name {
 	case "stdout":
-		renderer = stdout.StdoutRenderer{}
+		renderer = stdout.Renderer{}
 	case "json":
-		renderer = json.JsonRenderer{}
+		renderer = json.Renderer{}
 	default:
 		err = fmt.Errorf("%s is not a valid output type", name)
 	}

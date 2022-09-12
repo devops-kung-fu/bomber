@@ -13,9 +13,9 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-type StdoutRenderer struct{}
+type Renderer struct{}
 
-func (StdoutRenderer) Render(results models.Results) (err error) {
+func (Renderer) Render(results models.Results) (err error) {
 	if len(results.Packages) == 0 {
 		return
 	}

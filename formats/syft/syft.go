@@ -1,5 +1,6 @@
 package syft
 
+// BOM represents a Syft Software Bill of Materials
 type BOM struct {
 	Artifacts             []Artifact    `json:"artifacts"`
 	ArtifactRelationships []interface{} `json:"artifactRelationships"`
@@ -13,11 +14,11 @@ type Artifact struct {
 	ID           string        `json:"id"`
 	Name         string        `json:"name"`
 	Version      string        `json:"version"`
-	Type         Type          `json:"type"`
-	FoundBy      FoundBy       `json:"foundBy"`
+	Type         string        `json:"type"`
+	FoundBy      string        `json:"foundBy"`
 	Locations    []Location    `json:"locations"`
 	Licenses     []interface{} `json:"licenses"`
-	Language     Language      `json:"language"`
+	Language     string        `json:"language"`
 	Cpes         []string      `json:"cpes"`
 	Purl         string        `json:"purl"`
 	MetadataType *string       `json:"metadataType,omitempty"`
@@ -25,7 +26,7 @@ type Artifact struct {
 }
 
 type Location struct {
-	Path Path `json:"path"`
+	Path string `json:"path"`
 }
 
 type Metadata struct {
@@ -152,32 +153,6 @@ type Source struct {
 	Type   string `json:"type"`
 	Target string `json:"target"`
 }
-
-type FoundBy string
-
-const (
-	GoModFileCataloger      FoundBy = "go-mod-file-cataloger"
-	GoModuleBinaryCataloger FoundBy = "go-module-binary-cataloger"
-)
-
-type Language string
-
-const (
-	Go Language = "go"
-)
-
-type Path string
-
-const (
-	Bomber Path = "bomber"
-	GoMod  Path = "go.mod"
-)
-
-type Type string
-
-const (
-	GoModule Type = "go-module"
-)
 
 // Purls returns a slice of Purls from a Syft formatted SBOM
 func (bom *BOM) Purls() (purls []string) {

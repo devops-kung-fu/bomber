@@ -9,9 +9,9 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-type JsonRenderer struct{}
+type Renderer struct{}
 
-func (JsonRenderer) Render(results models.Results) (err error) {
+func (Renderer) Render(results models.Results) (err error) {
 	b, err := json.Marshal(results)
 	if err != nil {
 		log.Println(err)

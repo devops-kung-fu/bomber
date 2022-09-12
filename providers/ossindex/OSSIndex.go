@@ -14,19 +14,21 @@ import (
 
 const OSSINDEX_URL = "https://ossindex.sonatype.org/api/v3/authorized/component-report"
 
-type OSSIndexProvider struct{}
+// Provider represents the OSSIndex provider
+type Provider struct{}
 
+// CoordinateRequest used for the request to the OSSIndex
 type CoordinateRequest struct {
 	Coordinates []string `json:"coordinates"`
 }
 
-// Provides basic information about the OSSIndexProvider
-func (OSSIndexProvider) Info() string {
+// Info provides basic information about the OSSIndexProvider
+func (Provider) Info() string {
 	return "Sonatype OSS Index (https://ossindex.sonatype.org)"
 }
 
 // Scan scans a slice of Purls for vulnerabilities against the OSS Index
-func (OSSIndexProvider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
+func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
 	err = validateCredentials(credentials)
 	if err != nil {
 		return

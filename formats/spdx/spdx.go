@@ -1,6 +1,6 @@
 package spdx
 
-// SPDX represents a SPDX Software Bill of Materials
+// BOM represents a SPDX Software Bill of Materials
 type BOM struct {
 	SPDXVersion         string `json:"spdxVersion"`
 	DataLicense         string `json:"dataLicense"`
@@ -22,6 +22,7 @@ type BOM struct {
 	Relationships   []Relationship `json:"relationships,omitempty"`
 }
 
+// Package represents a component/package
 type Package struct {
 	Name                    string `json:"name,omitempty"`
 	SPDXID                  string `json:"SPDXID,omitempty"`
@@ -49,6 +50,7 @@ type Package struct {
 	AttributionText      string        `json:"attributionText,omitempty"`
 }
 
+// ExternalRef encapsulates various references such as a Purl. Wonky.
 type ExternalRef struct {
 	ReferenceCategory string `json:"referenceCategory,omitempty"`
 	ReferenceType     string `json:"referenceType,omitempty"`
@@ -56,11 +58,13 @@ type ExternalRef struct {
 	Comment           string `json:"comment,omitempty"`
 }
 
+// Checksum is used as a checksum on a package
 type Checksum struct {
 	Algorithm     string `json:"algorithm"`
 	ChecksumValue string `json:"checksumValue"`
 }
 
+// File represents a scanned file, its licenses, and it'c checksum
 type File struct {
 	SPDXID             string     `json:"SPDXID"`
 	Checksums          []Checksum `json:"checksums"`
@@ -71,6 +75,7 @@ type File struct {
 	LicenseInfoInFiles []string   `json:"licenseInfoInFiles"`
 }
 
+// Relationship encapsulates a relationship from one SPDX element to another. Wonky.
 type Relationship struct {
 	SpdxElementID      string `json:"spdxElementId"`
 	RelatedSpdxElement string `json:"relatedSpdxElement"`
