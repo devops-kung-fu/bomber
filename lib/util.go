@@ -6,6 +6,7 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
+// Rating converts a CVSS score to a string
 func Rating(score float64) string {
 	if score > 0 && score <= 3.9 {
 		return "LOW"
@@ -19,6 +20,7 @@ func Rating(score float64) string {
 	return "UNSPECIFIED"
 }
 
+// AdjustSummary increments the counts of severities in a Summary struct based on the severity string passed in
 func AdjustSummary(severity string, summary *models.Summary) {
 	severity = strings.ToUpper(severity)
 	switch severity {

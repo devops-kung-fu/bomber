@@ -10,7 +10,7 @@ import (
 )
 
 func TestInfo(t *testing.T) {
-	provider := OSSIndexProvider{}
+	provider := Provider{}
 	info := provider.Info()
 	assert.Equal(t, "Sonatype OSS Index (https://ossindex.sonatype.org)", info)
 }

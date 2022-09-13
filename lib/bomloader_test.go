@@ -5,60 +5,74 @@ import (
 
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
+
+	cyclonedx "github.com/devops-kung-fu/bomber/formats/cyclonedx"
+	spdx "github.com/devops-kung-fu/bomber/formats/spdx"
 )
 
-func TestLoad(t *testing.T) {
+func TestLoad_cyclonedx(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	err := afs.WriteFile("test-cyclonedx.json", cycloneDXTestBytes(), 0644)
+	err := afs.WriteFile("/test-cyclonedx.json", cyclonedx.TestBytes(), 0644)
 	assert.NoError(t, err)
 
-	files, _ := afs.ReadDir("./")
+	files, _ := afs.ReadDir("/")
 	assert.Len(t, files, 1)
-	_, err = Load(afs, []string{"/"})
+	purls, err := Load(afs, []string{"/"})
 	assert.NoError(t, err)
+	assert.Len(t, purls, 1)
+	assert.Equal(t, "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0", purls[0])
+
+	_, err = afs.ReadDir("/bad-dir")
+	assert.Error(t, err)
 }
 
-func cycloneDXTestBytes() []byte {
-	cycloneDXString := `
-	{
-		"bomFormat": "CycloneDX",
-		"specVersion": "1.4",
-		"serialNumber": "urn:uuid:2c624d66-de7d-4ad3-b323-4037ff6ce352",
-		"version": 1,
-		"metadata": {
-			"timestamp": "2022-09-06T17:45:39-06:00",
-			"tools": [{
-				"vendor": "anchore",
-				"name": "syft",
-				"version": "[not provided]"
-			}],
-			"component": {
-				"bom-ref": "af63bd4c8601b7f1",
-				"type": "file",
-				"name": "."
-			}
-		},
-		"components": [{
-			"bom-ref": "pkg:golang/github.com/cyclonedx/cyclonedx-go@v0.6.0?package-id=135cc8bc545c374",
-			"type": "library",
-			"name": "github.com/CycloneDX/cyclonedx-go",
-			"version": "v0.6.0",
-			"cpe": "cpe:2.3:a:CycloneDX:cyclonedx-go:v0.6.0:*:*:*:*:*:*:*",
-			"purl": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0",
-			"properties": [{
-				"name": "syft:package:metadataType",
-				"value": "GolangBinMetadata"
-			}]
-		}]
-	}
-	`
-	return []byte(cycloneDXString)
+func TestLoad_SPDX(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	err := afs.WriteFile("/test-spdx.json", spdx.TestBytes(), 0644)
+	assert.NoError(t, err)
+
+	files, _ := afs.ReadDir("/")
+	assert.Len(t, files, 1)
+	purls, err := Load(afs, []string{"/"})
+	assert.NoError(t, err)
+	assert.Len(t, purls, 1)
+	assert.Equal(t, "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0", purls[0])
+
+	_, err = afs.ReadDir("/bad-dir")
+	assert.Error(t, err)
 }
 
-func spdxTestBytes() []byte {
-	spdxString := `
-	
-	`
-	return []byte(spdxString)
+func TestLoad_BadJSON_SPDX(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	fudgedFile := spdx.TestBytes()
+	bogusString := "bogus"
+	fudgedFile = append(fudgedFile, bogusString...)
+
+	err := afs.WriteFile("/test-spdx.json", fudgedFile, 0644)
+	assert.NoError(t, err)
+
+	_, err = loadFilePurls(afs, "/test-spdx.json")
+	assert.Error(t, err)
+	assert.Equal(t, "/test-spdx.json is not an SBOM recognized by bomber", err.Error())
+}
+
+func TestLoad_garbage(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	err := afs.WriteFile("/not-a-sbom.json", []byte("test"), 0644)
+	assert.NoError(t, err)
+
+	_, err = loadFilePurls(afs, "/not-a-sbom.json")
+	assert.Error(t, err)
+	assert.Equal(t, "/not-a-sbom.json is not an SBOM recognized by bomber", err.Error())
+}
+
+func Test_loadFilePurls(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	_, err := loadFilePurls(afs, "no-file.json")
+	assert.Error(t, err)
 }

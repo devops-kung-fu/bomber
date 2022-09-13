@@ -1,4 +1,4 @@
-package spdx
+package syft
 
 import (
 	"encoding/json"

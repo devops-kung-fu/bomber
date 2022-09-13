@@ -1,5 +1,6 @@
 package syft
 
+// BOM represents a Syft Software Bill of Materials
 type BOM struct {
 	Artifacts             []Artifact    `json:"artifacts"`
 	ArtifactRelationships []interface{} `json:"artifactRelationships"`
@@ -13,11 +14,11 @@ type Artifact struct {
 	ID           string        `json:"id"`
 	Name         string        `json:"name"`
 	Version      string        `json:"version"`
-	Type         Type          `json:"type"`
-	FoundBy      FoundBy       `json:"foundBy"`
+	Type         string        `json:"type"`
+	FoundBy      string        `json:"foundBy"`
 	Locations    []Location    `json:"locations"`
 	Licenses     []interface{} `json:"licenses"`
-	Language     Language      `json:"language"`
+	Language     string        `json:"language"`
 	Cpes         []string      `json:"cpes"`
 	Purl         string        `json:"purl"`
 	MetadataType *string       `json:"metadataType,omitempty"`
@@ -25,7 +26,7 @@ type Artifact struct {
 }
 
 type Location struct {
-	Path Path `json:"path"`
+	Path string `json:"path"`
 }
 
 type Metadata struct {
@@ -153,35 +154,152 @@ type Source struct {
 	Target string `json:"target"`
 }
 
-type FoundBy string
-
-const (
-	GoModFileCataloger      FoundBy = "go-mod-file-cataloger"
-	GoModuleBinaryCataloger FoundBy = "go-module-binary-cataloger"
-)
-
-type Language string
-
-const (
-	Go Language = "go"
-)
-
-type Path string
-
-const (
-	Bomber Path = "bomber"
-	GoMod  Path = "go.mod"
-)
-
-type Type string
-
-const (
-	GoModule Type = "go-module"
-)
-
+// Purls returns a slice of Purls from a Syft formatted SBOM
 func (bom *BOM) Purls() (purls []string) {
 	for _, artifact := range bom.Artifacts {
 		purls = append(purls, artifact.Purl)
 	}
 	return
+}
+
+// TestBytes creates a byte array containing a Syft document used for testing
+func TestBytes() []byte {
+	SPDXString := `
+		{
+			"artifacts": [{
+				"id": "135cc8bc545c374",
+				"name": "github.com/CycloneDX/cyclonedx-go",
+				"version": "v0.6.0",
+				"type": "go-module",
+				"foundBy": "go-module-binary-cataloger",
+				"locations": [{
+					"path": "bomber"
+				}],
+				"licenses": [],
+				"language": "go",
+				"cpes": [
+					"cpe:2.3:a:CycloneDX:cyclonedx-go:v0.6.0:*:*:*:*:*:*:*",
+					"cpe:2.3:a:CycloneDX:cyclonedx_go:v0.6.0:*:*:*:*:*:*:*"
+				],
+				"purl": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0",
+				"metadataType": "GolangBinMetadata",
+				"metadata": {
+					"goCompiledVersion": "go1.19",
+					"architecture": "amd64",
+					"h1Digest": "h1:SizWGbZzFTC/O/1yh072XQBMxfvsoWqd//oKCIyzFyE=",
+					"mainModule": "github.com/devops-kung-fu/bomber"
+				}
+			}],
+			"artifactRelationships": [],
+			"source": {
+				"type": "directory",
+				"target": "."
+			},
+			"distro": {},
+			"descriptor": {
+				"name": "syft",
+				"version": "[not provided]",
+				"configuration": {
+					"configPath": "",
+					"verbosity": 0,
+					"quiet": false,
+					"output": [
+						"json=sbom/bomber.syft.json",
+						"spdx-json=sbom/bomber.spdx.json",
+						"cyclonedx-json=sbom/bomber.cyclonedx.json"
+					],
+					"output-template-path": "",
+					"file": "",
+					"check-for-app-update": true,
+					"anchore": {
+						"host": "",
+						"path": "",
+						"dockerfile": "",
+						"overwrite-existing-image": false,
+						"import-timeout": 30
+					},
+					"dev": {
+						"profile-cpu": false,
+						"profile-mem": false
+					},
+					"log": {
+						"structured": false,
+						"level": "warning",
+						"file-location": ""
+					},
+					"catalogers": null,
+					"package": {
+						"cataloger": {
+							"enabled": true,
+							"scope": "Squashed"
+						},
+						"search-unindexed-archives": false,
+						"search-indexed-archives": true
+					},
+					"file-metadata": {
+						"cataloger": {
+							"enabled": false,
+							"scope": "Squashed"
+						},
+						"digests": [
+							"sha256"
+						]
+					},
+					"file-classification": {
+						"cataloger": {
+							"enabled": false,
+							"scope": "Squashed"
+						}
+					},
+					"file-contents": {
+						"cataloger": {
+							"enabled": false,
+							"scope": "Squashed"
+						},
+						"skip-files-above-size": 1048576,
+						"globs": []
+					},
+					"secrets": {
+						"cataloger": {
+							"enabled": false,
+							"scope": "AllLayers"
+						},
+						"additional-patterns": {},
+						"exclude-pattern-names": [],
+						"reveal-values": false,
+						"skip-files-above-size": 1048576
+					},
+					"registry": {
+						"insecure-skip-tls-verify": false,
+						"insecure-use-http": false,
+						"auth": []
+					},
+					"exclude": [],
+					"attest": {
+						"key": "",
+						"cert": "",
+						"noUpload": false,
+						"force": false,
+						"recursive": false,
+						"replace": false,
+						"fulcioUrl": "https://fulcio.sigstore.dev",
+						"fulcio_identity_token": "",
+						"insecure_skip_verify": false,
+						"rekorUrl": "https://rekor.sigstore.dev",
+						"oidcIssuer": "https://oauth2.sigstore.dev/auth",
+						"oidcClientId": "sigstore",
+						"OIDCRedirectURL": ""
+					},
+					"platform": "",
+					"external_sources": {
+						"external-sources-enabled": false
+					}
+				}
+			},
+			"schema": {
+				"version": "3.3.2",
+				"url": "https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-3.3.2.json"
+			}
+		}`
+	return []byte(SPDXString)
 }

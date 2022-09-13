@@ -1,9 +1,12 @@
 {
     "cSpell.words": [
         "Afero",
+        "anchore",
         "coverprofile",
+        "cpes",
         "cyclomatic",
         "cyclonedx",
+        "Distro",
         "errcheck",
         "gofmt",
         "gomod",
@@ -13,12 +16,14 @@
         "kisielk",
         "OSSINDEX",
         "packageurl",
+        "rekor",
         "sbom",
         "Sonatype",
         "SPDXID",
         "structs",
         "Syft",
         "synk",
+        "unindexed",
         "vuln",
         "vulns"
     ]

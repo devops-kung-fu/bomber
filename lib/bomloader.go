@@ -16,6 +16,7 @@ import (
 	syft "github.com/devops-kung-fu/bomber/formats/syft"
 )
 
+// Load retrieves a slice of Purls from various types of SBOMs
 func Load(afs *afero.Afero, args []string) (purls []string, err error) {
 	for _, arg := range args {
 		isDir, _ := afs.IsDir(arg)
@@ -60,19 +61,24 @@ func loadFilePurls(afs *afero.Afero, arg string) (purls []string, err error) {
 		log.Println("Detected CycloneDX")
 		var sbom cyclone.BOM
 		err = json.Unmarshal(b, &sbom)
-		return cyclonedx.Purls(&sbom), err
-		//} else if bytes.Contains(b, []byte("\"SPDXID\": \"SPDXRef-DOCUMENT\",")) {
-	} else if bytes.Contains(b, []byte("{\"SPDXID\"")) {
+		if err == nil {
+			return cyclonedx.Purls(&sbom), err
+		}
+	} else if bytes.Contains(b, []byte("SPDXRef-DOCUMENT")) {
 		log.Println("Detected SPDX")
 		var sbom spdx.BOM
-		_ = json.Unmarshal(b, &sbom)
-		return sbom.Purls(), err
+		err = json.Unmarshal(b, &sbom)
+		if err == nil {
+			return sbom.Purls(), err
+		}
 	} else if bytes.Contains(b, []byte("\"url\": \"https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-3.3.2.json\"")) {
 		log.Println("Detected Syft")
 		var sbom syft.BOM
 		err = json.Unmarshal(b, &sbom)
-		return sbom.Purls(), err
+		if err == nil {
+			return sbom.Purls(), err
+		}
 	}
-	log.Printf("WARNING: %v doesn't look like an SBOM", arg)
+	log.Printf("WARNING: %v isn't a valid SBOM", arg)
 	return nil, fmt.Errorf("%v is not an SBOM recognized by bomber", arg)
 }
