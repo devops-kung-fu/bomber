@@ -7,6 +7,7 @@ require (
 	github.com/briandowns/spinner v1.19.0
 	github.com/devops-kung-fu/common v0.2.4
 	github.com/gookit/color v1.5.2
+	github.com/jarcoal/httpmock v1.2.0
 	github.com/jedib0t/go-pretty v4.3.0+incompatible
 	github.com/kirinlabs/HttpRequest v1.1.1
 	github.com/package-url/packageurl-go v0.1.0
