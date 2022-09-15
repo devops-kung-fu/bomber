@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"reflect"
 	"strings"
 	"time"
 
@@ -68,16 +67,14 @@ var (
 					}
 				}
 				s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
-				util.DoIf(output == "stdout", func() {
+				util.DoIf(output != "json", func() {
 					util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
 					util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
+					util.PrintInfo("Vulnerability Provider:", provider.Info(), "\n")
 					s.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", providerName)
 					s.Start()
 				})
 
-				util.DoIf(output == "stdout", func() {
-					util.PrintInfo("Vulnerability Provider:", provider.Info(), "\n")
-				})
 				response, err = provider.Scan(purls, &credentials)
 
 				util.DoIf(output != "json", func() {
@@ -88,30 +85,14 @@ var (
 					os.Exit(1)
 				}
 				vulnCount := 0
-				var p models.Package
-				var vv models.Vulnerability
-				var packages []models.Package
 				for _, r := range response {
 					vulns := len(r.Vulnerabilities)
 					vulnCount += vulns
-					p = r
-					//TODO: This processing should be done in the provider itself
-					if reflect.TypeOf(provider).Name() == "OSSIndexProvider" {
-						p.Vulnerabilities = nil
-					}
 					for _, v := range r.Vulnerabilities {
-						vv = v
-						if reflect.TypeOf(provider).Name() == "OSSIndexProvider" {
-							vv.Severity = lib.Rating(v.CvssScore)
-							p.Vulnerabilities = append(p.Vulnerabilities, vv)
-						}
-						lib.AdjustSummary(vv.Severity, &severitySummary)
-					}
-					if vulns > 0 {
-						packages = append(packages, p)
+						lib.AdjustSummary(v.Severity, &severitySummary)
 					}
 				}
-				results := models.NewResults(packages, severitySummary, version, providerName)
+				results := models.NewResults(response, severitySummary, version, providerName)
 				err := renderer.Render(results)
 				if err != nil {
 					log.Println(err)

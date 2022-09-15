@@ -6,8 +6,7 @@ import (
 	"os"
 
 	"github.com/gookit/color"
-	"github.com/jedib0t/go-pretty/table"
-	"github.com/jedib0t/go-pretty/text"
+	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/package-url/packageurl-go"
 
 	"github.com/devops-kung-fu/bomber/models"
@@ -25,14 +24,15 @@ func (Renderer) Render(results models.Results) (err error) {
 	log.Println("Rendering Packages:", results.Packages)
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	t.AppendHeader(table.Row{"Type", "Name", "Version", "Severity", "Vulnerability"})
+	rowConfigAutoMerge := table.RowConfig{AutoMerge: true}
+	t.AppendHeader(table.Row{"Type", "Name", "Version", "Severity", "Vulnerability"}, rowConfigAutoMerge)
 	for _, r := range results.Packages {
 		purl, err := packageurl.FromString(r.Purl)
 		if err != nil {
 			log.Println(err)
 		}
 		for _, v := range r.Vulnerabilities {
-			t.AppendRow([]interface{}{purl.Type, purl.Name, purl.Version, v.Severity, v.ID})
+			t.AppendRow([]interface{}{purl.Type, purl.Name, purl.Version, v.Severity, v.ID}, rowConfigAutoMerge)
 		}
 	}
 	t.SetStyle(table.StyleRounded)
@@ -47,13 +47,11 @@ func (Renderer) Render(results models.Results) (err error) {
 		{Name: "Name", Mode: table.Dsc},
 		{Name: "Severity", Mode: table.Dsc},
 	})
-	// t.SetColumnConfigs([]table.ColumnConfig{
-	// 	{Number: 1, AutoMerge: true},
-	// 	{Number: 2, AutoMerge: true},
-	// })
+	t.SetColumnConfigs([]table.ColumnConfig{
+		{Number: 1, AutoMerge: true},
+		{Number: 2, AutoMerge: true},
+	})
 	t.Style().Options.SeparateRows = true
-	t.Style().Format.Header = text.FormatDefault
-	t.Style().Color.Header = text.Colors{text.Bold}
 	t.Render()
 	if vulnCount > 0 {
 		fmt.Println()
@@ -88,8 +86,6 @@ func renderSeveritySummary(summary models.Summary) {
 	}
 	t.SetStyle(table.StyleRounded)
 	t.Style().Options.SeparateRows = true
-	t.Style().Format.Header = text.FormatDefault
-	t.Style().Color.Header = text.Colors{text.Bold}
 	t.Render()
 }
 
