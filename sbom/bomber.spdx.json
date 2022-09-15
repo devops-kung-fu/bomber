@@ -3,7 +3,7 @@
  "name": ".",
  "spdxVersion": "SPDX-2.2",
  "creationInfo": {
-  "created": "2022-09-12T17:24:47.790939Z",
+  "created": "2022-09-15T19:25:42.273607Z",
   "creators": [
    "Organization: Anchore, Inc",
    "Tool: syft-[not provided]"
@@ -11,7 +11,7 @@
   "licenseListVersion": "3.18"
  },
  "dataLicense": "CC0-1.0",
- "documentNamespace": "https://anchore.com/syft/dir/e04c8bd6-cb31-4cf3-bbb5-9852ee9a0e7e",
+ "documentNamespace": "https://anchore.com/syft/dir/4dbfe551-e8ad-4be5-adcb-336a14d29835",
  "packages": [
   {
    "SPDXID": "SPDXRef-135cc8bc545c374",
@@ -66,50 +66,6 @@
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
    "versionInfo": "v0.6.0"
-  },
-  {
-   "SPDXID": "SPDXRef-74319ecd7905745b",
-   "name": "github.com/asaskevich/govalidator",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:asaskevich:govalidator:v0.0.0-20210307081110-f21760c49a8d:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/asaskevich/govalidator@v0.0.0-20210307081110-f21760c49a8d",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.0.0-20210307081110-f21760c49a8d"
-  },
-  {
-   "SPDXID": "SPDXRef-b195a9bf9d9e158",
-   "name": "github.com/asaskevich/govalidator",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:asaskevich:govalidator:v0.0.0-20210307081110-f21760c49a8d:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/asaskevich/govalidator@v0.0.0-20210307081110-f21760c49a8d",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v0.0.0-20210307081110-f21760c49a8d"
   },
   {
    "SPDXID": "SPDXRef-511bf3b717951ffb",
@@ -183,46 +139,46 @@
    "versionInfo": "v1.1.1"
   },
   {
-   "SPDXID": "SPDXRef-21941fd38670519",
+   "SPDXID": "SPDXRef-c1d04dd7768e9536",
    "name": "github.com/devops-kung-fu/bomber",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220912170019-fcf890338f11:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220913225430-93dd74fdc6de:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220912170019-fcf890338f11:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220913225430-93dd74fdc6de:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220912170019-fcf890338f11:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220913225430-93dd74fdc6de:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220912170019-fcf890338f11:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220913225430-93dd74fdc6de:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops:bomber:v0.0.0-20220912170019-fcf890338f11:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops:bomber:v0.0.0-20220913225430-93dd74fdc6de:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220912170019-fcf890338f11",
+     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220913225430-93dd74fdc6de",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.0.0-20220912170019-fcf890338f11"
+   "versionInfo": "v0.0.0-20220913225430-93dd74fdc6de"
   },
   {
    "SPDXID": "SPDXRef-bb645f3c8a1573cf",
@@ -353,134 +309,6 @@
    "versionInfo": "v1.13.0"
   },
   {
-   "SPDXID": "SPDXRef-e140de53f246c4cd",
-   "name": "github.com/go-openapi/errors",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go-openapi:errors:v0.20.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go_openapi:errors:v0.20.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go:errors:v0.20.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/go-openapi/errors@v0.20.3",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.20.3"
-  },
-  {
-   "SPDXID": "SPDXRef-dcce1e753fa2069c",
-   "name": "github.com/go-openapi/errors",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go-openapi:errors:v0.20.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go_openapi:errors:v0.20.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go:errors:v0.20.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/go-openapi/errors@v0.20.3",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v0.20.3"
-  },
-  {
-   "SPDXID": "SPDXRef-362f7dd18aad5c32",
-   "name": "github.com/go-openapi/strfmt",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go-openapi:strfmt:v0.21.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go_openapi:strfmt:v0.21.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go:strfmt:v0.21.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/go-openapi/strfmt@v0.21.3",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.21.3"
-  },
-  {
-   "SPDXID": "SPDXRef-e74d83034f254964",
-   "name": "github.com/go-openapi/strfmt",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go-openapi:strfmt:v0.21.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go_openapi:strfmt:v0.21.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:go:strfmt:v0.21.3:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/go-openapi/strfmt@v0.21.3",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v0.21.3"
-  },
-  {
    "SPDXID": "SPDXRef-5bc7ca708105bff9",
    "name": "github.com/gookit/color",
    "licenseConcluded": "NONE",
@@ -547,58 +375,80 @@
    "versionInfo": "v1.0.1"
   },
   {
-   "SPDXID": "SPDXRef-1d1e7800caa30ba8",
-   "name": "github.com/jedib0t/go-pretty",
+   "SPDXID": "SPDXRef-f469f5e014abf07c",
+   "name": "github.com/jarcoal/httpmock",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:jedib0t:go-pretty:v4.3.0\\+incompatible:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:jedib0t:go_pretty:v4.3.0\\+incompatible:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:jarcoal:httpmock:v1.2.0:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/jedib0t/go-pretty@v4.3.0+incompatible",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v4.3.0+incompatible"
-  },
-  {
-   "SPDXID": "SPDXRef-ecd8af4b4d079986",
-   "name": "github.com/jedib0t/go-pretty",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:jedib0t:go-pretty:v4.3.0\\+incompatible:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:jedib0t:go_pretty:v4.3.0\\+incompatible:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/jedib0t/go-pretty@v4.3.0+incompatible",
+     "referenceLocator": "pkg:golang/github.com/jarcoal/httpmock@v1.2.0",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v4.3.0+incompatible"
+   "versionInfo": "v1.2.0"
+  },
+  {
+   "SPDXID": "SPDXRef-6a6f3eabebea76d6",
+   "name": "github.com/jedib0t/go-pretty/v6",
+   "licenseConcluded": "NONE",
+   "downloadLocation": "NOASSERTION",
+   "externalRefs": [
+    {
+     "referenceCategory": "SECURITY",
+     "referenceLocator": "cpe:2.3:a:jedib0t:go-pretty\\/v6:v6.3.8:*:*:*:*:*:*:*",
+     "referenceType": "cpe23Type"
+    },
+    {
+     "referenceCategory": "SECURITY",
+     "referenceLocator": "cpe:2.3:a:jedib0t:go_pretty\\/v6:v6.3.8:*:*:*:*:*:*:*",
+     "referenceType": "cpe23Type"
+    },
+    {
+     "referenceCategory": "PACKAGE_MANAGER",
+     "referenceLocator": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.8",
+     "referenceType": "purl"
+    }
+   ],
+   "filesAnalyzed": false,
+   "licenseDeclared": "NONE",
+   "sourceInfo": "acquired package info from go module information: bomber",
+   "versionInfo": "v6.3.8"
+  },
+  {
+   "SPDXID": "SPDXRef-635ff8806b6e181c",
+   "name": "github.com/jedib0t/go-pretty/v6",
+   "licenseConcluded": "NONE",
+   "downloadLocation": "NOASSERTION",
+   "externalRefs": [
+    {
+     "referenceCategory": "SECURITY",
+     "referenceLocator": "cpe:2.3:a:jedib0t:go-pretty\\/v6:v6.3.8:*:*:*:*:*:*:*",
+     "referenceType": "cpe23Type"
+    },
+    {
+     "referenceCategory": "SECURITY",
+     "referenceLocator": "cpe:2.3:a:jedib0t:go_pretty\\/v6:v6.3.8:*:*:*:*:*:*:*",
+     "referenceType": "cpe23Type"
+    },
+    {
+     "referenceCategory": "PACKAGE_MANAGER",
+     "referenceLocator": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.8",
+     "referenceType": "purl"
+    }
+   ],
+   "filesAnalyzed": false,
+   "licenseDeclared": "NONE",
+   "sourceInfo": "acquired package info from go module information: go.mod",
+   "versionInfo": "v6.3.8"
   },
   {
    "SPDXID": "SPDXRef-5f684bc33f43ed95",
@@ -643,6 +493,28 @@
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
    "versionInfo": "v1.1.1"
+  },
+  {
+   "SPDXID": "SPDXRef-fa656dfee261bcc9",
+   "name": "github.com/kr/text",
+   "licenseConcluded": "NONE",
+   "downloadLocation": "NOASSERTION",
+   "externalRefs": [
+    {
+     "referenceCategory": "SECURITY",
+     "referenceLocator": "cpe:2.3:a:kr:text:v0.2.0:*:*:*:*:*:*:*",
+     "referenceType": "cpe23Type"
+    },
+    {
+     "referenceCategory": "PACKAGE_MANAGER",
+     "referenceLocator": "pkg:golang/github.com/kr/text@v0.2.0",
+     "referenceType": "purl"
+    }
+   ],
+   "filesAnalyzed": false,
+   "licenseDeclared": "NONE",
+   "sourceInfo": "acquired package info from go module information: go.mod",
+   "versionInfo": "v0.2.0"
   },
   {
    "SPDXID": "SPDXRef-76f94dce3957d82",
@@ -807,92 +679,26 @@
    "versionInfo": "v0.0.13"
   },
   {
-   "SPDXID": "SPDXRef-b3df181c477895c6",
-   "name": "github.com/mitchellh/mapstructure",
+   "SPDXID": "SPDXRef-47c05d039289eaf2",
+   "name": "github.com/niemeyer/pretty",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:mitchellh:mapstructure:v1.5.0:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:niemeyer:pretty:v0.0.0-20200227124842-a10e7caefd8e:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/mitchellh/mapstructure@v1.5.0",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v1.5.0"
-  },
-  {
-   "SPDXID": "SPDXRef-a8402081d31d53c9",
-   "name": "github.com/mitchellh/mapstructure",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:mitchellh:mapstructure:v1.5.0:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/mitchellh/mapstructure@v1.5.0",
+     "referenceLocator": "pkg:golang/github.com/niemeyer/pretty@v0.0.0-20200227124842-a10e7caefd8e",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v1.5.0"
-  },
-  {
-   "SPDXID": "SPDXRef-b1090e6ea5de5406",
-   "name": "github.com/oklog/ulid",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:oklog:ulid:v1.3.1:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/oklog/ulid@v1.3.1",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v1.3.1"
-  },
-  {
-   "SPDXID": "SPDXRef-28490d11ffb7ccd5",
-   "name": "github.com/oklog/ulid",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:oklog:ulid:v1.3.1:*:*:*:*:*:*:*",
-     "referenceType": "cpe23Type"
-    },
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/oklog/ulid@v1.3.1",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v1.3.1"
+   "versionInfo": "v0.0.0-20200227124842-a10e7caefd8e"
   },
   {
    "SPDXID": "SPDXRef-d460d9705e8bb159",
@@ -1258,40 +1064,6 @@
    "versionInfo": "v0.0.0-20220910002029-abceb7e1c41e"
   },
   {
-   "SPDXID": "SPDXRef-711c5f795120968b",
-   "name": "go.mongodb.org/mongo-driver",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/go.mongodb.org/mongo-driver@v1.10.2",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v1.10.2"
-  },
-  {
-   "SPDXID": "SPDXRef-7e8a27895d235c4f",
-   "name": "go.mongodb.org/mongo-driver",
-   "licenseConcluded": "NONE",
-   "downloadLocation": "NOASSERTION",
-   "externalRefs": [
-    {
-     "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/go.mongodb.org/mongo-driver@v1.10.2",
-     "referenceType": "purl"
-    }
-   ],
-   "filesAnalyzed": false,
-   "licenseDeclared": "NONE",
-   "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v1.10.2"
-  },
-  {
    "SPDXID": "SPDXRef-d103fcafd60f10c4",
    "name": "golang.org/x/sys",
    "licenseConcluded": "NONE",
@@ -1314,26 +1086,26 @@
    "versionInfo": "v0.0.0-20220909162455-aba9fc2a8ff2"
   },
   {
-   "SPDXID": "SPDXRef-2e18031ae8b12fb",
+   "SPDXID": "SPDXRef-e801fece9d4e98fe",
    "name": "golang.org/x/sys",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220909162455-aba9fc2a8ff2:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220913175220-63ea55921009:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220909162455-aba9fc2a8ff2",
+     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220913175220-63ea55921009",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v0.0.0-20220909162455-aba9fc2a8ff2"
+   "versionInfo": "v0.0.0-20220913175220-63ea55921009"
   },
   {
    "SPDXID": "SPDXRef-aede29b9184a1572",
@@ -1378,6 +1150,23 @@
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
    "versionInfo": "v0.3.7"
+  },
+  {
+   "SPDXID": "SPDXRef-51ab5298e5a61ec4",
+   "name": "gopkg.in/check.v1",
+   "licenseConcluded": "NONE",
+   "downloadLocation": "NOASSERTION",
+   "externalRefs": [
+    {
+     "referenceCategory": "PACKAGE_MANAGER",
+     "referenceLocator": "pkg:golang/gopkg.in/check.v1@v1.0.0-20200227125254-8fa46927fb4f",
+     "referenceType": "purl"
+    }
+   ],
+   "filesAnalyzed": false,
+   "licenseDeclared": "NONE",
+   "sourceInfo": "acquired package info from go module information: go.mod",
+   "versionInfo": "v1.0.0-20200227125254-8fa46927fb4f"
   },
   {
    "SPDXID": "SPDXRef-7d36a1c0c358a2f8",

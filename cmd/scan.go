@@ -68,16 +68,14 @@ var (
 					}
 				}
 				s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
-				util.DoIf(output == "stdout", func() {
+				util.DoIf(output != "json", func() {
 					util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
 					util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
+					util.PrintInfo("Vulnerability Provider:", provider.Info(), "\n")
 					s.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", providerName)
 					s.Start()
 				})
 
-				util.DoIf(output == "stdout", func() {
-					util.PrintInfo("Vulnerability Provider:", provider.Info(), "\n")
-				})
 				response, err = provider.Scan(purls, &credentials)
 
 				util.DoIf(output != "json", func() {
