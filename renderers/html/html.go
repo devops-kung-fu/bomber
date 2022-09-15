@@ -148,6 +148,26 @@ func genTemplate(output string) (t *template.Template) {
 	#summary {
 		border: 0px;
 	}
+	#CRITICAL {
+		color: red;
+		font-weight: bold;
+	}
+	#HIGH {
+		color: purple;
+		font-weight: bold;
+	}
+	#MODERATE {
+		color: goldenrod;
+		font-weight: bold;
+	}
+	#LOW {
+		color: green;
+		font-weight: bold;
+	}
+	#UNSPECIFIED {
+		color: blue;
+		font-weight: bold;
+	}
 	h3 {
 		font-weight: normal
 	}
@@ -184,7 +204,7 @@ func genTemplate(output string) (t *template.Template) {
 				{{if .Title}}
 				<p><b>{{.Title}}</b></p>
 				{{end}}
-				<p>Severity: {{.Severity}}</p>
+				<p>Severity: <span id="{{.Severity}}">{{.Severity}}</span></p>
 				<p><a href="{{.Reference}}">Reference Documentation</a></p>
 				<p>{{.Description}}
 			</div>

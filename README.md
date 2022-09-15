@@ -150,9 +150,19 @@ bomber scan --username=xxx --token=xxx ./sboms
 
 You'll see a similar result to what a Single SBOM scan will provide.
 
-### Advanced stuff
+### Output to HTML
 
-If you wish, you can set two environment variables to store your credentials, and not have to type them on the command line. Check out the [Environment Variables](####Environment-Variables) information later in this README.
+If you would like a readable report generated with detailed vulnerability information, you can utilized the ```--output``` flag to save a report to an HTML file.
+
+Example command:
+
+``` bash
+bomber scan bad-bom.json --output=html
+```
+
+This will save a file in your current folder in the format "YYYY-MM-DD-HH-MM-SS-bomber-results.html". If you open this file in a web browser, you'll see output like the following:
+
+![](img/bomber-html.png)
 
 ### Output to JSON
 
@@ -165,6 +175,10 @@ Example command:
 ``` bash
 bomber scan bad-bom.json --output=json
 ```
+
+### Advanced stuff
+
+If you wish, you can set two environment variables to store your credentials, and not have to type them on the command line. Check out the [Environment Variables](####Environment-Variables) information later in this README.
 
 ### Messing around
 

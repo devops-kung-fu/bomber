@@ -86,8 +86,6 @@ func renderSeveritySummary(summary models.Summary) {
 	}
 	t.SetStyle(table.StyleRounded)
 	t.Style().Options.SeparateRows = true
-	// t.Style().Format.Header = text.FormatDefault
-	// t.Style().Color.Header = text.Colors{text.Bold}
 	t.Render()
 }
 

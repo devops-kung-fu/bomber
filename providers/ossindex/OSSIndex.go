@@ -9,6 +9,7 @@ import (
 
 	"github.com/kirinlabs/HttpRequest"
 
+	"github.com/devops-kung-fu/bomber/lib"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
@@ -58,13 +59,20 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 			if err != nil {
 				return
 			}
-			// for _, pkg := range responses {
-			// 	for _, vv := rnge pkg.Vulnerabilities {
-			// 		log.Println("SEVERITY:", vv.Severity, fmt.Sprintf("%f", vv.CvssScore))
-			// 		vv.Severity =
-			// 	}
-			// }
-			packages = append(packages, responses...)
+			for _, pkg := range responses {
+				var tempPackage models.Package
+				var vulnerabilities []models.Vulnerability
+				tempPackage = pkg
+				for _, vulnerability := range tempPackage.Vulnerabilities {
+					log.Println("SEVERITY:", vulnerability.Severity, fmt.Sprintf("%f", vulnerability.CvssScore))
+					vulnerability.Severity = lib.Rating(vulnerability.CvssScore)
+					vulnerabilities = append(vulnerabilities, vulnerability)
+				}
+				tempPackage.Vulnerabilities = vulnerabilities
+				if len(vulnerabilities) > 0 {
+					packages = append(packages, tempPackage)
+				}
+			}
 		} else {
 			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.Response().Status)
 			break
