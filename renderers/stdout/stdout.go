@@ -21,7 +21,7 @@ func (Renderer) Render(results models.Results) (err error) {
 		return
 	}
 	vulnCount := vulnerabilityCount(results.Packages)
-	log.Println("Rendering Packages:", results.Packages)
+	log.Println("Rendering Packages:", len(results.Packages))
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	rowConfigAutoMerge := table.RowConfig{AutoMerge: true}

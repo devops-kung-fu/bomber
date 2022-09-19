@@ -3,7 +3,7 @@ package cmd
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 
@@ -28,9 +28,10 @@ var (
 		Version: version,
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
 			if !debug {
-				log.SetOutput(ioutil.Discard)
+				log.SetOutput(io.Discard)
 			}
 			util.DoIf(output != "json", func() {
+				log.Println("Start")
 				fmt.Println()
 				color.Style{color.FgWhite, color.OpBold}.Println(" ██▄ ▄▀▄ █▄ ▄█ ██▄ ██▀ █▀▄")
 				color.Style{color.FgWhite, color.OpBold}.Println(" █▄█ ▀▄▀ █ ▀ █ █▄█ █▄▄ █▀▄")
