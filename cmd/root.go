@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/devops-kung-fu/common/github"
 	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/afero"
@@ -38,6 +39,11 @@ var (
 				fmt.Println("https://github.com/devops-kung-fu/bomber")
 				fmt.Printf("Version: %s\n", version)
 				fmt.Println()
+
+				latestVersion, _ := github.LatestReleaseTag("devops-kung-fu", "bomber")
+				if latestVersion != version {
+					color.Yellow.Printf("A newer version of bomber is available (%s)\n\n", latestVersion)
+				}
 			})
 		},
 	}
