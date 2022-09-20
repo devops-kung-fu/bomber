@@ -60,6 +60,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 				return
 			}
 			for _, pkg := range responses {
+				log.Println("Purl:", pkg.Purl)
 				var tempPackage models.Package
 				var vulnerabilities []models.Vulnerability
 				tempPackage = pkg
@@ -82,6 +83,9 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 }
 
 func validateCredentials(credentials *models.Credentials) (err error) {
+	if credentials == nil {
+		return errors.New("credentials cannot be nil")
+	}
 	if credentials.Username == "" {
 		credentials.Username = os.Getenv("BOMBER_PROVIDER_USERNAME")
 	}
