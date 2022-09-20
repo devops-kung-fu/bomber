@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/devops-kung-fu/common/github"
 	"github.com/devops-kung-fu/common/util"
@@ -42,7 +43,7 @@ var (
 				fmt.Println()
 
 				latestVersion, _ := github.LatestReleaseTag("devops-kung-fu", "bomber")
-				if latestVersion != version {
+				if !strings.Contains(latestVersion, version) {
 					color.Yellow.Printf("A newer version of bomber is available (%s)\n\n", latestVersion)
 				}
 			})
