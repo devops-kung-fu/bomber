@@ -101,7 +101,7 @@ var (
 			} else {
 				util.PrintInfo("No packages were detected. Nothing has been scanned.")
 			}
-
+			log.Println("Finished")
 		},
 	}
 )

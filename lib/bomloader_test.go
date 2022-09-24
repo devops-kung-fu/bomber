@@ -8,6 +8,7 @@ import (
 
 	cyclonedx "github.com/devops-kung-fu/bomber/formats/cyclonedx"
 	spdx "github.com/devops-kung-fu/bomber/formats/spdx"
+	syft "github.com/devops-kung-fu/bomber/formats/syft"
 )
 
 func TestLoad_cyclonedx(t *testing.T) {
@@ -31,6 +32,23 @@ func TestLoad_SPDX(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
 	err := afs.WriteFile("/test-spdx.json", spdx.TestBytes(), 0644)
+	assert.NoError(t, err)
+
+	files, _ := afs.ReadDir("/")
+	assert.Len(t, files, 1)
+	purls, err := Load(afs, []string{"/"})
+	assert.NoError(t, err)
+	assert.Len(t, purls, 1)
+	assert.Equal(t, "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0", purls[0])
+
+	_, err = afs.ReadDir("/bad-dir")
+	assert.Error(t, err)
+}
+
+func TestLoad_syft(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	err := afs.WriteFile("/test-syft.json", syft.TestBytes(), 0644)
 	assert.NoError(t, err)
 
 	files, _ := afs.ReadDir("/")

@@ -3,10 +3,12 @@ package cmd
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
+	"strings"
 
+	"github.com/devops-kung-fu/common/github"
 	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/afero"
@@ -14,7 +16,7 @@ import (
 )
 
 var (
-	version = "0.3.0"
+	version = "0.3.1"
 	output  string
 	//Afs stores a global OS Filesystem that is used throughout bomber
 	Afs = &afero.Afero{Fs: afero.NewOsFs()}
@@ -27,9 +29,10 @@ var (
 		Version: version,
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
 			if !debug {
-				log.SetOutput(ioutil.Discard)
+				log.SetOutput(io.Discard)
 			}
 			util.DoIf(output != "json", func() {
+				log.Println("Start")
 				fmt.Println()
 				color.Style{color.FgWhite, color.OpBold}.Println(" ██▄ ▄▀▄ █▄ ▄█ ██▄ ██▀ █▀▄")
 				color.Style{color.FgWhite, color.OpBold}.Println(" █▄█ ▀▄▀ █ ▀ █ █▄█ █▄▄ █▀▄")
@@ -38,6 +41,11 @@ var (
 				fmt.Println("https://github.com/devops-kung-fu/bomber")
 				fmt.Printf("Version: %s\n", version)
 				fmt.Println()
+
+				latestVersion, _ := github.LatestReleaseTag("devops-kung-fu", "bomber")
+				if !strings.Contains(latestVersion, version) {
+					color.Yellow.Printf("A newer version of bomber is available (%s)\n\n", latestVersion)
+				}
 			})
 		},
 	}
