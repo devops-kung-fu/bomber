@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:dad429d4-73d7-406d-9296-903839c4bf64",
+  "serialNumber": "urn:uuid:93bef9bc-5db8-4c4c-9069-000cbf14e6cc",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-09-19T09:24:45-06:00",
+    "timestamp": "2022-09-25T14:29:38-06:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -202,12 +202,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220919151123-3b7810ff182d?package-id=700494634743e658",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220924155244-8be71528b9b8?package-id=3b650ee21fd6fe8c",
       "type": "library",
       "name": "github.com/devops-kung-fu/bomber",
-      "version": "v0.0.0-20220919151123-3b7810ff182d",
-      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220919151123-3b7810ff182d:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220919151123-3b7810ff182d",
+      "version": "v0.0.0-20220924155244-8be71528b9b8",
+      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220924155244-8be71528b9b8:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220924155244-8be71528b9b8",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -227,19 +227,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220919151123-3b7810ff182d:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220924155244-8be71528b9b8:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220919151123-3b7810ff182d:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220924155244-8be71528b9b8:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220919151123-3b7810ff182d:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220924155244-8be71528b9b8:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220919151123-3b7810ff182d:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20220924155244-8be71528b9b8:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -560,12 +560,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.8?package-id=6a6f3eabebea76d6",
+      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.9?package-id=bef81ed97b8c35b9",
       "type": "library",
       "name": "github.com/jedib0t/go-pretty/v6",
-      "version": "v6.3.8",
-      "cpe": "cpe:2.3:a:jedib0t:go-pretty\\/v6:v6.3.8:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.8",
+      "version": "v6.3.9",
+      "cpe": "cpe:2.3:a:jedib0t:go-pretty\\/v6:v6.3.9:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.9",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -585,7 +585,7 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:jedib0t:go_pretty\\/v6:v6.3.8:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:jedib0t:go_pretty\\/v6:v6.3.9:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -601,7 +601,7 @@
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:p5eZqLFMEGr7CC+9915lC4Dk7Gub6mH7NE35jDhkJsQ="
+          "value": "h1:GAK/1WJY9WVVrKd601HGB89ihLBDfJnUIJye31PY+uk="
         },
         {
           "name": "syft:metadata:mainModule",
@@ -610,12 +610,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.8?package-id=635ff8806b6e181c",
+      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.9?package-id=3f31a45ad263f1f5",
       "type": "library",
       "name": "github.com/jedib0t/go-pretty/v6",
-      "version": "v6.3.8",
-      "cpe": "cpe:2.3:a:jedib0t:go-pretty\\/v6:v6.3.8:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.8",
+      "version": "v6.3.9",
+      "cpe": "cpe:2.3:a:jedib0t:go-pretty\\/v6:v6.3.9:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.9",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -631,7 +631,7 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:jedib0t:go_pretty\\/v6:v6.3.8:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:jedib0t:go_pretty\\/v6:v6.3.9:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -898,12 +898,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.13?package-id=e7aca4b5f5994196",
+      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.14?package-id=43dd6a8df09a63c1",
       "type": "library",
       "name": "github.com/mattn/go-runewidth",
-      "version": "v0.0.13",
-      "cpe": "cpe:2.3:a:mattn:go-runewidth:v0.0.13:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/mattn/go-runewidth@v0.0.13",
+      "version": "v0.0.14",
+      "cpe": "cpe:2.3:a:mattn:go-runewidth:v0.0.14:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/mattn/go-runewidth@v0.0.14",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -923,7 +923,7 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:mattn:go_runewidth:v0.0.13:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:mattn:go_runewidth:v0.0.14:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -939,7 +939,7 @@
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:lTGmDsbAYt5DmK6OnoV7EuIF1wEIFAcxld6ypU4OSgU="
+          "value": "h1:+xnbZSEeDbOIg5/mE6JF0w6n9duR1l3/WmbinWVwUuU="
         },
         {
           "name": "syft:metadata:mainModule",
@@ -948,12 +948,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.13?package-id=edf1ef1364ecfb95",
+      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.14?package-id=a9ab049df129a3b2",
       "type": "library",
       "name": "github.com/mattn/go-runewidth",
-      "version": "v0.0.13",
-      "cpe": "cpe:2.3:a:mattn:go-runewidth:v0.0.13:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/mattn/go-runewidth@v0.0.13",
+      "version": "v0.0.14",
+      "cpe": "cpe:2.3:a:mattn:go-runewidth:v0.0.14:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/mattn/go-runewidth@v0.0.14",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -969,7 +969,7 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:mattn:go_runewidth:v0.0.13:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:mattn:go_runewidth:v0.0.14:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -1726,11 +1726,11 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20220823124924-e9cbc92d1a73?package-id=9d2ec6d4636bfdca",
+      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20220922133306-665eaaec4324?package-id=370584a60fedc24b",
       "type": "library",
       "name": "k8s.io/utils",
-      "version": "v0.0.0-20220823124924-e9cbc92d1a73",
-      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20220823124924-e9cbc92d1a73",
+      "version": "v0.0.0-20220922133306-665eaaec4324",
+      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20220922133306-665eaaec4324",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -1762,7 +1762,7 @@
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:H9TCJUUx+2VA0ZiD9lvtaX8fthFsMoD+Izn93E/hm8U="
+          "value": "h1:i+xdFemcSNuJvIfBlaYuXgRondKxK4z4prVPKzEaelI="
         },
         {
           "name": "syft:metadata:mainModule",
@@ -1771,11 +1771,11 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20220823124924-e9cbc92d1a73?package-id=18032699c7963fd2",
+      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20220922133306-665eaaec4324?package-id=ad8efbc649b48ff4",
       "type": "library",
       "name": "k8s.io/utils",
-      "version": "v0.0.0-20220823124924-e9cbc92d1a73",
-      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20220823124924-e9cbc92d1a73",
+      "version": "v0.0.0-20220922133306-665eaaec4324",
+      "purl": "pkg:golang/k8s.io/utils@v0.0.0-20220922133306-665eaaec4324",
       "properties": [
         {
           "name": "syft:package:foundBy",
