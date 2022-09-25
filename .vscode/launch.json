@@ -60,13 +60,5 @@
             "program": "${workspaceFolder}/main.go",
             "args": ["--provider=ossindex", "--debug=true", "--output=json", "scan", "./sbom/test/railsgoat.cyclonedx.json"]
         },
-        {
-            "name": "Debug Test (ossindex)",
-            "type": "go",
-            "request": "launch",
-            "mode": "auto",
-            "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=ossindex", "--debug=true", "scan", "/Users/dj/Desktop/testbom/bom.xml"]
-        },
     ]
 }
