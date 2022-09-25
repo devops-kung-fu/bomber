@@ -15,7 +15,7 @@
 
 So you've asked a vendor for an Software Bill of Materials (SBOM) for one of their products, and they provided one to you in a JSON file... now what? 
 
-The first thing you're going to want to do is see if any of the components listed inside the SBOM have security vulnerabilities. This will help you identify what kind of risk you will be taking on by using the product. Finding security vulnerabilities for components identified in an SBOM is exactly what ```bomber``` is meant to do. It can read any JSON based [SPDX](https://spdx.dev), [CycloneDX](https://cyclonedx.org), or [Syft](https://github.com/anchore/syft) formatted SBOM and tell you pretty quickly if there are any vulnerabilities. 
+The first thing you're going to want to do is see if any of the components listed inside the SBOM have security vulnerabilities. This will help you identify what kind of risk you will be taking on by using the product. Finding security vulnerabilities for components identified in an SBOM is exactly what ```bomber``` is meant to do. It can read any JSON or XML based [CycloneDX](https://cyclonedx.org) format, or and JSON [SPDX](https://spdx.dev) or [Syft](https://github.com/anchore/syft) formatted SBOM, and tell you pretty quickly if there are any vulnerabilities. 
 
 ### What SBOM formats are supported?
 

@@ -3,6 +3,7 @@ package lib
 import (
 	"bytes"
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
 	"log"
 	"path/filepath"
@@ -57,8 +58,15 @@ func loadFilePurls(afs *afero.Afero, arg string) (purls []string, err error) {
 	if err != nil {
 		return nil, err
 	}
-	if bytes.Contains(b, []byte("\"bomFormat\": \"CycloneDX\",")) {
-		log.Println("Detected CycloneDX")
+	if bytes.Contains(b, []byte("xmlns")) && bytes.Contains(b, []byte("http://cyclonedx.org/schema/bom/1.3")) {
+		log.Println("Detected CycloneDX XML")
+		var sbom cyclone.BOM
+		err = xml.Unmarshal(b, &sbom)
+		if err == nil {
+			return cyclonedx.Purls(&sbom), err
+		}
+	} else if bytes.Contains(b, []byte("\"bomFormat\": \"CycloneDX\",")) {
+		log.Println("Detected CycloneDX JSON")
 		var sbom cyclone.BOM
 		err = json.Unmarshal(b, &sbom)
 		if err == nil {
