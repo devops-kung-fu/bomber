@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.2" serialNumber="urn:uuid:e2626566-8ff0-49c8-870d-57b2aca7f507" version="1">
+  <metadata>
+    <timestamp>2022-09-27T15:03:33-06:00</timestamp>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-gomod</name>
+        <version>v0.8.2</version>
+        <hashes>
+          <hash alg="MD5">2fae1b517e34f532b24f832d5282d34d</hash>
+          <hash alg="SHA-1">aa7190bc32cecebaf98e8551f92335518d6ed1a5</hash>
+          <hash alg="SHA-256">2fd17a0d03f6614a16c6ea87656ff96f0e4dce19859b4f597e87d52018dba923</hash>
+          <hash alg="SHA-512">03ec9560eb767b228f15ef3b611c0363f4493be758bb810620dd0ad93e223bd348160f68754163d11db3a99d827286b9889d8588835c5ae1b9438c70e200ad32</hash>
+        </hashes>
+      </tool>
+    </tools>
+    <component bom-ref="pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220925150821-19aa8ec38f35" type="application">
+      <name>github.com/devops-kung-fu/bomber</name>
+      <version>v0.0.0-20220925150821-19aa8ec38f35</version>
+      <purl>pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220925150821-19aa8ec38f35</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/devops-kung-fu/bomber</url>
+        </reference>
+      </externalReferences>
+    </component>
+  </metadata>
+  <components>
+    <component bom-ref="pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0" type="library">
+      <name>github.com/CycloneDX/cyclonedx-go</name>
+      <version>v0.6.0</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">4a2cd619b6731530bf3bfd72874ef65d004cc5fbeca16a9dfffa0a088cb31721</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/CycloneDX/cyclonedx-go</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/briandowns/spinner@v1.19.0" type="library">
+      <name>github.com/briandowns/spinner</name>
+      <version>v1.19.0</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">b3c6aadfc1fe423bbcf72869f3d6f888888cccc9bc60dde9eaf1a9c3287f6bc1</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/briandowns/spinner@v1.19.0</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/briandowns/spinner</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/devops-kung-fu/common@v0.2.5" type="library">
+      <name>github.com/devops-kung-fu/common</name>
+      <version>v0.2.5</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">2adca9d6fb04da2c903db6b34b1910d42894ab6f456e5424fdf60f1dad3d0330</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/devops-kung-fu/common@v0.2.5</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/devops-kung-fu/common</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/fatih/color@v1.13.0" type="library">
+      <name>github.com/fatih/color</name>
+      <version>v1.13.0</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">f0b3987352983cf9b228cb8df105760cd45635b2e8e8b67488bb3cfa6947e77c</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/fatih/color@v1.13.0</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/fatih/color</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/gookit/color@v1.5.2" type="library">
+      <name>github.com/gookit/color</name>
+      <version>v1.5.2</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">b8b9df5dc6858e5ac39d00d3f8d08171f86b5ea613c7fadc09aeb19f4d58f322</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/gookit/color@v1.5.2</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/gookit/color</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/inconshreveable/mousetrap@v1.0.1" type="library">
+      <name>github.com/inconshreveable/mousetrap</name>
+      <version>v1.0.1</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">537b8c8cf49010130da75945c66965a823cce8fe6efd7abb3e0ce46adfdb14d7</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/inconshreveable/mousetrap@v1.0.1</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/inconshreveable/mousetrap</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.9" type="library">
+      <name>github.com/jedib0t/go-pretty/v6</name>
+      <version>v6.3.9</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">1802bfd56258f56555aca77ad351c607cf6284b0437c99d4209c9edf53d8fae9</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.9</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/jedib0t/go-pretty</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/kirinlabs/HttpRequest@v1.1.1" type="library">
+      <name>github.com/kirinlabs/HttpRequest</name>
+      <version>v1.1.1</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">7816c5ce945dfd8eef421458df47eb1cadf2009893d700e5077d51cb3ca495cd</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/kirinlabs/HttpRequest@v1.1.1</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/kirinlabs/HttpRequest</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/mattn/go-colorable@v0.1.13" type="library">
+      <name>github.com/mattn/go-colorable</name>
+      <version>v0.1.13</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">7c5038599c5d105e2d5cf65528c2f00fca149c24d3a34f1db94ef0c5e71d12f0</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/mattn/go-colorable@v0.1.13</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/mattn/go-colorable</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/mattn/go-isatty@v0.0.16" type="library">
+      <name>github.com/mattn/go-isatty</name>
+      <version>v0.0.16</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">6eadd58c59affec3a31ed744866904578c75009b6f52f389d8f140679fa978a4</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/mattn/go-isatty@v0.0.16</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/mattn/go-isatty</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/mattn/go-runewidth@v0.0.14" type="library">
+      <name>github.com/mattn/go-runewidth</name>
+      <version>v0.0.14</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">fb19db65211e0db388839fe613a245d30ea7f5db91d65dff5a66e29d657052e5</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/mattn/go-runewidth@v0.0.14</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/mattn/go-runewidth</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/package-url/packageurl-go@v0.1.0" type="library">
+      <name>github.com/package-url/packageurl-go</name>
+      <version>v0.1.0</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">79f58173df0efdd059460d69c36c620f3a2f9e532309af4d3e77da88176e87c2</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/package-url/packageurl-go@v0.1.0</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/package-url/packageurl-go</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/rivo/uniseg@v0.4.2" type="library">
+      <name>github.com/rivo/uniseg</name>
+      <version>v0.4.2</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">6300f4ba5252272b4ba62696b9ad2c043bac7ec099a21c63c73553623c317d5f</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/rivo/uniseg@v0.4.2</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/rivo/uniseg</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/spf13/afero@v1.9.2" type="library">
+      <name>github.com/spf13/afero</name>
+      <version>v1.9.2</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">8f8f478fad85d27f83699d5d0c2be100168f35218d92ddf6a11171237dc810cc</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/spf13/afero@v1.9.2</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/spf13/afero</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/spf13/cobra@v1.5.0" type="library">
+      <name>github.com/spf13/cobra</name>
+      <version>v1.5.0</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">5fe8d304406a1746c737ef5c48c8267eebefd951c9f5ece614d7fd63f5ecb585</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/spf13/cobra@v1.5.0</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/spf13/cobra</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/spf13/pflag@v1.0.5" type="library">
+      <name>github.com/spf13/pflag</name>
+      <version>v1.0.5</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">8b2f951543823f56bef3216da3f76b836089e6ed3246807b7d9c370cabff2570</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/spf13/pflag@v1.0.5</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/spf13/pflag</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e" type="library">
+      <name>github.com/xo/terminfo</name>
+      <version>v0.0.0-20220910002029-abceb7e1c41e</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">2551b8e11b32681f53d8a2076af305fe9a4964d1bd669ca286f09dd30d74d67a</hash>
+      </hashes>
+      <purl>pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e</purl>
+      <externalReferences>
+        <reference type="vcs">
+          <url>https://github.com/xo/terminfo</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component bom-ref="pkg:golang/golang.org/x/sys@v0.0.0-20220919091848-fb04ddd9f9c8" type="library">
+      <name>golang.org/x/sys</name>
+      <version>v0.0.0-20220919091848-fb04ddd9f9c8</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">87e106a218b385ef57957d7cadfa5af24f1101ce57c9a79a98cfb454745de257</hash>
+      </hashes>
+      <purl>pkg:golang/golang.org/x/sys@v0.0.0-20220919091848-fb04ddd9f9c8</purl>
+    </component>
+    <component bom-ref="pkg:golang/golang.org/x/text@v0.3.7" type="library">
+      <name>golang.org/x/text</name>
+      <version>v0.3.7</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">a25a70bcfd8a69c5b5656bec47bb90868c9362f280ba97d0ad118114cdf9d869</hash>
+      </hashes>
+      <purl>pkg:golang/golang.org/x/text@v0.3.7</purl>
+    </component>
+    <component bom-ref="pkg:golang/k8s.io/utils@v0.0.0-20220922133306-665eaaec4324" type="library">
+      <name>k8s.io/utils</name>
+      <version>v0.0.0-20220922133306-665eaaec4324</version>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-256">8bec5d15e99c48db89bc87c195a62e5e04689dd2b12b8cf8a6b54f2b311a7a52</hash>
+      </hashes>
+      <purl>pkg:golang/k8s.io/utils@v0.0.0-20220922133306-665eaaec4324</purl>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0"></dependency>
+    <dependency ref="pkg:golang/github.com/briandowns/spinner@v1.19.0">
+      <dependency ref="pkg:golang/github.com/fatih/color@v1.13.0"></dependency>
+      <dependency ref="pkg:golang/github.com/mattn/go-colorable@v0.1.13"></dependency>
+      <dependency ref="pkg:golang/github.com/mattn/go-isatty@v0.0.16"></dependency>
+    </dependency>
+    <dependency ref="pkg:golang/github.com/devops-kung-fu/common@v0.2.5">
+      <dependency ref="pkg:golang/github.com/gookit/color@v1.5.2"></dependency>
+      <dependency ref="pkg:golang/github.com/kirinlabs/HttpRequest@v1.1.1"></dependency>
+      <dependency ref="pkg:golang/github.com/spf13/afero@v1.9.2"></dependency>
+      <dependency ref="pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e"></dependency>
+      <dependency ref="pkg:golang/golang.org/x/sys@v0.0.0-20220919091848-fb04ddd9f9c8"></dependency>
+      <dependency ref="pkg:golang/golang.org/x/text@v0.3.7"></dependency>
+    </dependency>
+    <dependency ref="pkg:golang/github.com/fatih/color@v1.13.0">
+      <dependency ref="pkg:golang/github.com/mattn/go-colorable@v0.1.13"></dependency>
+      <dependency ref="pkg:golang/github.com/mattn/go-isatty@v0.0.16"></dependency>
+    </dependency>
+    <dependency ref="pkg:golang/github.com/gookit/color@v1.5.2">
+      <dependency ref="pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e"></dependency>
+      <dependency ref="pkg:golang/golang.org/x/sys@v0.0.0-20220919091848-fb04ddd9f9c8"></dependency>
+    </dependency>
+    <dependency ref="pkg:golang/github.com/inconshreveable/mousetrap@v1.0.1"></dependency>
+    <dependency ref="pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.9">
+      <dependency ref="pkg:golang/github.com/mattn/go-runewidth@v0.0.14"></dependency>
+      <dependency ref="pkg:golang/golang.org/x/sys@v0.0.0-20220919091848-fb04ddd9f9c8"></dependency>
+    </dependency>
+    <dependency ref="pkg:golang/github.com/kirinlabs/HttpRequest@v1.1.1"></dependency>
+    <dependency ref="pkg:golang/github.com/mattn/go-colorable@v0.1.13">
+      <dependency ref="pkg:golang/github.com/mattn/go-isatty@v0.0.16"></dependency>
+    </dependency>
+    <dependency ref="pkg:golang/github.com/mattn/go-isatty@v0.0.16">
+      <dependency ref="pkg:golang/golang.org/x/sys@v0.0.0-20220919091848-fb04ddd9f9c8"></dependency>
+    </dependency>
+    <dependency ref="pkg:golang/github.com/mattn/go-runewidth@v0.0.14">
+      <dependency ref="pkg:golang/github.com/rivo/uniseg@v0.4.2"></dependency>
+    </dependency>
+    <dependency ref="pkg:golang/github.com/package-url/packageurl-go@v0.1.0"></dependency>
+    <dependency ref="pkg:golang/github.com/rivo/uniseg@v0.4.2"></dependency>
+    <dependency ref="pkg:golang/github.com/spf13/afero@v1.9.2">
+      <dependency ref="pkg:golang/golang.org/x/text@v0.3.7"></dependency>
+    </dependency>
+    <dependency ref="pkg:golang/github.com/spf13/cobra@v1.5.0">
+      <dependency ref="pkg:golang/github.com/inconshreveable/mousetrap@v1.0.1"></dependency>
+      <dependency ref="pkg:golang/github.com/spf13/pflag@v1.0.5"></dependency>
+    </dependency>
+    <dependency ref="pkg:golang/github.com/spf13/pflag@v1.0.5"></dependency>
+    <dependency ref="pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e"></dependency>
+    <dependency ref="pkg:golang/golang.org/x/sys@v0.0.0-20220919091848-fb04ddd9f9c8"></dependency>
+    <dependency ref="pkg:golang/golang.org/x/text@v0.3.7"></dependency>
+    <dependency ref="pkg:golang/k8s.io/utils@v0.0.0-20220922133306-665eaaec4324"></dependency>
+    <dependency ref="pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220925150821-19aa8ec38f35">
+      <dependency ref="pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0"></dependency>
+      <dependency ref="pkg:golang/github.com/briandowns/spinner@v1.19.0"></dependency>
+      <dependency ref="pkg:golang/github.com/devops-kung-fu/common@v0.2.5"></dependency>
+      <dependency ref="pkg:golang/github.com/fatih/color@v1.13.0"></dependency>
+      <dependency ref="pkg:golang/github.com/gookit/color@v1.5.2"></dependency>
+      <dependency ref="pkg:golang/github.com/inconshreveable/mousetrap@v1.0.1"></dependency>
+      <dependency ref="pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.9"></dependency>
+      <dependency ref="pkg:golang/github.com/kirinlabs/HttpRequest@v1.1.1"></dependency>
+      <dependency ref="pkg:golang/github.com/mattn/go-colorable@v0.1.13"></dependency>
+      <dependency ref="pkg:golang/github.com/mattn/go-isatty@v0.0.16"></dependency>
+      <dependency ref="pkg:golang/github.com/mattn/go-runewidth@v0.0.14"></dependency>
+      <dependency ref="pkg:golang/github.com/package-url/packageurl-go@v0.1.0"></dependency>
+      <dependency ref="pkg:golang/github.com/rivo/uniseg@v0.4.2"></dependency>
+      <dependency ref="pkg:golang/github.com/spf13/afero@v1.9.2"></dependency>
+      <dependency ref="pkg:golang/github.com/spf13/cobra@v1.5.0"></dependency>
+      <dependency ref="pkg:golang/github.com/spf13/pflag@v1.0.5"></dependency>
+      <dependency ref="pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e"></dependency>
+      <dependency ref="pkg:golang/golang.org/x/sys@v0.0.0-20220919091848-fb04ddd9f9c8"></dependency>
+      <dependency ref="pkg:golang/golang.org/x/text@v0.3.7"></dependency>
+      <dependency ref="pkg:golang/k8s.io/utils@v0.0.0-20220922133306-665eaaec4324"></dependency>
+    </dependency>
+  </dependencies>
+</bom>

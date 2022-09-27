@@ -36,6 +36,7 @@ type Summary struct {
 // Results is the high level JSON object used to define vulnerabilities processed by bomber.
 type Results struct {
 	Meta     Meta      `json:"meta,omitempty"`
+	Licenses []string  `json:"licenses,omitempty"`
 	Summary  Summary   `json:"summary,omitempty"`
 	Packages []Package `json:"packages,omitempty"`
 }
@@ -56,7 +57,7 @@ type Credentials struct {
 }
 
 // NewResults defines the high level output of bomber
-func NewResults(packages []Package, summary Summary, version, providerName string) Results {
+func NewResults(packages []Package, summary Summary, licenses []string, version, providerName string) Results {
 	return Results{
 		Meta: Meta{
 			Generator: "bomber",
@@ -67,5 +68,6 @@ func NewResults(packages []Package, summary Summary, version, providerName strin
 		},
 		Summary:  summary,
 		Packages: packages,
+		Licenses: licenses,
 	}
 }

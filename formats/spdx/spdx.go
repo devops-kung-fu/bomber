@@ -8,14 +8,14 @@ type BOM struct {
 	DocumentName        string `json:"documentName"`
 	DocumentNamespace   string `json:"documentNamespace"`
 	ExternalDocumentRef string `json:"externalDocumentRef,omitempty"`
-	CreationInfo        struct {
-		LicenseListVersion string `json:"licenseListVersion,omitempty"`
-		Person             string `json:"person,omitempty"`
-		Organization       string `json:"organization,omitempty"`
-		Tool               string `json:"tool,omitempty"`
-		Created            string `json:"created"`
-		CreatorComment     string `json:"creatorComment,omitempty"`
-	} `json:"creationInfo"`
+	// CreationInfo        struct {
+	// 	LicenseListVersion string `json:"licenseListVersion,omitempty"`
+	// 	Person             string `json:"person,omitempty"`
+	// 	Organization       string `json:"organization,omitempty"`
+	// 	Tool               string `json:"tool,omitempty"`
+	// 	Created            string `json:"created"`
+	// 	CreatorComment     string `json:"creatorComment,omitempty"`
+	// } `json:"creationInfo"`
 	DocumentComment string         `json:"documentComment,omitempty"`
 	Packages        []Package      `json:"packages"`
 	Files           []File         `json:"files,omitempty"`
@@ -91,6 +91,12 @@ func (bom *BOM) Purls() (purls []string) {
 			}
 		}
 	}
+	return
+}
+
+// Licenses returns a slice of strings that contain all of the licenses found in the SBOM
+func (bom *BOM) Licenses() (licenses []string) {
+
 	return
 }
 
