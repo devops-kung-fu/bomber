@@ -2,6 +2,7 @@ package html
 
 import (
 	"fmt"
+	"log"
 	"path/filepath"
 	"strings"
 	"text/template"
@@ -29,6 +30,7 @@ func (Renderer) Render(results models.Results) (err error) {
 	util.PrintInfo("Writing filename:", filename)
 	err = writeTemplate(afs, filename, results)
 	if err != nil {
+		log.Println(err)
 		return
 	}
 	return
@@ -38,15 +40,18 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) (e
 
 	file, err := afs.Create(filename)
 	if err != nil {
+		log.Println(err)
 		return err
 	}
 	template := genTemplate("output")
 	err = template.ExecuteTemplate(file, "output", results)
 	if err != nil {
+		log.Println(err)
 		return err
 	}
 	err = afs.Fs.Chmod(filename, 0777)
 	if err != nil {
+		log.Println(err)
 		return err
 	}
 
@@ -118,37 +123,56 @@ func genTemplate(output string) (t *template.Template) {
 </head>
 <body>
 	<div id="bomber-logo"></div>
-	<h1>bomber Vulnerability Results</h1>
+	<h1>bomber Results</h1>
 	<p>The following results were detected by <code>{{.Meta.Generator}} {{.Meta.Version}}</code> on {{.Meta.Date}} using the {{.Meta.Provider}} provider.</p>
-    <p>
+	{{ if ne (len .Packages) 0 }} 
+	<p>
 		Vulnerabilities displayed may differ from provider to provider. This list may not contain all possible vulnerabilities. Please try the other providers that <code>bomber</code> supports (osv, ossindex)"). There is no guarantee that 
 		the next time you scan for vulnerabilities that there won't be more, or less of them. Threats are continuous.
 	</p>
-	<h1>Summary</h1>
-	<table id="summary">
-		<tr><td>Critical:</td><td>{{.Summary.Critical}}</td></tr>
-		<tr><td>High:</td><td>{{.Summary.High}}</td></tr>
-		<tr><td>Moderate:</td><td>{{.Summary.Moderate}}</td></tr>
-		<tr><td>Low:</td><td>{{.Summary.Low}}</td></tr>
-		<tr><td>Unspecified:</td><td>{{.Summary.Unspecified}}</td></tr>
-	</table>
-	<h1>Details</h1>
-	{{range .Packages}}
-		<h2>{{.Purl}}<h2>
-		<h3>{{.Description}}</h3>
-		<h4>Vulnerabilities</h4>
-		{{range .Vulnerabilities}}
-			<div id="vuln">
-				{{if .Title}}
-				<p><b>{{.Title}}</b></p>
-				{{end}}
-				<p>Severity: <span id="{{.Severity}}">{{.Severity}}</span></p>
-				<p><a href="{{.Reference}}">Reference Documentation</a></p>
-				<p>{{.Description}}
-			</div>
-		{{end}}
-		<br/>
-    {{end}}
+	{{ else }}
+	<p>
+		No vulnerabilities found!
+	</p>
+	{{ end }}
+	{{ if ne (len .Licenses) 0 }} 
+		<h1>Licenses</h1>
+		<p>The following licenses were found by <code>bomber</code>:</p>
+		<ul>
+		{{ range $license := .Licenses }}
+			<li>{{ $license }}</li>
+		{{ end }}
+		</ul>
+	{{ else }}
+		<p>No license information detected.</b>
+	{{ end }}
+	{{ if ne (len .Packages) 0 }} 
+		<h1>Vulnerability Summary</h1>
+		<table id="summary">
+			<tr><td>Critical:</td><td>{{ .Summary.Critical }}</td></tr>
+			<tr><td>High:</td><td>{{ .Summary.High }}</td></tr>
+			<tr><td>Moderate:</td><td>{{ .Summary.Moderate }}</td></tr>
+			<tr><td>Low:</td><td>{{ .Summary.Low }}</td></tr>
+			<tr><td>Unspecified:</td><td>{{ .Summary.Unspecified }}</td></tr>
+		</table>
+		<h1>Vulnerability Details</h1>
+		{{ range .Packages }}
+			<h2>{{ .Purl }}<h2>
+			<h3>{{ .Description }}</h3>
+			<h4>Vulnerabilities</h4>
+			{{ range .Vulnerabilities }}
+				<div id="vuln">
+					{{ if .Title }}
+					<p><b>{{ .Title }}</b></p>
+					{{ end }}
+					<p>Severity: <span id="{{ .Severity }}">{{ .Severity }}</span></p>
+					<p><a href="{{ .Reference }}">Reference Documentation</a></p>
+					<p>{{ .Description }}
+				</div>
+			{{ end }}
+			<br/>
+		{{ end }}
+	{{ end }}
 	<div id="footer"></div>
 	Powered by the <a href="https://github.com/devops-kung-fu"/>DevOps Kung Fu Mafia</a>
 </body>
