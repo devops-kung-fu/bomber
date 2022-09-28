@@ -13,7 +13,7 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-const OSSINDEX_URL = "https://ossindex.sonatype.org/api/v3/authorized/component-report"
+const ossindexURL = "https://ossindex.sonatype.org/api/v3/authorized/component-report"
 
 // Provider represents the OSSIndex provider
 type Provider struct{}
@@ -46,7 +46,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		req := HttpRequest.NewRequest()
 		req.SetBasicAuth(credentials.Username, credentials.Token)
 
-		resp, _ := req.JSON().Post(OSSINDEX_URL, coordinates)
+		resp, _ := req.JSON().Post(ossindexURL, coordinates)
 		defer func() {
 			_ = resp.Close()
 		}()

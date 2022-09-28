@@ -2,24 +2,16 @@ package spdx
 
 // BOM represents a SPDX Software Bill of Materials
 type BOM struct {
-	SPDXVersion         string `json:"spdxVersion"`
-	DataLicense         string `json:"dataLicense"`
-	SPDXID              string `json:"SPDXID"`
-	DocumentName        string `json:"documentName"`
-	DocumentNamespace   string `json:"documentNamespace"`
-	ExternalDocumentRef string `json:"externalDocumentRef,omitempty"`
-	// CreationInfo        struct {
-	// 	LicenseListVersion string `json:"licenseListVersion,omitempty"`
-	// 	Person             string `json:"person,omitempty"`
-	// 	Organization       string `json:"organization,omitempty"`
-	// 	Tool               string `json:"tool,omitempty"`
-	// 	Created            string `json:"created"`
-	// 	CreatorComment     string `json:"creatorComment,omitempty"`
-	// } `json:"creationInfo"`
-	DocumentComment string         `json:"documentComment,omitempty"`
-	Packages        []Package      `json:"packages"`
-	Files           []File         `json:"files,omitempty"`
-	Relationships   []Relationship `json:"relationships,omitempty"`
+	SPDXVersion         string         `json:"spdxVersion"`
+	DataLicense         string         `json:"dataLicense"`
+	SPDXID              string         `json:"SPDXID"`
+	DocumentName        string         `json:"documentName"`
+	DocumentNamespace   string         `json:"documentNamespace"`
+	ExternalDocumentRef string         `json:"externalDocumentRef,omitempty"`
+	DocumentComment     string         `json:"documentComment,omitempty"`
+	Packages            []Package      `json:"packages"`
+	Files               []File         `json:"files,omitempty"`
+	Relationships       []Relationship `json:"relationships,omitempty"`
 }
 
 // Package represents a component/package

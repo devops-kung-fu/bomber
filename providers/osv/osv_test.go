@@ -17,7 +17,7 @@ func TestProvider_Scan(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", OSV_URL,
+	httpmock.RegisterResponder("POST", osvURL,
 		httpmock.NewBytesResponder(200, osvTestResponse()))
 
 	provider := Provider{}
