@@ -182,6 +182,15 @@ bomber scan bad-bom.json --output=json
 
 If you wish, you can set two environment variables to store your credentials, and not have to type them on the command line. Check out the [Environment Variables](####Environment-Variables) information later in this README.
 
+#### Environment Variables
+
+If you don't want to enter credentials all the time, you can add the following to your ```.bashrc``` or ```.bash_profile```
+
+``` bash
+export BOMBER_PROVIDER_USERNAME={{your OSS Index user name}}
+export BOMBER_PROVIDER_TOKEN={{your OSS Index API Token}}
+```
+
 ### Messing around
 
 If you want to kick the tires on ```bomber``` you'll find a selection of test SBOMs in the [test](sbom/test/) folder. 
