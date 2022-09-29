@@ -3,7 +3,7 @@ module github.com/devops-kung-fu/bomber
 go 1.19
 
 require (
-	github.com/CycloneDX/cyclonedx-go v0.6.0
+	github.com/CycloneDX/cyclonedx-go v0.7.0
 	github.com/briandowns/spinner v1.19.0
 	github.com/devops-kung-fu/common v0.2.5
 	github.com/gookit/color v1.5.2
