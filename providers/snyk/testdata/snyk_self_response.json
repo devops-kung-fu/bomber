@@ -1,0 +1,19 @@
+{
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "user",
+    "id": "3ecd1b48-9055-47fb-b959-a9fdbb3291dc",
+    "attributes": {
+      "name": "jane.doe@example.com",
+      "avatar_url": "",
+      "default_org_context": "d9546f87-d03d-4dd9-a10e-6ae5fd40d9a1",
+      "username": "jane.doe@example.com",
+      "email": "jane.doe@example.com"
+    }
+  },
+  "links": {
+    "self": ""
+  }
+}
