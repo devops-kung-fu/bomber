@@ -208,7 +208,7 @@ If you would like to contribute to the development of ```bomber``` please refer 
 
 ## Software Bill of Materials
 
-```bomber``` uses the CycloneDX and SPDX to generate a Software Bill of Materials every time a developer commits code to this repository (as long as [Hookz](https://github.com/devops-kung-fu/hookz)is being used and is has been initialized in the working directory). More information for CycloneDX is available [here](https://cyclonedx.org). SPDX information is available [here](https://spdx.dev).
+```bomber``` uses Syft to generate a Software Bill of Materials every time a developer commits code to this repository (as long as [Hookz](https://github.com/devops-kung-fu/hookz)is being used and is has been initialized in the working directory). More information for CycloneDX is available [here](https://cyclonedx.org).
 
 The current CycloneDX SBOM for ```bomber``` is available [here](./sbom/bomber.cyclonedx.json).
 

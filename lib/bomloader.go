@@ -61,14 +61,15 @@ func loadFilePurls(afs *afero.Afero, arg string) (purls []string, licenses []str
 	if err != nil {
 		return nil, nil, err
 	}
-	if bytes.Contains(b, []byte("xmlns")) && bytes.Contains(b, []byte("http://cyclonedx.org/schema/bom/1.3")) {
+
+	if bytes.Contains(b, []byte("xmlns")) && bytes.Contains(b, []byte("CycloneDX")) {
 		log.Println("Detected CycloneDX XML")
 		var sbom cyclone.BOM
 		err = xml.Unmarshal(b, &sbom)
 		if err == nil {
 			return cyclonedx.Purls(&sbom), cyclonedx.Licenses(&sbom), err
 		}
-	} else if bytes.Contains(b, []byte("\"bomFormat\": \"CycloneDX\",")) {
+	} else if bytes.Contains(b, []byte("bomFormat")) && bytes.Contains(b, []byte("CycloneDX")) {
 		log.Println("Detected CycloneDX JSON")
 		var sbom cyclone.BOM
 		err = json.Unmarshal(b, &sbom)
@@ -82,7 +83,7 @@ func loadFilePurls(afs *afero.Afero, arg string) (purls []string, licenses []str
 		if err == nil {
 			return sbom.Purls(), sbom.Licenses(), err
 		}
-	} else if bytes.Contains(b, []byte("\"url\": \"https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-3.3.2.json\"")) {
+	} else if bytes.Contains(b, []byte("https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-")) {
 		log.Println("Detected Syft")
 		var sbom syft.BOM
 		err = json.Unmarshal(b, &sbom)

@@ -19,7 +19,7 @@
           args: ["get", "-u", "./..."]
         - name: "syft: Generate a Software Bill of Materials (SBoM)"
           exec: syft
-          args: [".","-o ","json=sbom/bomber.syft.json","-o", "spdx-json=sbom/bomber.spdx.json", "-o", "cyclonedx-json=sbom/bomber.cyclonedx.json"]
+          args: [".", "-o", "cyclonedx-json=sbom/bomber.cyclonedx.json"]
         - name: "gofmt: Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
@@ -31,7 +31,7 @@
           args: ["-ignoretests", "./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
-          args: ["-over", "11", "."]
+          args: ["-over", "12", "."]
         - name: Hinge
           exec: hinge
           args: ["."]
