@@ -3,7 +3,7 @@
  "name": ".",
  "spdxVersion": "SPDX-2.2",
  "creationInfo": {
-  "created": "2022-09-25T21:07:10.562121Z",
+  "created": "2022-09-28T23:34:06.035185Z",
   "creators": [
    "Organization: Anchore, Inc",
    "Tool: syft-[not provided]"
@@ -11,61 +11,61 @@
   "licenseListVersion": "3.18"
  },
  "dataLicense": "CC0-1.0",
- "documentNamespace": "https://anchore.com/syft/dir/52b480c4-b0d9-47f8-a1b6-c18c3f0c3e6b",
+ "documentNamespace": "https://anchore.com/syft/dir/765b83d1-13ff-4680-98a8-5dd2e1433cbf",
  "packages": [
   {
-   "SPDXID": "SPDXRef-135cc8bc545c374",
+   "SPDXID": "SPDXRef-16a25d640f4898b6",
    "name": "github.com/CycloneDX/cyclonedx-go",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:CycloneDX:cyclonedx-go:v0.6.0:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:CycloneDX:cyclonedx-go:v0.7.0:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:CycloneDX:cyclonedx_go:v0.6.0:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:CycloneDX:cyclonedx_go:v0.7.0:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0",
+     "referenceLocator": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.7.0",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.6.0"
+   "versionInfo": "v0.7.0"
   },
   {
-   "SPDXID": "SPDXRef-8687a1bf7cad527b",
+   "SPDXID": "SPDXRef-5b640ab5743c8eb8",
    "name": "github.com/CycloneDX/cyclonedx-go",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:CycloneDX:cyclonedx-go:v0.6.0:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:CycloneDX:cyclonedx-go:v0.7.0:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:CycloneDX:cyclonedx_go:v0.6.0:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:CycloneDX:cyclonedx_go:v0.7.0:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0",
+     "referenceLocator": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.7.0",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v0.6.0"
+   "versionInfo": "v0.7.0"
   },
   {
    "SPDXID": "SPDXRef-511bf3b717951ffb",
@@ -139,46 +139,46 @@
    "versionInfo": "v1.1.1"
   },
   {
-   "SPDXID": "SPDXRef-bc629f71ef4f81fe",
+   "SPDXID": "SPDXRef-4a14f3963ec4f23b",
    "name": "github.com/devops-kung-fu/bomber",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220925203220-87541b06e038:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20220928224516-b8b2d4abd421:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220925203220-87541b06e038:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20220928224516-b8b2d4abd421:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220925203220-87541b06e038:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20220928224516-b8b2d4abd421:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220925203220-87541b06e038:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20220928224516-b8b2d4abd421:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:devops:bomber:v0.0.0-20220925203220-87541b06e038:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:devops:bomber:v0.0.0-20220928224516-b8b2d4abd421:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220925203220-87541b06e038",
+     "referenceLocator": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220928224516-b8b2d4abd421",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.0.0-20220925203220-87541b06e038"
+   "versionInfo": "v0.0.0-20220928224516-b8b2d4abd421"
   },
   {
    "SPDXID": "SPDXRef-e737358807949deb",
@@ -1064,48 +1064,48 @@
    "versionInfo": "v0.0.0-20220910002029-abceb7e1c41e"
   },
   {
-   "SPDXID": "SPDXRef-b9da67ec9abba46f",
+   "SPDXID": "SPDXRef-2254481be4e4c138",
    "name": "golang.org/x/sys",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220919091848-fb04ddd9f9c8:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220928140112-f11e5e49a4ec:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220919091848-fb04ddd9f9c8",
+     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220928140112-f11e5e49a4ec",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: bomber",
-   "versionInfo": "v0.0.0-20220919091848-fb04ddd9f9c8"
+   "versionInfo": "v0.0.0-20220928140112-f11e5e49a4ec"
   },
   {
-   "SPDXID": "SPDXRef-17f977800b755c62",
+   "SPDXID": "SPDXRef-b20fbdb4227283bf",
    "name": "golang.org/x/sys",
    "licenseConcluded": "NONE",
    "downloadLocation": "NOASSERTION",
    "externalRefs": [
     {
      "referenceCategory": "SECURITY",
-     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220919091848-fb04ddd9f9c8:*:*:*:*:*:*:*",
+     "referenceLocator": "cpe:2.3:a:golang:x\\/sys:v0.0.0-20220928140112-f11e5e49a4ec:*:*:*:*:*:*:*",
      "referenceType": "cpe23Type"
     },
     {
      "referenceCategory": "PACKAGE_MANAGER",
-     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220919091848-fb04ddd9f9c8",
+     "referenceLocator": "pkg:golang/golang.org/x/sys@v0.0.0-20220928140112-f11e5e49a4ec",
      "referenceType": "purl"
     }
    ],
    "filesAnalyzed": false,
    "licenseDeclared": "NONE",
    "sourceInfo": "acquired package info from go module information: go.mod",
-   "versionInfo": "v0.0.0-20220919091848-fb04ddd9f9c8"
+   "versionInfo": "v0.0.0-20220928140112-f11e5e49a4ec"
   },
   {
    "SPDXID": "SPDXRef-aede29b9184a1572",

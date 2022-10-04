@@ -48,7 +48,7 @@ var (
 			provider = p
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			purls, err := lib.Load(Afs, args)
+			purls, licenses, err := lib.Load(Afs, args)
 			if err != nil {
 				util.PrintErr(err)
 				os.Exit(1)
@@ -92,7 +92,7 @@ var (
 						lib.AdjustSummary(v.Severity, &severitySummary)
 					}
 				}
-				results := models.NewResults(response, severitySummary, version, providerName)
+				results := models.NewResults(response, severitySummary, licenses, version, providerName)
 				err := renderer.Render(results)
 				if err != nil {
 					log.Println(err)

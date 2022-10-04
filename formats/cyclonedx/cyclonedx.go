@@ -12,6 +12,21 @@ func Purls(bom *cyclone.BOM) (purls []string) {
 	return
 }
 
+// Licenses returns a slice of strings that contain all of the licenses found in the SBOM
+func Licenses(bom *cyclone.BOM) (licenses []string) {
+	for _, component := range *bom.Components {
+		if component.Licenses != nil {
+			for _, licenseChoice := range *component.Licenses {
+				if licenseChoice.License.ID != "" {
+					licenses = append(licenses, licenseChoice.License.ID)
+				}
+			}
+		}
+
+	}
+	return
+}
+
 // TestBytes creates a byte array containing a CycloneDX document used for testing
 func TestBytes() []byte {
 	cycloneDXString := `

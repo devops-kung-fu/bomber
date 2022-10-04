@@ -6,16 +6,16 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/bomber)](https://goreportcard.com/report/github.com/devops-kung-fu/bomber) 
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/6409/badge)](https://bestpractices.coreinfrastructure.org/projects/6409)
 [![codecov](https://codecov.io/gh/devops-kung-fu/bomber/branch/main/graph/badge.svg?token=P9WBOBQTOB)](https://codecov.io/gh/devops-kung-fu/bomber) 
-[![SBOM](https://img.shields.io/badge/CyloneDX-SBoM-informational)](sbom/bomber.cyclonedx.json)
+[![SBOM](https://img.shields.io/badge/CyloneDX-SBOM-informational)](sbom/bomber.cyclonedx.json)
 
 
-```bomber``` is an application that scans SBoMs for security vulnerabilities.
+```bomber``` is an application that scans SBOMs for security vulnerabilities.
 
 ## Overview
 
-So you've asked a vendor for an Software Bill of Materials (SBOM) for one of their products, and they provided one to you in a JSON file... now what? 
+So you've asked a vendor for an Software Bill of Materials (SBOM) for one of their closed source products, and they provided one to you in a JSON file... now what? 
 
-The first thing you're going to want to do is see if any of the components listed inside the SBOM have security vulnerabilities. This will help you identify what kind of risk you will be taking on by using the product. Finding security vulnerabilities for components identified in an SBOM is exactly what ```bomber``` is meant to do. It can read any JSON or XML based [CycloneDX](https://cyclonedx.org) format, or and JSON [SPDX](https://spdx.dev) or [Syft](https://github.com/anchore/syft) formatted SBOM, and tell you pretty quickly if there are any vulnerabilities. 
+The first thing you're going to want to do is see if any of the components listed inside the SBOM have security vulnerabilities, and what kind of licenses these components have. This will help you identify what kind of risk you will be taking on by using the product. Finding security vulnerabilities and license information for components identified in an SBOM is exactly what ```bomber``` is meant to do. ```bomber``` can read any JSON or XML based [CycloneDX](https://cyclonedx.org) format, or a JSON [SPDX](https://spdx.dev) or [Syft](https://github.com/anchore/syft) formatted SBOM, and tell you pretty quickly if there are any vulnerabilities. 
 
 ### What SBOM formats are supported?
 
@@ -122,6 +122,8 @@ dpkg -i bomber_0.1.0_linux_arm64.deb
 
 You can scan either an entire folder of SBOMs or an individual SBOM with ```bomber```.  ```bomber``` doesn't care if you have multiple formats in a single folder. It'll sort everything out for you.
 
+Note that the default output for ```bomber``` is to STDOUT. Options to output in HTML or JSON are described later in this document.
+
 ### Single SBOM scan
 
 ``` bash
@@ -180,71 +182,35 @@ bomber scan bad-bom.json --output=json
 
 If you wish, you can set two environment variables to store your credentials, and not have to type them on the command line. Check out the [Environment Variables](####Environment-Variables) information later in this README.
 
+#### Environment Variables
+
+If you don't want to enter credentials all the time, you can add the following to your ```.bashrc``` or ```.bash_profile```
+
+``` bash
+export BOMBER_PROVIDER_USERNAME={{your OSS Index user name}}
+export BOMBER_PROVIDER_TOKEN={{your OSS Index API Token}}
+```
+
 ### Messing around
 
 If you want to kick the tires on ```bomber``` you'll find a selection of test SBOMs in the [test](sbom/test/) folder. 
 
-## Known Issues
+## Notes
 
-- Hate to say it, but SPDX is wonky. If you don't get any results on an SPDX file, try using a CycloneDX file. This is something we are investigating. One of the problems is that ```bomber``` uses [PURLs](https://github.com/package-url/purl-spec) from SBOM's to send to a provider to retrieve vulnerabilities. SPDX has an odd way of treating PURLs as they are embedded in External References deep in the file format. If a PURL isn't there, nothing will scan.
-- OSV. It's great, but the API is also wonky. They have a batch endpoint that would make it a ton quicker to get information back, but it doesn't work. ```bomber``` needs to send one PURL at a time to get vulnerabilities back, so in a big SBOM it will take some time.
+- It's pretty rare to see SBOMs with license information. Most of the time, the generators like Syft need a flag like ```--license```. If you need license info, make sure you ask for it with the SBOM.
+- Hate to say it, but SPDX is wonky. If you don't get any results on an SPDX file, try using a CycloneDX file. In general you should always try to get CycloneDX SBOMs from your vendors.
+- OSV. It's great, but the API is also wonky. They have a batch endpoint that would make it a ton quicker to get information back, but it doesn't work. ```bomber``` needs to send one PURL at a time to get vulnerabilities back, so in a big SBOM it will take some time. We'll keep an eye on that.
 - OSV has another issue where the ecosystem doesn't always return vulnerabilities when you pass it to their API. We had to remove passing this to the API to get anything to return. They also don't echo back the ecosystem so we can't check to ensure that if we pass one ecosystem to it, that we are getting a vulnerability for the same one back.
 
-## Development
+## Contributing
 
-### Overview
-
-In order to use contribute and participate in the development of ```bomber``` you'll need to have an updated Go environment. Before you start, please view the [Contributing](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) files in this repository.
-
-### Prerequisites
-
-This project makes use of [DKFM](https://github.com/devops-kung-fu) tools such as [Hookz](https://github.com/devops-kung-fu/hookz), [Hinge](https://github.com/devops-kung-fu/hinge), and other open source tooling. Install these tools with the following commands:
-
-``` bash
-go install github.com/devops-kung-fu/hookz@latest
-go install github.com/devops-kung-fu/hinge@latest
-go install github.com/kisielk/errcheck@latest
-go install golang.org/x/lint/golint@latest
-go install github.com/fzipp/gocyclo@latest
-```
-### Getting Started
-
-Once you have installed [Hookz](https://github.com/devops-kung-fu/hookz) and have cloned this repository, execute the following in the root directory:
-
-``` bash
-hookz init --verbose --debug --verbose-output
-```
-This will configure the ```pre-commit``` hooks to check code quality, tests, update all dependencies, etc. before code gets committed to the remote repository.
-
-### Debugging
-
-The project is set up to work really well with [Visual Studio Code](https://code.visualstudio.com). Once you open the ```bomber``` folder in Visual Studio Code, go ahead and use the debugger to run any one of the pre-set configurations. They are all hooked into the test SBOM's that come with the source code.
-
-### Building
-
-Use the [Makefile](Makefile) to build, test, or do pre-commit checks.
-
-### Testing
-
-#### Environment Variables
-
-The testing framework is set up to use environment variables that are found in a file called ```test.env``` in the **root directory** of the project. This file has been added to the ```.gitignore``` file in this project so it will be ignored if it exists in your file structure when committing the code. If you are running tests, this file should exist and have the following values configured:
-
-``` bash
-BOMBER_PROVIDER_USERNAME={{your OSS Index user name}}
-BOMBER_PROVIDER_TOKEN={{your OSS Index API Token}}
-```
-To load this file, you use the following command in your terminal before opening an editor such as Visual Studio Code (from your terminal).
-
-``` bash
-  export $(cat *.env)
-```
+If you would like to contribute to the development of ```bomber``` please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file in this repository. Please read the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) file before contributing.
 
 ## Software Bill of Materials
 
-```bomber``` uses the CycloneDX and SPDX to generate a Software Bill of Materials every time a developer commits code to this repository (as long as [Hookz](https://github.com/devops-kung-fu/hookz)is being used and is has been initialized in the working directory). More information for CycloneDX is available [here](https://cyclonedx.org). SPDX information is available [here](https://spdx.dev).
+```bomber``` uses Syft to generate a Software Bill of Materials every time a developer commits code to this repository (as long as [Hookz](https://github.com/devops-kung-fu/hookz)is being used and is has been initialized in the working directory). More information for CycloneDX is available [here](https://cyclonedx.org).
 
-The current CycloneDX SBoM for ```bomber``` is available [here](./sbom/bomber.cyclonedx.json), and the SPDX formatted SBoM is available [here](./sbom/bomber.spdx.json).
+The current CycloneDX SBOM for ```bomber``` is available [here](./sbom/bomber.cyclonedx.json).
 
 ## Credits
 

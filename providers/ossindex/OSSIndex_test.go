@@ -57,7 +57,7 @@ func TestProvider_Scan_FakeCredentials(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", OSSINDEX_URL,
+	httpmock.RegisterResponder("POST", ossindexURL,
 		httpmock.NewBytesResponder(200, ossTestResponse()))
 
 	credentials := models.Credentials{
