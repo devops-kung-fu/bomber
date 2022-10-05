@@ -41,7 +41,7 @@ type Package struct {
 	SourceInfo           string        `json:"sourceInfo,omitempty"`
 	LicenseConcluded     string        `json:"licenseConcluded,omitempty"`
 	LicenseInfoFromFiles []string      `json:"licenseInfoFromFiles,omitempty"`
-	LicenseDeclared      []string      `json:"licenseDeclared,omitempty"`
+	LicenseDeclared      string        `json:"licenseDeclared,omitempty"`
 	CopyrightText        string        `json:"copyrightText,omitempty"`
 	Summary              string        `json:"summary,omitempty"`
 	Description          string        `json:"description,omitempty"`
