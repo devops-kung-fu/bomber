@@ -21,12 +21,20 @@
             "args": ["--provider=ossindex", "--debug=true", "scan", "./sbom"]
         },
         {
-            "name": "Debug File (OSV - railsgoat)",
+            "name": "Debug File (OSS Index - juiceshop)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=osv", "--debug=true", "scan", "./sbom/test/railsgoat.cyclonedx.json"]
+            "args": ["--provider=osv", "--debug=true", "--provider=ossindex", "scan", "./sbom/test/juiceshop.cyclonedx.json"]
+        },
+        {
+            "name": "Debug File (OSV - juiceshop)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "args": ["--provider=osv", "--debug=true", "scan", "./sbom/test/juiceshop.cyclonedx.json"]
         },
         {
             "name": "Debug File (OSV - ubuntu-latest.cyclonedx.json)",
@@ -37,12 +45,12 @@
             "args": ["--provider=osv", "--debug=true", "scan", "./sbom/test/ubuntu-latest.cyclonedx.json"]
         },
         {
-            "name": "Debug File, Output HTML (ossindex - railsgoat)",
+            "name": "Debug File, Output HTML (ossindex - juiceshop)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=ossindex", "--debug=true", "--output=html", "scan", "./sbom/test/railsgoat.cyclonedx.json"]
+            "args": ["--provider=ossindex", "--debug=true", "--output=html", "scan", "./sbom/test/juiceshop.cyclonedx.json"]
         },
         {
             "name": "Debug File (ossindex - railsgoat)",

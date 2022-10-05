@@ -12,7 +12,7 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-const OSV_URL = "https://api.osv.dev/v1/query"
+const osvURL = "https://api.osv.dev/v1/query"
 
 // Provider represents the OSSIndex provider
 type Provider struct{}
@@ -86,6 +86,7 @@ type Reference struct {
 	URL  string `json:"url"`
 }
 
+// Severity provides the severity score of the vulnerability
 type Severity struct {
 	Type  string `json:"type"`
 	Score string `json:"score"`
@@ -122,7 +123,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		}
 		req := HttpRequest.NewRequest()
 		log.Println(q)
-		resp, _ := req.JSON().Post(OSV_URL, q)
+		resp, _ := req.JSON().Post(osvURL, q)
 		defer func() {
 			_ = resp.Close()
 		}()

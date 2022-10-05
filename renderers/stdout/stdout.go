@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/package-url/packageurl-go"
@@ -19,6 +21,10 @@ type Renderer struct{}
 func (Renderer) Render(results models.Results) (err error) {
 	if len(results.Packages) == 0 {
 		return
+	}
+	if len(results.Licenses) > 0 {
+		util.PrintInfo("Licenses Found:", strings.Join(results.Licenses[:], ", "))
+		fmt.Println()
 	}
 	vulnCount := vulnerabilityCount(results.Packages)
 	log.Println("Rendering Packages:", len(results.Packages))
