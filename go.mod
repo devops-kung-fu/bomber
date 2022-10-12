@@ -12,7 +12,7 @@ require (
 	github.com/kirinlabs/HttpRequest v1.1.1
 	github.com/package-url/packageurl-go v0.1.0
 	github.com/spf13/afero v1.9.2
-	github.com/spf13/cobra v1.5.0
+	github.com/spf13/cobra v1.6.0
 	github.com/stretchr/testify v1.8.0
 	k8s.io/utils v0.0.0-20220922133306-665eaaec4324
 )
