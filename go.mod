@@ -12,6 +12,7 @@ require (
 	github.com/kirinlabs/HttpRequest v1.1.1
 	github.com/microcosm-cc/bluemonday v1.0.21
 	github.com/package-url/packageurl-go v0.1.0
+	github.com/remeh/sizedwaitgroup v1.0.0
 	github.com/spf13/afero v1.9.2
 	github.com/spf13/cobra v1.6.0
 	github.com/stretchr/testify v1.8.0
@@ -22,9 +23,6 @@ require (
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/gorilla/css v1.0.0 // indirect
 	golang.org/x/net v0.1.0 // indirect
-)
-
-require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/gomarkdown/markdown v0.0.0-20221013030248-663e2500819c
