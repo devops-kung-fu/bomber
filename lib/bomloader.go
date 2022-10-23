@@ -1,11 +1,14 @@
 package lib
 
 import (
+	"bufio"
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"os"
 	"path/filepath"
 
 	cyclone "github.com/CycloneDX/cyclonedx-go"
@@ -56,8 +59,17 @@ func loadFolderPurls(afs *afero.Afero, arg string) (purls []string, licenses []s
 }
 
 func loadFilePurls(afs *afero.Afero, arg string) (purls []string, licenses []string, err error) {
-	log.Printf("Reading: %v", arg)
-	b, err := afs.ReadFile(arg)
+
+	var b []byte
+
+	if arg == "-" {
+		log.Printf("Reading from stdin")
+		b, err = ioutil.ReadAll(bufio.NewReader(os.Stdin))
+	} else {
+		log.Printf("Reading: %v", arg)
+		b, err = afs.ReadFile(arg)
+	}
+
 	if err != nil {
 		return nil, nil, err
 	}

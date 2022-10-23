@@ -1,6 +1,8 @@
 package lib
 
 import (
+	"io/ioutil"
+	"os"
 	"testing"
 
 	"github.com/spf13/afero"
@@ -26,6 +28,34 @@ func TestLoad_cyclonedx(t *testing.T) {
 
 	_, err = afs.ReadDir("/bad-dir")
 	assert.Error(t, err)
+}
+
+func TestLoad_cyclonedx_stdin(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	tmpfile, err := ioutil.TempFile("", "test-cyclonedx.json")
+	assert.NoError(t, err)
+
+	defer os.Remove(tmpfile.Name()) // clean up
+
+	_, err = tmpfile.Write(cyclonedx.TestBytes())
+	assert.NoError(t, err)
+
+	_, err = tmpfile.Seek(0, 0)
+	assert.NoError(t, err)
+
+	oldStdin := os.Stdin
+	defer func() { os.Stdin = oldStdin }() // Restore original Stdin
+
+	os.Stdin = tmpfile
+
+	purls, _, err := Load(afs, []string{"-"})
+	assert.NoError(t, err)
+	assert.Len(t, purls, 1)
+	assert.Equal(t, "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0", purls[0])
+
+	err = tmpfile.Close()
+	assert.NoError(t, err)
 }
 
 func TestLoad_SPDX(t *testing.T) {
