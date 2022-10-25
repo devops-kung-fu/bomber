@@ -17,9 +17,6 @@
         - name: "go: Update all dependencies to latest"
           exec: go
           args: ["get", "-u", "./..."]
-        - name: "syft: Generate a Software Bill of Materials (SBoM)"
-          exec: syft
-          args: [".", "-o", "cyclonedx-json=sbom/bomber.cyclonedx.json"]
         - name: "gofmt: Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
@@ -31,7 +28,7 @@
           args: ["-ignoretests", "./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
-          args: ["-over", "12", "."]
+          args: ["-over", "13", "."]
         - name: Hinge
           exec: hinge
           args: ["."]
@@ -44,6 +41,9 @@
         - name: "go: Test coverage"
           exec: go
           args: ["tool", "cover", "-func=coverage.out"]
+        - name: "syft: Generate a Software Bill of Materials (SBoM)"
+          exec: syft
+          args: [".", "-o", "cyclonedx-json=sbom/bomber.cyclonedx.json"]
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]
