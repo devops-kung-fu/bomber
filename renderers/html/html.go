@@ -9,6 +9,8 @@ import (
 	"time"
 
 	"github.com/devops-kung-fu/common/util"
+	"github.com/gomarkdown/markdown"
+	"github.com/microcosm-cc/bluemonday"
 	"github.com/spf13/afero"
 
 	"github.com/devops-kung-fu/bomber/models"
@@ -43,6 +45,7 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) (e
 		log.Println(err)
 		return err
 	}
+	markdownToHtml(results)
 	template := genTemplate("output")
 	err = template.ExecuteTemplate(file, "output", results)
 	if err != nil {
@@ -56,6 +59,16 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) (e
 	}
 
 	return
+}
+
+func markdownToHtml(results models.Results) {
+	for i := range results.Packages {
+		for ii := range results.Packages[i].Vulnerabilities {
+			md := []byte(results.Packages[i].Vulnerabilities[ii].Description)
+			html := markdown.ToHTML(md, nil, nil)
+			results.Packages[i].Vulnerabilities[ii].Description = string(bluemonday.UGCPolicy().SanitizeBytes(html))
+		}
+	}
 }
 
 func genTemplate(output string) (t *template.Template) {
@@ -112,7 +125,7 @@ func genTemplate(output string) (t *template.Template) {
 		font-weight: bold;
 	}
 	h3 {
-		font-weight: normal
+		font-weight: bold
 	}
 	#footer {
 		width: 75px;
@@ -157,13 +170,13 @@ func genTemplate(output string) (t *template.Template) {
 		</table>
 		<h1>Vulnerability Details</h1>
 		{{ range .Packages }}
-			<h2>{{ .Purl }}<h2>
-			<h3>{{ .Description }}</h3>
-			<h4>Vulnerabilities</h4>
+			<h2>{{ .Purl }}</h2>
+			<p>{{ .Description }}</p>
+			<h3>Vulnerabilities</h3>
 			{{ range .Vulnerabilities }}
 				<div id="vuln">
 					{{ if .Title }}
-					<p><b>{{ .Title }}</b></p>
+					<h3>{{ .Title }}</h3>
 					{{ end }}
 					<p>Severity: <span id="{{ .Severity }}">{{ .Severity }}</span></p>
 					<p><a href="{{ .Reference }}">Reference Documentation</a></p>

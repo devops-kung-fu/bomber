@@ -155,7 +155,10 @@ func getVulnsForPurl(
 	if err != nil {
 		return nil, fmt.Errorf("could not fetch vulnerabilities (purl: %s): %w", purl, err)
 	}
-	defer res.Close()
+
+	defer func() {
+		_ = res.Close()
+	}()
 
 	body, err := res.Body()
 	if err != nil {

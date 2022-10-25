@@ -54,24 +54,19 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		log.Printf("OSSIndex Response Status: %v", resp.StatusCode())
 		body, _ := resp.Body()
 		if resp.StatusCode() == 200 {
-			var responses []models.Package
-			err = json.Unmarshal(body, &responses)
+			var response []models.Package
+			err = json.Unmarshal(body, &response)
 			if err != nil {
 				return
 			}
-			for _, pkg := range responses {
-				log.Println("Purl:", pkg.Purl)
-				var tempPackage models.Package
-				var vulnerabilities []models.Vulnerability
-				tempPackage = pkg
-				for _, vulnerability := range tempPackage.Vulnerabilities {
-					log.Println("SEVERITY:", vulnerability.Severity, fmt.Sprintf("%f", vulnerability.CvssScore))
-					vulnerability.Severity = lib.Rating(vulnerability.CvssScore)
-					vulnerabilities = append(vulnerabilities, vulnerability)
+			for i, pkg := range response {
+				log.Println("Purl:", response[i].Purl)
+				for ii := range response[i].Vulnerabilities {
+					log.Println(response[i].Vulnerabilities[ii].ID)
+					response[i].Vulnerabilities[ii].Severity = lib.Rating(response[i].Vulnerabilities[ii].CvssScore)
 				}
-				tempPackage.Vulnerabilities = vulnerabilities
-				if len(vulnerabilities) > 0 {
-					packages = append(packages, tempPackage)
+				if len(pkg.Vulnerabilities) > 0 {
+					packages = append(packages, response[i])
 				}
 			}
 		} else {
