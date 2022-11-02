@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/kirinlabs/HttpRequest"
-	"github.com/package-url/packageurl-go"
 
 	"github.com/devops-kung-fu/bomber/models"
 )
@@ -19,13 +18,8 @@ type Provider struct{}
 
 // Query is used for the request sent to the OSV
 type Query struct {
-	Version string `json:"version"`
-	Package Pkg    `json:"package"`
-}
-
-// Pkg contains a name of the package that OSV process
-type Pkg struct {
-	Name string `json:"name"`
+	Version string       `json:"version"`
+	Package PackageClass `json:"package"`
 }
 
 // Response encapsulates the vulnerabilities returned by OSV
@@ -61,9 +55,9 @@ type AffectedDatabaseSpecific struct {
 }
 
 type PackageClass struct {
-	Name      string `json:"name"`
-	Ecosystem string `json:"ecosystem"`
-	Purl      string `json:"purl"`
+	Name      string `json:"name,omitempty"`
+	Ecosystem string `json:"ecosystem,omitempty"`
+	Purl      string `json:"purl,omitempty"`
 }
 
 type Range struct {
@@ -109,17 +103,11 @@ func (Provider) Info() string {
 func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
 	for _, pp := range purls {
 		log.Println("Purl:", pp)
-		purl, e := packageurl.FromString(pp)
-		if e != nil {
-			err = e
-			return
-		}
-		p := Pkg{
-			Name: purl.Name,
+		p := PackageClass{
+			Purl: pp,
 		}
 		q := Query{
 			Package: p,
-			Version: purl.Version,
 		}
 		req := HttpRequest.NewRequest()
 		log.Println(q)
