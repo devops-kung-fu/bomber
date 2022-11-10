@@ -148,6 +148,12 @@ func genTemplate(output string) (t *template.Template) {
 		No vulnerabilities found!
 	</p>
 	{{ end }}
+	{{ if ne (len .Files) 0 }} 
+		<h1>Scanned Files</h1>
+		{{ range .Files }}
+			<p><b>{{ .Name }}</b> (sha256:{{ .SHA256 }})</p>
+		{{ end }}
+	{{end}}
 	{{ if ne (len .Licenses) 0 }} 
 		<h1>Licenses</h1>
 		<p>The following licenses were found by <code>bomber</code>:</p>

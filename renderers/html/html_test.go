@@ -24,5 +24,5 @@ func Test_genTemplate(t *testing.T) {
 	template := genTemplate("test")
 
 	assert.NotNil(t, template)
-	assert.Len(t, template.Tree.Root.Nodes, 15)
+	assert.Len(t, template.Tree.Root.Nodes, 17)
 }
