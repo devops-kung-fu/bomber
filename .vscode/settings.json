@@ -21,6 +21,7 @@
         "ignoretests",
         "incredibles",
         "Infof",
+        "JSONAPI",
         "kirinlabs",
         "kisielk",
         "novulns",
@@ -36,6 +37,7 @@
         "structs",
         "Syft",
         "synk",
+        "Tabbedf",
         "unindexed",
         "vuln",
         "vulns"
