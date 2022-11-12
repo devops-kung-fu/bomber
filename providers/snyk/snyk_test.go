@@ -70,9 +70,7 @@ func TestProvider_Scan_FakeCredentials(t *testing.T) {
 	httpmock.RegisterResponder("GET", `=~\/self`, httpmock.NewBytesResponder(200, selfResponse))
 	httpmock.RegisterResponder("GET", `=~\/issues`, httpmock.NewBytesResponder(200, issuesResponse))
 
-	credentials := models.Credentials{
-		Token: "token",
-	}
+	credentials := models.Credentials{Token: "token"}
 
 	provider := Provider{}
 	pkgs, err := provider.Scan([]string{"pkg:gem/tzinfo@1.2.5"}, &credentials)
@@ -85,4 +83,19 @@ func TestProvider_Scan_FakeCredentials(t *testing.T) {
 	calls := httpmock.GetCallCountInfo()
 	assert.Equal(t, 1, calls[`GET =~\/self`])
 	assert.Equal(t, 1, calls[`GET =~\/issues`])
+}
+
+func TestProvider_Scan_DedupePurls(t *testing.T) {
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	httpmock.RegisterResponder("GET", `=~\/self`, httpmock.NewBytesResponder(200, selfResponse))
+	httpmock.RegisterResponder("GET", `=~\/issues`, httpmock.NewBytesResponder(200, issuesResponse))
+
+	provider := Provider{}
+	_, err := provider.Scan([]string{"pkg:gem/tzinfo@1.2.5", "pkg:gem/tzinfo@1.2.5"}, &models.Credentials{Token: "token"})
+	assert.NoError(t, err)
+
+	callCount := httpmock.GetCallCountInfo()
+	assert.Equal(t, 1, callCount["GET =~\\/issues"])
 }

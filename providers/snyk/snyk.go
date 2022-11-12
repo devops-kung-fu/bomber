@@ -37,7 +37,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		return packages, fmt.Errorf("Could not infer user’s Snyk organization: %w", err)
 	}
 
-	for _, pp := range purls {
+	for _, pp := range uniq(purls) {
 		wg.Add()
 
 		go func(purl string) {
@@ -81,4 +81,20 @@ func validateCredentials(credentials *models.Credentials) error {
 	}
 
 	return nil
+}
+
+func uniq(strings []string) []string {
+	if len(strings) < 2 {
+		return strings
+	}
+	seen := map[string]bool{}
+	unique := []string{}
+	for _, s := range strings {
+		if _, ok := seen[s]; ok {
+			continue
+		}
+		seen[s] = true
+		unique = append(unique, s)
+	}
+	return unique
 }
