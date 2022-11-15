@@ -13,7 +13,7 @@ require (
 	github.com/microcosm-cc/bluemonday v1.0.21
 	github.com/package-url/packageurl-go v0.1.0
 	github.com/remeh/sizedwaitgroup v1.0.0
-	github.com/spf13/afero v1.9.2
+	github.com/spf13/afero v1.9.3
 	github.com/spf13/cobra v1.6.1
 	github.com/stretchr/testify v1.8.0
 	k8s.io/utils v0.0.0-20221012122500-cfd413dd9e85
