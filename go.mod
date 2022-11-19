@@ -13,7 +13,7 @@ require (
 	github.com/microcosm-cc/bluemonday v1.0.21
 	github.com/package-url/packageurl-go v0.1.0
 	github.com/remeh/sizedwaitgroup v1.0.0
-	github.com/spf13/afero v1.9.2
+	github.com/spf13/afero v1.9.3
 	github.com/spf13/cobra v1.6.1
 	github.com/stretchr/testify v1.8.0
 	k8s.io/utils v0.0.0-20221108210102-8e77b1f39fe2
@@ -32,7 +32,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/rivo/uniseg v0.4.2 // indirect
+	github.com/rivo/uniseg v0.4.3 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	golang.org/x/net v0.2.0 // indirect
