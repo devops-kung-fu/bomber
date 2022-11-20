@@ -35,10 +35,11 @@ type Summary struct {
 
 // Results is the high level JSON object used to define vulnerabilities processed by bomber.
 type Results struct {
-	Meta     Meta      `json:"meta,omitempty"`
-	Licenses []string  `json:"licenses,omitempty"`
-	Summary  Summary   `json:"summary,omitempty"`
-	Packages []Package `json:"packages,omitempty"`
+	Meta     Meta          `json:"meta,omitempty"`
+	Files    []ScannedFile `json:"files,omitempty"`
+	Licenses []string      `json:"licenses,omitempty"`
+	Summary  Summary       `json:"summary,omitempty"`
+	Packages []Package     `json:"packages,omitempty"`
 }
 
 // Meta contains system and execution information about the results from bomber
@@ -50,6 +51,12 @@ type Meta struct {
 	Date      time.Time `json:"date"`
 }
 
+// ScannedFile contains the absolute name and sha256 of a processed file
+type ScannedFile struct {
+	Name   string `json:"name"`
+	SHA256 string `json:"sha256"`
+}
+
 // Credentials the user credentials used by a provider to authenticate to an API
 type Credentials struct {
 	Username string
@@ -57,7 +64,7 @@ type Credentials struct {
 }
 
 // NewResults defines the high level output of bomber
-func NewResults(packages []Package, summary Summary, licenses []string, version, providerName string) Results {
+func NewResults(packages []Package, summary Summary, scanned []ScannedFile, licenses []string, version, providerName string) Results {
 	return Results{
 		Meta: Meta{
 			Generator: "bomber",
@@ -66,6 +73,7 @@ func NewResults(packages []Package, summary Summary, licenses []string, version,
 			Provider:  providerName,
 			Date:      time.Now(),
 		},
+		Files:    scanned,
 		Summary:  summary,
 		Packages: packages,
 		Licenses: licenses,

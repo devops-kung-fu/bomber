@@ -22,6 +22,14 @@ func (Renderer) Render(results models.Results) (err error) {
 	if len(results.Packages) == 0 {
 		return
 	}
+	if len(results.Files) > 0 {
+		util.PrintInfo("Files Scanned")
+		for _, scanned := range results.Files {
+			util.PrintTabbedf("%s (sha256:%s)", scanned.Name, scanned.SHA256)
+		}
+		fmt.Println()
+
+	}
 	if len(results.Licenses) > 0 {
 		util.PrintInfo("Licenses Found:", strings.Join(results.Licenses[:], ", "))
 		fmt.Println()

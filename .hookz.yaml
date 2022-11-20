@@ -42,8 +42,10 @@
           exec: go
           args: ["tool", "cover", "-func=coverage.out"]
         - name: "syft: Generate a Software Bill of Materials (SBoM)"
-          exec: syft
-          args: [".", "-o", "cyclonedx-json=sbom/bomber.cyclonedx.json"]
+          script: "
+            #!/bin/bash \n
+            syft . -o cyclonedx-json=sbom/bomber.cyclonedx.json &> /dev/null \n
+            "
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]

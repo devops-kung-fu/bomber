@@ -12,7 +12,7 @@ import (
 func Test_writeTemplate(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	err := writeTemplate(afs, "test.html", models.NewResults([]models.Package{}, models.Summary{}, []string{"GPL"}, "0.0.0", "test"))
+	err := writeTemplate(afs, "test.html", models.NewResults([]models.Package{}, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test"))
 	assert.NoError(t, err)
 
 	b, err := afs.ReadFile("test.html")
@@ -24,5 +24,5 @@ func Test_genTemplate(t *testing.T) {
 	template := genTemplate("test")
 
 	assert.NotNil(t, template)
-	assert.Len(t, template.Tree.Root.Nodes, 15)
+	assert.Len(t, template.Tree.Root.Nodes, 17)
 }

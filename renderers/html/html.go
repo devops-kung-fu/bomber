@@ -45,7 +45,7 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) (e
 		log.Println(err)
 		return err
 	}
-	markdownToHtml(results)
+	markdownToHTML(results)
 	template := genTemplate("output")
 	err = template.ExecuteTemplate(file, "output", results)
 	if err != nil {
@@ -61,7 +61,7 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) (e
 	return
 }
 
-func markdownToHtml(results models.Results) {
+func markdownToHTML(results models.Results) {
 	for i := range results.Packages {
 		for ii := range results.Packages[i].Vulnerabilities {
 			md := []byte(results.Packages[i].Vulnerabilities[ii].Description)
@@ -148,6 +148,12 @@ func genTemplate(output string) (t *template.Template) {
 		No vulnerabilities found!
 	</p>
 	{{ end }}
+	{{ if ne (len .Files) 0 }} 
+		<h1>Scanned Files</h1>
+		{{ range .Files }}
+			<p><b>{{ .Name }}</b> (sha256:{{ .SHA256 }})</p>
+		{{ end }}
+	{{end}}
 	{{ if ne (len .Licenses) 0 }} 
 		<h1>Licenses</h1>
 		<p>The following licenses were found by <code>bomber</code>:</p>

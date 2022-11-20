@@ -120,7 +120,6 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 
 		body, _ := resp.Body()
 		if resp.StatusCode() == 200 {
-			log.Println("Body:", string(body))
 			var response Response
 			err = json.Unmarshal(body, &response)
 			if err != nil {

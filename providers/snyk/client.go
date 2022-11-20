@@ -8,11 +8,11 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-const USER_AGENT = "Bomber"
+const userAgent = "Bomber"
 
 func newClient(c *models.Credentials) *HttpRequest.Request {
 	return HttpRequest.NewRequest().SetHeaders(map[string]string{
 		"Authorization": fmt.Sprintf("token %s", c.Token),
-		"User-Agent":    USER_AGENT,
+		"User-Agent":    userAgent,
 	})
 }
