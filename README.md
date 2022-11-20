@@ -13,11 +13,24 @@
 
 ## Overview
 
-So you've asked a vendor for an Software Bill of Materials (SBOM) for one of their closed source products, and they provided one to you in a JSON file... now what? 
+So you've asked a vendor for an Software Bill of Materials (SBOM) for one of their closed source products, and they provided one to you in a JSON file... now what?
 
-The first thing you're going to want to do is see if any of the components listed inside the SBOM have security vulnerabilities, and what kind of licenses these components have. This will help you identify what kind of risk you will be taking on by using the product. Finding security vulnerabilities and license information for components identified in an SBOM is exactly what ```bomber``` is meant to do. ```bomber``` can read any JSON or XML based [CycloneDX](https://cyclonedx.org) format, or a JSON [SPDX](https://spdx.dev) or [Syft](https://github.com/anchore/syft) formatted SBOM, and tell you pretty quickly if there are any vulnerabilities. 
+The first thing you're going to want to do is see if any of the components listed inside the SBOM have security vulnerabilities, and what kind of licenses these components have. This will help you identify what kind of risk you will be taking on by using the product. 
 
-### What SBOM formats are supported?
+Finding security vulnerabilities and license information for components identified in an SBOM is exactly what ```bomber``` is meant to do. ```bomber``` can read any JSON or XML based [CycloneDX](https://cyclonedx.org) format, or a JSON [SPDX](https://spdx.dev) or [Syft](https://github.com/anchore/syft) formatted SBOM, and tell you pretty quickly if there are any vulnerabilities. 
+
+### Open vs. Closed Source
+
+Software can either be open or closed source. You can look at third party components you'll find in Github, or any public source repository as open source. Technically, the software you create internally at your own company is open source as well - it's not public, but your internal teams can see it. Closed source software can also be internal, but usually this is software that you purchase from external vendors. 
+
+Companies can use SCA tools provided by vendors such as Github, Sonatype, Snyk, etc. to scan any kind of open source and provide vulnerability data - and even generate SBOMs in some cases. What they can't do (yet...) is scan closed source software that you don't have visibility into. This is where SBOMs and ```bomber``` come into play. SBOMs provide the composition of software that you can't access, and ```bomber``` determines if anything in the SBOM has vulnerabilities.
+
+### Purpose
+
+We created ```bomber``` to scan the closed source SBOMs that are provided when you receive them from vendors. It can scan open source SBOMs too, and technically you could use ```bomber``` as an open source SCA tool if you wanted to.
+
+
+### Supported SBOM formats
 
 There are quite a few SBOM formats available today. ```bomber``` supports the following:
 
