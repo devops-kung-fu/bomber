@@ -1,0 +1,4 @@
+
+GET  https://api.snyk.io/rest/packages/pkg%3Agolang%2Fgithub.com%2Finconshreveable%2Fmousetrap%40v1.0.1/vulnerabilities HTTP/1.1
+content-type: application/json
+Authorization: token 384db11d-ce15-4eb8-b9ab-3207eb855948

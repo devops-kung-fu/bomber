@@ -14,7 +14,6 @@ func TestRenderer_Render(t *testing.T) {
 		renderer := Renderer{}
 		renderer.Render(models.NewResults([]models.Package{}, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test"))
 	})
-	assert.True(t, true)
 	assert.NotNil(t, output)
 	assert.Contains(t, output, "generator\": \"bomber\"")
 }

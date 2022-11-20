@@ -1,0 +1,13 @@
+POST  https://api.osv.dev/v1/querybatch HTTP/1.1
+content-type: application/json
+
+{
+    "queries": [
+        {
+        "package": {
+            "name": "tar"
+        },
+        "version": "4.4.13"
+        }
+    ]
+}

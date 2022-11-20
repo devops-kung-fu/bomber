@@ -1,0 +1,1 @@
+GET https://api.github.com/repos/devops-kung-fu/bomber/releases/latest HTTP/1.1
