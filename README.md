@@ -138,6 +138,16 @@ bomber scan bad-bom.json --output=json > filename.json
 
 If you wish, you can set two environment variables to store your credentials, and not have to type them on the command line. Check out the [Environment Variables](####Environment-Variables) information later in this README.
 
+### Scanning SBOMs from STDIN
+
+If you're using ```bomber``` in your CI/CD pipelines, you can do an all in one command with Syft to generate and scan an SBOM for vulnerabilities. To do this, you can do something like the following command:
+
+``` bash
+# Make sure you include the - character at the end of the command. This triggers bomber to read from STDIN
+syft packages . -o cyclonedx-json | bomber scan --provider ossindex --output json - 
+```
+This command creates an SBOM, pipes it into bomber, and generates results in JSON format.
+
 ### Environment Variables
 
 If you don't want to enter credentials all the time, you can add the following to your ```.bashrc``` or ```.bash_profile```
@@ -171,4 +181,7 @@ The current CycloneDX SBOM for ```bomber``` is available [here](./sbom/bomber.cy
 
 A big thank-you to our friends at [Smashicons](https://www.flaticon.com/authors/smashicons) for the ```bomber``` logo.
 
-Big kudos to our OSS homies at [Sonatype](https://sonatype.com) for providing a wicked tool like the [Sonatype OSS Index](https://ossindex.sonatype.org).
+Thank you to [Sonatype](https://sonatype.com) for providing a wicked tool like the [Sonatype OSS Index](https://ossindex.sonatype.org).
+
+Many thanks to our friends and fellow ```bomber``` contributors at [Snyk](https://snyk.io) for creating a provider, and coding up processing an SBOM from STDIN. You guys rock.
+
