@@ -46,6 +46,8 @@ There are quite a few SBOM formats available today. ```bomber``` supports the fo
 
 At this time, please note that [OSV](doc/providers/osv.md) is free and does not require any credentials to use, [Sonatype OSS Index](doc/providers/ossindex.md) is free but requires you to register and obtain a token, and [Snyk](doc/providers/snyk.md) support requires a Snyk license.
 
+In addition to data ```bomber``` collects from Providers, it also [enriches](#data-enrichment) vulnerability data with extra information such as exploitation probabilities.
+
 ### Provider Support
 
 Please note that *each provider supports different ecosystems*, so if you're not seeing any vulnerabilities in one, try another. An ecosystem is simply the package manager, or type of package. Examples include rpm, npm, gems, etc. It is important to understand that each provider may report different vulnerabilities. If in doubt, look at a few of them.
@@ -208,4 +210,4 @@ Thank you to [Sonatype](https://sonatype.com) for providing a wicked tool like t
 
 Many thanks to our friends and fellow ```bomber``` contributors at [Snyk](https://snyk.io) for creating a provider, and coding up processing an SBOM from STDIN. You guys rock.
 
-EPSS description comes from the team at [Nucleus](https://nucleussec.com/blog/what-is-epss/)
+EPSS description comes from the team at [Nucleus](https://nucleussec.com/blog/what-is-epss/). Thank you!
