@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:d84cb07a-4e7b-418b-8cec-741e54c3b919",
+  "serialNumber": "urn:uuid:b3b06dde-bcc1-4397-9e44-2605cae56dd2",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-11-22T16:23:09-07:00",
+    "timestamp": "2022-11-22T16:27:10-07:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -5388,32 +5388,6 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.0?package-id=42f9692eb4148a87",
-      "type": "library",
-      "name": "github.com/stretchr/testify",
-      "version": "v1.8.0",
-      "cpe": "cpe:2.3:a:stretchr:testify:v1.8.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/stretchr/testify@v1.8.0",
-      "properties": [
-        {
-          "name": "syft:package:foundBy",
-          "value": "go-mod-file-cataloger"
-        },
-        {
-          "name": "syft:package:language",
-          "value": "go"
-        },
-        {
-          "name": "syft:package:type",
-          "value": "go-module"
-        },
-        {
-          "name": "syft:location:0:path",
-          "value": "go.mod"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.0?package-id=b751659714791326",
       "type": "library",
       "name": "github.com/stretchr/testify",
@@ -5474,6 +5448,32 @@
         {
           "name": "syft:location:0:path",
           "value": "sbom/test/bomber.syft.json"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.1?package-id=a53a75924428af48",
+      "type": "library",
+      "name": "github.com/stretchr/testify",
+      "version": "v1.8.1",
+      "cpe": "cpe:2.3:a:stretchr:testify:v1.8.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/stretchr/testify@v1.8.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
         }
       ]
     },
