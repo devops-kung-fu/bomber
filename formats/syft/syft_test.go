@@ -17,3 +17,10 @@ func TestPurls(t *testing.T) {
 	assert.Len(t, purls, 1)
 	assert.Equal(t, "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0", purls[0])
 }
+
+func TestLicenses(t *testing.T) {
+	var sbom BOM
+	licenses := sbom.Licenses()
+
+	assert.Len(t, licenses, 0)
+}

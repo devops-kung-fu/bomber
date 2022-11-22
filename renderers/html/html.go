@@ -3,7 +3,9 @@ package html
 import (
 	"fmt"
 	"log"
+	"math"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"text/template"
 	"time"
@@ -39,21 +41,21 @@ func (Renderer) Render(results models.Results) (err error) {
 }
 
 func writeTemplate(afs *afero.Afero, filename string, results models.Results) (err error) {
-	// for i, p := range results.Packages {
-	// 	percentageString := "N/A"
-	// 	for _, v := range p.Vulnerabilities {
-	// 		per, err := strconv.ParseFloat(v.Epss.Percentile, 64)
-	// 		if err != nil {
-	// 			log.Println(err)
-	// 		} else {
-	// 			percentage := math.Round(per * 100)
-	// 			if percentage > 0 {
-	// 				percentageString = fmt.Sprintf("%d%%", uint64(percentage))
-	// 			}
-	// 		}
-	// 		p.Vulnerabilities[i].Epss.Percentile = percentageString
-	// 	}
-	// }
+	for i, p := range results.Packages {
+		percentageString := "N/A"
+		for vi, v := range p.Vulnerabilities {
+			per, err := strconv.ParseFloat(v.Epss.Percentile, 64)
+			if err != nil {
+				log.Println(err)
+			} else {
+				percentage := math.Round(per * 100)
+				if percentage > 0 {
+					percentageString = fmt.Sprintf("%d%%", uint64(percentage))
+				}
+			}
+			results.Packages[i].Vulnerabilities[vi].Epss.Percentile = percentageString
+		}
+	}
 
 	file, err := afs.Create(filename)
 	if err != nil {
@@ -160,7 +162,9 @@ func genTemplate(output string) (t *template.Template) {
 		the next time you scan for vulnerabilities that there won't be more, or less of them. Threats are continuous.
 	</p>
 	<p>
-		For more information on EPSS % and probability of exploitation, please refer to <a href="https://www.first.org/epss/">https://www.first.org/epss/"</a>.</p>
+		EPSS Percentage indicates the % chance that the vulnerability will be exploited. This
+		value will assist in prioritizing remediation. For more information on EPSS, refer to
+		<a href="https://www.first.org/epss/">https://www.first.org/epss/"</a>.</p>
 	</p>
 	{{ else }}
 	<p>
@@ -205,7 +209,7 @@ func genTemplate(output string) (t *template.Template) {
 					{{ end }}
 					<p>Severity: <span id="{{ .Severity }}">{{ .Severity }}</span></p>
 					{{ if ne (len .Epss.Percentile) 0 }} 
-						<p>EPSS %: <span>{{ .Epss.Percentile }}</span></p>
+						<p>EPSS: <span>{{ .Epss.Percentile }}</span></p>
 					{{ end }}
 					<p><a href="{{ .Reference }}">Reference Documentation</a></p>
 					<p>{{ .Description }}
