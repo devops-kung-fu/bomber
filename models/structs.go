@@ -22,6 +22,7 @@ type Vulnerability struct {
 	Reference          string        `json:"reference,omitempty"`
 	ExternalReferences []interface{} `json:"externalReferences,omitempty"`
 	Severity           string        `json:"severity,omitempty"`
+	Epss               EpssScore     `json:"epss,omitempty"`
 }
 
 // Summary is a struct used to keep track of severity counts
@@ -78,4 +79,24 @@ func NewResults(packages []Package, summary Summary, scanned []ScannedFile, lice
 		Packages: packages,
 		Licenses: licenses,
 	}
+}
+
+// Epss encapsulates the response of a query to the Epss scoring API
+type Epss struct {
+	Status     string      `json:"status,omitempty"`
+	StatusCode int64       `json:"status-code,omitempty"`
+	Version    string      `json:"version,omitempty"`
+	Access     string      `json:"access,omitempty"`
+	Total      int64       `json:"total,omitempty"`
+	Offset     int64       `json:"offset,omitempty"`
+	Limit      int64       `json:"limit,omitempty"`
+	Scores     []EpssScore `json:"data,omitempty"`
+}
+
+// EpssScore contains epss score data for a specific CVE
+type EpssScore struct {
+	Cve        string `json:"cve,omitempty"`
+	Epss       string `json:"epss,omitempty"`
+	Percentile string `json:"percentile,omitempty"`
+	Date       string `json:"date,omitempty"`
 }
