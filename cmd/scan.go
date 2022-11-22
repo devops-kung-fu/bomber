@@ -15,6 +15,7 @@ import (
 	"k8s.io/utils/strings/slices"
 
 	"github.com/devops-kung-fu/bomber/lib"
+	"github.com/devops-kung-fu/bomber/lib/enrichment"
 	"github.com/devops-kung-fu/bomber/models"
 	"github.com/devops-kung-fu/bomber/providers"
 	"github.com/devops-kung-fu/bomber/renderers"
@@ -76,6 +77,11 @@ var (
 				})
 
 				response, err = provider.Scan(purls, &credentials)
+
+				for i, p := range response {
+					enrichedVulnerabilities, _ := enrichment.Enrich(p.Vulnerabilities)
+					response[i].Vulnerabilities = enrichedVulnerabilities
+				}
 
 				util.DoIf(output != "json", func() {
 					s.Stop()

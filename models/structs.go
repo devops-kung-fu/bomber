@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 // Package encapsulates information about a package/component and it's vulnerabilities
 type Package struct {

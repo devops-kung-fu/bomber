@@ -13,7 +13,6 @@ import (
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/package-url/packageurl-go"
 
-	"github.com/devops-kung-fu/bomber/lib/enrichment"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
@@ -48,8 +47,7 @@ func (Renderer) Render(results models.Results) (err error) {
 		if err != nil {
 			log.Println(err)
 		}
-		enrichedVulnerabilities, _ := enrichment.Enrich(r.Vulnerabilities)
-		for _, v := range enrichedVulnerabilities {
+		for _, v := range r.Vulnerabilities {
 			p, _ := strconv.ParseFloat(v.Epss.Percentile, 64)
 			percentage := math.Round(p * 100)
 			percentageString := "N/A"
