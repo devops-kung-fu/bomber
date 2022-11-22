@@ -3,7 +3,9 @@ package stdout
 import (
 	"fmt"
 	"log"
+	"math"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/devops-kung-fu/common/util"
@@ -11,6 +13,7 @@ import (
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/package-url/packageurl-go"
 
+	"github.com/devops-kung-fu/bomber/lib/enrichment"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
@@ -39,14 +42,21 @@ func (Renderer) Render(results models.Results) (err error) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	rowConfigAutoMerge := table.RowConfig{AutoMerge: true}
-	t.AppendHeader(table.Row{"Type", "Name", "Version", "Severity", "Vulnerability"}, rowConfigAutoMerge)
+	t.AppendHeader(table.Row{"Type", "Name", "Version", "Severity", "Vulnerability", "EPSS %"}, rowConfigAutoMerge)
 	for _, r := range results.Packages {
 		purl, err := packageurl.FromString(r.Purl)
 		if err != nil {
 			log.Println(err)
 		}
-		for _, v := range r.Vulnerabilities {
-			t.AppendRow([]interface{}{purl.Type, purl.Name, purl.Version, v.Severity, v.ID}, rowConfigAutoMerge)
+		enrichedVulnerabilities, _ := enrichment.Enrich(r.Vulnerabilities)
+		for _, v := range enrichedVulnerabilities {
+			p, _ := strconv.ParseFloat(v.Epss.Percentile, 64)
+			percentage := math.Round(p * 100)
+			percentageString := "N/A"
+			if percentage > 0 {
+				percentageString = fmt.Sprintf("%d%%", uint64(percentage))
+			}
+			t.AppendRow([]interface{}{purl.Type, purl.Name, purl.Version, v.Severity, v.ID, percentageString}, rowConfigAutoMerge)
 		}
 	}
 	t.SetStyle(table.StyleRounded)
@@ -73,9 +83,14 @@ func (Renderer) Render(results models.Results) (err error) {
 		fmt.Println()
 		renderSeveritySummary(results.Summary)
 		fmt.Println()
-		fmt.Println("NOTE: The list of vulnerabilities displayed may differ from provider to provider. This list")
-		fmt.Println("may not contain all possible vulnerabilities. Please try the other providers that bomber")
-		fmt.Println("supports (osv, ossindex)")
+		fmt.Println("NOTES:")
+		fmt.Println()
+		fmt.Println("1. The list of vulnerabilities displayed may differ from provider to provider. This list")
+		fmt.Println("   may not contain all possible vulnerabilities. Please try the other providers that bomber")
+		fmt.Println("   supports (osv, ossindex, snyk)")
+		fmt.Println("2. EPSS Percentage indicates the % chance that the vulnerability will be exploited. This")
+		fmt.Println("   value will assist in prioritizing remediation. For more information on EPSS, refer to")
+		fmt.Println("   https://www.first.org/epss/")
 	} else {
 		color.Green.Printf("No vulnerabilities found using the %v provider\n", results.Meta.Provider)
 		fmt.Println()
