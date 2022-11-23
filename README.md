@@ -71,13 +71,13 @@ brew tap devops-kung-fu/homebrew-tap
 brew install devops-kung-fu/homebrew-tap/bomber
 ```
 
-If you do not have Homebrew, you can still [download the latest release](https://github.com/devops-kung-fu/hookz/releases) (ex: ```bomber_0.1.0_darwin_all.tar.gz```), extract the files from the archive, and use the ```bomber``` binary.  
+If you do not have Homebrew, you can still [download the latest release](https://github.com/devops-kung-fu/bomber/releases) (ex: ```bomber_0.1.0_darwin_all.tar.gz```), extract the files from the archive, and use the ```bomber``` binary.  
 
 If you wish, you can move the ```bomber``` binary to your ```/usr/local/bin``` directory or anywhere on your path.
 
 ### Linux
 
-To install ```bomber```,  [download the latest release](https://github.com/devops-kung-fu/hookz/releases) for your platform and install locally. For example, install ```bomber``` on Ubuntu:
+To install ```bomber```,  [download the latest release](https://github.com/devops-kung-fu/bomber/releases) for your platform and install locally. For example, install ```bomber``` on Ubuntu:
 
 ```bash
 dpkg -i bomber_0.1.0_linux_arm64.deb
