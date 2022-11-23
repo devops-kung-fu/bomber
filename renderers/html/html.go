@@ -23,9 +23,13 @@ type Renderer struct{}
 
 // Render renders results to an HTML file
 func (Renderer) Render(results models.Results) (err error) {
-	//TODO: Refactor the Renderer interface to take an Afero FS
-	afs := &afero.Afero{Fs: afero.NewOsFs()}
-
+	var afs *afero.Afero
+	//This is sort of hacky, but since this output writes a file, test cases need to write the output in memory.
+	if results.Meta.Provider == "test" {
+		afs = &afero.Afero{Fs: afero.NewMemMapFs()}
+	} else {
+		afs = &afero.Afero{Fs: afero.NewOsFs()}
+	}
 	t := time.Now()
 	r := strings.NewReplacer("-", "", " ", "-", ":", "-")
 	filename := t.Format("2006-01-02 15:04:05")

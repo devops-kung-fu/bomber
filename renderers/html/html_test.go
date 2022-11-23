@@ -1,8 +1,10 @@
 package html
 
 import (
+	"fmt"
 	"testing"
 
+	"github.com/devops-kung-fu/common/util"
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 
@@ -25,4 +27,15 @@ func Test_genTemplate(t *testing.T) {
 
 	assert.NotNil(t, template)
 	assert.Len(t, template.Tree.Root.Nodes, 17)
+}
+
+func TestRenderer_Render(t *testing.T) {
+	output := util.CaptureOutput(func() {
+		renderer := Renderer{}
+		err := renderer.Render(models.NewResults([]models.Package{}, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test"))
+		if err != nil {
+			fmt.Println(err)
+		}
+	})
+	assert.NotNil(t, output)
 }
