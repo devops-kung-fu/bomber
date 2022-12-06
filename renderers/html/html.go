@@ -3,7 +3,9 @@ package html
 import (
 	"fmt"
 	"log"
+	"math"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"text/template"
 	"time"
@@ -21,9 +23,13 @@ type Renderer struct{}
 
 // Render renders results to an HTML file
 func (Renderer) Render(results models.Results) (err error) {
-	//TODO: Refactor the Renderer interface to take an Afero FS
-	afs := &afero.Afero{Fs: afero.NewOsFs()}
-
+	var afs *afero.Afero
+	//This is sort of hacky, but since this output writes a file, test cases need to write the output in memory.
+	if results.Meta.Provider == "test" {
+		afs = &afero.Afero{Fs: afero.NewMemMapFs()}
+	} else {
+		afs = &afero.Afero{Fs: afero.NewOsFs()}
+	}
 	t := time.Now()
 	r := strings.NewReplacer("-", "", " ", "-", ":", "-")
 	filename := t.Format("2006-01-02 15:04:05")
@@ -39,6 +45,21 @@ func (Renderer) Render(results models.Results) (err error) {
 }
 
 func writeTemplate(afs *afero.Afero, filename string, results models.Results) (err error) {
+	for i, p := range results.Packages {
+		percentageString := "N/A"
+		for vi, v := range p.Vulnerabilities {
+			per, err := strconv.ParseFloat(v.Epss.Percentile, 64)
+			if err != nil {
+				log.Println(err)
+			} else {
+				percentage := math.Round(per * 100)
+				if percentage > 0 {
+					percentageString = fmt.Sprintf("%d%%", uint64(percentage))
+				}
+			}
+			results.Packages[i].Vulnerabilities[vi].Epss.Percentile = percentageString
+		}
+	}
 
 	file, err := afs.Create(filename)
 	if err != nil {
@@ -46,6 +67,7 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) (e
 		return err
 	}
 	markdownToHTML(results)
+
 	template := genTemplate("output")
 	err = template.ExecuteTemplate(file, "output", results)
 	if err != nil {
@@ -140,8 +162,13 @@ func genTemplate(output string) (t *template.Template) {
 	<p>The following results were detected by <code>{{.Meta.Generator}} {{.Meta.Version}}</code> on {{.Meta.Date}} using the {{.Meta.Provider}} provider.</p>
 	{{ if ne (len .Packages) 0 }} 
 	<p>
-		Vulnerabilities displayed may differ from provider to provider. This list may not contain all possible vulnerabilities. Please try the other providers that <code>bomber</code> supports (osv, ossindex). There is no guarantee that 
+		Vulnerabilities displayed may differ from provider to provider. This list may not contain all possible vulnerabilities. Please try the other providers that <code>bomber</code> supports (osv, ossindex, snyk). There is no guarantee that 
 		the next time you scan for vulnerabilities that there won't be more, or less of them. Threats are continuous.
+	</p>
+	<p>
+		EPSS Percentage indicates the % chance that the vulnerability will be exploited. This
+		value will assist in prioritizing remediation. For more information on EPSS, refer to
+		<a href="https://www.first.org/epss/">https://www.first.org/epss/"</a>.</p>
 	</p>
 	{{ else }}
 	<p>
@@ -185,6 +212,9 @@ func genTemplate(output string) (t *template.Template) {
 					<h3>{{ .Title }}</h3>
 					{{ end }}
 					<p>Severity: <span id="{{ .Severity }}">{{ .Severity }}</span></p>
+					{{ if ne (len .Epss.Percentile) 0 }} 
+						<p>EPSS: <span>{{ .Epss.Percentile }}</span></p>
+					{{ end }}
 					<p><a href="{{ .Reference }}">Reference Documentation</a></p>
 					<p>{{ .Description }}
 				</div>

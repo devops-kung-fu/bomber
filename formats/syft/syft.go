@@ -52,7 +52,6 @@ func (bom *BOM) Purls() (purls []string) {
 
 // Licenses returns a slice of strings that contain all of the licenses found in the SBOM
 func (bom *BOM) Licenses() (licenses []string) {
-
 	return
 }
 

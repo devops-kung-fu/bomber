@@ -14,7 +14,7 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       -
@@ -24,7 +24,7 @@ jobs:
           go-version: 1.19
       -
         name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2
+        uses: goreleaser/goreleaser-action@v3
         with:
           distribution: goreleaser
           version: ${{ env.GITHUB_REF_NAME }}
@@ -35,11 +35,11 @@ jobs:
         name: Generate SBOM
         uses: anchore/sbom-action@v0
         with:
-          artifact-name: bomber.spdx.json
+          artifact-name: bomber.cyclonedx.json
           path: .
       - 
         name: Release SBOM
         uses: anchore/sbom-action/publish-sbom@v0
         with:
-          sbom-artifact-match: ".*\\.spdx.json$"
+          sbom-artifact-match: ".*\\.cyclonedx.json$"
 

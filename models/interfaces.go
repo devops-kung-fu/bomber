@@ -10,3 +10,8 @@ type Provider interface {
 type Renderer interface {
 	Render(results Results) error
 }
+
+// Encricher defines methods that can enrich a collection of vulnerabilities
+type Enricher interface {
+	Enrich(vulnerabilities []Vulnerability) (enriched []Vulnerability, err error)
+}
