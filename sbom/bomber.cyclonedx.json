@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:8f4c484d-9056-47ed-8dfb-9b24b7aadb0e",
+  "serialNumber": "urn:uuid:913f9892-b75c-461a-ae72-3eb91352cf09",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-11-20T14:19:26-07:00",
+    "timestamp": "2022-11-23T14:35:12-07:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -1686,12 +1686,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20221120202143-ee9c9e7657fa?package-id=d54c270823e81dcc",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20221122232543-b8155973a063?package-id=9de4d173653a40cf",
       "type": "library",
       "name": "github.com/devops-kung-fu/bomber",
-      "version": "v0.0.0-20221120202143-ee9c9e7657fa",
-      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20221120202143-ee9c9e7657fa:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20221120202143-ee9c9e7657fa",
+      "version": "v0.0.0-20221122232543-b8155973a063",
+      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20221122232543-b8155973a063:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20221122232543-b8155973a063",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -1711,19 +1711,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20221120202143-ee9c9e7657fa:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20221122232543-b8155973a063:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20221120202143-ee9c9e7657fa:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20221122232543-b8155973a063:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20221120202143-ee9c9e7657fa:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20221122232543-b8155973a063:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20221120202143-ee9c9e7657fa:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20221122232543-b8155973a063:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -1763,11 +1763,11 @@
         },
         {
           "name": "syft:metadata:goBuildSettings:vcs.revision",
-          "value": "ee9c9e7657fa9489319d6ee35ba5666e4cf106e1"
+          "value": "b8155973a063ce24336367bfe5884a51764d402e"
         },
         {
           "name": "syft:metadata:goBuildSettings:vcs.time",
-          "value": "2022-11-20T20:21:43Z"
+          "value": "2022-11-22T23:25:43Z"
         },
         {
           "name": "syft:metadata:goCompiledVersion",
@@ -5388,32 +5388,6 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.0?package-id=42f9692eb4148a87",
-      "type": "library",
-      "name": "github.com/stretchr/testify",
-      "version": "v1.8.0",
-      "cpe": "cpe:2.3:a:stretchr:testify:v1.8.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/stretchr/testify@v1.8.0",
-      "properties": [
-        {
-          "name": "syft:package:foundBy",
-          "value": "go-mod-file-cataloger"
-        },
-        {
-          "name": "syft:package:language",
-          "value": "go"
-        },
-        {
-          "name": "syft:package:type",
-          "value": "go-module"
-        },
-        {
-          "name": "syft:location:0:path",
-          "value": "go.mod"
-        }
-      ]
-    },
-    {
       "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.0?package-id=b751659714791326",
       "type": "library",
       "name": "github.com/stretchr/testify",
@@ -5474,6 +5448,32 @@
         {
           "name": "syft:location:0:path",
           "value": "sbom/test/bomber.syft.json"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.1?package-id=a53a75924428af48",
+      "type": "library",
+      "name": "github.com/stretchr/testify",
+      "version": "v1.8.1",
+      "cpe": "cpe:2.3:a:stretchr:testify:v1.8.1:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/stretchr/testify@v1.8.1",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
         }
       ]
     },

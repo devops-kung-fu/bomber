@@ -18,3 +18,14 @@ func TestPurls(t *testing.T) {
 	assert.Len(t, purls, 1)
 	assert.Equal(t, "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0", purls[0])
 }
+
+func TestLicenses(t *testing.T) {
+	var sbom cyclone.BOM
+	err := json.Unmarshal(TestBytes(), &sbom)
+	assert.NoError(t, err)
+	assert.NotNil(t, sbom)
+
+	licenses := Licenses(&sbom)
+
+	assert.Len(t, licenses, 1)
+}

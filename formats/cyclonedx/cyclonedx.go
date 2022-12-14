@@ -55,6 +55,13 @@ func TestBytes() []byte {
 			"version": "v0.6.0",
 			"cpe": "cpe:2.3:a:CycloneDX:cyclonedx-go:v0.6.0:*:*:*:*:*:*:*",
 			"purl": "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0",
+			"licenses": [
+				{
+					"license": {
+					"id": "MIT"
+					}
+				}
+			],
 			"properties": [{
 				"name": "syft:package:metadataType",
 				"value": "GolangBinMetadata"

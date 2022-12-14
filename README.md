@@ -46,6 +46,8 @@ There are quite a few SBOM formats available today. ```bomber``` supports the fo
 
 At this time, please note that [OSV](doc/providers/osv.md) is free and does not require any credentials to use, [Sonatype OSS Index](doc/providers/ossindex.md) is free but requires you to register and obtain a token, and [Snyk](doc/providers/snyk.md) support requires a Snyk license.
 
+In addition to data ```bomber``` collects from Providers, it also [enriches](#data-enrichment) vulnerability data with extra information such as exploitation probabilities.
+
 ### Provider Support
 
 Please note that *each provider supports different ecosystems*, so if you're not seeing any vulnerabilities in one, try another. An ecosystem is simply the package manager, or type of package. Examples include rpm, npm, gems, etc. It is important to understand that each provider may report different vulnerabilities. If in doubt, look at a few of them.
@@ -147,6 +149,16 @@ Example command:
 bomber scan bad-bom.json --output=json > filename.json
 ```
 
+## Data Enrichment
+
+```bomber``` has the ability to enrich vulnerability data it obtains from the [Providers](#providers). The first "enricher" we have implemented for is for [EPSS](https://www.first.org/epss/)
+
+### Exploit Prediction Scoring System (EPSS)
+
+[EPSS](https://www.first.org/epss/) stands for Exploit Prediction Scoring System and is framework that predicts the probability of a vulnerability being exploited. [EPSS](https://www.first.org/epss/) is often used to help in identifying high risk vulnerabilities to prioritize for remediation. 
+
+[EPSS](https://www.first.org/epss/) uses a percentage for probability. So if you see 94, the score is that is trying to say that vulnerability has a 94% probability of exploitation.  And it stands to reason that a vulnerability with a score like 94, is something that deserves immediate attention, where a vulnerability with a score of like say 20 deserves to take a lower priority.
+
 ## Advanced stuff
 
 If you wish, you can set two environment variables to store your credentials, and not have to type them on the command line. Check out the [Environment Variables](####Environment-Variables) information later in this README.
@@ -198,3 +210,4 @@ Thank you to [Sonatype](https://sonatype.com) for providing a wicked tool like t
 
 Many thanks to our friends and fellow ```bomber``` contributors at [Snyk](https://snyk.io) for creating a provider, and coding up processing an SBOM from STDIN. You guys rock.
 
+EPSS description comes from the team at [Nucleus](https://nucleussec.com/blog/what-is-epss/). Thank you!

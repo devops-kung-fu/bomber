@@ -28,3 +28,38 @@ func TestRenderer_Render(t *testing.T) {
 	assert.NotNil(t, output)
 	assert.Contains(t, output, "golang │ spinner │ v1.19.0 │ CRITICAL")
 }
+
+func Test_vulnerabilityCount(t *testing.T) {
+	count := vulnerabilityCount([]models.Package{
+		{
+			Purl: "test",
+			Vulnerabilities: []models.Vulnerability{
+				{
+					ID: "test",
+				},
+			},
+		},
+		{
+			Purl: "test",
+			Vulnerabilities: []models.Vulnerability{
+				{
+					ID: "test",
+				},
+				{
+					ID: "test",
+				},
+			},
+		},
+	})
+	assert.Equal(t, 3, count)
+}
+
+func Test_renderSeveritySummary(t *testing.T) {
+	output := util.CaptureOutput(func() {
+		renderSeveritySummary(models.Summary{
+			Unspecified: 1,
+		})
+	})
+	assert.NotNil(t, output)
+	assert.Contains(t, output, "│ RATING")
+}
