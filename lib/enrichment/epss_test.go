@@ -11,16 +11,16 @@ import (
 func TestEnrich(t *testing.T) {
 	vulnerabilities := []models.Vulnerability{
 		{
-			ID: "CVE-2021-43138",
+			Cve: "CVE-2021-43138",
 		},
 		{
-			ID: "CVE-2020-15084",
+			Cve: "CVE-2020-15084",
 		},
 		{
-			ID: "CVE-2020-28282",
+			Cve: "CVE-2020-28282",
 		},
 		{
-			ID: "sonatype-2020-1214",
+			Cve: "sonatype-2020-1214",
 		},
 	}
 	enriched, err := Enrich(vulnerabilities)

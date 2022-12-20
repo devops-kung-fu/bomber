@@ -17,7 +17,7 @@ const epssBaseURL = "https://api.first.org/data/v1/epss?cve="
 func Enrich(vulnerabilities []models.Vulnerability) (enriched []models.Vulnerability, err error) {
 	identifiers := []string{}
 	for _, v := range vulnerabilities {
-		identifiers = append(identifiers, v.ID)
+		identifiers = append(identifiers, v.Cve)
 	}
 	req := HttpRequest.NewRequest()
 	resp, _ := req.JSON().Get(fmt.Sprintf("%s%s", epssBaseURL, strings.Join(identifiers, ",")))
@@ -38,7 +38,7 @@ func Enrich(vulnerabilities []models.Vulnerability) (enriched []models.Vulnerabi
 
 		for i, v := range vulnerabilities {
 			for _, sv := range epss.Scores {
-				if sv.Cve == v.ID {
+				if sv.Cve == v.Cve {
 					vulnerabilities[i].Epss = sv
 				}
 			}
