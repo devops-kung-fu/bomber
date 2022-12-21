@@ -26,6 +26,7 @@ func TestGetVulnsForPurlSuccess(t *testing.T) {
 			CvssScore:  float64(7.5),
 			CvssVector: "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
 			Cwe:        "CWE-22",
+			Cve:        "CVE-2022-31163",
 			Reference:  "https://security.snyk.io/vuln/SNYK-RUBY-TZINFO-2958048",
 			ExternalReferences: []interface{}{
 				"https://github.com/tzinfo/tzinfo/releases/tag/v0.3.61",
@@ -88,6 +89,7 @@ func TestSnykIssueToBomberVuln(t *testing.T) {
 		Description: "",
 		Severity:    "HIGH",
 		Cwe:         "CWE-22",
+		Cve:         "CVE-2022-31163",
 		CvssScore:   7.5,
 		CvssVector:  "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:H/A:H",
 		Reference:   "https://security.snyk.io/vuln/SNYK-RUBY-TZINFO-2958048",
