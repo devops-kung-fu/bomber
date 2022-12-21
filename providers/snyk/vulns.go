@@ -203,6 +203,7 @@ func snykIssueToBomberVuln(v SnykIssueResource) models.Vulnerability {
 		Description:        v.Attributes.Description,
 		Severity:           severity,
 		Cwe:                getCwe(v),
+		Cve:                getCve(v),
 		CvssScore:          float64(cvss.Score),
 		CvssVector:         cvss.Vector,
 		Reference:          fmt.Sprintf("https://security.snyk.io/vuln/%s", v.Id),
@@ -213,6 +214,15 @@ func snykIssueToBomberVuln(v SnykIssueResource) models.Vulnerability {
 func getCwe(i SnykIssueResource) string {
 	for _, p := range i.Attributes.Problems {
 		if p.Source == "CWE" {
+			return p.Id
+		}
+	}
+	return ""
+}
+
+func getCve(i SnykIssueResource) string {
+	for _, p := range i.Attributes.Problems {
+		if p.Source == "CVE" {
 			return p.Id
 		}
 	}
