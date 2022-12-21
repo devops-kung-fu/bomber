@@ -39,3 +39,20 @@ func TestRenderer_Render(t *testing.T) {
 	})
 	assert.NotNil(t, output)
 }
+
+func Test_markdownToHTML(t *testing.T) {
+	packages := []models.Package{
+		{
+			Vulnerabilities: []models.Vulnerability{
+				{
+					Description: "## test",
+				},
+			},
+		},
+	}
+	results := models.NewResults(packages, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test")
+	markdownToHTML(results)
+
+	assert.NotNil(t, results)
+	assert.Equal(t, "<h2>test</h2>\n", results.Packages[0].Vulnerabilities[0].Description)
+}
