@@ -135,6 +135,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 						Title:       v.Summary,
 						Description: v.Details,
 						Cwe:         strings.Join(v.DatabaseSpecific.CweIDS, ","),
+						Cve:         strings.Join(v.Aliases, ","),
 						Severity:    v.DatabaseSpecific.Severity,
 					}
 					if vuln.Severity == "" {
