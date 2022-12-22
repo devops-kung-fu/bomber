@@ -21,6 +21,7 @@ type Vulnerability struct {
 	CvssScore          float64       `json:"cvssScore,omitempty"`
 	CvssVector         string        `json:"cvssVector,omitempty"`
 	Cwe                string        `json:"cwe,omitempty"`
+	Cve                string        `json:"cve,omitempty"`
 	Reference          string        `json:"reference,omitempty"`
 	ExternalReferences []interface{} `json:"externalReferences,omitempty"`
 	Severity           string        `json:"severity,omitempty"`
