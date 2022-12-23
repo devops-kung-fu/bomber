@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/CycloneDX/cyclonedx-go v0.7.0
-	github.com/briandowns/spinner v1.19.0
+	github.com/briandowns/spinner v1.20.0
 	github.com/devops-kung-fu/common v0.2.5
 	github.com/gookit/color v1.5.2
 	github.com/jarcoal/httpmock v1.2.0
@@ -18,6 +18,8 @@ require (
 	github.com/stretchr/testify v1.8.1
 	k8s.io/utils v0.0.0-20221128185143-99ec85e7a448
 )
+
+require golang.org/x/term v0.3.0 // indirect
 
 require (
 	github.com/aymerick/douceur v0.2.0 // indirect
