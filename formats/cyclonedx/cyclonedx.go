@@ -17,12 +17,14 @@ func Licenses(bom *cyclone.BOM) (licenses []string) {
 	for _, component := range *bom.Components {
 		if component.Licenses != nil {
 			for _, licenseChoice := range *component.Licenses {
-				if licenseChoice.License.ID != "" {
+				if licenseChoice.Expression != "" {
+					licenses = append(licenses, licenseChoice.Expression)
+				}
+				if licenseChoice.License != nil && licenseChoice.License.ID != "" {
 					licenses = append(licenses, licenseChoice.License.ID)
 				}
 			}
 		}
-
 	}
 	return
 }
@@ -58,9 +60,12 @@ func TestBytes() []byte {
 			"licenses": [
 				{
 					"license": {
-					"id": "MIT"
+						"id": "MIT"
 					}
-				}
+				},
+				{
+					"expression": "(AFL-2.1 OR BSD-3-Clause)"
+				}    
 			],
 			"properties": [{
 				"name": "syft:package:metadataType",

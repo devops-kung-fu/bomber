@@ -20,9 +20,7 @@
         "description": "Probably the most modern and sophisticated insecure web application",
         "licenses": [
           {
-            "license": {
-              "id": "MIT"
-            }
+              "expression": "(AFL-2.1 OR BSD-3-Clause)"
           }
         ],
         "purl": "pkg:npm/juice-shop@11.1.2",
@@ -188,7 +186,7 @@
         "bom-ref": "pkg:npm/ms@2.0.0",
         "name": "ms",
         "version": "2.0.0",
-        "description": "Tiny milisecond conversion utility",
+        "description": "Tiny millisecond conversion utility",
         "hashes": [
           {
             "alg": "SHA-1",

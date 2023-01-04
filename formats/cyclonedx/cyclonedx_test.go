@@ -27,5 +27,5 @@ func TestLicenses(t *testing.T) {
 
 	licenses := Licenses(&sbom)
 
-	assert.Len(t, licenses, 1)
+	assert.Len(t, licenses, 2)
 }

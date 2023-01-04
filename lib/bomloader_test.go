@@ -21,6 +21,7 @@ func TestLoad_cyclonedx(t *testing.T) {
 
 	files, _ := afs.ReadDir("/")
 	assert.Len(t, files, 1)
+
 	scanned, purls, _, err := Load(afs, []string{"/"})
 
 	assert.NotNil(t, scanned)
@@ -112,7 +113,7 @@ func TestLoad_BadJSON_SPDX(t *testing.T) {
 
 	_, _, _, err = loadFilePurls(afs, "/test-spdx.json")
 	assert.Error(t, err)
-	assert.Equal(t, "/test-spdx.json is not an SBOM recognized by bomber", err.Error())
+	assert.Equal(t, "/test-spdx.json is not a SBOM recognized by bomber", err.Error())
 }
 
 func TestLoad_garbage(t *testing.T) {
@@ -123,12 +124,35 @@ func TestLoad_garbage(t *testing.T) {
 
 	_, _, _, err = loadFilePurls(afs, "/not-a-sbom.json")
 	assert.Error(t, err)
-	assert.Equal(t, "/not-a-sbom.json is not an SBOM recognized by bomber", err.Error())
+	assert.Equal(t, "/not-a-sbom.json is not a SBOM recognized by bomber", err.Error())
 }
 
 func Test_loadFilePurls(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
 	_, _, _, err := loadFilePurls(afs, "no-file.json")
+	assert.Error(t, err)
+}
+
+func TestLoad_multiple_cyclonedx(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	err := afs.WriteFile("/test-cyclonedx.json", cyclonedx.TestBytes(), 0644)
+	assert.NoError(t, err)
+
+	err = afs.WriteFile("/test1/test1-cyclonedx.json", cyclonedx.TestBytes(), 0644)
+	assert.NoError(t, err)
+
+	err = afs.WriteFile("/test2/test2-cyclonedx.json", cyclonedx.TestBytes(), 0644)
+	assert.NoError(t, err)
+
+	scanned, purls, _, err := Load(afs, []string{"/"})
+
+	assert.NotNil(t, scanned)
+	assert.NoError(t, err)
+	assert.Len(t, purls, 1)
+	assert.Equal(t, "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0", purls[0])
+
+	_, err = afs.ReadDir("/bad-dir")
 	assert.Error(t, err)
 }

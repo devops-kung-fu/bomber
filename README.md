@@ -17,7 +17,7 @@ So you've asked a vendor for an Software Bill of Materials (SBOM) for one of the
 
 The first thing you're going to want to do is see if any of the components listed inside the SBOM have security vulnerabilities, and what kind of licenses these components have. This will help you identify what kind of risk you will be taking on by using the product. 
 
-Finding security vulnerabilities and license information for components identified in an SBOM is exactly what ```bomber``` is meant to do. ```bomber``` can read any JSON or XML based [CycloneDX](https://cyclonedx.org) format, or a JSON [SPDX](https://spdx.dev) or [Syft](https://github.com/anchore/syft) formatted SBOM, and tell you pretty quickly if there are any vulnerabilities. 
+Finding security vulnerabilities and license information for components identified in a SBOM is exactly what ```bomber``` is meant to do. ```bomber``` can read any JSON or XML based [CycloneDX](https://cyclonedx.org) format, or a JSON [SPDX](https://spdx.dev) or [Syft](https://github.com/anchore/syft) formatted SBOM, and tell you pretty quickly if there are any vulnerabilities. 
 
 ### Open vs. Closed Source
 
@@ -165,13 +165,13 @@ If you wish, you can set two environment variables to store your credentials, an
 
 ### Scanning SBOMs from STDIN
 
-If you're using ```bomber``` in your CI/CD pipelines, you can do an all in one command with Syft to generate and scan an SBOM for vulnerabilities. To do this, you can do something like the following command:
+If you're using ```bomber``` in your CI/CD pipelines, you can do an all in one command with Syft to generate and scan a SBOM for vulnerabilities. To do this, you can do something like the following command:
 
 ``` bash
 # Make sure you include the - character at the end of the command. This triggers bomber to read from STDIN
 syft packages . -o cyclonedx-json | bomber scan --provider ossindex --output json - 
 ```
-This command creates an SBOM, pipes it into bomber, and generates results in JSON format.
+This command creates a SBOM, pipes it into bomber, and generates results in JSON format.
 
 ### Environment Variables
 
@@ -208,6 +208,6 @@ A big thank-you to our friends at [Smashicons](https://www.flaticon.com/authors/
 
 Thank you to [Sonatype](https://sonatype.com) for providing a wicked tool like the [Sonatype OSS Index](https://ossindex.sonatype.org).
 
-Many thanks to our friends and fellow ```bomber``` contributors at [Snyk](https://snyk.io) for creating a provider, and coding up processing an SBOM from STDIN. You guys rock.
+Many thanks to our friends and fellow ```bomber``` contributors at [Snyk](https://snyk.io) for creating a provider, and coding up processing a SBOM from STDIN. You guys rock.
 
 EPSS description comes from the team at [Nucleus](https://nucleussec.com/blog/what-is-epss/). Thank you!

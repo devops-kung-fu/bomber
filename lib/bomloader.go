@@ -93,7 +93,8 @@ func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, 
 		var sbom cyclone.BOM
 		err = json.Unmarshal(b, &sbom)
 		if err == nil {
-			return scanned, cyclonedx.Purls(&sbom), cyclonedx.Licenses(&sbom), err
+			l := cyclonedx.Licenses(&sbom)
+			return scanned, cyclonedx.Purls(&sbom), l, err
 		}
 	} else if bytes.Contains(b, []byte("SPDXRef-DOCUMENT")) {
 		log.Println("Detected SPDX")
@@ -111,5 +112,5 @@ func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, 
 		}
 	}
 	log.Printf("WARNING: %v isn't a valid SBOM", arg)
-	return scanned, nil, nil, fmt.Errorf("%v is not an SBOM recognized by bomber", arg)
+	return scanned, nil, nil, fmt.Errorf("%v is not a SBOM recognized by bomber", arg)
 }

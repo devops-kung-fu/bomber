@@ -1,0 +1,29 @@
+{
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.4",
+    "version": 1,
+    "serialNumber": "ABC123",
+    "metadata": {
+    },
+    "components": [
+    {
+        "type": "library",
+        "name": "foo",
+        "version": "0.4.0",
+        "bom-ref": "foo-bar@0.4.0",
+        "purl": "pkg:npm/juice-shop@11.1.2",
+        "licenses": [
+            {
+                "expression": "(AFL-2.1 OR BSD-3-Clause)"
+            }          
+        ],
+        "properties": [
+        {
+            "name": "cdx:npm:package:path",
+            "value": "node_modules/foo-bar"
+        }
+        ]
+    }
+    ],
+    "dependencies": []
+}

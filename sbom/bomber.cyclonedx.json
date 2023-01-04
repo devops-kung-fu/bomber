@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:bbeb3e1e-cbad-44f7-805d-ab44c0148403",
+  "serialNumber": "urn:uuid:1f3d97e1-26e6-458a-aaeb-c420ec6423f6",
   "version": 1,
   "metadata": {
-    "timestamp": "2022-12-21T16:46:09-07:00",
+    "timestamp": "2023-01-04T15:49:57-07:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -20,9 +20,9 @@
   },
   "components": [
     {
-      "bom-ref": "pkg:deb/ubuntu/adduser@3.118ubuntu5?arch=all\u0026distro=ubuntu-22.04\u0026package-id=c0d462d69434fdb8",
+      "bom-ref": "pkg:deb/ubuntu/adduser@3.118ubuntu5?arch=all&distro=ubuntu-22.04&package-id=c0d462d69434fdb8",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "adduser",
       "version": "3.118ubuntu5",
       "licenses": [
@@ -33,7 +33,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:adduser:adduser:3.118ubuntu5:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/adduser@3.118ubuntu5?arch=all\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/adduser@3.118ubuntu5?arch=all&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -62,9 +62,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/apt@2.4.6?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=d10e7bfa8c262f5",
+      "bom-ref": "pkg:deb/ubuntu/apt@2.4.6?arch=amd64&distro=ubuntu-22.04&package-id=d10e7bfa8c262f5",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "apt",
       "version": "2.4.6",
       "licenses": [
@@ -75,7 +75,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:apt:apt:2.4.6:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/apt@2.4.6?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/apt@2.4.6?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -104,13 +104,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/base-files@12ubuntu4.2?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=9368e450e6499ef",
+      "bom-ref": "pkg:deb/ubuntu/base-files@12ubuntu4.2?arch=amd64&distro=ubuntu-22.04&package-id=9368e450e6499ef",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "base-files",
       "version": "12ubuntu4.2",
       "cpe": "cpe:2.3:a:base-files:base-files:12ubuntu4.2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/base-files@12ubuntu4.2?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/base-files@12ubuntu4.2?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -179,9 +179,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/base-passwd@3.5.52build1?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=f478a94858d204c0",
+      "bom-ref": "pkg:deb/ubuntu/base-passwd@3.5.52build1?arch=amd64&distro=ubuntu-22.04&package-id=f478a94858d204c0",
       "type": "library",
-      "publisher": "Colin Watson \u003ccjwatson@debian.org\u003e",
+      "publisher": "Colin Watson <cjwatson@debian.org>",
       "name": "base-passwd",
       "version": "3.5.52build1",
       "licenses": [
@@ -192,7 +192,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:base-passwd:base-passwd:3.5.52build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/base-passwd@3.5.52build1?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/base-passwd@3.5.52build1?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -261,9 +261,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/bash@5.1-6ubuntu1?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=91dfe28fa6952934",
+      "bom-ref": "pkg:deb/ubuntu/bash@5.1-6ubuntu1?arch=amd64&distro=ubuntu-22.04&package-id=91dfe28fa6952934",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "bash",
       "version": "5.1-6ubuntu1",
       "licenses": [
@@ -274,7 +274,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:bash:bash:5.1-6ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/bash@5.1-6ubuntu1?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/bash@5.1-6ubuntu1?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -303,9 +303,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/bsdutils@1:2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux%402.37.2-4ubuntu3\u0026distro=ubuntu-22.04\u0026package-id=e4a24bef29b7f028",
+      "bom-ref": "pkg:deb/ubuntu/bsdutils@1:2.37.2-4ubuntu3?arch=amd64&upstream=util-linux%402.37.2-4ubuntu3&distro=ubuntu-22.04&package-id=e4a24bef29b7f028",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "bsdutils",
       "version": "1:2.37.2-4ubuntu3",
       "licenses": [
@@ -381,7 +381,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:bsdutils:bsdutils:1\\:2.37.2-4ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/bsdutils@1:2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux%402.37.2-4ubuntu3\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/bsdutils@1:2.37.2-4ubuntu3?arch=amd64&upstream=util-linux%402.37.2-4ubuntu3&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -418,9 +418,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/coreutils@8.32-4.1ubuntu1?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=838c861fb6c3f838",
+      "bom-ref": "pkg:deb/ubuntu/coreutils@8.32-4.1ubuntu1?arch=amd64&distro=ubuntu-22.04&package-id=838c861fb6c3f838",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "coreutils",
       "version": "8.32-4.1ubuntu1",
       "licenses": [
@@ -431,7 +431,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:coreutils:coreutils:8.32-4.1ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/coreutils@8.32-4.1ubuntu1?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/coreutils@8.32-4.1ubuntu1?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -460,9 +460,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/dash@0.5.11+git20210903+057cd650a4ed-3build1?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=ca8019720bad3c8c",
+      "bom-ref": "pkg:deb/ubuntu/dash@0.5.11+git20210903+057cd650a4ed-3build1?arch=amd64&distro=ubuntu-22.04&package-id=ca8019720bad3c8c",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "dash",
       "version": "0.5.11+git20210903+057cd650a4ed-3build1",
       "licenses": [
@@ -498,7 +498,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:dash:dash:0.5.11\\+git20210903\\+057cd650a4ed-3build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/dash@0.5.11+git20210903+057cd650a4ed-3build1?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/dash@0.5.11+git20210903+057cd650a4ed-3build1?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -527,9 +527,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/debconf@1.5.79ubuntu1?arch=all\u0026distro=ubuntu-22.04\u0026package-id=7db09787e00ce19c",
+      "bom-ref": "pkg:deb/ubuntu/debconf@1.5.79ubuntu1?arch=all&distro=ubuntu-22.04&package-id=7db09787e00ce19c",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "debconf",
       "version": "1.5.79ubuntu1",
       "licenses": [
@@ -540,7 +540,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:debconf:debconf:1.5.79ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/debconf@1.5.79ubuntu1?arch=all\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/debconf@1.5.79ubuntu1?arch=all&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -569,9 +569,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/debianutils@5.5-1ubuntu2?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=796ac34a1017c440",
+      "bom-ref": "pkg:deb/ubuntu/debianutils@5.5-1ubuntu2?arch=amd64&distro=ubuntu-22.04&package-id=796ac34a1017c440",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "debianutils",
       "version": "5.5-1ubuntu2",
       "licenses": [
@@ -582,7 +582,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:debianutils:debianutils:5.5-1ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/debianutils@5.5-1ubuntu2?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/debianutils@5.5-1ubuntu2?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -611,13 +611,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/diffutils@1:3.8-0ubuntu2?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=e3c48c8d5d749bf2",
+      "bom-ref": "pkg:deb/ubuntu/diffutils@1:3.8-0ubuntu2?arch=amd64&distro=ubuntu-22.04&package-id=e3c48c8d5d749bf2",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "diffutils",
       "version": "1:3.8-0ubuntu2",
       "cpe": "cpe:2.3:a:diffutils:diffutils:1\\:3.8-0ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/diffutils@1:3.8-0ubuntu2?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/diffutils@1:3.8-0ubuntu2?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -646,9 +646,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/dpkg@1.21.1ubuntu2.1?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=8dd6062619578286",
+      "bom-ref": "pkg:deb/ubuntu/dpkg@1.21.1ubuntu2.1?arch=amd64&distro=ubuntu-22.04&package-id=8dd6062619578286",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "dpkg",
       "version": "1.21.1ubuntu2.1",
       "licenses": [
@@ -669,7 +669,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:dpkg:dpkg:1.21.1ubuntu2.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/dpkg@1.21.1ubuntu2.1?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/dpkg@1.21.1ubuntu2.1?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -698,9 +698,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/e2fsprogs@1.46.5-2ubuntu1.1?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=fc79c1c77fe6391",
+      "bom-ref": "pkg:deb/ubuntu/e2fsprogs@1.46.5-2ubuntu1.1?arch=amd64&distro=ubuntu-22.04&package-id=fc79c1c77fe6391",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "e2fsprogs",
       "version": "1.46.5-2ubuntu1.1",
       "licenses": [
@@ -716,7 +716,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:e2fsprogs:e2fsprogs:1.46.5-2ubuntu1.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/e2fsprogs@1.46.5-2ubuntu1.1?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/e2fsprogs@1.46.5-2ubuntu1.1?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -745,9 +745,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/findutils@4.8.0-1ubuntu3?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=6776f316f7f20ef7",
+      "bom-ref": "pkg:deb/ubuntu/findutils@4.8.0-1ubuntu3?arch=amd64&distro=ubuntu-22.04&package-id=6776f316f7f20ef7",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "findutils",
       "version": "4.8.0-1ubuntu3",
       "licenses": [
@@ -763,7 +763,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:findutils:findutils:4.8.0-1ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/findutils@4.8.0-1ubuntu3?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/findutils@4.8.0-1ubuntu3?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -792,9 +792,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/gcc-12-base@12-20220319-1ubuntu1?arch=amd64\u0026upstream=gcc-12\u0026distro=ubuntu-22.04\u0026package-id=d44a89ab53bd36b8",
+      "bom-ref": "pkg:deb/ubuntu/gcc-12-base@12-20220319-1ubuntu1?arch=amd64&upstream=gcc-12&distro=ubuntu-22.04&package-id=d44a89ab53bd36b8",
       "type": "library",
-      "publisher": "Ubuntu Core developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "gcc-12-base",
       "version": "12-20220319-1ubuntu1",
       "licenses": [
@@ -815,7 +815,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:gcc-12-base:gcc-12-base:12-20220319-1ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/gcc-12-base@12-20220319-1ubuntu1?arch=amd64\u0026upstream=gcc-12\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/gcc-12-base@12-20220319-1ubuntu1?arch=amd64&upstream=gcc-12&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -920,7 +920,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/cyclonedx/cyclonedx-go@v0.7.0?package-id=59114c4d776bce65",
+      "bom-ref": "pkg:golang/github.com/cyclonedx/cyclonedx-go@v0.7.0?package-id=d51f2c22d241ebc9",
       "type": "library",
       "name": "github.com/CycloneDX/cyclonedx-go",
       "version": "v0.7.0",
@@ -937,7 +937,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -957,7 +957,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -970,7 +970,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/cyclonedx/cyclonedx-go@v0.7.0?package-id=49d9f8e76205b17e",
+      "bom-ref": "pkg:golang/github.com/cyclonedx/cyclonedx-go@v0.7.0?package-id=cf0292bd42f6e40a",
       "type": "library",
       "name": "github.com/CycloneDX/cyclonedx-go",
       "version": "v0.7.0",
@@ -986,6 +986,10 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
@@ -996,11 +1000,15 @@
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:jNxp8hL7UpcvPDFXjY+Y1ibFtsW+e5zyF9QoSmhK/zg="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/cyclonedx/cyclonedx-go@v0.7.0?package-id=68a5f1520e0b099c",
+      "bom-ref": "pkg:golang/github.com/cyclonedx/cyclonedx-go@v0.7.0?package-id=7d4dac700d4a42e5",
       "type": "library",
       "name": "github.com/CycloneDX/cyclonedx-go",
       "version": "v0.7.0",
@@ -1017,7 +1025,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1097,7 +1105,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1138,7 +1146,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/aymerick/douceur@v0.2.0?package-id=1e5fdb1967ada149",
+      "bom-ref": "pkg:golang/github.com/aymerick/douceur@v0.2.0?package-id=c762d66cddb9d7a8",
       "type": "library",
       "name": "github.com/aymerick/douceur",
       "version": "v0.2.0",
@@ -1155,7 +1163,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1171,7 +1179,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -1184,7 +1192,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/aymerick/douceur@v0.2.0?package-id=3cade96946323781",
+      "bom-ref": "pkg:golang/github.com/aymerick/douceur@v0.2.0?package-id=4da3f5b3c9d5b601",
       "type": "library",
       "name": "github.com/aymerick/douceur",
       "version": "v0.2.0",
@@ -1200,89 +1208,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/briandowns/spinner@v1.19.0?package-id=96645754773a9cd5",
-      "type": "library",
-      "name": "github.com/briandowns/spinner",
-      "version": "v1.19.0",
-      "cpe": "cpe:2.3:a:briandowns:spinner:v1.19.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/briandowns/spinner@v1.19.0",
-      "properties": [
-        {
-          "name": "syft:package:foundBy",
-          "value": "go-module-binary-cataloger"
-        },
-        {
-          "name": "syft:package:language",
-          "value": "go"
-        },
-        {
-          "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
-        },
-        {
-          "name": "syft:package:type",
-          "value": "go-module"
-        },
-        {
-          "name": "syft:location:0:path",
-          "value": "bomber"
-        },
-        {
-          "name": "syft:metadata:architecture",
-          "value": "amd64"
-        },
-        {
-          "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:s8aq38H+Qju89yhp89b4iIiMzMm8YN3p6vGpwyh/a8E="
-        },
-        {
-          "name": "syft:metadata:mainModule",
-          "value": "github.com/devops-kung-fu/bomber"
+          "value": "h1:Mv+mAeH1Q+n9Fr+oyamOlAkUNPWPlA8PPGR0QAaYuPk="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/briandowns/spinner@v1.19.0?package-id=8bfb713452890fb",
-      "type": "library",
-      "name": "github.com/briandowns/spinner",
-      "version": "v1.19.0",
-      "cpe": "cpe:2.3:a:briandowns:spinner:v1.19.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/briandowns/spinner@v1.19.0",
-      "properties": [
-        {
-          "name": "syft:package:foundBy",
-          "value": "go-mod-file-cataloger"
-        },
-        {
-          "name": "syft:package:language",
-          "value": "go"
-        },
-        {
-          "name": "syft:package:type",
-          "value": "go-module"
-        },
-        {
-          "name": "syft:location:0:path",
-          "value": "go.mod"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/briandowns/spinner@v1.19.0?package-id=423c7fc505f569a9",
+      "bom-ref": "pkg:golang/github.com/briandowns/spinner@v1.19.0?package-id=981f79c22b2138ed",
       "type": "library",
       "name": "github.com/briandowns/spinner",
       "version": "v1.19.0",
@@ -1299,7 +1243,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1363,7 +1307,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1396,7 +1340,87 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/davecgh/go-spew@v1.1.1?package-id=b031e97b159aa1b",
+      "bom-ref": "pkg:golang/github.com/briandowns/spinner@v1.20.0?package-id=54e18d706ca93483",
+      "type": "library",
+      "name": "github.com/briandowns/spinner",
+      "version": "v1.20.0",
+      "cpe": "cpe:2.3:a:briandowns:spinner:v1.20.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/briandowns/spinner@v1.20.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "bomber"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.19.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:GQq1Yf1KyzYT8CY19GzWrDKP6hYOFB6J72Ks7d8aO1U="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/bomber"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/briandowns/spinner@v1.20.0?package-id=df2eaa590b693cfa",
+      "type": "library",
+      "name": "github.com/briandowns/spinner",
+      "version": "v1.20.0",
+      "cpe": "cpe:2.3:a:briandowns:spinner:v1.20.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/briandowns/spinner@v1.20.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:GQq1Yf1KyzYT8CY19GzWrDKP6hYOFB6J72Ks7d8aO1U="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/davecgh/go-spew@v1.1.1?package-id=99958b79cb4d9824",
       "type": "library",
       "name": "github.com/davecgh/go-spew",
       "version": "v1.1.1",
@@ -1412,6 +1436,10 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
@@ -1422,11 +1450,15 @@
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/davecgh/go-spew@v1.1.1?package-id=400d5e580d04b9d2",
+      "bom-ref": "pkg:golang/github.com/davecgh/go-spew@v1.1.1?package-id=83bf72ef9a862398",
       "type": "library",
       "name": "github.com/davecgh/go-spew",
       "version": "v1.1.1",
@@ -1443,7 +1475,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1506,7 +1538,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220928224516-b8b2d4abd421?package-id=a2ad7d1bc3317fd9",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20220928224516-b8b2d4abd421?package-id=81d7c39a184d55b3",
       "type": "library",
       "name": "github.com/devops-kung-fu/bomber",
       "version": "v0.0.0-20220928224516-b8b2d4abd421",
@@ -1523,7 +1555,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1589,7 +1621,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1686,12 +1718,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20221221205553-e5b33fdcedf7?package-id=183023168594de91",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20221222163536-9ee85bb83446?package-id=3a6129dcc456a9e2",
       "type": "library",
       "name": "github.com/devops-kung-fu/bomber",
-      "version": "v0.0.0-20221221205553-e5b33fdcedf7",
-      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20221221205553-e5b33fdcedf7:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20221221205553-e5b33fdcedf7",
+      "version": "v0.0.0-20221222163536-9ee85bb83446",
+      "cpe": "cpe:2.3:a:devops-kung-fu:bomber:v0.0.0-20221222163536-9ee85bb83446:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/devops-kung-fu/bomber@v0.0.0-20221222163536-9ee85bb83446",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -1703,7 +1735,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1711,19 +1743,19 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20221221205553-e5b33fdcedf7:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung_fu:bomber:v0.0.0-20221222163536-9ee85bb83446:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20221221205553-e5b33fdcedf7:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops-kung:bomber:v0.0.0-20221222163536-9ee85bb83446:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20221221205553-e5b33fdcedf7:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops_kung:bomber:v0.0.0-20221222163536-9ee85bb83446:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20221221205553-e5b33fdcedf7:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:devops:bomber:v0.0.0-20221222163536-9ee85bb83446:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -1763,15 +1795,15 @@
         },
         {
           "name": "syft:metadata:goBuildSettings:vcs.revision",
-          "value": "e5b33fdcedf78a04b231afd7cacdcdc998f0d706"
+          "value": "9ee85bb8344641ea6cd1282ec632393a6d1687be"
         },
         {
           "name": "syft:metadata:goBuildSettings:vcs.time",
-          "value": "2022-12-21T20:55:53Z"
+          "value": "2022-12-22T16:35:36Z"
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:mainModule",
@@ -1780,7 +1812,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.5?package-id=ac4702fc63024bbf",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.5?package-id=658060ffc2926226",
       "type": "library",
       "name": "github.com/devops-kung-fu/common",
       "version": "v0.2.5",
@@ -1797,7 +1829,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1829,7 +1861,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -1842,7 +1874,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.5?package-id=72a8b626e4032acd",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.5?package-id=88d0034316ee742a",
       "type": "library",
       "name": "github.com/devops-kung-fu/common",
       "version": "v0.2.5",
@@ -1856,6 +1888,10 @@
         {
           "name": "syft:package:language",
           "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -1880,11 +1916,15 @@
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Ktyp1vsE2iyQPbazSxkQ1CiUq29FblQk/fYPHa09AzA="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.5?package-id=fe8b2d3511c7cca",
+      "bom-ref": "pkg:golang/github.com/devops-kung-fu/common@v0.2.5?package-id=35862d26efa8bb48",
       "type": "library",
       "name": "github.com/devops-kung-fu/common",
       "version": "v0.2.5",
@@ -1901,7 +1941,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2029,7 +2069,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2094,7 +2134,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/fatih/color@v1.13.0?package-id=59709977ffa4ce49",
+      "bom-ref": "pkg:golang/github.com/fatih/color@v1.13.0?package-id=34220576f90b5f63",
       "type": "library",
       "name": "github.com/fatih/color",
       "version": "v1.13.0",
@@ -2111,7 +2151,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2127,7 +2167,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -2140,7 +2180,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/fatih/color@v1.13.0?package-id=198c96506cc4fdac",
+      "bom-ref": "pkg:golang/github.com/fatih/color@v1.13.0?package-id=32cd1862aecca649",
       "type": "library",
       "name": "github.com/fatih/color",
       "version": "v1.13.0",
@@ -2156,17 +2196,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:8LOYc1KYPPmyKMuN8QV2DNRWNbLo6LZ0iLs8+mlH53w="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/fatih/color@v1.13.0?package-id=d04543eab24f84ba",
+      "bom-ref": "pkg:golang/github.com/fatih/color@v1.13.0?package-id=f0dac26244985d65",
       "type": "library",
       "name": "github.com/fatih/color",
       "version": "v1.13.0",
@@ -2183,7 +2231,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2247,7 +2295,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2280,7 +2328,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/gomarkdown/markdown@v0.0.0-20221013030248-663e2500819c?package-id=a1612cde8f7fdd35",
+      "bom-ref": "pkg:golang/github.com/gomarkdown/markdown@v0.0.0-20221013030248-663e2500819c?package-id=30277b79ba7b0d0e",
       "type": "library",
       "name": "github.com/gomarkdown/markdown",
       "version": "v0.0.0-20221013030248-663e2500819c",
@@ -2297,7 +2345,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2313,7 +2361,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -2326,7 +2374,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/gomarkdown/markdown@v0.0.0-20221013030248-663e2500819c?package-id=f6202371eebdc2e9",
+      "bom-ref": "pkg:golang/github.com/gomarkdown/markdown@v0.0.0-20221013030248-663e2500819c?package-id=4efe925b08374c07",
       "type": "library",
       "name": "github.com/gomarkdown/markdown",
       "version": "v0.0.0-20221013030248-663e2500819c",
@@ -2342,17 +2390,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:iyaGYbCmcYK0Ja9a3OUa2Fo+EaN0cbLu0eKpBwPFzc8="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/gookit/color@v1.5.2?package-id=2e8692e8aa247358",
+      "bom-ref": "pkg:golang/github.com/gookit/color@v1.5.2?package-id=151a294bf0ba0554",
       "type": "library",
       "name": "github.com/gookit/color",
       "version": "v1.5.2",
@@ -2369,7 +2425,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2385,7 +2441,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -2398,7 +2454,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/gookit/color@v1.5.2?package-id=b11c6649d31912ca",
+      "bom-ref": "pkg:golang/github.com/gookit/color@v1.5.2?package-id=cb9006307f65af1d",
       "type": "library",
       "name": "github.com/gookit/color",
       "version": "v1.5.2",
@@ -2414,17 +2470,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:uLnfXcaFjlrDnQDT+NCBcfhrXqYTx/rcCa6xn01Y8yI="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/gookit/color@v1.5.2?package-id=ec229cbce40c2350",
+      "bom-ref": "pkg:golang/github.com/gookit/color@v1.5.2?package-id=7e7208e8660ad356",
       "type": "library",
       "name": "github.com/gookit/color",
       "version": "v1.5.2",
@@ -2441,7 +2505,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2505,7 +2569,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2538,7 +2602,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/gorilla/css@v1.0.0?package-id=69475c6787b2f62e",
+      "bom-ref": "pkg:golang/github.com/gorilla/css@v1.0.0?package-id=1a82c6a6922ec008",
       "type": "library",
       "name": "github.com/gorilla/css",
       "version": "v1.0.0",
@@ -2555,7 +2619,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2571,7 +2635,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -2584,7 +2648,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/gorilla/css@v1.0.0?package-id=ba60aefcf6ac459a",
+      "bom-ref": "pkg:golang/github.com/gorilla/css@v1.0.0?package-id=5b00f486154e127a",
       "type": "library",
       "name": "github.com/gorilla/css",
       "version": "v1.0.0",
@@ -2600,17 +2664,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:BQqNyPTi50JCFMTw/b67hByjMVXZRwGha6wxVGkeihY="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/inconshreveable/mousetrap@v1.0.1?package-id=5ded5ef8b6fb5de1",
+      "bom-ref": "pkg:golang/github.com/inconshreveable/mousetrap@v1.0.1?package-id=e3fecc82515d97a1",
       "type": "library",
       "name": "github.com/inconshreveable/mousetrap",
       "version": "v1.0.1",
@@ -2627,7 +2699,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2674,7 +2746,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/inconshreveable/mousetrap@v1.1.0?package-id=57503c5ea9dcdeda",
+      "bom-ref": "pkg:golang/github.com/inconshreveable/mousetrap@v1.1.0?package-id=b933d11eff1fb0b7",
       "type": "library",
       "name": "github.com/inconshreveable/mousetrap",
       "version": "v1.1.0",
@@ -2690,17 +2762,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/jarcoal/httpmock@v1.2.0?package-id=4f85d0733a719f07",
+      "bom-ref": "pkg:golang/github.com/jarcoal/httpmock@v1.2.0?package-id=66448f37208c2118",
       "type": "library",
       "name": "github.com/jarcoal/httpmock",
       "version": "v1.2.0",
@@ -2716,17 +2796,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:gSvTxxFR/MEMfsGrvRbdfpRUMBStovlSRLw0Ep1bwwc="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/jarcoal/httpmock@v1.2.0?package-id=c9821ae33b7f3676",
+      "bom-ref": "pkg:golang/github.com/jarcoal/httpmock@v1.2.0?package-id=b02aeda4173d66f1",
       "type": "library",
       "name": "github.com/jarcoal/httpmock",
       "version": "v1.2.0",
@@ -2743,7 +2831,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2790,7 +2878,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.9?package-id=6638c0579c2644c",
+      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.3.9?package-id=ea4086429ce46b71",
       "type": "library",
       "name": "github.com/jedib0t/go-pretty/v6",
       "version": "v6.3.9",
@@ -2807,7 +2895,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2887,7 +2975,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2928,7 +3016,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.3?package-id=5aa2728466d53889",
+      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.3?package-id=c0ce4e5b1493408d",
       "type": "library",
       "name": "github.com/jedib0t/go-pretty/v6",
       "version": "v6.4.3",
@@ -2945,7 +3033,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -2965,7 +3053,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -2978,7 +3066,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.3?package-id=8f241575e0f5c96e",
+      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.3?package-id=83fdea25112b9f52",
       "type": "library",
       "name": "github.com/jedib0t/go-pretty/v6",
       "version": "v6.4.3",
@@ -2994,6 +3082,10 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
@@ -3004,11 +3096,15 @@
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:2n9BZ0YQiXGESUSR+6FLg0WWWE80u+mIz35f0uHWcIE="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/kirinlabs/httprequest@v1.1.1?package-id=f617c8fcc0961920",
+      "bom-ref": "pkg:golang/github.com/kirinlabs/httprequest@v1.1.1?package-id=b51ee9327239254c",
       "type": "library",
       "name": "github.com/kirinlabs/HttpRequest",
       "version": "v1.1.1",
@@ -3025,7 +3121,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3041,7 +3137,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -3054,7 +3150,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/kirinlabs/httprequest@v1.1.1?package-id=97dec5e56a0b3c44",
+      "bom-ref": "pkg:golang/github.com/kirinlabs/httprequest@v1.1.1?package-id=913af69aa6b7590c",
       "type": "library",
       "name": "github.com/kirinlabs/HttpRequest",
       "version": "v1.1.1",
@@ -3070,17 +3166,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:eBbFzpRd/Y7vQhRY30frHK3yAJiT1wDlB31Ryzyklc0="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/kirinlabs/httprequest@v1.1.1?package-id=a66019c35c93202e",
+      "bom-ref": "pkg:golang/github.com/kirinlabs/httprequest@v1.1.1?package-id=c7925cf71a947300",
       "type": "library",
       "name": "github.com/kirinlabs/HttpRequest",
       "version": "v1.1.1",
@@ -3097,7 +3201,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3161,7 +3265,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3194,7 +3298,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/kr/text@v0.2.0?package-id=5e189c4e110ed474",
+      "bom-ref": "pkg:golang/github.com/kr/text@v0.2.0?package-id=1bc60d059cfd5910",
       "type": "library",
       "name": "github.com/kr/text",
       "version": "v0.2.0",
@@ -3210,17 +3314,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:5Nx0Ya0ZqY2ygV366QzturHI13Jq95ApcVaJBhpS+AY="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/kr/text@v0.2.0?package-id=3fd084beae3f05c7",
+      "bom-ref": "pkg:golang/github.com/kr/text@v0.2.0?package-id=8a31961459577797",
       "type": "library",
       "name": "github.com/kr/text",
       "version": "v0.2.0",
@@ -3237,7 +3349,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3284,7 +3396,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.13?package-id=f9b42e4fb232fc07",
+      "bom-ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.13?package-id=8efb7d484c2ea93e",
       "type": "library",
       "name": "github.com/mattn/go-colorable",
       "version": "v0.1.13",
@@ -3301,7 +3413,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3321,7 +3433,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -3334,7 +3446,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.13?package-id=a30f02995b25333a",
+      "bom-ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.13?package-id=b406e7288df4132a",
       "type": "library",
       "name": "github.com/mattn/go-colorable",
       "version": "v0.1.13",
@@ -3350,6 +3462,10 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
@@ -3360,11 +3476,15 @@
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:fFA4WZxdEF4tXPZVKMLwD8oUnCTTo08duU7wxecdEvA="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.13?package-id=53932a067fbdad4",
+      "bom-ref": "pkg:golang/github.com/mattn/go-colorable@v0.1.13?package-id=cb51c90b38475838",
       "type": "library",
       "name": "github.com/mattn/go-colorable",
       "version": "v0.1.13",
@@ -3381,7 +3501,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3461,7 +3581,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3502,87 +3622,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/mattn/go-isatty@v0.0.16?package-id=6902a5997030f44",
-      "type": "library",
-      "name": "github.com/mattn/go-isatty",
-      "version": "v0.0.16",
-      "cpe": "cpe:2.3:a:mattn:go-isatty:v0.0.16:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.16",
-      "properties": [
-        {
-          "name": "syft:package:foundBy",
-          "value": "go-module-binary-cataloger"
-        },
-        {
-          "name": "syft:package:language",
-          "value": "go"
-        },
-        {
-          "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
-        },
-        {
-          "name": "syft:package:type",
-          "value": "go-module"
-        },
-        {
-          "name": "syft:cpe23",
-          "value": "cpe:2.3:a:mattn:go_isatty:v0.0.16:*:*:*:*:*:*:*"
-        },
-        {
-          "name": "syft:location:0:path",
-          "value": "bomber"
-        },
-        {
-          "name": "syft:metadata:architecture",
-          "value": "amd64"
-        },
-        {
-          "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
-        },
-        {
-          "name": "syft:metadata:h1Digest",
-          "value": "h1:bq3VjFmv/sOjHtdEhmkEV4x1AJtvUvOJ2PFAZ5+peKQ="
-        },
-        {
-          "name": "syft:metadata:mainModule",
-          "value": "github.com/devops-kung-fu/bomber"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/mattn/go-isatty@v0.0.16?package-id=1b64774a61925015",
-      "type": "library",
-      "name": "github.com/mattn/go-isatty",
-      "version": "v0.0.16",
-      "cpe": "cpe:2.3:a:mattn:go-isatty:v0.0.16:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.16",
-      "properties": [
-        {
-          "name": "syft:package:foundBy",
-          "value": "go-mod-file-cataloger"
-        },
-        {
-          "name": "syft:package:language",
-          "value": "go"
-        },
-        {
-          "name": "syft:package:type",
-          "value": "go-module"
-        },
-        {
-          "name": "syft:cpe23",
-          "value": "cpe:2.3:a:mattn:go_isatty:v0.0.16:*:*:*:*:*:*:*"
-        },
-        {
-          "name": "syft:location:0:path",
-          "value": "go.mod"
-        }
-      ]
-    },
-    {
-      "bom-ref": "pkg:golang/github.com/mattn/go-isatty@v0.0.16?package-id=27e68721137e045a",
+      "bom-ref": "pkg:golang/github.com/mattn/go-isatty@v0.0.16?package-id=9fc75991dd7cc2f5",
       "type": "library",
       "name": "github.com/mattn/go-isatty",
       "version": "v0.0.16",
@@ -3599,7 +3639,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3679,7 +3719,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3720,7 +3760,95 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.14?package-id=813f02ff7e133676",
+      "bom-ref": "pkg:golang/github.com/mattn/go-isatty@v0.0.17?package-id=e6ac6b2e2a486c9",
+      "type": "library",
+      "name": "github.com/mattn/go-isatty",
+      "version": "v0.0.17",
+      "cpe": "cpe:2.3:a:mattn:go-isatty:v0.0.17:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.17",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:mattn:go_isatty:v0.0.17:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "bomber"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.19.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:BTarxUcIeDqL27Mc+vyvdWYSL28zpIhv3RoTdsLMPng="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/bomber"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/mattn/go-isatty@v0.0.17?package-id=e67e34a033a053ab",
+      "type": "library",
+      "name": "github.com/mattn/go-isatty",
+      "version": "v0.0.17",
+      "cpe": "cpe:2.3:a:mattn:go-isatty:v0.0.17:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/mattn/go-isatty@v0.0.17",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:cpe23",
+          "value": "cpe:2.3:a:mattn:go_isatty:v0.0.17:*:*:*:*:*:*:*"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:BTarxUcIeDqL27Mc+vyvdWYSL28zpIhv3RoTdsLMPng="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.14?package-id=63f0d9f39b6dc5c1",
       "type": "library",
       "name": "github.com/mattn/go-runewidth",
       "version": "v0.0.14",
@@ -3737,7 +3865,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3757,7 +3885,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -3770,7 +3898,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.14?package-id=57a1fbed2324201b",
+      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.14?package-id=bcb0738c068309a6",
       "type": "library",
       "name": "github.com/mattn/go-runewidth",
       "version": "v0.0.14",
@@ -3786,6 +3914,10 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
@@ -3796,11 +3928,15 @@
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:+xnbZSEeDbOIg5/mE6JF0w6n9duR1l3/WmbinWVwUuU="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.14?package-id=c5486f7675c321e0",
+      "bom-ref": "pkg:golang/github.com/mattn/go-runewidth@v0.0.14?package-id=ca489b529b65892b",
       "type": "library",
       "name": "github.com/mattn/go-runewidth",
       "version": "v0.0.14",
@@ -3817,7 +3953,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3897,7 +4033,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3938,7 +4074,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/microcosm-cc/bluemonday@v1.0.21?package-id=c7a8dd43f1f2b49a",
+      "bom-ref": "pkg:golang/github.com/microcosm-cc/bluemonday@v1.0.21?package-id=8ae4bf19cee8f38c",
       "type": "library",
       "name": "github.com/microcosm-cc/bluemonday",
       "version": "v1.0.21",
@@ -3955,7 +4091,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -3979,7 +4115,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -3992,7 +4128,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/microcosm-cc/bluemonday@v1.0.21?package-id=6a6e298a61f00236",
+      "bom-ref": "pkg:golang/github.com/microcosm-cc/bluemonday@v1.0.21?package-id=d93fb2ef4af197af",
       "type": "library",
       "name": "github.com/microcosm-cc/bluemonday",
       "version": "v1.0.21",
@@ -4006,6 +4142,10 @@
         {
           "name": "syft:package:language",
           "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4022,11 +4162,15 @@
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:dNH3e4PSyE4vNX+KlRGHT5KrSvjeUkoNPwEORjffHJg="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/niemeyer/pretty@v0.0.0-20200227124842-a10e7caefd8e?package-id=fff413b0fa3b93e",
+      "bom-ref": "pkg:golang/github.com/niemeyer/pretty@v0.0.0-20200227124842-a10e7caefd8e?package-id=8f36c4f45522f6a7",
       "type": "library",
       "name": "github.com/niemeyer/pretty",
       "version": "v0.0.0-20200227124842-a10e7caefd8e",
@@ -4042,17 +4186,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:fD57ERR4JtEqsWbfPhv4DMiApHyliiK5xCTNVSPiaAs="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/niemeyer/pretty@v0.0.0-20200227124842-a10e7caefd8e?package-id=2719b10f688bbb36",
+      "bom-ref": "pkg:golang/github.com/niemeyer/pretty@v0.0.0-20200227124842-a10e7caefd8e?package-id=6b0f016f5e5d52e0",
       "type": "library",
       "name": "github.com/niemeyer/pretty",
       "version": "v0.0.0-20200227124842-a10e7caefd8e",
@@ -4069,7 +4221,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4116,7 +4268,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/package-url/packageurl-go@v0.1.0?package-id=55fbc7d31707c7b6",
+      "bom-ref": "pkg:golang/github.com/package-url/packageurl-go@v0.1.0?package-id=4923fffcb97b267b",
       "type": "library",
       "name": "github.com/package-url/packageurl-go",
       "version": "v0.1.0",
@@ -4133,7 +4285,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4169,7 +4321,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -4182,7 +4334,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/package-url/packageurl-go@v0.1.0?package-id=f923aaebf603bd6d",
+      "bom-ref": "pkg:golang/github.com/package-url/packageurl-go@v0.1.0?package-id=37a0e05e1511034b",
       "type": "library",
       "name": "github.com/package-url/packageurl-go",
       "version": "v0.1.0",
@@ -4196,6 +4348,10 @@
         {
           "name": "syft:package:language",
           "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4224,11 +4380,15 @@
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:efWBc98O/dBZRg1pw2xiDzovnlMjCa9NPnfaiBduh8I="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/package-url/packageurl-go@v0.1.0?package-id=3d1b69b1eff949c9",
+      "bom-ref": "pkg:golang/github.com/package-url/packageurl-go@v0.1.0?package-id=96481b66a99bc46",
       "type": "library",
       "name": "github.com/package-url/packageurl-go",
       "version": "v0.1.0",
@@ -4245,7 +4405,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4389,7 +4549,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4462,7 +4622,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/pmezard/go-difflib@v1.0.0?package-id=301295fbad875bf",
+      "bom-ref": "pkg:golang/github.com/pmezard/go-difflib@v1.0.0?package-id=656158b08938b0bc",
       "type": "library",
       "name": "github.com/pmezard/go-difflib",
       "version": "v1.0.0",
@@ -4478,6 +4638,10 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
@@ -4488,11 +4652,15 @@
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/pmezard/go-difflib@v1.0.0?package-id=38036babf1a1d261",
+      "bom-ref": "pkg:golang/github.com/pmezard/go-difflib@v1.0.0?package-id=121d395e9bd05c81",
       "type": "library",
       "name": "github.com/pmezard/go-difflib",
       "version": "v1.0.0",
@@ -4509,7 +4677,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4572,7 +4740,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/remeh/sizedwaitgroup@v1.0.0?package-id=b0eb7585216ee54e",
+      "bom-ref": "pkg:golang/github.com/remeh/sizedwaitgroup@v1.0.0?package-id=bb7bde3876aaa373",
       "type": "library",
       "name": "github.com/remeh/sizedwaitgroup",
       "version": "v1.0.0",
@@ -4589,7 +4757,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4605,7 +4773,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -4618,7 +4786,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/remeh/sizedwaitgroup@v1.0.0?package-id=496ce6f9b41913e9",
+      "bom-ref": "pkg:golang/github.com/remeh/sizedwaitgroup@v1.0.0?package-id=1e49394356ec74b0",
       "type": "library",
       "name": "github.com/remeh/sizedwaitgroup",
       "version": "v1.0.0",
@@ -4634,17 +4802,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:VNGGFwNo/R5+MJBf6yrsr110p0m4/OX4S3DCy7Kyl5E="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/rivo/uniseg@v0.4.2?package-id=1e47a0841b351d35",
+      "bom-ref": "pkg:golang/github.com/rivo/uniseg@v0.4.2?package-id=eba7121076db0d39",
       "type": "library",
       "name": "github.com/rivo/uniseg",
       "version": "v0.4.2",
@@ -4661,7 +4837,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4725,7 +4901,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4758,7 +4934,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/rivo/uniseg@v0.4.3?package-id=7a20e6b0a2eba83e",
+      "bom-ref": "pkg:golang/github.com/rivo/uniseg@v0.4.3?package-id=436597cd560f3b76",
       "type": "library",
       "name": "github.com/rivo/uniseg",
       "version": "v0.4.3",
@@ -4775,7 +4951,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4791,7 +4967,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -4804,7 +4980,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/rivo/uniseg@v0.4.3?package-id=7bef83fa7a072596",
+      "bom-ref": "pkg:golang/github.com/rivo/uniseg@v0.4.3?package-id=4eac8f3782189587",
       "type": "library",
       "name": "github.com/rivo/uniseg",
       "version": "v0.4.3",
@@ -4820,17 +4996,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:utMvzDsuh3suAEnhH0RdHmoPbU648o6CvXxTx4SBMOw="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/spf13/afero@v1.9.2?package-id=91ff9ed526244aed",
+      "bom-ref": "pkg:golang/github.com/spf13/afero@v1.9.2?package-id=2f0aa5e9de56a86a",
       "type": "library",
       "name": "github.com/spf13/afero",
       "version": "v1.9.2",
@@ -4847,7 +5031,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4911,7 +5095,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4944,7 +5128,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/spf13/afero@v1.9.3?package-id=d1e46673122cba73",
+      "bom-ref": "pkg:golang/github.com/spf13/afero@v1.9.3?package-id=ff88514f1e2d5a6e",
       "type": "library",
       "name": "github.com/spf13/afero",
       "version": "v1.9.3",
@@ -4961,7 +5145,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -4977,7 +5161,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -4990,7 +5174,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/spf13/afero@v1.9.3?package-id=129989f5fdde2172",
+      "bom-ref": "pkg:golang/github.com/spf13/afero@v1.9.3?package-id=65feb65054ac0f54",
       "type": "library",
       "name": "github.com/spf13/afero",
       "version": "v1.9.3",
@@ -5006,17 +5190,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:41FoI0fD7OR7mGcKE/aOiLkGreyf8ifIOQmJANWogMk="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.5.0?package-id=bbe88b91ed2d2774",
+      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.5.0?package-id=7bd4db6bc03e4916",
       "type": "library",
       "name": "github.com/spf13/cobra",
       "version": "v1.5.0",
@@ -5033,7 +5225,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5097,7 +5289,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5130,7 +5322,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.6.1?package-id=a123e4fa5bfedb5b",
+      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.6.1?package-id=a3272d4e5c938f1b",
       "type": "library",
       "name": "github.com/spf13/cobra",
       "version": "v1.6.1",
@@ -5147,7 +5339,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5163,7 +5355,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -5176,7 +5368,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.6.1?package-id=bf2a6c5440d27f96",
+      "bom-ref": "pkg:golang/github.com/spf13/cobra@v1.6.1?package-id=180e466ca8130a70",
       "type": "library",
       "name": "github.com/spf13/cobra",
       "version": "v1.6.1",
@@ -5192,17 +5384,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:o94oiPyS4KD1mPy2fmcYYHHfCxLqYjJOhGsCHFZtEzA="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=23f63c85c8f7d952",
+      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=8d6a714ede23760c",
       "type": "library",
       "name": "github.com/spf13/pflag",
       "version": "v1.0.5",
@@ -5219,7 +5419,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5235,7 +5435,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -5248,7 +5448,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=ef5ec3574c03addb",
+      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=718fa3deba57e2d4",
       "type": "library",
       "name": "github.com/spf13/pflag",
       "version": "v1.0.5",
@@ -5264,17 +5464,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:iy+VFUOCP1a+8yFto/drg2CJ5u0yRoB7fZw3DKv/JXA="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=4c76e82934a0e6d5",
+      "bom-ref": "pkg:golang/github.com/spf13/pflag@v1.0.5?package-id=1c998abc4dcddc18",
       "type": "library",
       "name": "github.com/spf13/pflag",
       "version": "v1.0.5",
@@ -5291,7 +5499,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5355,7 +5563,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5388,7 +5596,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.0?package-id=b751659714791326",
+      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.0?package-id=6ebbe1727b2d5995",
       "type": "library",
       "name": "github.com/stretchr/testify",
       "version": "v1.8.0",
@@ -5405,7 +5613,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5452,7 +5660,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.1?package-id=a53a75924428af48",
+      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.1?package-id=5bc94a719d3d331e",
       "type": "library",
       "name": "github.com/stretchr/testify",
       "version": "v1.8.1",
@@ -5468,17 +5676,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:w7B6lhMri9wdJUVmEZPGGhZzrYTPvgJArz7wNPgYKsk="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e?package-id=325946bed92432ec",
+      "bom-ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e?package-id=4b932867aa6cb704",
       "type": "library",
       "name": "github.com/xo/terminfo",
       "version": "v0.0.0-20220910002029-abceb7e1c41e",
@@ -5495,7 +5711,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5511,7 +5727,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -5524,7 +5740,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e?package-id=c08be3dcce889934",
+      "bom-ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e?package-id=f54d2225cf90af80",
       "type": "library",
       "name": "github.com/xo/terminfo",
       "version": "v0.0.0-20220910002029-abceb7e1c41e",
@@ -5540,17 +5756,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:JVG44RsyaB9T2KIHavMF/ppJZNG9ZpyihvCd0w101no="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e?package-id=20ac5e54725671b3",
+      "bom-ref": "pkg:golang/github.com/xo/terminfo@v0.0.0-20220910002029-abceb7e1c41e?package-id=c5504020835fa067",
       "type": "library",
       "name": "github.com/xo/terminfo",
       "version": "v0.0.0-20220910002029-abceb7e1c41e",
@@ -5567,7 +5791,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5631,7 +5855,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5664,12 +5888,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/net@v0.4.0?package-id=a9960a918540e37d",
+      "bom-ref": "pkg:golang/golang.org/x/net@v0.5.0?package-id=c557ea46a96514e0",
       "type": "library",
       "name": "golang.org/x/net",
-      "version": "v0.4.0",
-      "cpe": "cpe:2.3:a:golang:x\\/net:v0.4.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/golang.org/x/net@v0.4.0",
+      "version": "v0.5.0",
+      "cpe": "cpe:2.3:a:golang:x\\/net:v0.5.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/net@v0.5.0",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -5681,7 +5905,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5697,11 +5921,11 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:Q5QPcMlvfxFTAPV0+07Xz/MpK9NTXu2VDUuy0FeMfaU="
+          "value": "h1:GyT4nK/YDHSqa1c4753ouYCDajOYKTja9Xb/OHtgvSw="
         },
         {
           "name": "syft:metadata:mainModule",
@@ -5710,12 +5934,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/net@v0.4.0?package-id=9b7fee05d9670222",
+      "bom-ref": "pkg:golang/golang.org/x/net@v0.5.0?package-id=3970aad1307a08fa",
       "type": "library",
       "name": "golang.org/x/net",
-      "version": "v0.4.0",
-      "cpe": "cpe:2.3:a:golang:x\\/net:v0.4.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/golang.org/x/net@v0.4.0",
+      "version": "v0.5.0",
+      "cpe": "cpe:2.3:a:golang:x\\/net:v0.5.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/net@v0.5.0",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -5726,17 +5950,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:GyT4nK/YDHSqa1c4753ouYCDajOYKTja9Xb/OHtgvSw="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/sys@v0.0.0-20220928140112-f11e5e49a4ec?package-id=c677433060a84b6e",
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.0.0-20220928140112-f11e5e49a4ec?package-id=b4f08f322e116f27",
       "type": "library",
       "name": "golang.org/x/sys",
       "version": "v0.0.0-20220928140112-f11e5e49a4ec",
@@ -5753,7 +5985,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5817,7 +6049,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5850,12 +6082,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/sys@v0.3.0?package-id=bb17a8c275a19f75",
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.4.0?package-id=8805950dfaec0f2c",
       "type": "library",
       "name": "golang.org/x/sys",
-      "version": "v0.3.0",
-      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.3.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/golang.org/x/sys@v0.3.0",
+      "version": "v0.4.0",
+      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.4.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/sys@v0.4.0",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -5867,7 +6099,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -5883,11 +6115,11 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:w8ZOecv6NaNa/zC8944JTU3vz4u6Lagfk4RPQxv92NQ="
+          "value": "h1:Zr2JFtRQNX3BCZ8YtxRE9hNJYC8J6I1MVbMg6owUp18="
         },
         {
           "name": "syft:metadata:mainModule",
@@ -5896,12 +6128,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/sys@v0.3.0?package-id=422a5886e900702c",
+      "bom-ref": "pkg:golang/golang.org/x/sys@v0.4.0?package-id=774c5e2246ef2065",
       "type": "library",
       "name": "golang.org/x/sys",
-      "version": "v0.3.0",
-      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.3.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/golang.org/x/sys@v0.3.0",
+      "version": "v0.4.0",
+      "cpe": "cpe:2.3:a:golang:x\\/sys:v0.4.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/sys@v0.4.0",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -5912,17 +6144,105 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:Zr2JFtRQNX3BCZ8YtxRE9hNJYC8J6I1MVbMg6owUp18="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/text@v0.3.7?package-id=d359038d99f64aec",
+      "bom-ref": "pkg:golang/golang.org/x/term@v0.4.0?package-id=13b429b2c12248dc",
+      "type": "library",
+      "name": "golang.org/x/term",
+      "version": "v0.4.0",
+      "cpe": "cpe:2.3:a:golang:x\\/term:v0.4.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/term@v0.4.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-module-binary-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "bomber"
+        },
+        {
+          "name": "syft:metadata:architecture",
+          "value": "amd64"
+        },
+        {
+          "name": "syft:metadata:goCompiledVersion",
+          "value": "go1.19.4"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:O7UWfv5+A2qiuulQk30kVinPoMtoIPeVaKLEgLpVkvg="
+        },
+        {
+          "name": "syft:metadata:mainModule",
+          "value": "github.com/devops-kung-fu/bomber"
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/term@v0.4.0?package-id=7757123056db1a09",
+      "type": "library",
+      "name": "golang.org/x/term",
+      "version": "v0.4.0",
+      "cpe": "cpe:2.3:a:golang:x\\/term:v0.4.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/term@v0.4.0",
+      "properties": [
+        {
+          "name": "syft:package:foundBy",
+          "value": "go-mod-file-cataloger"
+        },
+        {
+          "name": "syft:package:language",
+          "value": "go"
+        },
+        {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
+          "name": "syft:package:type",
+          "value": "go-module"
+        },
+        {
+          "name": "syft:location:0:path",
+          "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:O7UWfv5+A2qiuulQk30kVinPoMtoIPeVaKLEgLpVkvg="
+        }
+      ]
+    },
+    {
+      "bom-ref": "pkg:golang/golang.org/x/text@v0.3.7?package-id=8de9869955832c77",
       "type": "library",
       "name": "golang.org/x/text",
       "version": "v0.3.7",
@@ -5939,7 +6259,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -6003,7 +6323,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -6036,12 +6356,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/text@v0.5.0?package-id=4b8a4bec9fe8dde1",
+      "bom-ref": "pkg:golang/golang.org/x/text@v0.6.0?package-id=416a6c5fa0a7f9ed",
       "type": "library",
       "name": "golang.org/x/text",
-      "version": "v0.5.0",
-      "cpe": "cpe:2.3:a:golang:x\\/text:v0.5.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/golang.org/x/text@v0.5.0",
+      "version": "v0.6.0",
+      "cpe": "cpe:2.3:a:golang:x\\/text:v0.6.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/text@v0.6.0",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -6053,7 +6373,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -6069,11 +6389,11 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:OLmvp0KP+FVG99Ct/qFiL/Fhk4zp4QQnZ7b2U+5piUM="
+          "value": "h1:3XmdazWV+ubf7QgHSTWeykHOci5oeekaGJBLkrkaw4k="
         },
         {
           "name": "syft:metadata:mainModule",
@@ -6082,12 +6402,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/golang.org/x/text@v0.5.0?package-id=5104ecb5da62f010",
+      "bom-ref": "pkg:golang/golang.org/x/text@v0.6.0?package-id=f11c275003afbabb",
       "type": "library",
       "name": "golang.org/x/text",
-      "version": "v0.5.0",
-      "cpe": "cpe:2.3:a:golang:x\\/text:v0.5.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/golang.org/x/text@v0.5.0",
+      "version": "v0.6.0",
+      "cpe": "cpe:2.3:a:golang:x\\/text:v0.6.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/golang.org/x/text@v0.6.0",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -6098,17 +6418,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:3XmdazWV+ubf7QgHSTWeykHOci5oeekaGJBLkrkaw4k="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/gopkg.in/check.v1@v1.0.0-20200227125254-8fa46927fb4f?package-id=192d7d889029e5d6",
+      "bom-ref": "pkg:golang/gopkg.in/check.v1@v1.0.0-20200227125254-8fa46927fb4f?package-id=1130dae0e731a443",
       "type": "library",
       "name": "gopkg.in/check.v1",
       "version": "v1.0.0-20200227125254-8fa46927fb4f",
@@ -6123,17 +6451,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:BLraFXnmrev5lT+xlilqcH8XK9/i0At2xKjWk4p6zsU="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/gopkg.in/check.v1@v1.0.0-20200227125254-8fa46927fb4f?package-id=91ef508321667305",
+      "bom-ref": "pkg:golang/gopkg.in/check.v1@v1.0.0-20200227125254-8fa46927fb4f?package-id=80b796cfc4925814",
       "type": "library",
       "name": "gopkg.in/check.v1",
       "version": "v1.0.0-20200227125254-8fa46927fb4f",
@@ -6149,7 +6485,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -6187,7 +6523,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/gopkg.in/yaml.v3@v3.0.1?package-id=bfcb982d80a9b972",
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v3@v3.0.1?package-id=8140ce5f24ed005b",
       "type": "library",
       "name": "gopkg.in/yaml.v3",
       "version": "v3.0.1",
@@ -6202,17 +6538,25 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA="
         }
       ]
     },
     {
-      "bom-ref": "pkg:golang/gopkg.in/yaml.v3@v3.0.1?package-id=7cdb11590526bba3",
+      "bom-ref": "pkg:golang/gopkg.in/yaml.v3@v3.0.1?package-id=98429ab105e7d38",
       "type": "library",
       "name": "gopkg.in/yaml.v3",
       "version": "v3.0.1",
@@ -6228,7 +6572,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -6266,9 +6610,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/gpgv@2.2.27-3ubuntu2.1?arch=amd64\u0026upstream=gnupg2\u0026distro=ubuntu-22.04\u0026package-id=43190ec1753195bd",
+      "bom-ref": "pkg:deb/ubuntu/gpgv@2.2.27-3ubuntu2.1?arch=amd64&upstream=gnupg2&distro=ubuntu-22.04&package-id=43190ec1753195bd",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "gpgv",
       "version": "2.2.27-3ubuntu2.1",
       "licenses": [
@@ -6314,7 +6658,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:gpgv:gpgv:2.2.27-3ubuntu2.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/gpgv@2.2.27-3ubuntu2.1?arch=amd64\u0026upstream=gnupg2\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/gpgv@2.2.27-3ubuntu2.1?arch=amd64&upstream=gnupg2&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -6347,9 +6691,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/grep@3.7-1build1?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=d1ba275190b45ccf",
+      "bom-ref": "pkg:deb/ubuntu/grep@3.7-1build1?arch=amd64&distro=ubuntu-22.04&package-id=d1ba275190b45ccf",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "grep",
       "version": "3.7-1build1",
       "licenses": [
@@ -6365,7 +6709,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:grep:grep:3.7-1build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/grep@3.7-1build1?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/grep@3.7-1build1?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -6394,9 +6738,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/gzip@1.10-4ubuntu4?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=6cc501d5cf5a481e",
+      "bom-ref": "pkg:deb/ubuntu/gzip@1.10-4ubuntu4?arch=amd64&distro=ubuntu-22.04&package-id=6cc501d5cf5a481e",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "gzip",
       "version": "1.10-4ubuntu4",
       "licenses": [
@@ -6412,7 +6756,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:gzip:gzip:1.10-4ubuntu4:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/gzip@1.10-4ubuntu4?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/gzip@1.10-4ubuntu4?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -6441,9 +6785,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/hostname@3.23ubuntu2?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=1ffc7e6e34b35fd3",
+      "bom-ref": "pkg:deb/ubuntu/hostname@3.23ubuntu2?arch=amd64&distro=ubuntu-22.04&package-id=1ffc7e6e34b35fd3",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "hostname",
       "version": "3.23ubuntu2",
       "licenses": [
@@ -6454,7 +6798,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:hostname:hostname:3.23ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/hostname@3.23ubuntu2?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/hostname@3.23ubuntu2?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -6483,9 +6827,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/init-system-helpers@1.62?arch=all\u0026distro=ubuntu-22.04\u0026package-id=813a70fcf364add1",
+      "bom-ref": "pkg:deb/ubuntu/init-system-helpers@1.62?arch=all&distro=ubuntu-22.04&package-id=813a70fcf364add1",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "init-system-helpers",
       "version": "1.62",
       "licenses": [
@@ -6506,7 +6850,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:init-system-helpers:init-system-helpers:1.62:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/init-system-helpers@1.62?arch=all\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/init-system-helpers@1.62?arch=all&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -6607,7 +6951,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20220922133306-665eaaec4324?package-id=340e658e98abae49",
+      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20220922133306-665eaaec4324?package-id=ec34beb641055d52",
       "type": "library",
       "name": "k8s.io/utils",
       "version": "v0.0.0-20220922133306-665eaaec4324",
@@ -6623,7 +6967,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -6677,7 +7021,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -6706,7 +7050,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20221128185143-99ec85e7a448?package-id=fe58a3c42d090453",
+      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20221128185143-99ec85e7a448?package-id=ca7836e207e9c8b0",
       "type": "library",
       "name": "k8s.io/utils",
       "version": "v0.0.0-20221128185143-99ec85e7a448",
@@ -6722,7 +7066,7 @@
         },
         {
           "name": "syft:package:metadataType",
-          "value": "GolangBinMetadata"
+          "value": "GolangMetadata"
         },
         {
           "name": "syft:package:type",
@@ -6738,7 +7082,7 @@
         },
         {
           "name": "syft:metadata:goCompiledVersion",
-          "value": "go1.19.2"
+          "value": "go1.19.4"
         },
         {
           "name": "syft:metadata:h1Digest",
@@ -6751,7 +7095,7 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20221128185143-99ec85e7a448?package-id=eb6f2c50c567e6b0",
+      "bom-ref": "pkg:golang/k8s.io/utils@v0.0.0-20221128185143-99ec85e7a448?package-id=14df3c8c87f57287",
       "type": "library",
       "name": "k8s.io/utils",
       "version": "v0.0.0-20221128185143-99ec85e7a448",
@@ -6766,19 +7110,27 @@
           "value": "go"
         },
         {
+          "name": "syft:package:metadataType",
+          "value": "GolangMetadata"
+        },
+        {
           "name": "syft:package:type",
           "value": "go-module"
         },
         {
           "name": "syft:location:0:path",
           "value": "go.mod"
+        },
+        {
+          "name": "syft:metadata:h1Digest",
+          "value": "h1:KTgPnR10d5zhztWptI952TNtt/4u5h3IzDXkdIMuo2Y="
         }
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libacl1@2.3.1-1?arch=amd64\u0026upstream=acl\u0026distro=ubuntu-22.04\u0026package-id=982938b582ecdf53",
+      "bom-ref": "pkg:deb/ubuntu/libacl1@2.3.1-1?arch=amd64&upstream=acl&distro=ubuntu-22.04&package-id=982938b582ecdf53",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libacl1",
       "version": "2.3.1-1",
       "licenses": [
@@ -6804,7 +7156,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libacl1:libacl1:2.3.1-1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libacl1@2.3.1-1?arch=amd64\u0026upstream=acl\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libacl1@2.3.1-1?arch=amd64&upstream=acl&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -6837,9 +7189,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libapt-pkg6.0@2.4.6?arch=amd64\u0026upstream=apt\u0026distro=ubuntu-22.04\u0026package-id=9efdc704a7d7e372",
+      "bom-ref": "pkg:deb/ubuntu/libapt-pkg6.0@2.4.6?arch=amd64&upstream=apt&distro=ubuntu-22.04&package-id=9efdc704a7d7e372",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libapt-pkg6.0",
       "version": "2.4.6",
       "licenses": [
@@ -6850,7 +7202,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libapt-pkg6.0:libapt-pkg6.0:2.4.6:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libapt-pkg6.0@2.4.6?arch=amd64\u0026upstream=apt\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libapt-pkg6.0@2.4.6?arch=amd64&upstream=apt&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -6923,9 +7275,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libattr1@1:2.5.1-1build1?arch=amd64\u0026upstream=attr\u0026distro=ubuntu-22.04\u0026package-id=9fd6cd11cbf40904",
+      "bom-ref": "pkg:deb/ubuntu/libattr1@1:2.5.1-1build1?arch=amd64&upstream=attr&distro=ubuntu-22.04&package-id=9fd6cd11cbf40904",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libattr1",
       "version": "1:2.5.1-1build1",
       "licenses": [
@@ -6951,7 +7303,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libattr1:libattr1:1\\:2.5.1-1build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libattr1@1:2.5.1-1build1?arch=amd64\u0026upstream=attr\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libattr1@1:2.5.1-1build1?arch=amd64&upstream=attr&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -6984,9 +7336,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libaudit-common@1:3.0.7-1build1?arch=all\u0026upstream=audit\u0026distro=ubuntu-22.04\u0026package-id=a652d5fad61e79d8",
+      "bom-ref": "pkg:deb/ubuntu/libaudit-common@1:3.0.7-1build1?arch=all&upstream=audit&distro=ubuntu-22.04&package-id=a652d5fad61e79d8",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libaudit-common",
       "version": "1:3.0.7-1build1",
       "licenses": [
@@ -7007,7 +7359,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libaudit-common:libaudit-common:1\\:3.0.7-1build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libaudit-common@1:3.0.7-1build1?arch=all\u0026upstream=audit\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libaudit-common@1:3.0.7-1build1?arch=all&upstream=audit&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7080,9 +7432,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libaudit1@1:3.0.7-1build1?arch=amd64\u0026upstream=audit\u0026distro=ubuntu-22.04\u0026package-id=855ce8069c278298",
+      "bom-ref": "pkg:deb/ubuntu/libaudit1@1:3.0.7-1build1?arch=amd64&upstream=audit&distro=ubuntu-22.04&package-id=855ce8069c278298",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libaudit1",
       "version": "1:3.0.7-1build1",
       "licenses": [
@@ -7103,7 +7455,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libaudit1:libaudit1:1\\:3.0.7-1build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libaudit1@1:3.0.7-1build1?arch=amd64\u0026upstream=audit\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libaudit1@1:3.0.7-1build1?arch=amd64&upstream=audit&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7136,9 +7488,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libblkid1@2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux\u0026distro=ubuntu-22.04\u0026package-id=350e1e8f89abb782",
+      "bom-ref": "pkg:deb/ubuntu/libblkid1@2.37.2-4ubuntu3?arch=amd64&upstream=util-linux&distro=ubuntu-22.04&package-id=350e1e8f89abb782",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libblkid1",
       "version": "2.37.2-4ubuntu3",
       "licenses": [
@@ -7214,7 +7566,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libblkid1:libblkid1:2.37.2-4ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libblkid1@2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libblkid1@2.37.2-4ubuntu3?arch=amd64&upstream=util-linux&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7247,9 +7599,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libbz2-1.0@1.0.8-5build1?arch=amd64\u0026upstream=bzip2\u0026distro=ubuntu-22.04\u0026package-id=3fba764521c39aeb",
+      "bom-ref": "pkg:deb/ubuntu/libbz2-1.0@1.0.8-5build1?arch=amd64&upstream=bzip2&distro=ubuntu-22.04&package-id=3fba764521c39aeb",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libbz2-1.0",
       "version": "1.0.8-5build1",
       "licenses": [
@@ -7260,7 +7612,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libbz2-1.0:libbz2-1.0:1.0.8-5build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libbz2-1.0@1.0.8-5build1?arch=amd64\u0026upstream=bzip2\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libbz2-1.0@1.0.8-5build1?arch=amd64&upstream=bzip2&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7333,9 +7685,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libc-bin@2.35-0ubuntu3.1?arch=amd64\u0026upstream=glibc\u0026distro=ubuntu-22.04\u0026package-id=8dfe1e0c3b6831ff",
+      "bom-ref": "pkg:deb/ubuntu/libc-bin@2.35-0ubuntu3.1?arch=amd64&upstream=glibc&distro=ubuntu-22.04&package-id=8dfe1e0c3b6831ff",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libc-bin",
       "version": "2.35-0ubuntu3.1",
       "licenses": [
@@ -7356,7 +7708,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libc-bin:libc-bin:2.35-0ubuntu3.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libc-bin@2.35-0ubuntu3.1?arch=amd64\u0026upstream=glibc\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libc-bin@2.35-0ubuntu3.1?arch=amd64&upstream=glibc&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7429,9 +7781,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libc6@2.35-0ubuntu3.1?arch=amd64\u0026upstream=glibc\u0026distro=ubuntu-22.04\u0026package-id=60aa624823d26ac3",
+      "bom-ref": "pkg:deb/ubuntu/libc6@2.35-0ubuntu3.1?arch=amd64&upstream=glibc&distro=ubuntu-22.04&package-id=60aa624823d26ac3",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libc6",
       "version": "2.35-0ubuntu3.1",
       "licenses": [
@@ -7452,7 +7804,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libc6:libc6:2.35-0ubuntu3.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libc6@2.35-0ubuntu3.1?arch=amd64\u0026upstream=glibc\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libc6@2.35-0ubuntu3.1?arch=amd64&upstream=glibc&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7485,9 +7837,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libcap-ng0@0.7.9-2.2build3?arch=amd64\u0026upstream=libcap-ng\u0026distro=ubuntu-22.04\u0026package-id=c32753e936cd4317",
+      "bom-ref": "pkg:deb/ubuntu/libcap-ng0@0.7.9-2.2build3?arch=amd64&upstream=libcap-ng&distro=ubuntu-22.04&package-id=c32753e936cd4317",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libcap-ng0",
       "version": "0.7.9-2.2build3",
       "licenses": [
@@ -7508,7 +7860,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libcap-ng0:libcap-ng0:0.7.9-2.2build3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libcap-ng0@0.7.9-2.2build3?arch=amd64\u0026upstream=libcap-ng\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libcap-ng0@0.7.9-2.2build3?arch=amd64&upstream=libcap-ng&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7581,9 +7933,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libcap2@1:2.44-1build3?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=5fa8956b49f1d96b",
+      "bom-ref": "pkg:deb/ubuntu/libcap2@1:2.44-1build3?arch=amd64&distro=ubuntu-22.04&package-id=5fa8956b49f1d96b",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libcap2",
       "version": "1:2.44-1build3",
       "licenses": [
@@ -7604,7 +7956,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libcap2:libcap2:1\\:2.44-1build3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libcap2@1:2.44-1build3?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libcap2@1:2.44-1build3?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7633,13 +7985,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libcom-err2@1.46.5-2ubuntu1.1?arch=amd64\u0026upstream=e2fsprogs\u0026distro=ubuntu-22.04\u0026package-id=d7cebf8f3822715c",
+      "bom-ref": "pkg:deb/ubuntu/libcom-err2@1.46.5-2ubuntu1.1?arch=amd64&upstream=e2fsprogs&distro=ubuntu-22.04&package-id=d7cebf8f3822715c",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libcom-err2",
       "version": "1.46.5-2ubuntu1.1",
       "cpe": "cpe:2.3:a:libcom-err2:libcom-err2:1.46.5-2ubuntu1.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libcom-err2@1.46.5-2ubuntu1.1?arch=amd64\u0026upstream=e2fsprogs\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libcom-err2@1.46.5-2ubuntu1.1?arch=amd64&upstream=e2fsprogs&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7712,13 +8064,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libcrypt1@1:4.4.27-1?arch=amd64\u0026upstream=libxcrypt\u0026distro=ubuntu-22.04\u0026package-id=925106fcef3e7c96",
+      "bom-ref": "pkg:deb/ubuntu/libcrypt1@1:4.4.27-1?arch=amd64&upstream=libxcrypt&distro=ubuntu-22.04&package-id=925106fcef3e7c96",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libcrypt1",
       "version": "1:4.4.27-1",
       "cpe": "cpe:2.3:a:libcrypt1:libcrypt1:1\\:4.4.27-1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libcrypt1@1:4.4.27-1?arch=amd64\u0026upstream=libxcrypt\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libcrypt1@1:4.4.27-1?arch=amd64&upstream=libxcrypt&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7751,13 +8103,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libdb5.3@5.3.28+dfsg1-0.8ubuntu3?arch=amd64\u0026upstream=db5.3\u0026distro=ubuntu-22.04\u0026package-id=cdf887923912a7ef",
+      "bom-ref": "pkg:deb/ubuntu/libdb5.3@5.3.28+dfsg1-0.8ubuntu3?arch=amd64&upstream=db5.3&distro=ubuntu-22.04&package-id=cdf887923912a7ef",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libdb5.3",
       "version": "5.3.28+dfsg1-0.8ubuntu3",
       "cpe": "cpe:2.3:a:libdb5.3:libdb5.3:5.3.28\\+dfsg1-0.8ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libdb5.3@5.3.28+dfsg1-0.8ubuntu3?arch=amd64\u0026upstream=db5.3\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libdb5.3@5.3.28+dfsg1-0.8ubuntu3?arch=amd64&upstream=db5.3&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7790,13 +8142,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libdebconfclient0@0.261ubuntu1?arch=amd64\u0026upstream=cdebconf\u0026distro=ubuntu-22.04\u0026package-id=ef3424a4d62890ee",
+      "bom-ref": "pkg:deb/ubuntu/libdebconfclient0@0.261ubuntu1?arch=amd64&upstream=cdebconf&distro=ubuntu-22.04&package-id=ef3424a4d62890ee",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libdebconfclient0",
       "version": "0.261ubuntu1",
       "cpe": "cpe:2.3:a:libdebconfclient0:libdebconfclient0:0.261ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libdebconfclient0@0.261ubuntu1?arch=amd64\u0026upstream=cdebconf\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libdebconfclient0@0.261ubuntu1?arch=amd64&upstream=cdebconf&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7829,9 +8181,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libext2fs2@1.46.5-2ubuntu1.1?arch=amd64\u0026upstream=e2fsprogs\u0026distro=ubuntu-22.04\u0026package-id=ddb9d33d83193f7e",
+      "bom-ref": "pkg:deb/ubuntu/libext2fs2@1.46.5-2ubuntu1.1?arch=amd64&upstream=e2fsprogs&distro=ubuntu-22.04&package-id=ddb9d33d83193f7e",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libext2fs2",
       "version": "1.46.5-2ubuntu1.1",
       "licenses": [
@@ -7847,7 +8199,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libext2fs2:libext2fs2:1.46.5-2ubuntu1.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libext2fs2@1.46.5-2ubuntu1.1?arch=amd64\u0026upstream=e2fsprogs\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libext2fs2@1.46.5-2ubuntu1.1?arch=amd64&upstream=e2fsprogs&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7880,13 +8232,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libffi8@3.4.2-4?arch=amd64\u0026upstream=libffi\u0026distro=ubuntu-22.04\u0026package-id=97c6285c1a417995",
+      "bom-ref": "pkg:deb/ubuntu/libffi8@3.4.2-4?arch=amd64&upstream=libffi&distro=ubuntu-22.04&package-id=97c6285c1a417995",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libffi8",
       "version": "3.4.2-4",
       "cpe": "cpe:2.3:a:libffi8:libffi8:3.4.2-4:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libffi8@3.4.2-4?arch=amd64\u0026upstream=libffi\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libffi8@3.4.2-4?arch=amd64&upstream=libffi&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -7919,9 +8271,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libgcc-s1@12-20220319-1ubuntu1?arch=amd64\u0026upstream=gcc-12\u0026distro=ubuntu-22.04\u0026package-id=8dcf05abceff819e",
+      "bom-ref": "pkg:deb/ubuntu/libgcc-s1@12-20220319-1ubuntu1?arch=amd64&upstream=gcc-12&distro=ubuntu-22.04&package-id=8dcf05abceff819e",
       "type": "library",
-      "publisher": "Ubuntu Core developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libgcc-s1",
       "version": "12-20220319-1ubuntu1",
       "licenses": [
@@ -7942,7 +8294,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libgcc-s1:libgcc-s1:12-20220319-1ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libgcc-s1@12-20220319-1ubuntu1?arch=amd64\u0026upstream=gcc-12\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libgcc-s1@12-20220319-1ubuntu1?arch=amd64&upstream=gcc-12&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8015,9 +8367,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libgcrypt20@1.9.4-3ubuntu3?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=5670051b2fbac5b5",
+      "bom-ref": "pkg:deb/ubuntu/libgcrypt20@1.9.4-3ubuntu3?arch=amd64&distro=ubuntu-22.04&package-id=5670051b2fbac5b5",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libgcrypt20",
       "version": "1.9.4-3ubuntu3",
       "licenses": [
@@ -8028,7 +8380,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libgcrypt20:libgcrypt20:1.9.4-3ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libgcrypt20@1.9.4-3ubuntu3?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libgcrypt20@1.9.4-3ubuntu3?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8057,9 +8409,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libgmp10@2:6.2.1+dfsg-3ubuntu1?arch=amd64\u0026upstream=gmp\u0026distro=ubuntu-22.04\u0026package-id=822e3f074ddbe98c",
+      "bom-ref": "pkg:deb/ubuntu/libgmp10@2:6.2.1+dfsg-3ubuntu1?arch=amd64&upstream=gmp&distro=ubuntu-22.04&package-id=822e3f074ddbe98c",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libgmp10",
       "version": "2:6.2.1+dfsg-3ubuntu1",
       "licenses": [
@@ -8080,7 +8432,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libgmp10:libgmp10:2\\:6.2.1\\+dfsg-3ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libgmp10@2:6.2.1+dfsg-3ubuntu1?arch=amd64\u0026upstream=gmp\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libgmp10@2:6.2.1+dfsg-3ubuntu1?arch=amd64&upstream=gmp&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8113,9 +8465,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libgnutls30@3.7.3-4ubuntu1?arch=amd64\u0026upstream=gnutls28\u0026distro=ubuntu-22.04\u0026package-id=a9b9456cd67b9904",
+      "bom-ref": "pkg:deb/ubuntu/libgnutls30@3.7.3-4ubuntu1?arch=amd64&upstream=gnutls28&distro=ubuntu-22.04&package-id=a9b9456cd67b9904",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libgnutls30",
       "version": "3.7.3-4ubuntu1",
       "licenses": [
@@ -8146,7 +8498,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libgnutls30:libgnutls30:3.7.3-4ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libgnutls30@3.7.3-4ubuntu1?arch=amd64\u0026upstream=gnutls28\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libgnutls30@3.7.3-4ubuntu1?arch=amd64&upstream=gnutls28&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8179,9 +8531,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libgpg-error0@1.43-3?arch=amd64\u0026upstream=libgpg-error\u0026distro=ubuntu-22.04\u0026package-id=a428be9a7999438d",
+      "bom-ref": "pkg:deb/ubuntu/libgpg-error0@1.43-3?arch=amd64&upstream=libgpg-error&distro=ubuntu-22.04&package-id=a428be9a7999438d",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libgpg-error0",
       "version": "1.43-3",
       "licenses": [
@@ -8212,7 +8564,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libgpg-error0:libgpg-error0:1.43-3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libgpg-error0@1.43-3?arch=amd64\u0026upstream=libgpg-error\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libgpg-error0@1.43-3?arch=amd64&upstream=libgpg-error&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8285,9 +8637,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libgssapi-krb5-2@1.19.2-2?arch=amd64\u0026upstream=krb5\u0026distro=ubuntu-22.04\u0026package-id=9a936c850412fc9c",
+      "bom-ref": "pkg:deb/ubuntu/libgssapi-krb5-2@1.19.2-2?arch=amd64&upstream=krb5&distro=ubuntu-22.04&package-id=9a936c850412fc9c",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libgssapi-krb5-2",
       "version": "1.19.2-2",
       "licenses": [
@@ -8298,7 +8650,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libgssapi-krb5-2:libgssapi-krb5-2:1.19.2-2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libgssapi-krb5-2@1.19.2-2?arch=amd64\u0026upstream=krb5\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libgssapi-krb5-2@1.19.2-2?arch=amd64&upstream=krb5&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8403,9 +8755,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libhogweed6@3.7.3-1build2?arch=amd64\u0026upstream=nettle\u0026distro=ubuntu-22.04\u0026package-id=a881b05dc09e25ad",
+      "bom-ref": "pkg:deb/ubuntu/libhogweed6@3.7.3-1build2?arch=amd64&upstream=nettle&distro=ubuntu-22.04&package-id=a881b05dc09e25ad",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libhogweed6",
       "version": "3.7.3-1build2",
       "licenses": [
@@ -8441,7 +8793,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libhogweed6:libhogweed6:3.7.3-1build2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libhogweed6@3.7.3-1build2?arch=amd64\u0026upstream=nettle\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libhogweed6@3.7.3-1build2?arch=amd64&upstream=nettle&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8474,9 +8826,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libidn2-0@2.3.2-2build1?arch=amd64\u0026upstream=libidn2\u0026distro=ubuntu-22.04\u0026package-id=af47d97b7ae1161f",
+      "bom-ref": "pkg:deb/ubuntu/libidn2-0@2.3.2-2build1?arch=amd64&upstream=libidn2&distro=ubuntu-22.04&package-id=af47d97b7ae1161f",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libidn2-0",
       "version": "2.3.2-2build1",
       "licenses": [
@@ -8512,7 +8864,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libidn2-0:libidn2-0:2.3.2-2build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libidn2-0@2.3.2-2build1?arch=amd64\u0026upstream=libidn2\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libidn2-0@2.3.2-2build1?arch=amd64&upstream=libidn2&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8585,9 +8937,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libk5crypto3@1.19.2-2?arch=amd64\u0026upstream=krb5\u0026distro=ubuntu-22.04\u0026package-id=583e748627760a6f",
+      "bom-ref": "pkg:deb/ubuntu/libk5crypto3@1.19.2-2?arch=amd64&upstream=krb5&distro=ubuntu-22.04&package-id=583e748627760a6f",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libk5crypto3",
       "version": "1.19.2-2",
       "licenses": [
@@ -8598,7 +8950,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libk5crypto3:libk5crypto3:1.19.2-2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libk5crypto3@1.19.2-2?arch=amd64\u0026upstream=krb5\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libk5crypto3@1.19.2-2?arch=amd64&upstream=krb5&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8631,9 +8983,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libkeyutils1@1.6.1-2ubuntu3?arch=amd64\u0026upstream=keyutils\u0026distro=ubuntu-22.04\u0026package-id=d52d60e0918dbb18",
+      "bom-ref": "pkg:deb/ubuntu/libkeyutils1@1.6.1-2ubuntu3?arch=amd64&upstream=keyutils&distro=ubuntu-22.04&package-id=d52d60e0918dbb18",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libkeyutils1",
       "version": "1.6.1-2ubuntu3",
       "licenses": [
@@ -8659,7 +9011,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libkeyutils1:libkeyutils1:1.6.1-2ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libkeyutils1@1.6.1-2ubuntu3?arch=amd64\u0026upstream=keyutils\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libkeyutils1@1.6.1-2ubuntu3?arch=amd64&upstream=keyutils&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8692,9 +9044,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libkrb5-3@1.19.2-2?arch=amd64\u0026upstream=krb5\u0026distro=ubuntu-22.04\u0026package-id=e0e8455a40299660",
+      "bom-ref": "pkg:deb/ubuntu/libkrb5-3@1.19.2-2?arch=amd64&upstream=krb5&distro=ubuntu-22.04&package-id=e0e8455a40299660",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libkrb5-3",
       "version": "1.19.2-2",
       "licenses": [
@@ -8705,7 +9057,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libkrb5-3:libkrb5-3:1.19.2-2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libkrb5-3@1.19.2-2?arch=amd64\u0026upstream=krb5\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libkrb5-3@1.19.2-2?arch=amd64&upstream=krb5&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8778,9 +9130,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libkrb5support0@1.19.2-2?arch=amd64\u0026upstream=krb5\u0026distro=ubuntu-22.04\u0026package-id=3588993c45926476",
+      "bom-ref": "pkg:deb/ubuntu/libkrb5support0@1.19.2-2?arch=amd64&upstream=krb5&distro=ubuntu-22.04&package-id=3588993c45926476",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libkrb5support0",
       "version": "1.19.2-2",
       "licenses": [
@@ -8791,7 +9143,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libkrb5support0:libkrb5support0:1.19.2-2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libkrb5support0@1.19.2-2?arch=amd64\u0026upstream=krb5\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libkrb5support0@1.19.2-2?arch=amd64&upstream=krb5&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8824,9 +9176,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/liblz4-1@1.9.3-2build2?arch=amd64\u0026upstream=lz4\u0026distro=ubuntu-22.04\u0026package-id=1200fb9b248e46ab",
+      "bom-ref": "pkg:deb/ubuntu/liblz4-1@1.9.3-2build2?arch=amd64&upstream=lz4&distro=ubuntu-22.04&package-id=1200fb9b248e46ab",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "liblz4-1",
       "version": "1.9.3-2build2",
       "licenses": [
@@ -8847,7 +9199,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:liblz4-1:liblz4-1:1.9.3-2build2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/liblz4-1@1.9.3-2build2?arch=amd64\u0026upstream=lz4\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/liblz4-1@1.9.3-2build2?arch=amd64&upstream=lz4&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8920,9 +9272,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/liblzma5@5.2.5-2ubuntu1?arch=amd64\u0026upstream=xz-utils\u0026distro=ubuntu-22.04\u0026package-id=c63c142f4ae1a683",
+      "bom-ref": "pkg:deb/ubuntu/liblzma5@5.2.5-2ubuntu1?arch=amd64&upstream=xz-utils&distro=ubuntu-22.04&package-id=c63c142f4ae1a683",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "liblzma5",
       "version": "5.2.5-2ubuntu1",
       "licenses": [
@@ -8958,7 +9310,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:liblzma5:liblzma5:5.2.5-2ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/liblzma5@5.2.5-2ubuntu1?arch=amd64\u0026upstream=xz-utils\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/liblzma5@5.2.5-2ubuntu1?arch=amd64&upstream=xz-utils&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -8991,9 +9343,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libmount1@2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux\u0026distro=ubuntu-22.04\u0026package-id=ea8ad5871724dfa8",
+      "bom-ref": "pkg:deb/ubuntu/libmount1@2.37.2-4ubuntu3?arch=amd64&upstream=util-linux&distro=ubuntu-22.04&package-id=ea8ad5871724dfa8",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libmount1",
       "version": "2.37.2-4ubuntu3",
       "licenses": [
@@ -9069,7 +9421,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libmount1:libmount1:2.37.2-4ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libmount1@2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libmount1@2.37.2-4ubuntu3?arch=amd64&upstream=util-linux&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9102,9 +9454,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libncurses6@6.3-2?arch=amd64\u0026upstream=ncurses\u0026distro=ubuntu-22.04\u0026package-id=aa13087fa3a40fad",
+      "bom-ref": "pkg:deb/ubuntu/libncurses6@6.3-2?arch=amd64&upstream=ncurses&distro=ubuntu-22.04&package-id=aa13087fa3a40fad",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libncurses6",
       "version": "6.3-2",
       "licenses": [
@@ -9120,7 +9472,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libncurses6:libncurses6:6.3-2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libncurses6@6.3-2?arch=amd64\u0026upstream=ncurses\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libncurses6@6.3-2?arch=amd64&upstream=ncurses&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9153,9 +9505,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libncursesw6@6.3-2?arch=amd64\u0026upstream=ncurses\u0026distro=ubuntu-22.04\u0026package-id=6b2b737fd0f24176",
+      "bom-ref": "pkg:deb/ubuntu/libncursesw6@6.3-2?arch=amd64&upstream=ncurses&distro=ubuntu-22.04&package-id=6b2b737fd0f24176",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libncursesw6",
       "version": "6.3-2",
       "licenses": [
@@ -9171,7 +9523,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libncursesw6:libncursesw6:6.3-2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libncursesw6@6.3-2?arch=amd64\u0026upstream=ncurses\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libncursesw6@6.3-2?arch=amd64&upstream=ncurses&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9204,9 +9556,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libnettle8@3.7.3-1build2?arch=amd64\u0026upstream=nettle\u0026distro=ubuntu-22.04\u0026package-id=15f804750a0a0f4c",
+      "bom-ref": "pkg:deb/ubuntu/libnettle8@3.7.3-1build2?arch=amd64&upstream=nettle&distro=ubuntu-22.04&package-id=15f804750a0a0f4c",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libnettle8",
       "version": "3.7.3-1build2",
       "licenses": [
@@ -9242,7 +9594,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libnettle8:libnettle8:3.7.3-1build2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libnettle8@3.7.3-1build2?arch=amd64\u0026upstream=nettle\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libnettle8@3.7.3-1build2?arch=amd64&upstream=nettle&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9275,9 +9627,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libnsl2@1.3.0-2build2?arch=amd64\u0026upstream=libnsl\u0026distro=ubuntu-22.04\u0026package-id=407d133ecda16a93",
+      "bom-ref": "pkg:deb/ubuntu/libnsl2@1.3.0-2build2?arch=amd64&upstream=libnsl&distro=ubuntu-22.04&package-id=407d133ecda16a93",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libnsl2",
       "version": "1.3.0-2build2",
       "licenses": [
@@ -9313,7 +9665,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libnsl2:libnsl2:1.3.0-2build2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libnsl2@1.3.0-2build2?arch=amd64\u0026upstream=libnsl\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libnsl2@1.3.0-2build2?arch=amd64&upstream=libnsl&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9346,9 +9698,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libp11-kit0@0.24.0-6build1?arch=amd64\u0026upstream=p11-kit\u0026distro=ubuntu-22.04\u0026package-id=7580eb2a25d0afc6",
+      "bom-ref": "pkg:deb/ubuntu/libp11-kit0@0.24.0-6build1?arch=amd64&upstream=p11-kit&distro=ubuntu-22.04&package-id=7580eb2a25d0afc6",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libp11-kit0",
       "version": "0.24.0-6build1",
       "licenses": [
@@ -9379,7 +9731,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libp11-kit0:libp11-kit0:0.24.0-6build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libp11-kit0@0.24.0-6build1?arch=amd64\u0026upstream=p11-kit\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libp11-kit0@0.24.0-6build1?arch=amd64&upstream=p11-kit&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9452,13 +9804,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpam-modules@1.4.0-11ubuntu2?arch=amd64\u0026upstream=pam\u0026distro=ubuntu-22.04\u0026package-id=2a3642aaf3fe2945",
+      "bom-ref": "pkg:deb/ubuntu/libpam-modules@1.4.0-11ubuntu2?arch=amd64&upstream=pam&distro=ubuntu-22.04&package-id=2a3642aaf3fe2945",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libpam-modules",
       "version": "1.4.0-11ubuntu2",
       "cpe": "cpe:2.3:a:libpam-modules:libpam-modules:1.4.0-11ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libpam-modules@1.4.0-11ubuntu2?arch=amd64\u0026upstream=pam\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libpam-modules@1.4.0-11ubuntu2?arch=amd64&upstream=pam&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9531,13 +9883,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpam-modules-bin@1.4.0-11ubuntu2?arch=amd64\u0026upstream=pam\u0026distro=ubuntu-22.04\u0026package-id=33e0b9ebbc7f9f2d",
+      "bom-ref": "pkg:deb/ubuntu/libpam-modules-bin@1.4.0-11ubuntu2?arch=amd64&upstream=pam&distro=ubuntu-22.04&package-id=33e0b9ebbc7f9f2d",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libpam-modules-bin",
       "version": "1.4.0-11ubuntu2",
       "cpe": "cpe:2.3:a:libpam-modules-bin:libpam-modules-bin:1.4.0-11ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libpam-modules-bin@1.4.0-11ubuntu2?arch=amd64\u0026upstream=pam\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libpam-modules-bin@1.4.0-11ubuntu2?arch=amd64&upstream=pam&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9642,13 +9994,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpam-runtime@1.4.0-11ubuntu2?arch=all\u0026upstream=pam\u0026distro=ubuntu-22.04\u0026package-id=2dc3ee90a24bb8d0",
+      "bom-ref": "pkg:deb/ubuntu/libpam-runtime@1.4.0-11ubuntu2?arch=all&upstream=pam&distro=ubuntu-22.04&package-id=2dc3ee90a24bb8d0",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libpam-runtime",
       "version": "1.4.0-11ubuntu2",
       "cpe": "cpe:2.3:a:libpam-runtime:libpam-runtime:1.4.0-11ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libpam-runtime@1.4.0-11ubuntu2?arch=all\u0026upstream=pam\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libpam-runtime@1.4.0-11ubuntu2?arch=all&upstream=pam&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9721,13 +10073,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpam0g@1.4.0-11ubuntu2?arch=amd64\u0026upstream=pam\u0026distro=ubuntu-22.04\u0026package-id=8f71852547717044",
+      "bom-ref": "pkg:deb/ubuntu/libpam0g@1.4.0-11ubuntu2?arch=amd64&upstream=pam&distro=ubuntu-22.04&package-id=8f71852547717044",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libpam0g",
       "version": "1.4.0-11ubuntu2",
       "cpe": "cpe:2.3:a:libpam0g:libpam0g:1.4.0-11ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libpam0g@1.4.0-11ubuntu2?arch=amd64\u0026upstream=pam\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libpam0g@1.4.0-11ubuntu2?arch=amd64&upstream=pam&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9760,13 +10112,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpcre2-8-0@10.39-3build1?arch=amd64\u0026upstream=pcre2\u0026distro=ubuntu-22.04\u0026package-id=de9f5c153ca2420b",
+      "bom-ref": "pkg:deb/ubuntu/libpcre2-8-0@10.39-3build1?arch=amd64&upstream=pcre2&distro=ubuntu-22.04&package-id=de9f5c153ca2420b",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libpcre2-8-0",
       "version": "10.39-3build1",
       "cpe": "cpe:2.3:a:libpcre2-8-0:libpcre2-8-0:10.39-3build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libpcre2-8-0@10.39-3build1?arch=amd64\u0026upstream=pcre2\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libpcre2-8-0@10.39-3build1?arch=amd64&upstream=pcre2&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9871,13 +10223,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libpcre3@2:8.39-13ubuntu0.22.04.1?arch=amd64\u0026upstream=pcre3\u0026distro=ubuntu-22.04\u0026package-id=fe371b16c10fe70",
+      "bom-ref": "pkg:deb/ubuntu/libpcre3@2:8.39-13ubuntu0.22.04.1?arch=amd64&upstream=pcre3&distro=ubuntu-22.04&package-id=fe371b16c10fe70",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libpcre3",
       "version": "2:8.39-13ubuntu0.22.04.1",
       "cpe": "cpe:2.3:a:libpcre3:libpcre3:2\\:8.39-13ubuntu0.22.04.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libpcre3@2:8.39-13ubuntu0.22.04.1?arch=amd64\u0026upstream=pcre3\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libpcre3@2:8.39-13ubuntu0.22.04.1?arch=amd64&upstream=pcre3&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9910,9 +10262,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libprocps8@2:3.3.17-6ubuntu2?arch=amd64\u0026upstream=procps\u0026distro=ubuntu-22.04\u0026package-id=914cc67c94824918",
+      "bom-ref": "pkg:deb/ubuntu/libprocps8@2:3.3.17-6ubuntu2?arch=amd64&upstream=procps&distro=ubuntu-22.04&package-id=914cc67c94824918",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libprocps8",
       "version": "2:3.3.17-6ubuntu2",
       "licenses": [
@@ -9948,7 +10300,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libprocps8:libprocps8:2\\:3.3.17-6ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libprocps8@2:3.3.17-6ubuntu2?arch=amd64\u0026upstream=procps\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libprocps8@2:3.3.17-6ubuntu2?arch=amd64&upstream=procps&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -9981,9 +10333,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libseccomp2@2.5.3-2ubuntu2?arch=amd64\u0026upstream=libseccomp\u0026distro=ubuntu-22.04\u0026package-id=b9be0b58633f57ba",
+      "bom-ref": "pkg:deb/ubuntu/libseccomp2@2.5.3-2ubuntu2?arch=amd64&upstream=libseccomp&distro=ubuntu-22.04&package-id=b9be0b58633f57ba",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libseccomp2",
       "version": "2.5.3-2ubuntu2",
       "licenses": [
@@ -9994,7 +10346,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libseccomp2:libseccomp2:2.5.3-2ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libseccomp2@2.5.3-2ubuntu2?arch=amd64\u0026upstream=libseccomp\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libseccomp2@2.5.3-2ubuntu2?arch=amd64&upstream=libseccomp&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10027,9 +10379,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libselinux1@3.3-1build2?arch=amd64\u0026upstream=libselinux\u0026distro=ubuntu-22.04\u0026package-id=65bf519d14c15ab",
+      "bom-ref": "pkg:deb/ubuntu/libselinux1@3.3-1build2?arch=amd64&upstream=libselinux&distro=ubuntu-22.04&package-id=65bf519d14c15ab",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libselinux1",
       "version": "3.3-1build2",
       "licenses": [
@@ -10045,7 +10397,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libselinux1:libselinux1:3.3-1build2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libselinux1@3.3-1build2?arch=amd64\u0026upstream=libselinux\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libselinux1@3.3-1build2?arch=amd64&upstream=libselinux&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10078,13 +10430,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libsemanage-common@3.3-1build2?arch=all\u0026upstream=libsemanage\u0026distro=ubuntu-22.04\u0026package-id=a36fb22365780f25",
+      "bom-ref": "pkg:deb/ubuntu/libsemanage-common@3.3-1build2?arch=all&upstream=libsemanage&distro=ubuntu-22.04&package-id=a36fb22365780f25",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libsemanage-common",
       "version": "3.3-1build2",
       "cpe": "cpe:2.3:a:libsemanage-common:libsemanage-common:3.3-1build2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libsemanage-common@3.3-1build2?arch=all\u0026upstream=libsemanage\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libsemanage-common@3.3-1build2?arch=all&upstream=libsemanage&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10157,13 +10509,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libsemanage2@3.3-1build2?arch=amd64\u0026upstream=libsemanage\u0026distro=ubuntu-22.04\u0026package-id=fe3264f5924e0157",
+      "bom-ref": "pkg:deb/ubuntu/libsemanage2@3.3-1build2?arch=amd64&upstream=libsemanage&distro=ubuntu-22.04&package-id=fe3264f5924e0157",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libsemanage2",
       "version": "3.3-1build2",
       "cpe": "cpe:2.3:a:libsemanage2:libsemanage2:3.3-1build2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libsemanage2@3.3-1build2?arch=amd64\u0026upstream=libsemanage\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libsemanage2@3.3-1build2?arch=amd64&upstream=libsemanage&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10196,13 +10548,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libsepol2@3.3-1build1?arch=amd64\u0026upstream=libsepol\u0026distro=ubuntu-22.04\u0026package-id=fff7b3f04042566e",
+      "bom-ref": "pkg:deb/ubuntu/libsepol2@3.3-1build1?arch=amd64&upstream=libsepol&distro=ubuntu-22.04&package-id=fff7b3f04042566e",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libsepol2",
       "version": "3.3-1build1",
       "cpe": "cpe:2.3:a:libsepol2:libsepol2:3.3-1build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libsepol2@3.3-1build1?arch=amd64\u0026upstream=libsepol\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libsepol2@3.3-1build1?arch=amd64&upstream=libsepol&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10235,9 +10587,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libsmartcols1@2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux\u0026distro=ubuntu-22.04\u0026package-id=22c4458992e9781b",
+      "bom-ref": "pkg:deb/ubuntu/libsmartcols1@2.37.2-4ubuntu3?arch=amd64&upstream=util-linux&distro=ubuntu-22.04&package-id=22c4458992e9781b",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libsmartcols1",
       "version": "2.37.2-4ubuntu3",
       "licenses": [
@@ -10313,7 +10665,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libsmartcols1:libsmartcols1:2.37.2-4ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libsmartcols1@2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libsmartcols1@2.37.2-4ubuntu3?arch=amd64&upstream=util-linux&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10346,13 +10698,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libss2@1.46.5-2ubuntu1.1?arch=amd64\u0026upstream=e2fsprogs\u0026distro=ubuntu-22.04\u0026package-id=8abe8e06c642d1b8",
+      "bom-ref": "pkg:deb/ubuntu/libss2@1.46.5-2ubuntu1.1?arch=amd64&upstream=e2fsprogs&distro=ubuntu-22.04&package-id=8abe8e06c642d1b8",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libss2",
       "version": "1.46.5-2ubuntu1.1",
       "cpe": "cpe:2.3:a:libss2:libss2:1.46.5-2ubuntu1.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libss2@1.46.5-2ubuntu1.1?arch=amd64\u0026upstream=e2fsprogs\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libss2@1.46.5-2ubuntu1.1?arch=amd64&upstream=e2fsprogs&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10385,9 +10737,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libssl3@3.0.2-0ubuntu1.6?arch=amd64\u0026upstream=openssl\u0026distro=ubuntu-22.04\u0026package-id=a18146b0ab664fa",
+      "bom-ref": "pkg:deb/ubuntu/libssl3@3.0.2-0ubuntu1.6?arch=amd64&upstream=openssl&distro=ubuntu-22.04&package-id=a18146b0ab664fa",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libssl3",
       "version": "3.0.2-0ubuntu1.6",
       "licenses": [
@@ -10408,7 +10760,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libssl3:libssl3:3.0.2-0ubuntu1.6:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libssl3@3.0.2-0ubuntu1.6?arch=amd64\u0026upstream=openssl\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libssl3@3.0.2-0ubuntu1.6?arch=amd64&upstream=openssl&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10441,9 +10793,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libstdc++6@12-20220319-1ubuntu1?arch=amd64\u0026upstream=gcc-12\u0026distro=ubuntu-22.04\u0026package-id=65254fabd72afa51",
+      "bom-ref": "pkg:deb/ubuntu/libstdc++6@12-20220319-1ubuntu1?arch=amd64&upstream=gcc-12&distro=ubuntu-22.04&package-id=65254fabd72afa51",
       "type": "library",
-      "publisher": "Ubuntu Core developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libstdc++6",
       "version": "12-20220319-1ubuntu1",
       "licenses": [
@@ -10464,7 +10816,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libstdc\\+\\+6:libstdc\\+\\+6:12-20220319-1ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libstdc++6@12-20220319-1ubuntu1?arch=amd64\u0026upstream=gcc-12\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libstdc++6@12-20220319-1ubuntu1?arch=amd64&upstream=gcc-12&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10497,9 +10849,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libsystemd0@249.11-0ubuntu3.4?arch=amd64\u0026upstream=systemd\u0026distro=ubuntu-22.04\u0026package-id=44c2a17d5207f995",
+      "bom-ref": "pkg:deb/ubuntu/libsystemd0@249.11-0ubuntu3.4?arch=amd64&upstream=systemd&distro=ubuntu-22.04&package-id=44c2a17d5207f995",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libsystemd0",
       "version": "249.11-0ubuntu3.4",
       "licenses": [
@@ -10530,7 +10882,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libsystemd0:libsystemd0:249.11-0ubuntu3.4:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libsystemd0@249.11-0ubuntu3.4?arch=amd64\u0026upstream=systemd\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libsystemd0@249.11-0ubuntu3.4?arch=amd64&upstream=systemd&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10563,9 +10915,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libtasn1-6@4.18.0-4build1?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=84045cf77dd1e03f",
+      "bom-ref": "pkg:deb/ubuntu/libtasn1-6@4.18.0-4build1?arch=amd64&distro=ubuntu-22.04&package-id=84045cf77dd1e03f",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libtasn1-6",
       "version": "4.18.0-4build1",
       "licenses": [
@@ -10586,7 +10938,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libtasn1-6:libtasn1-6:4.18.0-4build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libtasn1-6@4.18.0-4build1?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libtasn1-6@4.18.0-4build1?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10655,9 +11007,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libtinfo6@6.3-2?arch=amd64\u0026upstream=ncurses\u0026distro=ubuntu-22.04\u0026package-id=dbed952d6f75cf53",
+      "bom-ref": "pkg:deb/ubuntu/libtinfo6@6.3-2?arch=amd64&upstream=ncurses&distro=ubuntu-22.04&package-id=dbed952d6f75cf53",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libtinfo6",
       "version": "6.3-2",
       "licenses": [
@@ -10673,7 +11025,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libtinfo6:libtinfo6:6.3-2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libtinfo6@6.3-2?arch=amd64\u0026upstream=ncurses\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libtinfo6@6.3-2?arch=amd64&upstream=ncurses&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10706,9 +11058,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libtirpc-common@1.3.2-2ubuntu0.1?arch=all\u0026upstream=libtirpc\u0026distro=ubuntu-22.04\u0026package-id=cc43144d4b5bda8b",
+      "bom-ref": "pkg:deb/ubuntu/libtirpc-common@1.3.2-2ubuntu0.1?arch=all&upstream=libtirpc&distro=ubuntu-22.04&package-id=cc43144d4b5bda8b",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libtirpc-common",
       "version": "1.3.2-2ubuntu0.1",
       "licenses": [
@@ -10729,7 +11081,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libtirpc-common:libtirpc-common:1.3.2-2ubuntu0.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libtirpc-common@1.3.2-2ubuntu0.1?arch=all\u0026upstream=libtirpc\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libtirpc-common@1.3.2-2ubuntu0.1?arch=all&upstream=libtirpc&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10802,9 +11154,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libtirpc3@1.3.2-2ubuntu0.1?arch=amd64\u0026upstream=libtirpc\u0026distro=ubuntu-22.04\u0026package-id=cbe9360395c7b33",
+      "bom-ref": "pkg:deb/ubuntu/libtirpc3@1.3.2-2ubuntu0.1?arch=amd64&upstream=libtirpc&distro=ubuntu-22.04&package-id=cbe9360395c7b33",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libtirpc3",
       "version": "1.3.2-2ubuntu0.1",
       "licenses": [
@@ -10825,7 +11177,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libtirpc3:libtirpc3:1.3.2-2ubuntu0.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libtirpc3@1.3.2-2ubuntu0.1?arch=amd64\u0026upstream=libtirpc\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libtirpc3@1.3.2-2ubuntu0.1?arch=amd64&upstream=libtirpc&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10858,9 +11210,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libudev1@249.11-0ubuntu3.4?arch=amd64\u0026upstream=systemd\u0026distro=ubuntu-22.04\u0026package-id=c057b6905b125c85",
+      "bom-ref": "pkg:deb/ubuntu/libudev1@249.11-0ubuntu3.4?arch=amd64&upstream=systemd&distro=ubuntu-22.04&package-id=c057b6905b125c85",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libudev1",
       "version": "249.11-0ubuntu3.4",
       "licenses": [
@@ -10891,7 +11243,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libudev1:libudev1:249.11-0ubuntu3.4:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libudev1@249.11-0ubuntu3.4?arch=amd64\u0026upstream=systemd\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libudev1@249.11-0ubuntu3.4?arch=amd64&upstream=systemd&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -10924,9 +11276,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libunistring2@1.0-1?arch=amd64\u0026upstream=libunistring\u0026distro=ubuntu-22.04\u0026package-id=b0ebdb4a897a50e2",
+      "bom-ref": "pkg:deb/ubuntu/libunistring2@1.0-1?arch=amd64&upstream=libunistring&distro=ubuntu-22.04&package-id=b0ebdb4a897a50e2",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libunistring2",
       "version": "1.0-1",
       "licenses": [
@@ -10972,7 +11324,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libunistring2:libunistring2:1.0-1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libunistring2@1.0-1?arch=amd64\u0026upstream=libunistring\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libunistring2@1.0-1?arch=amd64&upstream=libunistring&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11005,9 +11357,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libuuid1@2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux\u0026distro=ubuntu-22.04\u0026package-id=7c20a0a6002108da",
+      "bom-ref": "pkg:deb/ubuntu/libuuid1@2.37.2-4ubuntu3?arch=amd64&upstream=util-linux&distro=ubuntu-22.04&package-id=7c20a0a6002108da",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libuuid1",
       "version": "2.37.2-4ubuntu3",
       "licenses": [
@@ -11083,7 +11435,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libuuid1:libuuid1:2.37.2-4ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libuuid1@2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libuuid1@2.37.2-4ubuntu3?arch=amd64&upstream=util-linux&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11116,9 +11468,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libxxhash0@0.8.1-1?arch=amd64\u0026upstream=xxhash\u0026distro=ubuntu-22.04\u0026package-id=e101cf8e114a04b",
+      "bom-ref": "pkg:deb/ubuntu/libxxhash0@0.8.1-1?arch=amd64&upstream=xxhash&distro=ubuntu-22.04&package-id=e101cf8e114a04b",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libxxhash0",
       "version": "0.8.1-1",
       "licenses": [
@@ -11134,7 +11486,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libxxhash0:libxxhash0:0.8.1-1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libxxhash0@0.8.1-1?arch=amd64\u0026upstream=xxhash\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libxxhash0@0.8.1-1?arch=amd64&upstream=xxhash&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11167,9 +11519,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/libzstd1@1.4.8+dfsg-3build1?arch=amd64\u0026upstream=libzstd\u0026distro=ubuntu-22.04\u0026package-id=b82b4fc2268117c7",
+      "bom-ref": "pkg:deb/ubuntu/libzstd1@1.4.8+dfsg-3build1?arch=amd64&upstream=libzstd&distro=ubuntu-22.04&package-id=b82b4fc2268117c7",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "libzstd1",
       "version": "1.4.8+dfsg-3build1",
       "licenses": [
@@ -11190,7 +11542,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:libzstd1:libzstd1:1.4.8\\+dfsg-3build1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/libzstd1@1.4.8+dfsg-3build1?arch=amd64\u0026upstream=libzstd\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/libzstd1@1.4.8+dfsg-3build1?arch=amd64&upstream=libzstd&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11223,9 +11575,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/login@1:4.8.1-2ubuntu2?arch=amd64\u0026upstream=shadow\u0026distro=ubuntu-22.04\u0026package-id=fe10382d4faa3862",
+      "bom-ref": "pkg:deb/ubuntu/login@1:4.8.1-2ubuntu2?arch=amd64&upstream=shadow&distro=ubuntu-22.04&package-id=fe10382d4faa3862",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "login",
       "version": "1:4.8.1-2ubuntu2",
       "licenses": [
@@ -11236,7 +11588,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:login:login:1\\:4.8.1-2ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/login@1:4.8.1-2ubuntu2?arch=amd64\u0026upstream=shadow\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/login@1:4.8.1-2ubuntu2?arch=amd64&upstream=shadow&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11269,9 +11621,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/logsave@1.46.5-2ubuntu1.1?arch=amd64\u0026upstream=e2fsprogs\u0026distro=ubuntu-22.04\u0026package-id=36d25d8c03d61a26",
+      "bom-ref": "pkg:deb/ubuntu/logsave@1.46.5-2ubuntu1.1?arch=amd64&upstream=e2fsprogs&distro=ubuntu-22.04&package-id=36d25d8c03d61a26",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "logsave",
       "version": "1.46.5-2ubuntu1.1",
       "licenses": [
@@ -11287,7 +11639,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:logsave:logsave:1.46.5-2ubuntu1.1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/logsave@1.46.5-2ubuntu1.1?arch=amd64\u0026upstream=e2fsprogs\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/logsave@1.46.5-2ubuntu1.1?arch=amd64&upstream=e2fsprogs&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11320,9 +11672,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/lsb-base@11.1.0ubuntu4?arch=all\u0026upstream=lsb\u0026distro=ubuntu-22.04\u0026package-id=66a2d579c9f63afe",
+      "bom-ref": "pkg:deb/ubuntu/lsb-base@11.1.0ubuntu4?arch=all&upstream=lsb&distro=ubuntu-22.04&package-id=66a2d579c9f63afe",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "lsb-base",
       "version": "11.1.0ubuntu4",
       "licenses": [
@@ -11338,7 +11690,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:lsb-base:lsb-base:11.1.0ubuntu4:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/lsb-base@11.1.0ubuntu4?arch=all\u0026upstream=lsb\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/lsb-base@11.1.0ubuntu4?arch=all&upstream=lsb&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11411,9 +11763,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/mawk@1.3.4.20200120-3?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=cf68883326882718",
+      "bom-ref": "pkg:deb/ubuntu/mawk@1.3.4.20200120-3?arch=amd64&distro=ubuntu-22.04&package-id=cf68883326882718",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "mawk",
       "version": "1.3.4.20200120-3",
       "licenses": [
@@ -11424,7 +11776,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:mawk:mawk:1.3.4.20200120-3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/mawk@1.3.4.20200120-3?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/mawk@1.3.4.20200120-3?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11453,9 +11805,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/mount@2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux\u0026distro=ubuntu-22.04\u0026package-id=dc0c96359b3ddffb",
+      "bom-ref": "pkg:deb/ubuntu/mount@2.37.2-4ubuntu3?arch=amd64&upstream=util-linux&distro=ubuntu-22.04&package-id=dc0c96359b3ddffb",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "mount",
       "version": "2.37.2-4ubuntu3",
       "licenses": [
@@ -11531,7 +11883,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:mount:mount:2.37.2-4ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/mount@2.37.2-4ubuntu3?arch=amd64\u0026upstream=util-linux\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/mount@2.37.2-4ubuntu3?arch=amd64&upstream=util-linux&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11564,9 +11916,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/ncurses-base@6.3-2?arch=all\u0026upstream=ncurses\u0026distro=ubuntu-22.04\u0026package-id=dbc60e5c9abc541d",
+      "bom-ref": "pkg:deb/ubuntu/ncurses-base@6.3-2?arch=all&upstream=ncurses&distro=ubuntu-22.04&package-id=dbc60e5c9abc541d",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "ncurses-base",
       "version": "6.3-2",
       "licenses": [
@@ -11582,7 +11934,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:ncurses-base:ncurses-base:6.3-2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/ncurses-base@6.3-2?arch=all\u0026upstream=ncurses\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/ncurses-base@6.3-2?arch=all&upstream=ncurses&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11655,9 +12007,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/ncurses-bin@6.3-2?arch=amd64\u0026upstream=ncurses\u0026distro=ubuntu-22.04\u0026package-id=259b39b5bac3ea8e",
+      "bom-ref": "pkg:deb/ubuntu/ncurses-bin@6.3-2?arch=amd64&upstream=ncurses&distro=ubuntu-22.04&package-id=259b39b5bac3ea8e",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "ncurses-bin",
       "version": "6.3-2",
       "licenses": [
@@ -11673,7 +12025,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:ncurses-bin:ncurses-bin:6.3-2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/ncurses-bin@6.3-2?arch=amd64\u0026upstream=ncurses\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/ncurses-bin@6.3-2?arch=amd64&upstream=ncurses&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11746,9 +12098,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/passwd@1:4.8.1-2ubuntu2?arch=amd64\u0026upstream=shadow\u0026distro=ubuntu-22.04\u0026package-id=a4220e56633f12ae",
+      "bom-ref": "pkg:deb/ubuntu/passwd@1:4.8.1-2ubuntu2?arch=amd64&upstream=shadow&distro=ubuntu-22.04&package-id=a4220e56633f12ae",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "passwd",
       "version": "1:4.8.1-2ubuntu2",
       "licenses": [
@@ -11759,7 +12111,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:passwd:passwd:1\\:4.8.1-2ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/passwd@1:4.8.1-2ubuntu2?arch=amd64\u0026upstream=shadow\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/passwd@1:4.8.1-2ubuntu2?arch=amd64&upstream=shadow&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11792,9 +12144,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/perl-base@5.34.0-3ubuntu1?arch=amd64\u0026upstream=perl\u0026distro=ubuntu-22.04\u0026package-id=9fea07c12c390ba5",
+      "bom-ref": "pkg:deb/ubuntu/perl-base@5.34.0-3ubuntu1?arch=amd64&upstream=perl&distro=ubuntu-22.04&package-id=9fea07c12c390ba5",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "perl-base",
       "version": "5.34.0-3ubuntu1",
       "licenses": [
@@ -11840,7 +12192,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:perl-base:perl-base:5.34.0-3ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/perl-base@5.34.0-3ubuntu1?arch=amd64\u0026upstream=perl\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/perl-base@5.34.0-3ubuntu1?arch=amd64&upstream=perl&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11913,9 +12265,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/procps@2:3.3.17-6ubuntu2?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=5e3c5bc9760804e7",
+      "bom-ref": "pkg:deb/ubuntu/procps@2:3.3.17-6ubuntu2?arch=amd64&distro=ubuntu-22.04&package-id=5e3c5bc9760804e7",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "procps",
       "version": "2:3.3.17-6ubuntu2",
       "licenses": [
@@ -11951,7 +12303,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:procps:procps:2\\:3.3.17-6ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/procps@2:3.3.17-6ubuntu2?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/procps@2:3.3.17-6ubuntu2?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -11980,9 +12332,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/sed@4.8-1ubuntu2?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=ac02aad07cf71d3e",
+      "bom-ref": "pkg:deb/ubuntu/sed@4.8-1ubuntu2?arch=amd64&distro=ubuntu-22.04&package-id=ac02aad07cf71d3e",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "sed",
       "version": "4.8-1ubuntu2",
       "licenses": [
@@ -11993,7 +12345,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:sed:sed:4.8-1ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/sed@4.8-1ubuntu2?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/sed@4.8-1ubuntu2?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -12022,9 +12374,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/sensible-utils@0.0.17?arch=all\u0026distro=ubuntu-22.04\u0026package-id=8e8d0dfc3f014c53",
+      "bom-ref": "pkg:deb/ubuntu/sensible-utils@0.0.17?arch=all&distro=ubuntu-22.04&package-id=8e8d0dfc3f014c53",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "sensible-utils",
       "version": "0.0.17",
       "licenses": [
@@ -12040,7 +12392,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:sensible-utils:sensible-utils:0.0.17:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/sensible-utils@0.0.17?arch=all\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/sensible-utils@0.0.17?arch=all&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -12109,9 +12461,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/sysvinit-utils@3.01-1ubuntu1?arch=amd64\u0026upstream=sysvinit\u0026distro=ubuntu-22.04\u0026package-id=48869c26be549374",
+      "bom-ref": "pkg:deb/ubuntu/sysvinit-utils@3.01-1ubuntu1?arch=amd64&upstream=sysvinit&distro=ubuntu-22.04&package-id=48869c26be549374",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "sysvinit-utils",
       "version": "3.01-1ubuntu1",
       "licenses": [
@@ -12127,7 +12479,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:sysvinit-utils:sysvinit-utils:3.01-1ubuntu1:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/sysvinit-utils@3.01-1ubuntu1?arch=amd64\u0026upstream=sysvinit\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/sysvinit-utils@3.01-1ubuntu1?arch=amd64&upstream=sysvinit&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -12200,9 +12552,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/tar@1.34+dfsg-1build3?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=f5145c91152cfbd6",
+      "bom-ref": "pkg:deb/ubuntu/tar@1.34+dfsg-1build3?arch=amd64&distro=ubuntu-22.04&package-id=f5145c91152cfbd6",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "tar",
       "version": "1.34+dfsg-1build3",
       "licenses": [
@@ -12218,7 +12570,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:tar:tar:1.34\\+dfsg-1build3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/tar@1.34+dfsg-1build3?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/tar@1.34+dfsg-1build3?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -12247,13 +12599,13 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/ubuntu-keyring@2021.03.26?arch=all\u0026distro=ubuntu-22.04\u0026package-id=f6e8f005d6ed41b4",
+      "bom-ref": "pkg:deb/ubuntu/ubuntu-keyring@2021.03.26?arch=all&distro=ubuntu-22.04&package-id=f6e8f005d6ed41b4",
       "type": "library",
-      "publisher": "Dimitri John Ledkov \u003cdimitri.ledkov@canonical.com\u003e",
+      "publisher": "Dimitri John Ledkov <dimitri.ledkov@canonical.com>",
       "name": "ubuntu-keyring",
       "version": "2021.03.26",
       "cpe": "cpe:2.3:a:ubuntu-keyring:ubuntu-keyring:2021.03.26:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/ubuntu-keyring@2021.03.26?arch=all\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/ubuntu-keyring@2021.03.26?arch=all&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -12322,9 +12674,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/usrmerge@25ubuntu2?arch=all\u0026distro=ubuntu-22.04\u0026package-id=ce0ac606345b9580",
+      "bom-ref": "pkg:deb/ubuntu/usrmerge@25ubuntu2?arch=all&distro=ubuntu-22.04&package-id=ce0ac606345b9580",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "usrmerge",
       "version": "25ubuntu2",
       "licenses": [
@@ -12335,7 +12687,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:usrmerge:usrmerge:25ubuntu2:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/usrmerge@25ubuntu2?arch=all\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/usrmerge@25ubuntu2?arch=all&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -12364,9 +12716,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/util-linux@2.37.2-4ubuntu3?arch=amd64\u0026distro=ubuntu-22.04\u0026package-id=af3c4b0e7e59cf09",
+      "bom-ref": "pkg:deb/ubuntu/util-linux@2.37.2-4ubuntu3?arch=amd64&distro=ubuntu-22.04&package-id=af3c4b0e7e59cf09",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "util-linux",
       "version": "2.37.2-4ubuntu3",
       "licenses": [
@@ -12442,7 +12794,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:util-linux:util-linux:2.37.2-4ubuntu3:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/util-linux@2.37.2-4ubuntu3?arch=amd64\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/util-linux@2.37.2-4ubuntu3?arch=amd64&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -12511,9 +12863,9 @@
       ]
     },
     {
-      "bom-ref": "pkg:deb/ubuntu/zlib1g@1:1.2.11.dfsg-2ubuntu9?arch=amd64\u0026upstream=zlib\u0026distro=ubuntu-22.04\u0026package-id=68f81b5068e2ed7f",
+      "bom-ref": "pkg:deb/ubuntu/zlib1g@1:1.2.11.dfsg-2ubuntu9?arch=amd64&upstream=zlib&distro=ubuntu-22.04&package-id=68f81b5068e2ed7f",
       "type": "library",
-      "publisher": "Ubuntu Developers \u003cubuntu-devel-discuss@lists.ubuntu.com\u003e",
+      "publisher": "Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>",
       "name": "zlib1g",
       "version": "1:1.2.11.dfsg-2ubuntu9",
       "licenses": [
@@ -12524,7 +12876,7 @@
         }
       ],
       "cpe": "cpe:2.3:a:zlib1g:zlib1g:1\\:1.2.11.dfsg-2ubuntu9:*:*:*:*:*:*:*",
-      "purl": "pkg:deb/ubuntu/zlib1g@1:1.2.11.dfsg-2ubuntu9?arch=amd64\u0026upstream=zlib\u0026distro=ubuntu-22.04",
+      "purl": "pkg:deb/ubuntu/zlib1g@1:1.2.11.dfsg-2ubuntu9?arch=amd64&upstream=zlib&distro=ubuntu-22.04",
       "properties": [
         {
           "name": "syft:package:foundBy",
