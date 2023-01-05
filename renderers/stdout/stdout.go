@@ -33,8 +33,8 @@ func (Renderer) Render(results models.Results) (err error) {
 		util.PrintInfo("Licenses Found:", strings.Join(results.Licenses[:], ", "))
 		fmt.Println()
 	}
+	vulnCount := vulnerabilityCount(results.Packages)
 	if len(results.Packages) != 0 {
-		vulnCount := vulnerabilityCount(results.Packages)
 		log.Println("Rendering Packages:", len(results.Packages))
 		t := table.NewWriter()
 		t.SetOutputMirror(os.Stdout)
@@ -43,8 +43,6 @@ func (Renderer) Render(results models.Results) (err error) {
 		for _, r := range results.Packages {
 			purl, err := packageurl.FromString(r.Purl)
 			if err != nil {
-				util.PrintErr(fmt.Errorf("invalid purl for %s ", r.Reference))
-				util.PrintErr(err)
 				log.Println(err)
 			}
 			for _, v := range r.Vulnerabilities {
@@ -75,27 +73,21 @@ func (Renderer) Render(results models.Results) (err error) {
 		})
 		t.Style().Options.SeparateRows = true
 		t.Render()
-		if vulnCount > 0 {
-			fmt.Println()
-			color.Red.Printf("Total vulnerabilities found: %v\n", vulnCount)
-			fmt.Println()
-			renderSeveritySummary(results.Summary)
-			fmt.Println()
-			fmt.Println("NOTES:")
-			fmt.Println()
-			fmt.Println("1. The list of vulnerabilities displayed may differ from provider to provider. This list")
-			fmt.Println("   may not contain all possible vulnerabilities. Please try the other providers that bomber")
-			fmt.Println("   supports (osv, ossindex, snyk)")
-			fmt.Println("2. EPSS Percentage indicates the % chance that the vulnerability will be exploited. This")
-			fmt.Println("   value will assist in prioritizing remediation. For more information on EPSS, refer to")
-			fmt.Println("   https://www.first.org/epss/")
-		} else {
-			color.Green.Printf("No vulnerabilities found using the %v provider\n", results.Meta.Provider)
-			fmt.Println()
-			fmt.Printf("NOTE: Just because bomber didn't find any vulnerabilities using the %v provider does\n", results.Meta.Provider)
-			fmt.Println("not mean that there are no vulnerabilities. Please try the other providers that bomber")
-			fmt.Println("supports (osv, ossindex)")
-		}
+	}
+	if vulnCount > 0 {
+		fmt.Println()
+		color.Red.Printf("Total vulnerabilities found: %v\n", vulnCount)
+		fmt.Println()
+		renderSeveritySummary(results.Summary)
+		fmt.Println()
+		fmt.Println("NOTES:")
+		fmt.Println()
+		fmt.Println("1. The list of vulnerabilities displayed may differ from provider to provider. This list")
+		fmt.Println("   may not contain all possible vulnerabilities. Please try the other providers that bomber")
+		fmt.Println("   supports (osv, ossindex, snyk)")
+		fmt.Println("2. EPSS Percentage indicates the % chance that the vulnerability will be exploited. This")
+		fmt.Println("   value will assist in prioritizing remediation. For more information on EPSS, refer to")
+		fmt.Println("   https://www.first.org/epss/")
 	} else {
 		color.Green.Printf("No vulnerabilities found using the %v provider\n", results.Meta.Provider)
 		fmt.Println()
