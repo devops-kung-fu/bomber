@@ -61,6 +61,7 @@ var (
 				for _, p := range purls {
 					purl, err := packageurl.FromString(p)
 					if err != nil {
+						util.PrintErr(err)
 						log.Println(err)
 					}
 					if !slices.Contains(ecosystems, purl.Type) {
