@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:3d850598-b664-4f9a-ba3b-b44c34068630",
+  "serialNumber": "urn:uuid:4527da03-a310-44ff-8956-7800ef74f7b8",
   "version": 1,
   "metadata": {
-    "timestamp": "2023-01-05T13:09:47-07:00",
+    "timestamp": "2023-01-13T08:10:05-07:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -3066,12 +3066,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.3?package-id=83fdea25112b9f52",
+      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.4?package-id=9b5b9873ad7604d7",
       "type": "library",
       "name": "github.com/jedib0t/go-pretty/v6",
-      "version": "v6.4.3",
-      "cpe": "cpe:2.3:a:jedib0t:go-pretty\\/v6:v6.4.3:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.3",
+      "version": "v6.4.4",
+      "cpe": "cpe:2.3:a:jedib0t:go-pretty\\/v6:v6.4.4:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.4",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -3091,7 +3091,7 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:jedib0t:go_pretty\\/v6:v6.4.3:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:jedib0t:go_pretty\\/v6:v6.4.4:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -3099,7 +3099,7 @@
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:2n9BZ0YQiXGESUSR+6FLg0WWWE80u+mIz35f0uHWcIE="
+          "value": "h1:N+gz6UngBPF4M288kiMURPHELDMIhF/Em35aYuKrsSc="
         }
       ]
     },
