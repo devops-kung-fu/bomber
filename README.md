@@ -189,8 +189,7 @@ If you want to kick the tires on ```bomber``` you'll find a selection of test SB
 ## Notes
 
 - It's pretty rare to see SBOMs with license information. Most of the time, the generators like Syft need a flag like ```--license```. If you need license info, make sure you ask for it with the SBOM.
-- Hate to say it, but SPDX is a train wreck. If you don't get any results on an SPDX file, try using a CycloneDX file. In general you should always try to get CycloneDX SBOMs from your vendors.
-- OSV. It's great, but the API is also wonky. They have a batch endpoint that would make it a ton quicker to get information back, but it doesn't work. ```bomber``` needs to send one PURL at a time to get vulnerabilities back, so in a big SBOM it will take some time. We'll keep an eye on that.
+- OSV. It's great, but the API is also wonky. They have a batch endpoint that would make it a ton quicker to get information back, but at the time of writing it doesn't work as expected. ```bomber``` needs to send one PURL at a time to get vulnerabilities back, so in a big SBOM it will take some time. We'll keep an eye on that.
 
 ## Contributing
 
