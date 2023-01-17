@@ -1,6 +1,5 @@
-![](img/bomber128x128.png)
+![bomber](img/bomber-readme-logo.png)
 
-# bomber
 [![](https://img.shields.io/badge/Status-BETA-yellow)](CONTRIBUTING.md)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/devops-kung-fu/bomber) 
 [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/bomber)](https://goreportcard.com/report/github.com/devops-kung-fu/bomber) 
@@ -203,7 +202,7 @@ The current CycloneDX SBOM for ```bomber``` is available [here](./sbom/bomber.cy
 
 ## Credits
 
-A big thank-you to our friends at [Smashicons](https://www.flaticon.com/authors/smashicons) for the ```bomber``` logo.
+A big thank-you to our friends at [ZERO](https://zero.health) for the ```bomber``` logo.
 
 Thank you to [Sonatype](https://sonatype.com) for providing a wicked tool like the [Sonatype OSS Index](https://ossindex.sonatype.org).
 
