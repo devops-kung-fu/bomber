@@ -93,7 +93,7 @@ var (
 					response[i].Vulnerabilities = enrichedVulnerabilities
 
 					if len(ignoredCVE) > 0 {
-						filteredVulnerabilities, _ := filters.Ignore(p.Vulnerabilities, ignoredCVE)
+						filteredVulnerabilities := filters.Ignore(p.Vulnerabilities, ignoredCVE)
 						response[i].Vulnerabilities = filteredVulnerabilities
 					}
 				}
