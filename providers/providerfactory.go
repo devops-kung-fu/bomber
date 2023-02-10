@@ -1,3 +1,4 @@
+// Package providers contains functionality to retrieve vulnerability data from different external sources
 package providers
 
 import (

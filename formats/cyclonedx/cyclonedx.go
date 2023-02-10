@@ -1,3 +1,4 @@
+// Package cyclonedx provides additional functionality to interact with CycloneDX formatted SBOMs
 package cyclonedx
 
 import (

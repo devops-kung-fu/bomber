@@ -1,6 +1,6 @@
 package snyk
 
-type JsonApi struct {
+type JSONAPI struct {
 	// Version of the JSON API specification this server supports.
 	Version string `json:"version"`
 }
@@ -20,7 +20,7 @@ type PaginatedLinks struct {
 	Self  *LinkProperty `json:"self,omitempty"`
 }
 
-// Free-form object that may contain non-standard information.
+// Meta Free-form object that may contain non-standard information.
 type Meta struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
@@ -36,7 +36,7 @@ type PackageMeta struct {
 	Type string `json:"type,omitempty"`
 
 	// The purl of the package
-	Url string `json:"url,omitempty"`
+	URL string `json:"url,omitempty"`
 
 	// The version of the package
 	Version string `json:"version,omitempty"`

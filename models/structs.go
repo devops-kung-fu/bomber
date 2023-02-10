@@ -1,3 +1,4 @@
+// Package models contains structs and interfaces used by bomber
 package models
 
 import (

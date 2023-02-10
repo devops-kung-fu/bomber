@@ -10,20 +10,20 @@ import (
 type selfDocument struct {
 	Data struct {
 		Attributes struct {
-			AvatarUrl         string `json:"avatar_url,omitempty"`
+			AvatarURL         string `json:"avatar_url,omitempty"`
 			DefaultOrgContext string `json:"default_org_context,omitempty"`
 			Name              string `json:"name,omitempty"`
 			Username          string `json:"username,omitempty"`
 		} `json:"attributes,omitempty"`
-		Id   string `json:"id,omitempty"`
+		ID   string `json:"id,omitempty"`
 		Type string `json:"type,omitempty"`
 	}
-	Jsonapi JsonApi        `json:"jsonapi,omitempty"`
+	Jsonapi JSONAPI        `json:"jsonapi,omitempty"`
 	Links   PaginatedLinks `json:"links,omitempty"`
 }
 
 func getOrgID(client *HttpRequest.Request) (orgID string, err error) {
-	res, err := client.Get(SNYK_URL + "/self" + SNYK_API_VERSION)
+	res, err := client.Get(SnykURL + "/self" + SnykAPIVersion)
 	if err != nil {
 		return "", fmt.Errorf("unable to retrieve org ID: %w", err)
 	}

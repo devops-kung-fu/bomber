@@ -16,7 +16,7 @@ jobs:
         name: Install Dependencies
         run: |
           go version
-          go install golang.org/x/lint/golint@latest
+          go install honnef.co/go/tools/cmd/staticcheck@latest
           go install github.com/fzipp/gocyclo/cmd/gocyclo@latest
       - 
         name: Test
@@ -35,8 +35,8 @@ jobs:
         name: Vet
         run: go vet -v
       - 
-        name: Lint
-        run: golint ./...
+        name: staticcheck
+        run: staticcheck -f stylish -checks all  ./...
       - 
         name: gocyclo
         run: gocyclo .

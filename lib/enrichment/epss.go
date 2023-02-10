@@ -1,3 +1,4 @@
+// Package enrichment contains functionality to enrich vulnerability data from other sources
 package enrichment
 
 import (

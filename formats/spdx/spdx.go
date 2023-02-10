@@ -1,3 +1,4 @@
+// Package spdx provides functionality and structs to work with SPDX formatted SBOMs
 package spdx
 
 // BOM represents a SPDX Software Bill of Materials

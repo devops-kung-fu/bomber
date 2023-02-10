@@ -1,3 +1,4 @@
+// Package html contains functionality to render output to an html file
 package html
 
 import (

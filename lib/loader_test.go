@@ -1,7 +1,6 @@
 package lib
 
 import (
-	"io/ioutil"
 	"os"
 	"testing"
 
@@ -36,7 +35,7 @@ func TestLoad_cyclonedx(t *testing.T) {
 func TestLoad_cyclonedx_stdin(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	tmpfile, err := ioutil.TempFile("", "test-cyclonedx.json")
+	tmpfile, err := os.CreateTemp("", "test-cyclonedx.json")
 	assert.NoError(t, err)
 
 	defer os.Remove(tmpfile.Name()) // clean up

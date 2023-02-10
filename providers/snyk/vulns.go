@@ -43,7 +43,7 @@ type SnykIssueResource struct {
 	} `json:"attributes,omitempty"`
 
 	// The Snyk ID of the vulnerability.
-	Id string `json:"id,omitempty"`
+	ID string `json:"id,omitempty"`
 
 	// The type of the REST resource. Always ‘issue’.
 	Type string `json:"type,omitempty"`
@@ -66,14 +66,14 @@ type Problem struct {
 
 	// When this problem was first discovered.
 	DiscoveredAt time.Time `json:"discovered_at,omitempty"`
-	Id           string    `json:"id"`
+	ID           string    `json:"id"`
 	Source       string    `json:"source"`
 
 	// When this problem was last updated.
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
 
 	// An optional URL for this problem.
-	Url *string `json:"url,omitempty"`
+	URL *string `json:"url,omitempty"`
 }
 
 type Remedy struct {
@@ -115,7 +115,7 @@ type Slots struct {
 		Title string `json:"title,omitempty"`
 
 		// URL for an external reference to the issue
-		Url string `json:"url,omitempty"`
+		URL string `json:"url,omitempty"`
 	} `json:"references,omitempty"`
 }
 
@@ -127,12 +127,12 @@ const (
 	Medium   EffectiveSeverityLevel = "medium"
 )
 
-// The type from enumeration of the issue’s severity level. This is usually set from the issue’s producer, but can be overridden by policies.
+// EffectiveSeverityLevel The type from enumeration of the issue’s severity level. This is usually set from the issue’s producer, but can be overridden by policies.
 type EffectiveSeverityLevel string
 
 type SnykIssuesDocument struct {
 	Data    []SnykIssueResource `json:"data,omitempty"`
-	Jsonapi JsonApi             `json:"jsonapi,omitempty"`
+	Jsonapi JSONAPI             `json:"jsonapi,omitempty"`
 	Links   *PaginatedLinks     `json:"links,omitempty"`
 	Meta    *IssuesMeta         `json:"meta,omitempty"`
 }
@@ -148,7 +148,7 @@ func getVulnsForPurl(
 
 	issuesURL := fmt.Sprintf(
 		"%s/orgs/%s/packages/%s/issues%s",
-		SNYK_URL, orgID, url.QueryEscape(purl), SNYK_API_VERSION,
+		SnykURL, orgID, url.QueryEscape(purl), SnykAPIVersion,
 	)
 
 	res, err := client.Get(issuesURL)
@@ -198,7 +198,7 @@ func snykIssueToBomberVuln(v SnykIssueResource) models.Vulnerability {
 	}
 
 	return models.Vulnerability{
-		ID:                 v.Id,
+		ID:                 v.ID,
 		Title:              v.Attributes.Title,
 		Description:        v.Attributes.Description,
 		Severity:           severity,
@@ -206,7 +206,7 @@ func snykIssueToBomberVuln(v SnykIssueResource) models.Vulnerability {
 		Cve:                getCve(v),
 		CvssScore:          float64(cvss.Score),
 		CvssVector:         cvss.Vector,
-		Reference:          fmt.Sprintf("https://security.snyk.io/vuln/%s", v.Id),
+		Reference:          fmt.Sprintf("https://security.snyk.io/vuln/%s", v.ID),
 		ExternalReferences: getExternalReferences(v),
 	}
 }
@@ -214,7 +214,7 @@ func snykIssueToBomberVuln(v SnykIssueResource) models.Vulnerability {
 func getCwe(i SnykIssueResource) string {
 	for _, p := range i.Attributes.Problems {
 		if p.Source == "CWE" {
-			return p.Id
+			return p.ID
 		}
 	}
 	return ""
@@ -223,7 +223,7 @@ func getCwe(i SnykIssueResource) string {
 func getCve(i SnykIssueResource) string {
 	for _, p := range i.Attributes.Problems {
 		if p.Source == "CVE" {
-			return p.Id
+			return p.ID
 		}
 	}
 	return ""
@@ -250,7 +250,7 @@ func getCvss(i SnykIssueResource) *Severity {
 
 func getExternalReferences(i SnykIssueResource) (refs []interface{}) {
 	for _, r := range i.Attributes.Slots.References {
-		refs = append(refs, r.Url)
+		refs = append(refs, r.URL)
 	}
 	return refs
 }

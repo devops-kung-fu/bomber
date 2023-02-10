@@ -1,3 +1,4 @@
+// Package stdout contains functionality to render output to a command line
 package stdout
 
 import (

@@ -1,3 +1,4 @@
+// Package snyk contains functionality to retrieve vulnerability information from Snyk
 package snyk
 
 import (
@@ -12,9 +13,9 @@ import (
 )
 
 const (
-	SNYK_URL         = "https://api.snyk.io/rest"
-	SNYK_API_VERSION = "?version=2022-09-15~experimental"
-	CONCURRENCY      = 10
+	SnykURL        = "https://api.snyk.io/rest"
+	SnykAPIVersion = "?version=2022-09-15~experimental"
+	Concurrency    = 10
 )
 
 type Provider struct{}
@@ -27,14 +28,14 @@ func (Provider) Info() string {
 // Scan scans a list of Purls for vulnerabilities against Snyk.
 func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
 	if err = validateCredentials(credentials); err != nil {
-		return packages, fmt.Errorf("Could not validate credentials: %w", err)
+		return packages, fmt.Errorf("could not validate credentials: %w", err)
 	}
 
-	wg := sizedwaitgroup.New(CONCURRENCY)
+	wg := sizedwaitgroup.New(Concurrency)
 	client := newClient(credentials)
 	orgID, err := getOrgID(client)
 	if err != nil {
-		return packages, fmt.Errorf("Could not infer user’s Snyk organization: %w", err)
+		return packages, fmt.Errorf("could not infer user’s Snyk organization: %w", err)
 	}
 
 	for _, pp := range purls {
