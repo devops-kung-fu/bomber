@@ -148,6 +148,23 @@ Example command:
 bomber scan bad-bom.json --output=json > filename.json
 ```
 
+## Ignoring Vulnerabilities
+
+If needed, you can use the ```--ignore-file``` flag to load a list of CVEs to ignore in the vulnerability output. This list needs to be in a specific format where each CVE to ignore is entered on a separate line similar to the following:
+
+```
+CVE-2022-31163
+CVE-2022-23520
+```
+
+There is an example ```bomber.ignore``` file [here](./_TESTDATA_/ignore/bomber.ignore)
+
+To use the ```bomber.ignore``` file, use the syntax as follows:
+
+``` bash
+bomber --ignore-file=bomber.ignore scan bom.json
+```
+
 ## Data Enrichment
 
 ```bomber``` has the ability to enrich vulnerability data it obtains from the [Providers](#providers). The first "enricher" we have implemented for is for [EPSS](https://www.first.org/epss/)
