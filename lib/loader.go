@@ -114,3 +114,20 @@ func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, 
 	log.Printf("WARNING: %v isn't a valid SBOM", arg)
 	return scanned, nil, nil, fmt.Errorf("%v is not a SBOM recognized by bomber", arg)
 }
+
+func LoadIgnore(afs *afero.Afero, ignoreFile string) (cves []string, err error) {
+
+	f, err := afs.Open(ignoreFile)
+	if err != nil {
+		log.Printf("error opening ignore: %v\n", err)
+		return
+	}
+	r := bufio.NewReader(f)
+	line, _, e := r.ReadLine()
+	for e == nil {
+		cves = append(cves, string(line))
+		line, _, e = r.ReadLine()
+	}
+
+	return
+}

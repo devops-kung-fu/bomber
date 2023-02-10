@@ -200,6 +200,12 @@ If you would like to contribute to the development of ```bomber``` please refer 
 
 The current CycloneDX SBOM for ```bomber``` is available [here](./sbom/bomber.cyclonedx.json).
 
+## Sponsors
+
+Thank you to the sponsors and supporters of ```bomber```
+
+![](img/sponsors/zero-logo.png)
+
 ## Credits
 
 A big thank-you to our friends at [ZERO](https://zero.health) for the ```bomber``` logo.

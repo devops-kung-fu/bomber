@@ -156,3 +156,16 @@ func TestLoad_multiple_cyclonedx(t *testing.T) {
 	_, err = afs.ReadDir("/bad-dir")
 	assert.Error(t, err)
 }
+
+func TestLoadIgnore(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	afs.WriteFile("test.ignore", []byte("test\ntest2"), 0644)
+
+	cves, err := LoadIgnore(afs, "test.ignore")
+	assert.NoError(t, err)
+	assert.Len(t, cves, 2)
+
+	_, err = LoadIgnore(afs, "tst.ignore")
+	assert.Error(t, err)
+}
