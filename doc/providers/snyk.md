@@ -30,3 +30,5 @@ At this time, the Snyk provider supports the following ecosystems:
 * PyPi
 * Hex
 * Cargo
+* Swift
+* C/C++
