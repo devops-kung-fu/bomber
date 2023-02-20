@@ -1,7 +1,6 @@
 package lib
 
 import (
-	"io/ioutil"
 	"os"
 	"testing"
 
@@ -36,7 +35,7 @@ func TestLoad_cyclonedx(t *testing.T) {
 func TestLoad_cyclonedx_stdin(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	tmpfile, err := ioutil.TempFile("", "test-cyclonedx.json")
+	tmpfile, err := os.CreateTemp("", "test-cyclonedx.json")
 	assert.NoError(t, err)
 
 	defer os.Remove(tmpfile.Name()) // clean up
@@ -154,5 +153,18 @@ func TestLoad_multiple_cyclonedx(t *testing.T) {
 	assert.Equal(t, "pkg:golang/github.com/CycloneDX/cyclonedx-go@v0.6.0", purls[0])
 
 	_, err = afs.ReadDir("/bad-dir")
+	assert.Error(t, err)
+}
+
+func TestLoadIgnore(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+
+	afs.WriteFile("test.ignore", []byte("test\ntest2"), 0644)
+
+	cves, err := LoadIgnore(afs, "test.ignore")
+	assert.NoError(t, err)
+	assert.Len(t, cves, 2)
+
+	_, err = LoadIgnore(afs, "tst.ignore")
 	assert.Error(t, err)
 }

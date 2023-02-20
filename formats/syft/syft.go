@@ -1,3 +1,4 @@
+// Package syft provides functionality and structs to work with syft formatted SBOMs
 package syft
 
 // BOM represents a Syft Software Bill of Materials

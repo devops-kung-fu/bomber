@@ -16,6 +16,7 @@ import (
 
 	"github.com/devops-kung-fu/bomber/lib"
 	"github.com/devops-kung-fu/bomber/lib/enrichment"
+	"github.com/devops-kung-fu/bomber/lib/filters"
 	"github.com/devops-kung-fu/bomber/models"
 	"github.com/devops-kung-fu/bomber/providers"
 	"github.com/devops-kung-fu/bomber/renderers"
@@ -27,6 +28,7 @@ var (
 	credentials     = models.Credentials{}
 	renderer        models.Renderer
 	provider        models.Provider
+	ignoreFile      string
 
 	// summary, detailed bool
 	scanCmd = &cobra.Command{
@@ -78,10 +80,22 @@ var (
 				})
 
 				response, err = provider.Scan(purls, &credentials)
+				if err != nil {
+					log.Print(err)
+				}
+				ignoredCVE, err := lib.LoadIgnore(Afs, ignoreFile)
+				if err != nil {
+					util.PrintWarningf("Ignore flag set, but there was an error: %s", err)
+				}
 
 				for i, p := range response {
 					enrichedVulnerabilities, _ := enrichment.Enrich(p.Vulnerabilities)
 					response[i].Vulnerabilities = enrichedVulnerabilities
+
+					if len(ignoredCVE) > 0 {
+						filteredVulnerabilities := filters.Ignore(p.Vulnerabilities, ignoredCVE)
+						response[i].Vulnerabilities = filteredVulnerabilities
+					}
 				}
 
 				util.DoIf(output != "json", func() {
@@ -100,7 +114,7 @@ var (
 					}
 				}
 				results := models.NewResults(response, severitySummary, scanned, licenses, version, providerName)
-				err := renderer.Render(results)
+				err = renderer.Render(results)
 				if err != nil {
 					log.Println(err)
 				}
@@ -118,4 +132,5 @@ func init() {
 	scanCmd.PersistentFlags().StringVar(&credentials.Username, "username", "", "The user name for the provider being used.")
 	scanCmd.PersistentFlags().StringVar(&credentials.Token, "token", "", "The API token for the provider being used.")
 	scanCmd.PersistentFlags().StringVar(&providerName, "provider", "osv", "The vulnerability provider (ossindex, osv).")
+	scanCmd.PersistentFlags().StringVar(&ignoreFile, "ignore-file", "", "An optional file containing CVEs to ignore when rendering output.")
 }

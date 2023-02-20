@@ -3,7 +3,7 @@
     - source: github.com/anchore/syft/cmd/syft@latest
     - source: github.com/devops-kung-fu/hinge@latest
     - source: github.com/kisielk/errcheck@latest      
-    - source: golang.org/x/lint/golint@latest
+    - source: honnef.co/go/tools/cmd/staticcheck@latest
     - source: github.com/fzipp/gocyclo/cmd/gocyclo@latest
   hooks:
     - type: pre-commit
@@ -20,9 +20,9 @@
         - name: "gofmt: Run gofmt to format the code"
           exec: gofmt
           args: ["-s", "-w", "**/*.go"]
-        - name: "golint: Lint all go files"
-          exec: golint
-          args: ["./..."] #to error out, add the arg "-set_exit_status"
+        - name: "staticcheck: Lint all go files"
+          exec: staticcheck
+          args: ["-f", "stylish", "-checks", "all", "./..."] #to error out, add the arg "-set_exit_status"
         - name: "errcheck: Ensure that errors are checked"
           exec: errcheck
           args: ["-ignoretests", "./..."]

@@ -1,3 +1,4 @@
+// Package lib contains core functionality to load Software Bill of Materials and contains common functions
 package lib
 
 import (
@@ -7,7 +8,7 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -68,7 +69,7 @@ func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, 
 
 	if arg == "-" {
 		log.Printf("Reading from stdin")
-		b, err = ioutil.ReadAll(bufio.NewReader(os.Stdin))
+		b, err = io.ReadAll(bufio.NewReader(os.Stdin))
 	} else {
 		log.Printf("Reading: %v", arg)
 		b, err = afs.ReadFile(arg)
@@ -113,4 +114,22 @@ func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, 
 	}
 	log.Printf("WARNING: %v isn't a valid SBOM", arg)
 	return scanned, nil, nil, fmt.Errorf("%v is not a SBOM recognized by bomber", arg)
+}
+
+// LoadIgnore loads a list of CVEs entered one on each line from the filename provided
+func LoadIgnore(afs *afero.Afero, ignoreFile string) (cves []string, err error) {
+
+	f, err := afs.Open(ignoreFile)
+	if err != nil {
+		log.Printf("error opening ignore: %v\n", err)
+		return
+	}
+	r := bufio.NewReader(f)
+	line, _, e := r.ReadLine()
+	for e == nil {
+		cves = append(cves, string(line))
+		line, _, e = r.ReadLine()
+	}
+
+	return
 }

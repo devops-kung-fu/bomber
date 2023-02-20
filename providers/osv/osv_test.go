@@ -28,6 +28,19 @@ func TestProvider_Scan(t *testing.T) {
 	httpmock.GetTotalCallCount()
 }
 
+func TestProvider_BadResponse(t *testing.T) {
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	httpmock.RegisterResponder("POST", osvURL,
+		httpmock.NewBytesResponder(500, []byte{}))
+
+	provider := Provider{}
+	_, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, nil)
+	assert.Error(t, err)
+	assert.Equal(t, "error retrieving vulnerability data (500)", err.Error())
+}
+
 func osvTestResponse() []byte {
 	response := `
 	{

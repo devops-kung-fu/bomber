@@ -1,3 +1,4 @@
+// Package json contains functionality to render output in json format
 package json
 
 import (

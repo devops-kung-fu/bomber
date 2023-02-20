@@ -8,6 +8,7 @@
         "coverprofile",
         "cpes",
         "CRAN",
+        "cves",
         "cyclomatic",
         "cyclonedx",
         "Distro",
@@ -46,6 +47,7 @@
         "Tabbedf",
         "unindexed",
         "vuln",
-        "vulns"
+        "vulns",
+        "Warningf"
     ]
 }

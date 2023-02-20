@@ -1,3 +1,4 @@
+// Package renderers contains functionality to render output in various formats
 package renderers
 
 import (

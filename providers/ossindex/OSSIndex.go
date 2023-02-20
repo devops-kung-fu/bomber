@@ -1,3 +1,4 @@
+// Package ossindex contains functionality to retrieve vulnerability information from Sonatype's OSSINDEX
 package ossindex
 
 import (

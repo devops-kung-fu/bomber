@@ -1,3 +1,4 @@
+// Package osv contains functionality to retrieve vulnerability information from OSV.dev
 package osv
 
 import (
