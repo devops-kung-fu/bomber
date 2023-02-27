@@ -15,7 +15,7 @@ require (
 	github.com/remeh/sizedwaitgroup v1.0.0
 	github.com/spf13/afero v1.9.4
 	github.com/spf13/cobra v1.6.1
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 	k8s.io/utils v0.0.0-20230220204549-a5ecb0141aa5
 )
 
