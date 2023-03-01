@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:ad7179a1-1bb9-4a84-98cf-7b7b00682f44",
+  "serialNumber": "urn:uuid:163d3255-d762-4152-a74c-2189a6725d25",
   "version": 1,
   "metadata": {
-    "timestamp": "2023-03-01T16:55:21-07:00",
+    "timestamp": "2023-03-01T16:59:51-07:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -5664,12 +5664,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.1?package-id=3175b40bbc65314f",
+      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.2?package-id=e129ca3f1531b021",
       "type": "library",
       "name": "github.com/stretchr/testify",
-      "version": "v1.8.1",
-      "cpe": "cpe:2.3:a:stretchr:testify:v1.8.1:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/stretchr/testify@v1.8.1",
+      "version": "v1.8.2",
+      "cpe": "cpe:2.3:a:stretchr:testify:v1.8.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/stretchr/testify@v1.8.2",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -5693,7 +5693,7 @@
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:w7B6lhMri9wdJUVmEZPGGhZzrYTPvgJArz7wNPgYKsk="
+          "value": "h1:+h33VjcLVPDHtOdpUCuF+7gSuG3yGIftsP1YvFihtJ8="
         }
       ]
     },
