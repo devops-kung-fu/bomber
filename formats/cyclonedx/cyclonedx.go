@@ -8,7 +8,9 @@ import (
 // Purls returns a slice of Purls from a CycloneDX formatted SBOM
 func Purls(bom *cyclone.BOM) (purls []string) {
 	for _, component := range *bom.Components {
-		purls = append(purls, component.PackageURL)
+		if component.PackageURL != "" {
+			purls = append(purls, component.PackageURL)
+		}
 	}
 	return
 }

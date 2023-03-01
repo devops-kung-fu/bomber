@@ -40,6 +40,14 @@
             "args": ["--debug=true", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
         },
         {
+            "name": "Debug File (OSV- cargo-valid)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "args": ["--debug=true", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/cargo-valid-bom-1.3.json"]
+        },
+        {
             "name": "Debug File (Snyk - juiceshop)",
             "type": "go",
             "request": "launch",
@@ -103,5 +111,6 @@
             "program": "${workspaceFolder}/main.go",
             "args": ["--provider=osv", "--debug=true", "--output=json", "--ignore-file=./_TESTDATA_/ignore/bomber.ignore", "scan", "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"]
         },
+        
     ]
 }
