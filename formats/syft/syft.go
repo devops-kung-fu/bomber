@@ -46,7 +46,9 @@ type Schema struct {
 // Purls returns a slice of Purls from a Syft formatted SBOM
 func (bom *BOM) Purls() (purls []string) {
 	for _, artifact := range bom.Artifacts {
-		purls = append(purls, artifact.Purl)
+		if artifact.Purl != "" {
+			purls = append(purls, artifact.Purl)
+		}
 	}
 	return
 }

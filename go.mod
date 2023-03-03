@@ -4,18 +4,18 @@ go 1.20
 
 require (
 	github.com/CycloneDX/cyclonedx-go v0.7.0
-	github.com/briandowns/spinner v1.21.0
+	github.com/briandowns/spinner v1.22.0
 	github.com/devops-kung-fu/common v0.2.5
 	github.com/gookit/color v1.5.2
 	github.com/jarcoal/httpmock v1.3.0
-	github.com/jedib0t/go-pretty/v6 v6.4.4
+	github.com/jedib0t/go-pretty/v6 v6.4.6
 	github.com/kirinlabs/HttpRequest v1.1.1
 	github.com/microcosm-cc/bluemonday v1.0.22
 	github.com/package-url/packageurl-go v0.1.0
 	github.com/remeh/sizedwaitgroup v1.0.0
 	github.com/spf13/afero v1.9.4
 	github.com/spf13/cobra v1.6.1
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 	k8s.io/utils v0.0.0-20230220204549-a5ecb0141aa5
 )
 

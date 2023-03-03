@@ -1,10 +1,10 @@
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
-  "serialNumber": "urn:uuid:088f8829-031c-4dfb-b154-345ad77e54f8",
+  "serialNumber": "urn:uuid:163d3255-d762-4152-a74c-2189a6725d25",
   "version": 1,
   "metadata": {
-    "timestamp": "2023-02-24T12:07:43-07:00",
+    "timestamp": "2023-03-01T16:59:51-07:00",
     "tools": [
       {
         "vendor": "anchore",
@@ -1386,12 +1386,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/briandowns/spinner@v1.21.0?package-id=d696a71862d21e1f",
+      "bom-ref": "pkg:golang/github.com/briandowns/spinner@v1.22.0?package-id=266c1879349c6d2b",
       "type": "library",
       "name": "github.com/briandowns/spinner",
-      "version": "v1.21.0",
-      "cpe": "cpe:2.3:a:briandowns:spinner:v1.21.0:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/briandowns/spinner@v1.21.0",
+      "version": "v1.22.0",
+      "cpe": "cpe:2.3:a:briandowns:spinner:v1.22.0:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/briandowns/spinner@v1.22.0",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -1415,7 +1415,7 @@
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:2lVBzf3iZ3cT/ulVXljc4BzlL3yTWZDzsGsamI7si+A="
+          "value": "h1:fJ/7tyeM2q9ebM57kGfjnUSrgPJBsULk+/s61UpMGrw="
         }
       ]
     },
@@ -3070,12 +3070,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.4?package-id=b73940067c0b47c1",
+      "bom-ref": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.6?package-id=1bdfd6de86debe26",
       "type": "library",
       "name": "github.com/jedib0t/go-pretty/v6",
-      "version": "v6.4.4",
-      "cpe": "cpe:2.3:a:jedib0t:go-pretty\\/v6:v6.4.4:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.4",
+      "version": "v6.4.6",
+      "cpe": "cpe:2.3:a:jedib0t:go-pretty\\/v6:v6.4.6:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/jedib0t/go-pretty/v6@v6.4.6",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -3095,7 +3095,7 @@
         },
         {
           "name": "syft:cpe23",
-          "value": "cpe:2.3:a:jedib0t:go_pretty\\/v6:v6.4.4:*:*:*:*:*:*:*"
+          "value": "cpe:2.3:a:jedib0t:go_pretty\\/v6:v6.4.6:*:*:*:*:*:*:*"
         },
         {
           "name": "syft:location:0:path",
@@ -3103,7 +3103,7 @@
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:N+gz6UngBPF4M288kiMURPHELDMIhF/Em35aYuKrsSc="
+          "value": "h1:v6aG9h6Uby3IusSSEjHaZNXpHFhzqMmjXcPq1Rjl9Jw="
         }
       ]
     },
@@ -5664,12 +5664,12 @@
       ]
     },
     {
-      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.1?package-id=3175b40bbc65314f",
+      "bom-ref": "pkg:golang/github.com/stretchr/testify@v1.8.2?package-id=e129ca3f1531b021",
       "type": "library",
       "name": "github.com/stretchr/testify",
-      "version": "v1.8.1",
-      "cpe": "cpe:2.3:a:stretchr:testify:v1.8.1:*:*:*:*:*:*:*",
-      "purl": "pkg:golang/github.com/stretchr/testify@v1.8.1",
+      "version": "v1.8.2",
+      "cpe": "cpe:2.3:a:stretchr:testify:v1.8.2:*:*:*:*:*:*:*",
+      "purl": "pkg:golang/github.com/stretchr/testify@v1.8.2",
       "properties": [
         {
           "name": "syft:package:foundBy",
@@ -5693,7 +5693,7 @@
         },
         {
           "name": "syft:metadata:h1Digest",
-          "value": "h1:w7B6lhMri9wdJUVmEZPGGhZzrYTPvgJArz7wNPgYKsk="
+          "value": "h1:+h33VjcLVPDHtOdpUCuF+7gSuG3yGIftsP1YvFihtJ8="
         }
       ]
     },

@@ -64,7 +64,6 @@ var (
 					purl, err := packageurl.FromString(p)
 					if err != nil {
 						util.PrintErr(err)
-						log.Println(err)
 					}
 					if !slices.Contains(ecosystems, purl.Type) {
 						ecosystems = append(ecosystems, purl.Type)
@@ -83,9 +82,12 @@ var (
 				if err != nil {
 					log.Print(err)
 				}
-				ignoredCVE, err := lib.LoadIgnore(Afs, ignoreFile)
-				if err != nil {
-					util.PrintWarningf("Ignore flag set, but there was an error: %s", err)
+				var ignoredCVE []string
+				if ignoreFile != "" {
+					ignoredCVE, err = lib.LoadIgnore(Afs, ignoreFile)
+					if err != nil {
+						util.PrintWarningf("Ignore flag set, but there was an error: %s", err)
+					}
 				}
 
 				for i, p := range response {

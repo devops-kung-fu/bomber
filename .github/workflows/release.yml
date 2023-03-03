@@ -37,6 +37,7 @@ jobs:
         with:
           artifact-name: bomber.cyclonedx.json
           path: .
+          format: cyclonedx-json
       - 
         name: Release SBOM
         uses: anchore/sbom-action/publish-sbom@v0
