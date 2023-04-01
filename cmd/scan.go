@@ -131,8 +131,8 @@ var (
 
 func init() {
 	rootCmd.AddCommand(scanCmd)
-	scanCmd.PersistentFlags().StringVar(&credentials.Username, "username", "", "The user name for the provider being used.")
-	scanCmd.PersistentFlags().StringVar(&credentials.Token, "token", "", "The API token for the provider being used.")
-	scanCmd.PersistentFlags().StringVar(&providerName, "provider", "osv", "The vulnerability provider (ossindex, osv).")
-	scanCmd.PersistentFlags().StringVar(&ignoreFile, "ignore-file", "", "An optional file containing CVEs to ignore when rendering output.")
+	scanCmd.PersistentFlags().StringVar(&credentials.Username, "username", "", "the user name for the provider being used.")
+	scanCmd.PersistentFlags().StringVar(&credentials.Token, "token", "", "the API token for the provider being used.")
+	scanCmd.PersistentFlags().StringVar(&providerName, "provider", "osv", "the vulnerability provider (ossindex, osv).")
+	scanCmd.PersistentFlags().StringVar(&ignoreFile, "ignore-file", "", "an optional file containing CVEs to ignore when rendering output.")
 }
