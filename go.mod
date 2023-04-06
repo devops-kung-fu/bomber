@@ -14,7 +14,7 @@ require (
 	github.com/package-url/packageurl-go v0.1.0
 	github.com/remeh/sizedwaitgroup v1.0.0
 	github.com/spf13/afero v1.9.4
-	github.com/spf13/cobra v1.6.1
+	github.com/spf13/cobra v1.7.0
 	github.com/stretchr/testify v1.8.2
 	k8s.io/utils v0.0.0-20230220204549-a5ecb0141aa5
 )
