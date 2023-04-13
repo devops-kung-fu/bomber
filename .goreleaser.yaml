@@ -3,6 +3,8 @@ project_name: bomber
 builds:
   - 
     binary: bomber
+    env:
+      - CGO_ENABLED=0
     goos:
       - darwin
       - linux

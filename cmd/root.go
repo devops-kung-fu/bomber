@@ -16,7 +16,7 @@ import (
 )
 
 var (
-	version = "0.4.2"
+	version = "0.4.3"
 	output  string
 	//Afs stores a global OS Filesystem that is used throughout bomber
 	Afs = &afero.Afero{Fs: afero.NewOsFs()}
@@ -24,7 +24,7 @@ var (
 	debug   bool
 	rootCmd = &cobra.Command{
 		Use:     "bomber [flags] file",
-		Example: "  bomber test.spdx",
+		Example: "  bomber scan --output html test.cyclonedx.json",
 		Short:   "Scans SBoMs for security vulnerabilities.",
 		Version: version,
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
@@ -60,6 +60,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "Displays debug level log messages.")
-	rootCmd.PersistentFlags().StringVar(&output, "output", "stdout", "How bomber should output findings (json, xml, stdout)")
+	rootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "displays debug level log messages.")
+	rootCmd.PersistentFlags().StringVar(&output, "output", "stdout", "how bomber should output findings (json, html, stdout)")
 }
