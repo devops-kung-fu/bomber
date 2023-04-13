@@ -9,6 +9,7 @@ import (
 
 	"github.com/remeh/sizedwaitgroup"
 
+	"github.com/devops-kung-fu/bomber/lib/filters"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
@@ -30,7 +31,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 	if err = validateCredentials(credentials); err != nil {
 		return packages, fmt.Errorf("could not validate credentials: %w", err)
 	}
-
+	purls = filters.Sanitize(purls)
 	wg := sizedwaitgroup.New(Concurrency)
 	client := newClient(credentials)
 	orgID, err := getOrgID(client)

@@ -11,6 +11,7 @@ import (
 	"github.com/kirinlabs/HttpRequest"
 
 	"github.com/devops-kung-fu/bomber/lib"
+	"github.com/devops-kung-fu/bomber/lib/filters"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
@@ -31,10 +32,10 @@ func (Provider) Info() string {
 
 // Scan scans a slice of Purls for vulnerabilities against the OSS Index
 func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
-	err = validateCredentials(credentials)
-	if err != nil {
-		return
+	if err = validateCredentials(credentials); err != nil {
+		return nil, fmt.Errorf("could not validate credentials: %w", err)
 	}
+	purls = filters.Sanitize(purls)
 	totalPurls := len(purls)
 	for startIndex := 0; startIndex < totalPurls; startIndex += 128 {
 		endIndex := startIndex + 128
