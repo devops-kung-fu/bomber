@@ -70,15 +70,24 @@ var (
 					}
 				}
 				s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
+
+				purls, issues := filters.Sanitize(purls)
+
 				util.DoIf(output != "json", func() {
 					util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
+
+					//for each models.Issue in issues, write a message to the console
+					for _, issue := range issues {
+						util.PrintWarningf("%v (%v)\n", issue.Message, issue.Purl)
+					}
+
 					util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
 					util.PrintInfo("Vulnerability Provider:", provider.Info(), "\n")
 					s.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", providerName)
 					s.Start()
 				})
 
-				response, err = provider.Scan(purls, &credentials)
+				response, issues, err := provider.Scan(purls, &credentials)
 				if err != nil {
 					log.Print(err)
 				}

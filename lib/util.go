@@ -6,24 +6,25 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-// Rating converts a CVSS score to a string
+// Rating takes a CVSS score as input and returns a rating string based on the score
 func Rating(score float64) string {
-	if score > 0 && score <= 3.9 {
+	switch {
+	case score > 0 && score <= 3.9:
 		return "LOW"
-	} else if score >= 4.0 && score <= 6.9 {
+	case score >= 4.0 && score <= 6.9:
 		return "MODERATE"
-	} else if score >= 7.0 && score <= 8.9 {
+	case score >= 7.0 && score <= 8.9:
 		return "HIGH"
-	} else if score >= 9.0 && score <= 10.0 {
+	case score >= 9.0 && score <= 10.0:
 		return "CRITICAL"
+	default:
+		return "UNSPECIFIED"
 	}
-	return "UNSPECIFIED"
 }
 
-// AdjustSummary increments the counts of severities in a Summary struct based on the severity string passed in
+// AdjustSummary takes a severity string and a pointer to a Summary struct as input, and increments the corresponding severity count in the struct.
 func AdjustSummary(severity string, summary *models.Summary) {
-	severity = strings.ToUpper(severity)
-	switch severity {
+	switch strings.ToUpper(severity) {
 	case "LOW":
 		summary.Low++
 	case "MODERATE":

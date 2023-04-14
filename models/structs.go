@@ -104,3 +104,11 @@ type EpssScore struct {
 	Percentile string `json:"percentile,omitempty"`
 	Date       string `json:"date,omitempty"`
 }
+
+// Issue encapsulates an issue with the processing of an SBOM
+type Issue struct {
+	Err       error  `json:"error,omitempty"`
+	IssueType string `json:"issueType,omitempty"`
+	Purl      string `json:"purl,omitempty"`
+	Message   string `json:"message,omitempty"`
+}

@@ -9,7 +9,6 @@ import (
 
 	"github.com/remeh/sizedwaitgroup"
 
-	"github.com/devops-kung-fu/bomber/lib/filters"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
@@ -27,16 +26,15 @@ func (Provider) Info() string {
 }
 
 // Scan scans a list of Purls for vulnerabilities against Snyk.
-func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
+func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, issues []models.Issue, err error) {
 	if err = validateCredentials(credentials); err != nil {
-		return packages, fmt.Errorf("could not validate credentials: %w", err)
+		return packages, issues, fmt.Errorf("could not validate credentials: %w", err)
 	}
-	purls = filters.Sanitize(purls)
 	wg := sizedwaitgroup.New(Concurrency)
 	client := newClient(credentials)
 	orgID, err := getOrgID(client)
 	if err != nil {
-		return packages, fmt.Errorf("could not infer user’s Snyk organization: %w", err)
+		return packages, issues, fmt.Errorf("could not infer user’s Snyk organization: %w", err)
 	}
 
 	for _, pp := range purls {

@@ -75,7 +75,7 @@ func TestProvider_Scan_FakeCredentials(t *testing.T) {
 	}
 
 	provider := Provider{}
-	pkgs, err := provider.Scan([]string{"pkg:gem/tzinfo@1.2.5"}, &credentials)
+	pkgs, _, err := provider.Scan([]string{"pkg:gem/tzinfo@1.2.5"}, &credentials)
 	assert.NoError(t, err)
 	assert.Len(t, pkgs, 1)
 	pkg := pkgs[0]

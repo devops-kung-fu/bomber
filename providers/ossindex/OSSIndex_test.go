@@ -66,7 +66,7 @@ func TestProvider_Scan_FakeCredentials(t *testing.T) {
 	}
 
 	provider := Provider{}
-	packages, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, &credentials)
+	packages, _, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, &credentials)
 	assert.NoError(t, err)
 	assert.Equal(t, "pkg:gem/tzinfo@1.2.5", packages[0].Purl)
 	assert.Len(t, packages[0].Vulnerabilities, 1)

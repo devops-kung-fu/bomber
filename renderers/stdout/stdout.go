@@ -25,7 +25,7 @@ func (Renderer) Render(results models.Results) (err error) {
 	if len(results.Files) > 0 {
 		util.PrintInfo("Files Scanned")
 		for _, scanned := range results.Files {
-			util.PrintTabbedf("%s (sha256:%s)", scanned.Name, scanned.SHA256)
+			util.PrintTabbedf("%s (sha256:%s)\n", scanned.Name, scanned.SHA256)
 		}
 		fmt.Println()
 
