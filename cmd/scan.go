@@ -87,7 +87,7 @@ var (
 					s.Start()
 				})
 
-				response, issues, err := provider.Scan(purls, &credentials)
+				response, err := provider.Scan(purls, &credentials)
 				if err != nil {
 					log.Print(err)
 				}
@@ -125,8 +125,7 @@ var (
 					}
 				}
 				results := models.NewResults(response, severitySummary, scanned, licenses, version, providerName)
-				err = renderer.Render(results)
-				if err != nil {
+				if err = renderer.Render(results); err != nil {
 					log.Println(err)
 				}
 

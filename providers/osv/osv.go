@@ -101,7 +101,7 @@ func (Provider) Info() string {
 }
 
 // Scan scans a list of Purls for vulnerabilities against OSV.dev. Note that credentials are not needed for OSV, so can be nil.
-func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, issues []models.Issue, err error) {
+func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
 	for _, pp := range purls {
 		log.Println("Purl:", pp)
 		p := PackageClass{

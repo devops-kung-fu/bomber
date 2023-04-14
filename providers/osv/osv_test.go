@@ -21,7 +21,7 @@ func TestProvider_Scan(t *testing.T) {
 		httpmock.NewBytesResponder(200, osvTestResponse()))
 
 	provider := Provider{}
-	packages, _, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, nil)
+	packages, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "pkg:golang/github.com/briandowns/spinner@v1.19.0", packages[0].Purl)
 	assert.Len(t, packages[0].Vulnerabilities, 1)
@@ -36,7 +36,7 @@ func TestProvider_BadResponse(t *testing.T) {
 		httpmock.NewBytesResponder(500, []byte{}))
 
 	provider := Provider{}
-	_, _, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, nil)
+	_, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, nil)
 	assert.Error(t, err)
 	assert.Equal(t, "error retrieving vulnerability data (500)", err.Error())
 }

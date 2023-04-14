@@ -30,9 +30,9 @@ func (Provider) Info() string {
 }
 
 // Scan scans a slice of Purls for vulnerabilities against the OSS Index
-func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, issues []models.Issue, err error) {
+func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
 	if err = validateCredentials(credentials); err != nil {
-		return nil, issues, fmt.Errorf("could not validate credentials: %w", err)
+		return nil, fmt.Errorf("could not validate credentials: %w", err)
 	}
 	totalPurls := len(purls)
 	for startIndex := 0; startIndex < totalPurls; startIndex += 128 {
