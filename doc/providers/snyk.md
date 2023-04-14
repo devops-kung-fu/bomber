@@ -32,3 +32,7 @@ At this time, the Snyk provider supports the following ecosystems:
 * Cargo
 * Swift
 * C/C++
+* apk
+* Debian
+* Docker
+* RPM
