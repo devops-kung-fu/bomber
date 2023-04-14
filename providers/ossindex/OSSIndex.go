@@ -31,9 +31,8 @@ func (Provider) Info() string {
 
 // Scan scans a slice of Purls for vulnerabilities against the OSS Index
 func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
-	err = validateCredentials(credentials)
-	if err != nil {
-		return
+	if err = validateCredentials(credentials); err != nil {
+		return nil, fmt.Errorf("could not validate credentials: %w", err)
 	}
 	totalPurls := len(purls)
 	for startIndex := 0; startIndex < totalPurls; startIndex += 128 {
@@ -56,8 +55,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		body, _ := resp.Body()
 		if resp.StatusCode() == 200 {
 			var response []models.Package
-			err = json.Unmarshal(body, &response)
-			if err != nil {
+			if err = json.Unmarshal(body, &response); err != nil {
 				return
 			}
 			for i, pkg := range response {
@@ -82,9 +80,11 @@ func validateCredentials(credentials *models.Credentials) (err error) {
 	if credentials == nil {
 		return errors.New("credentials cannot be nil")
 	}
+
 	if credentials.Username == "" {
 		credentials.Username = os.Getenv("BOMBER_PROVIDER_USERNAME")
 	}
+
 	if credentials.Token == "" {
 		credentials.Token = os.Getenv("BOMBER_PROVIDER_TOKEN")
 	}

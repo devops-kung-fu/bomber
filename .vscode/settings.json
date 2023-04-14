@@ -49,5 +49,6 @@
         "vuln",
         "vulns",
         "Warningf"
-    ]
+    ],
+    "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false
 }

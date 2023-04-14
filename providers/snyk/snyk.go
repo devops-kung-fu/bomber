@@ -30,7 +30,6 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 	if err = validateCredentials(credentials); err != nil {
 		return packages, fmt.Errorf("could not validate credentials: %w", err)
 	}
-
 	wg := sizedwaitgroup.New(Concurrency)
 	client := newClient(credentials)
 	orgID, err := getOrgID(client)

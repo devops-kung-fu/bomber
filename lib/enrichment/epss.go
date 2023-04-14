@@ -31,8 +31,7 @@ func Enrich(vulnerabilities []models.Vulnerability) (enriched []models.Vulnerabi
 	body, _ := resp.Body()
 	if resp.StatusCode() == 200 {
 		var epss models.Epss
-		err = json.Unmarshal(body, &epss)
-		if err != nil {
+		if err = json.Unmarshal(body, &epss); err != nil {
 			return
 		}
 		log.Println("EPSS response total:", epss.Total)
