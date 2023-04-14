@@ -84,31 +84,20 @@ func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, 
 
 	if bytes.Contains(b, []byte("xmlns")) && bytes.Contains(b, []byte("CycloneDX")) {
 		log.Println("Detected CycloneDX XML")
-		var sbom cyclone.BOM
-		err = xml.Unmarshal(b, &sbom)
-		if err == nil {
-			return scanned, cyclonedx.Purls(&sbom), cyclonedx.Licenses(&sbom), err
-		}
+		return processCycloneDX(b, scanned, xml.Unmarshal)
 	} else if bytes.Contains(b, []byte("bomFormat")) && bytes.Contains(b, []byte("CycloneDX")) {
 		log.Println("Detected CycloneDX JSON")
-		var sbom cyclone.BOM
-		err = json.Unmarshal(b, &sbom)
-		if err == nil {
-			l := cyclonedx.Licenses(&sbom)
-			return scanned, cyclonedx.Purls(&sbom), l, err
-		}
+		return processCycloneDX(b, scanned, json.Unmarshal)
 	} else if bytes.Contains(b, []byte("SPDXRef-DOCUMENT")) {
 		log.Println("Detected SPDX")
 		var sbom spdx.BOM
-		err = json.Unmarshal(b, &sbom)
-		if err == nil {
+		if err = json.Unmarshal(b, &sbom); err == nil {
 			return scanned, sbom.Purls(), sbom.Licenses(), err
 		}
 	} else if bytes.Contains(b, []byte("https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-")) {
 		log.Println("Detected Syft")
 		var sbom syft.BOM
-		err = json.Unmarshal(b, &sbom)
-		if err == nil {
+		if err = json.Unmarshal(b, &sbom); err == nil {
 			return scanned, sbom.Purls(), sbom.Licenses(), err
 		}
 	}
@@ -116,9 +105,16 @@ func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, 
 	return scanned, nil, nil, fmt.Errorf("%v is not a SBOM recognized by bomber", arg)
 }
 
+func processCycloneDX(b []byte, s []models.ScannedFile, unmarshal func([]byte, interface{}) error) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
+	var sbom cyclone.BOM
+	if err = unmarshal(b, &sbom); err == nil {
+		return s, cyclonedx.Purls(&sbom), cyclonedx.Licenses(&sbom), err
+	}
+	return
+}
+
 // LoadIgnore loads a list of CVEs entered one on each line from the filename provided
 func LoadIgnore(afs *afero.Afero, ignoreFile string) (cves []string, err error) {
-
 	f, err := afs.Open(ignoreFile)
 	if err != nil {
 		log.Printf("error opening ignore: %v\n", err)
