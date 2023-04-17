@@ -7,6 +7,7 @@
 
 
 
+
         {
             "name": "Debug Folder (OSV)",
             "type": "go",
@@ -45,7 +46,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/cargo-valid-bom-1.3.json"]
+            "args": ["--debug=true", "scan", "./_TESTDATA_/sbom/cargo-valid-bom-1.3.json"]
         },
         {
             "name": "Debug File (Snyk - juiceshop)",

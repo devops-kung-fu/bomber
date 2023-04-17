@@ -1,8 +1,10 @@
 package osv
 
 import (
+	"reflect"
 	"testing"
 
+	cyclone "github.com/CycloneDX/cyclonedx-go"
 	"github.com/jarcoal/httpmock"
 	"github.com/stretchr/testify/assert"
 )
@@ -206,4 +208,24 @@ func osvTestResponse() []byte {
 		]
 	}`
 	return []byte(response)
+}
+
+func TestToVDR(t *testing.T) {
+	type args struct {
+		vulns []Vuln
+	}
+	tests := []struct {
+		name    string
+		args    args
+		wantVdr *cyclone.BOM
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if gotVdr := ToVDR(tt.args.vulns); !reflect.DeepEqual(gotVdr, tt.wantVdr) {
+				t.Errorf("ToVDR() = %v, want %v", gotVdr, tt.wantVdr)
+			}
+		})
+	}
 }

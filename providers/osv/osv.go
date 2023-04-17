@@ -5,8 +5,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"strconv"
 	"strings"
 
+	cyclone "github.com/CycloneDX/cyclonedx-go"
 	"github.com/kirinlabs/HttpRequest"
 
 	"github.com/devops-kung-fu/bomber/models"
@@ -95,6 +97,72 @@ const (
 	Web      Type = "WEB"
 )
 
+func ToVDR(vulns []Vuln) (vdr *cyclone.BOM) {
+	vdr = cyclone.NewBOM()
+	vulnerabilities := make([]cyclone.Vulnerability, 0)
+	vdr.Vulnerabilities = &vulnerabilities
+	for _, v := range vulns {
+		vuln := &cyclone.Vulnerability{
+			BOMRef:         "",
+			ID:             v.Aliases[0],
+			Source:         &cyclone.Source{Name: "NVD", URL: "https://nvd.nist.gov/vuln/detail/" + v.Aliases[0]},
+			References:     &[]cyclone.VulnerabilityReference{},
+			Ratings:        &[]cyclone.VulnerabilityRating{},
+			CWEs:           CWEStringToInt(v.DatabaseSpecific.CweIDS),
+			Description:    v.Summary,
+			Detail:         v.Details,
+			Recommendation: "",
+			Advisories:     &[]cyclone.Advisory{},
+			Created:        "",
+			Published:      v.Published,
+			Updated:        v.Modified,
+			Credits:        &cyclone.Credits{},
+			Tools: &[]cyclone.Tool{
+				{
+					Vendor:  "DKFM",
+					Name:    "bomber",
+					Version: "1.0.0", //TODO: Fill this in during render
+					Hashes:  &[]cyclone.Hash{},
+					ExternalReferences: &[]cyclone.ExternalReference{
+						{
+							URL:     "https://github.com/devops-kung-fu/bomber",
+							Comment: "bomber GitHub repository",
+							Hashes:  &[]cyclone.Hash{},
+							Type:    "support",
+						},
+					},
+				},
+			},
+			//TODO: Put this in the command as a flag --analysis
+			// Analysis: &cyclone.VulnerabilityAnalysis{ //If someone fills this out, it's a VEX
+			// 	State:         "-",
+			// 	Justification: "-",
+			// 	Response: &[]cyclone.ImpactAnalysisResponse{
+			// 		"-",
+			// 	},
+			// 	Detail: "-",
+			// },
+			Affects:    &[]cyclone.Affects{},
+			Properties: &[]cyclone.Property{},
+		}
+		*vdr.Vulnerabilities = append(*vdr.Vulnerabilities, *vuln)
+	}
+	return
+}
+
+func CWEStringToInt(cweStrings []string) *[]int {
+	cwes := make([]int, 0, len(cweStrings))
+	for _, cweString := range cweStrings {
+		cweInt, err := strconv.Atoi(strings.TrimPrefix(cweString, "CWE-"))
+		if err != nil {
+			log.Printf("Error converting %s to int: %v\n", cweString, err)
+			continue
+		}
+		cwes = append(cwes, cweInt)
+	}
+	return &cwes
+}
+
 // Info provides basic information about the OSVProvider
 func (Provider) Info() string {
 	return "OSV Vulnerability Database (https://osv.dev)"
@@ -102,6 +170,7 @@ func (Provider) Info() string {
 
 // Scan scans a list of Purls for vulnerabilities against OSV.dev. Note that credentials are not needed for OSV, so can be nil.
 func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
+	vulns := []Vuln{}
 	for _, pp := range purls {
 		log.Println("Purl:", pp)
 		p := PackageClass{
@@ -123,10 +192,12 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		if resp.StatusCode() == 200 {
 			var response Response
 			err = json.Unmarshal(body, &response)
+
 			if err != nil {
 				return
 			}
 			if len(response.Vulns) > 0 {
+				vulns = append(vulns, response.Vulns...)
 				pkg := models.Package{
 					Purl: pp,
 				}
@@ -157,5 +228,6 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 			break
 		}
 	}
+	log.Println(ToVDR(vulns))
 	return
 }
