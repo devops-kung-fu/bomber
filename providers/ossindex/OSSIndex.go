@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 
+	cyclone "github.com/CycloneDX/cyclonedx-go"
 	"github.com/kirinlabs/HttpRequest"
 
 	"github.com/devops-kung-fu/bomber/lib"
@@ -24,6 +25,66 @@ type CoordinateRequest struct {
 	Coordinates []string `json:"coordinates"`
 }
 
+func ToVDR(packages []models.Package) (vdr *cyclone.BOM) {
+	vdr = cyclone.NewBOM()
+	vulnerabilities := make([]cyclone.Vulnerability, 0)
+	vdr.Vulnerabilities = &vulnerabilities
+	for _, p := range packages {
+		if len(p.Vulnerabilities) == 0 {
+			continue
+		}
+		vuln := &cyclone.Vulnerability{
+			BOMRef: "",
+			// ID:             v.Aliases[0],
+			// Source:         &cyclone.Source{Name: "NVD", URL: "https://nvd.nist.gov/vuln/detail/" + v.Aliases[0]},
+			// References:     &[]cyclone.VulnerabilityReference{},
+			// Ratings:        &[]cyclone.VulnerabilityRating{},
+			// CWEs:           CWEStringToInt(v.DatabaseSpecific.CweIDS),
+			// Description:    v.Summary,
+			// Detail:         v.Details,
+			// Recommendation: "",
+			// Advisories:     &[]cyclone.Advisory{},
+			// Created:        "",
+			// Published:      v.Published,
+			// Updated:        v.Modified,
+			// Credits:        &cyclone.Credits{},
+			Tools: &[]cyclone.Tool{
+				{
+					Vendor:  "DKFM",
+					Name:    "bomber (OSSINDEX)",
+					Version: "1.0.0", //TODO: Fill this in during render
+					Hashes:  &[]cyclone.Hash{},
+					ExternalReferences: &[]cyclone.ExternalReference{
+						{
+							URL:     "https://github.com/devops-kung-fu/bomber",
+							Comment: "bomber GitHub repository",
+							Hashes:  &[]cyclone.Hash{},
+							Type:    "support",
+						},
+					},
+				},
+			},
+			//TODO: Put this in the command as a flag --analysis
+			// Analysis: &cyclone.VulnerabilityAnalysis{ //If someone fills this out, it's a VEX
+			// 	State:         "-",
+			// 	Justification: "-",
+			// 	Response: &[]cyclone.ImpactAnalysisResponse{
+			// 		"-",
+			// 	},
+			// 	Detail: "-",
+			// },
+			Affects: &[]cyclone.Affects{
+				{
+					Ref: "purl",
+				},
+			},
+			// Properties: &[]cyclone.Property{},
+		}
+		*vdr.Vulnerabilities = append(*vdr.Vulnerabilities, *vuln)
+	}
+	return
+}
+
 // Info provides basic information about the OSSIndexProvider
 func (Provider) Info() string {
 	return "Sonatype OSS Index (https://ossindex.sonatype.org)"
@@ -35,6 +96,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		return nil, fmt.Errorf("could not validate credentials: %w", err)
 	}
 	totalPurls := len(purls)
+	vulnerablePackages := []models.Package{}
 	for startIndex := 0; startIndex < totalPurls; startIndex += 128 {
 		endIndex := startIndex + 128
 		if endIndex > totalPurls {
@@ -59,6 +121,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 				return
 			}
 			for i, pkg := range response {
+
 				log.Println("Purl:", response[i].Purl)
 				for ii := range response[i].Vulnerabilities {
 					log.Println(response[i].Vulnerabilities[ii].ID)
@@ -66,13 +129,16 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 				}
 				if len(pkg.Vulnerabilities) > 0 {
 					packages = append(packages, response[i])
+					vulnerablePackages = append(vulnerablePackages, response[i])
 				}
 			}
+
 		} else {
 			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.Response().Status)
 			break
 		}
 	}
+	ToVDR(vulnerablePackages)
 	return
 }
 

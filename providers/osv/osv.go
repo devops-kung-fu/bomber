@@ -173,14 +173,13 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 	vulns := []Vuln{}
 	for _, pp := range purls {
 		log.Println("Purl:", pp)
-		p := PackageClass{
-			Purl: pp,
-		}
 		q := Query{
-			Package: p,
+			Package: PackageClass{
+				Purl: pp,
+			},
 		}
 		req := HttpRequest.NewRequest()
-		log.Println(q)
+		log.Printf("OSV Query: %v", q)
 		resp, _ := req.JSON().Post(osvURL, q)
 		defer func() {
 			_ = resp.Close()
