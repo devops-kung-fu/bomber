@@ -37,7 +37,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "--fail=moderate", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+            "args": ["--debug=true", "--fail=critical", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
         },
         {
             "name": "Debug File (OSV- cargo-valid)",

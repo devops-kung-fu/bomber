@@ -100,6 +100,20 @@ var (
 					}
 				}
 
+				//Get rid of the packages that have a vulnerability lower than its fail severity
+				if failSeverity != "" {
+					for i, p := range response {
+						vulns := []models.Vulnerability{}
+						for _, v := range p.Vulnerabilities {
+							fs := int(lib.ParseFailSeverity(failSeverity))
+							vs := lib.ParseSeverity(v.Severity)
+							if vs >= fs {
+								vulns = append(vulns, v)
+							}
+						}
+						response[i].Vulnerabilities = vulns
+					}
+				}
 				for i, p := range response {
 					enrichedVulnerabilities, _ := enrichment.Enrich(p.Vulnerabilities)
 					response[i].Vulnerabilities = enrichedVulnerabilities
