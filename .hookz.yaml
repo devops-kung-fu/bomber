@@ -5,6 +5,7 @@
     - source: github.com/kisielk/errcheck@latest      
     - source: honnef.co/go/tools/cmd/staticcheck@latest
     - source: github.com/fzipp/gocyclo/cmd/gocyclo@latest
+    - source: golang.org/x/vuln/cmd/govulncheck@latest
   hooks:
     - type: pre-commit
       actions:
@@ -26,6 +27,9 @@
         - name: "errcheck: Ensure that errors are checked"
           exec: errcheck
           args: ["-ignoretests", "./..."]
+        - name: "govulncheck: Check for vulnerabilities"
+          exec: govulncheck
+          args: ["./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
           args: ["-over", "13", "."]

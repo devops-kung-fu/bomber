@@ -2,6 +2,7 @@ package html
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/devops-kung-fu/common/util"
@@ -20,6 +21,10 @@ func Test_writeTemplate(t *testing.T) {
 	b, err := afs.ReadFile("test.html")
 	assert.NotNil(t, b)
 	assert.NoError(t, err)
+
+	info, err := afs.Stat("test.html")
+	assert.NoError(t, err)
+	assert.Equal(t, os.FileMode(0777), info.Mode().Perm())
 }
 
 func Test_genTemplate(t *testing.T) {
