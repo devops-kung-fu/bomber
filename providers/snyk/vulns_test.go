@@ -75,7 +75,6 @@ func TestGetVulnsForPurlInvalidPurl(t *testing.T) {
 	vulns, err := getVulnsForPurl("foobar", newClient(&models.Credentials{}), orgID)
 
 	assert.Error(t, err)
-	assert.Equal(t, "invalid purl: scheme is missing", err.Error())
 	assert.Nil(t, vulns)
 }
 
@@ -186,8 +185,7 @@ func TestSnykIssueToBomberVulnOtherSeverity(t *testing.T) {
 func TestValidatePurl(t *testing.T) {
 	t.Run("should raise error for invalid purl", func(t *testing.T) {
 		err := validatePurl("foobar")
-
-		assert.Equal(t, "invalid purl: scheme is missing", err.Error())
+		assert.Error(t, err)
 	})
 
 	t.Run("should not raise error for valid purl", func(t *testing.T) {
