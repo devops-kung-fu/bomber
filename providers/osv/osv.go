@@ -129,7 +129,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 					Purl: pp,
 				}
 				for _, v := range response.Vulns {
-					log.Printf("*** %s...", v.Summary)
+					log.Printf("*** %s - %s...", strings.Join(v.Aliases, ","), v.Summary)
 					vuln := models.Vulnerability{
 						ID:          strings.Join(v.Aliases, ","),
 						Title:       v.Summary,
