@@ -19,7 +19,6 @@ type Provider struct{}
 
 // Query is used for the request sent to the OSV
 type Query struct {
-	Version string       `json:"version"`
 	Package PackageClass `json:"package"`
 }
 
@@ -56,9 +55,7 @@ type AffectedDatabaseSpecific struct {
 }
 
 type PackageClass struct {
-	Name      string `json:"name,omitempty"`
-	Ecosystem string `json:"ecosystem,omitempty"`
-	Purl      string `json:"purl,omitempty"`
+	Purl string `json:"purl,omitempty"`
 }
 
 type Range struct {
@@ -127,10 +124,12 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 				return
 			}
 			if len(response.Vulns) > 0 {
+				log.Print("*** Vulnerabilities detected...")
 				pkg := models.Package{
 					Purl: pp,
 				}
 				for _, v := range response.Vulns {
+					log.Printf("*** %s...", v.Summary)
 					vuln := models.Vulnerability{
 						ID:          strings.Join(v.Aliases, ","),
 						Title:       v.Summary,
