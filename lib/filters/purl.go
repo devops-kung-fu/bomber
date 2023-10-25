@@ -23,6 +23,6 @@ func Sanitize(purls []string) (sanitized []string, issues []models.Issue) {
 				Purl:      p,
 			})
 		}
-	}
+	} //
 	return
 }

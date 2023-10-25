@@ -1,10 +1,10 @@
   version: 2.4.0
   sources:
-    - source: github.com/anchore/syft/cmd/syft@latest
     - source: github.com/devops-kung-fu/hinge@latest
     - source: github.com/kisielk/errcheck@latest      
     - source: honnef.co/go/tools/cmd/staticcheck@latest
     - source: github.com/fzipp/gocyclo/cmd/gocyclo@latest
+    - source: golang.org/x/vuln/cmd/govulncheck@latest
   hooks:
     - type: pre-commit
       actions:
@@ -26,6 +26,9 @@
         - name: "errcheck: Ensure that errors are checked"
           exec: errcheck
           args: ["-ignoretests", "./..."]
+        - name: "govulncheck: Check for vulnerabilities"
+          exec: govulncheck
+          args: ["./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
           args: ["-over", "13", "."]
@@ -41,11 +44,6 @@
         - name: "go: Test coverage"
           exec: go
           args: ["tool", "cover", "-func=coverage.out"]
-        # - name: "syft: Generate a Software Bill of Materials (SBoM)"
-        #   script: "
-        #     #!/bin/bash \n
-        #     syft . -o cyclonedx-json=sbom/bomber.cyclonedx.json &> /dev/null \n
-        #     "
         - name: "git: Add all changed files during the pre-commit stage"
           exec: git
           args: ["add", "."]

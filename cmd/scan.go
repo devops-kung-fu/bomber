@@ -29,6 +29,7 @@ var (
 	renderer        models.Renderer
 	provider        models.Provider
 	ignoreFile      string
+	failSeverity    string
 
 	// summary, detailed bool
 	scanCmd = &cobra.Command{
@@ -99,6 +100,20 @@ var (
 					}
 				}
 
+				//Get rid of the packages that have a vulnerability lower than its fail severity
+				if failSeverity != "" {
+					for i, p := range response {
+						vulns := []models.Vulnerability{}
+						for _, v := range p.Vulnerabilities {
+							fs := int(lib.ParseFailSeverity(failSeverity))
+							vs := lib.ParseSeverity(v.Severity)
+							if vs >= fs {
+								vulns = append(vulns, v)
+							}
+						}
+						response[i].Vulnerabilities = vulns
+					}
+				}
 				for i, p := range response {
 					enrichedVulnerabilities, _ := enrichment.Enrich(p.Vulnerabilities)
 					response[i].Vulnerabilities = enrichedVulnerabilities
@@ -118,8 +133,7 @@ var (
 				}
 				vulnCount := 0
 				for _, r := range response {
-					vulns := len(r.Vulnerabilities)
-					vulnCount += vulns
+					vulnCount += len(r.Vulnerabilities)
 					for _, v := range r.Vulnerabilities {
 						lib.AdjustSummary(v.Severity, &severitySummary)
 					}
@@ -127,6 +141,10 @@ var (
 				results := models.NewResults(response, severitySummary, scanned, licenses, version, providerName)
 				if err = renderer.Render(results); err != nil {
 					log.Println(err)
+				}
+				if failSeverity != "" {
+					log.Printf("fail severity: %x\n", int(lib.ParseFailSeverity(failSeverity)))
+					os.Exit(int(lib.ParseFailSeverity(failSeverity)))
 				}
 
 			} else {
@@ -143,4 +161,5 @@ func init() {
 	scanCmd.PersistentFlags().StringVar(&credentials.Token, "token", "", "the API token for the provider being used.")
 	scanCmd.PersistentFlags().StringVar(&providerName, "provider", "osv", "the vulnerability provider (ossindex, osv).")
 	scanCmd.PersistentFlags().StringVar(&ignoreFile, "ignore-file", "", "an optional file containing CVEs to ignore when rendering output.")
+	scanCmd.PersistentFlags().StringVar(&failSeverity, "fail", "undefined", "anything above this severity will be returned with non-zero error code.")
 }

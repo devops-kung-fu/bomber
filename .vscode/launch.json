@@ -32,12 +32,12 @@
             "args": ["--provider=ossindex", "--debug=true", "scan", "./_TESTDATA_/sbom"]
         },
         {
-            "name": "Debug File (OSS Index - juiceshop)",
+            "name": "Debug File (OSS Index - juiceshop, fail = moderate)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+            "args": ["--debug=true", "--fail=critical", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
         },
         {
             "name": "Debug File (OSV- cargo-valid)",
