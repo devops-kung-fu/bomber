@@ -25,7 +25,7 @@ var (
 	rootCmd = &cobra.Command{
 		Use:     "bomber [flags] file",
 		Example: "  bomber scan --output html test.cyclonedx.json",
-		Short:   "Scans SBoMs for security vulnerabilities.",
+		Short:   "Scans SBOMs for security vulnerabilities.",
 		Version: version,
 		PersistentPreRun: func(cmd *cobra.Command, args []string) {
 			if !debug {

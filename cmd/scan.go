@@ -34,7 +34,7 @@ var (
 	// summary, detailed bool
 	scanCmd = &cobra.Command{
 		Use:   "scan",
-		Short: "Scans a provided SBoM file or folder containing SBoMs for vulnerabilities.",
+		Short: "Scans a provided SBOM file or folder containing SBOMs for vulnerabilities.",
 		PreRun: func(cmd *cobra.Command, args []string) {
 			r, err := renderers.NewRenderer(output)
 			if err != nil {
