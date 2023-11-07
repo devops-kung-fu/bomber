@@ -80,7 +80,7 @@ func TestParseSeverity(t *testing.T) {
 
 	t.Run("Invalid severity: undefined", func(t *testing.T) {
 		severity := "invalid"
-		expected := 10
+		expected := 0
 		result := ParseSeverity(severity)
 		assert.Equal(t, expected, result)
 	})
@@ -89,50 +89,6 @@ func TestParseSeverity(t *testing.T) {
 		severity := "MoDerAte"
 		expected := 12
 		result := ParseSeverity(severity)
-		assert.Equal(t, expected, result)
-	})
-}
-
-func TestParseFailSeverity(t *testing.T) {
-	t.Run("Valid severity: low", func(t *testing.T) {
-		s := "low"
-		expected := models.LOW
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
-
-	t.Run("Valid severity: moderate", func(t *testing.T) {
-		s := "moderate"
-		expected := models.MODERATE
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
-
-	t.Run("Valid severity: high", func(t *testing.T) {
-		s := "high"
-		expected := models.HIGH
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
-
-	t.Run("Valid severity: critical", func(t *testing.T) {
-		s := "critical"
-		expected := models.CRITICAL
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
-
-	t.Run("Invalid severity: undefined", func(t *testing.T) {
-		s := "invalid"
-		expected := models.UNDEFINED
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
-
-	t.Run("Mixed case severity: moderate", func(t *testing.T) {
-		s := "MoDerAte"
-		expected := models.MODERATE
-		result := ParseFailSeverity(s)
 		assert.Equal(t, expected, result)
 	})
 }

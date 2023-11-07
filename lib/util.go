@@ -45,35 +45,18 @@ func AdjustSummary(severity string, summary *models.Summary) {
 // ParseSeverity takes a severity string and returns an int
 func ParseSeverity(severity string) int {
 	severity = strings.ToUpper(severity)
-
 	switch severity {
 	case "LOW":
-		return 11
+		return int(models.LOW)
 	case "MODERATE":
-		return 12
+		return int(models.MODERATE)
 	case "HIGH":
-		return 13
+		return int(models.HIGH)
 	case "CRITICAL":
-		return 14
+		return int(models.CRITICAL)
+	case "UNDEFINED":
+		return int(models.UNDEFINED)
 	default:
-		return 10
-	}
-}
-
-// ParseFailSeverity takes a string and returns a FailSeverity enum
-func ParseFailSeverity(s string) models.FailSeverity {
-	s = strings.ToLower(s)
-
-	switch s {
-	case "low":
-		return models.LOW
-	case "moderate":
-		return models.MODERATE
-	case "high":
-		return models.HIGH
-	case "critical":
-		return models.CRITICAL
-	default:
-		return models.UNDEFINED
+		return 0
 	}
 }

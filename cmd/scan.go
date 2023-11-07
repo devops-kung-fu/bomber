@@ -29,7 +29,7 @@ var (
 	renderer        models.Renderer
 	provider        models.Provider
 	ignoreFile      string
-	failSeverity    string
+	severity        string
 
 	// summary, detailed bool
 	scanCmd = &cobra.Command{
@@ -101,11 +101,11 @@ var (
 				}
 
 				//Get rid of the packages that have a vulnerability lower than its fail severity
-				if failSeverity != "" {
+				if severity != "" {
 					for i, p := range response {
 						vulns := []models.Vulnerability{}
 						for _, v := range p.Vulnerabilities {
-							fs := int(lib.ParseFailSeverity(failSeverity))
+							fs := lib.ParseSeverity(severity)
 							vs := lib.ParseSeverity(v.Severity)
 							if vs >= fs {
 								vulns = append(vulns, v)
@@ -142,11 +142,12 @@ var (
 				if err = renderer.Render(results); err != nil {
 					log.Println(err)
 				}
-				if failSeverity != "" {
-					log.Printf("fail severity: %x\n", int(lib.ParseFailSeverity(failSeverity)))
-					os.Exit(int(lib.ParseFailSeverity(failSeverity)))
+				failSeverity := lib.ParseSeverity(severity)
+				if severity != "" {
+					log.Printf("fail severity: %d", failSeverity)
+					os.Exit(failSeverity)
 				}
-
+				log.Printf("Fail severity: %d", failSeverity)
 			} else {
 				util.PrintInfo("No packages were detected. Nothing has been scanned.")
 			}
@@ -161,5 +162,5 @@ func init() {
 	scanCmd.PersistentFlags().StringVar(&credentials.Token, "token", "", "the API token for the provider being used.")
 	scanCmd.PersistentFlags().StringVar(&providerName, "provider", "osv", "the vulnerability provider (ossindex, osv).")
 	scanCmd.PersistentFlags().StringVar(&ignoreFile, "ignore-file", "", "an optional file containing CVEs to ignore when rendering output.")
-	scanCmd.PersistentFlags().StringVar(&failSeverity, "fail", "undefined", "anything above this severity will be returned with non-zero error code.")
+	scanCmd.PersistentFlags().StringVar(&severity, "severity", "", "anything equal to or above this severity will be returned with non-zero error code.")
 }

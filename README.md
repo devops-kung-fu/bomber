@@ -165,6 +165,36 @@ To use the ```bomber.ignore``` file, use the syntax as follows:
 bomber --ignore-file=bomber.ignore scan bom.json
 ```
 
+## Filtering Output
+
+You may set the severity level with the ```--severity``` flag in order to return specific vulnerability severities. For example, if you set ```--severity=moderate``` only vulnerabilities with a severity of ```MODERATE``` or above will be returned.
+
+For example, the following command will return only high and critical vulnerabilities.
+
+``` bash
+bomber --severity=high scan bom.json
+```
+## Return codes
+
+
+
+| Option | Return Code |
+|---|---|
+| NONE (default) | 0 |
+| ERROR | 1 |
+| UNSPECIFIED (This is a status where the provider gives us something wacky, or no info) | 10 |
+| LOW | 11 |
+| MODERATE | 12 |
+| HIGH | 13 |
+| CRITICAL | 14 |
+
+0 is an "I don't care about filters" value and is the default (shows all output)
+1 is that an error occurred
+...
+13 means at least 1 HIGH *or* "1" critical is found
+14 means at least 1 CRITICAL is found.
+
+
 ## Data Enrichment
 
 ```bomber``` has the ability to enrich vulnerability data it obtains from the [Providers](#providers). The first "enricher" we have implemented for is for [EPSS](https://www.first.org/epss/)
