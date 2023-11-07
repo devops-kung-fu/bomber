@@ -92,3 +92,55 @@ func TestParseSeverity(t *testing.T) {
 		assert.Equal(t, expected, result)
 	})
 }
+
+func TestHighestSeverityExitCode(t *testing.T) {
+	// Sample vulnerabilities with different severities
+	vulnerabilities := []models.Vulnerability{
+		{Severity: "LOW"},
+		{Severity: "CRITICAL"},
+		{Severity: "MODERATE"},
+		{Severity: "HIGH"},
+		{Severity: "UNDEFINED"},
+	}
+
+	// Calculate the expected exit code based on the highest severity
+	expectedExitCode := 14 // CRITICAL has the highest severity
+
+	// Call the function and check the result using assert
+	actualExitCode := HighestSeverityExitCode(vulnerabilities)
+	assert.Equal(t, expectedExitCode, actualExitCode)
+}
+
+func TestFlattenVulnerabilities(t *testing.T) {
+	// Create some sample data for testing
+	pkg1 := models.Package{
+		Purl: "pkg1",
+		Vulnerabilities: []models.Vulnerability{
+			{DisplayName: "Vuln1", Severity: "LOW"},
+			{DisplayName: "Vuln2", Severity: "HIGH"},
+		},
+	}
+
+	pkg2 := models.Package{
+		Purl: "pkg2",
+		Vulnerabilities: []models.Vulnerability{
+			{DisplayName: "Vuln3", Severity: "MODERATE"},
+		},
+	}
+
+	// Slice of Packages to test
+	packages := []models.Package{pkg1, pkg2}
+
+	// Call the FlattenVulnerabilities function
+	flattenedVulnerabilities := FlattenVulnerabilities(packages)
+
+	// Define the expected result
+	expectedVulnerabilities := []models.Vulnerability{
+		{DisplayName: "Vuln1", Severity: "LOW"},
+		{DisplayName: "Vuln2", Severity: "HIGH"},
+		{DisplayName: "Vuln3", Severity: "MODERATE"},
+	}
+
+	// Check if the actual result matches the expected result using assert.ElementsMatch
+	assert.ElementsMatch(t, expectedVulnerabilities, flattenedVulnerabilities)
+}

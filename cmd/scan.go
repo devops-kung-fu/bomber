@@ -30,6 +30,7 @@ var (
 	provider        models.Provider
 	ignoreFile      string
 	severity        string
+	exitCode        bool
 
 	// summary, detailed bool
 	scanCmd = &cobra.Command{
@@ -142,16 +143,16 @@ var (
 				if err = renderer.Render(results); err != nil {
 					log.Println(err)
 				}
-				failSeverity := lib.ParseSeverity(severity)
-				if severity != "" {
-					log.Printf("fail severity: %d", failSeverity)
-					os.Exit(failSeverity)
+				if exitCode {
+					code := lib.HighestSeverityExitCode(lib.FlattenVulnerabilities(results.Packages))
+					log.Printf("fail severity: %d", code)
+					os.Exit(code)
 				}
-				log.Printf("Fail severity: %d", failSeverity)
 			} else {
 				util.PrintInfo("No packages were detected. Nothing has been scanned.")
 			}
 			log.Println("Finished")
+			os.Exit(0)
 		},
 	}
 )
@@ -163,4 +164,5 @@ func init() {
 	scanCmd.PersistentFlags().StringVar(&providerName, "provider", "osv", "the vulnerability provider (ossindex, osv).")
 	scanCmd.PersistentFlags().StringVar(&ignoreFile, "ignore-file", "", "an optional file containing CVEs to ignore when rendering output.")
 	scanCmd.PersistentFlags().StringVar(&severity, "severity", "", "anything equal to or above this severity will be returned with non-zero error code.")
+	scanCmd.PersistentFlags().BoolVar(&exitCode, "exitcode", false, "if set will return an exit code representing the highest severity detected.")
 }

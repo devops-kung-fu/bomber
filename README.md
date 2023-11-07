@@ -174,26 +174,19 @@ For example, the following command will return only high and critical vulnerabil
 ``` bash
 bomber --severity=high scan bom.json
 ```
-## Return codes
+## Highest Severity Return Codes (Experimental)
 
+Using the flag ```--exitcode```, will return with an exit code representing the highest vulnerability severity found. Without this flag you can expect an exit code of ```0``` for success, or ```1``` if an error was encountered.
 
+Assuming there is no error, the following values  will be returned by ```bomber``` when ```--exitcode```
 
-| Option | Return Code |
+| Severity | Return Code |
 |---|---|
-| NONE (default) | 0 |
-| ERROR | 1 |
 | UNSPECIFIED (This is a status where the provider gives us something wacky, or no info) | 10 |
 | LOW | 11 |
 | MODERATE | 12 |
 | HIGH | 13 |
 | CRITICAL | 14 |
-
-0 is an "I don't care about filters" value and is the default (shows all output)
-1 is that an error occurred
-...
-13 means at least 1 HIGH *or* "1" critical is found
-14 means at least 1 CRITICAL is found.
-
 
 ## Data Enrichment
 

@@ -60,3 +60,35 @@ func ParseSeverity(severity string) int {
 		return 0
 	}
 }
+
+// HighestSeverityExitCode returns the exit code of the highest vulnerability
+func HighestSeverityExitCode(vulnerabilities []models.Vulnerability) int {
+	severityExitCodes := map[string]int{
+		"UNDEFINED": int(models.UNDEFINED),
+		"LOW":       int(models.LOW),
+		"MODERATE":  int(models.MODERATE),
+		"HIGH":      int(models.HIGH),
+		"CRITICAL":  int(models.CRITICAL),
+	}
+
+	highestSeverity := "UNDEFINED" // Initialize with the lowest severity
+	for _, vulnerability := range vulnerabilities {
+		if exitCode, ok := severityExitCodes[vulnerability.Severity]; ok {
+			if exitCode > severityExitCodes[highestSeverity] {
+				highestSeverity = vulnerability.Severity
+			}
+		}
+	}
+
+	return severityExitCodes[highestSeverity]
+}
+
+func FlattenVulnerabilities(packages []models.Package) []models.Vulnerability {
+	var flattenedVulnerabilities []models.Vulnerability
+
+	for _, pkg := range packages {
+		flattenedVulnerabilities = append(flattenedVulnerabilities, pkg.Vulnerabilities...)
+	}
+
+	return flattenedVulnerabilities
+}
