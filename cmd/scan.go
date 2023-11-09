@@ -106,12 +106,17 @@ var (
 					for i, p := range response {
 						vulns := []models.Vulnerability{}
 						for _, v := range p.Vulnerabilities {
+							// severity flag passed in
 							fs := lib.ParseSeverity(severity)
+							// severity of vulnerability
 							vs := lib.ParseSeverity(v.Severity)
 							if vs >= fs {
 								vulns = append(vulns, v)
+							} else {
+								log.Printf("Removed vulnerability that was %s when the filter was %s", v.Severity, severity)
 							}
 						}
+						log.Printf("Filtered out %d vulnerabilities for package %s", len(p.Vulnerabilities)-len(vulns), p.Purl)
 						response[i].Vulnerabilities = vulns
 					}
 				}

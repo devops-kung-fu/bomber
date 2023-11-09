@@ -45,7 +45,7 @@
             "args": ["--debug=true", "--exitcode","--severity=moderate", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
         },
         {
-            "name": "Debug File (OSS Index - railsgoat, severity = high, exitcode)",
+            "name": "> Debug File (OSS Index - railsgoat, severity = critical, exitcode)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
