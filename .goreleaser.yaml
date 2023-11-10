@@ -36,7 +36,7 @@ checksum:
 nfpms:
   - 
     maintainer: DevOps Kung Fu Mafia <admin@dkfm.io>
-    description: Scans SBoMs for security vulnerabilities.
+    description: Scans SBOMs for security vulnerabilities.
     homepage: https://github.com/devops-kung-fu/bomber
     license: MPL
     formats:

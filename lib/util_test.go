@@ -80,7 +80,7 @@ func TestParseSeverity(t *testing.T) {
 
 	t.Run("Invalid severity: undefined", func(t *testing.T) {
 		severity := "invalid"
-		expected := 10
+		expected := 0
 		result := ParseSeverity(severity)
 		assert.Equal(t, expected, result)
 	})
@@ -93,46 +93,54 @@ func TestParseSeverity(t *testing.T) {
 	})
 }
 
-func TestParseFailSeverity(t *testing.T) {
-	t.Run("Valid severity: low", func(t *testing.T) {
-		s := "low"
-		expected := models.LOW
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
+func TestHighestSeverityExitCode(t *testing.T) {
+	// Sample vulnerabilities with different severities
+	vulnerabilities := []models.Vulnerability{
+		{Severity: "LOW"},
+		{Severity: "CRITICAL"},
+		{Severity: "MODERATE"},
+		{Severity: "HIGH"},
+		{Severity: "UNDEFINED"},
+	}
 
-	t.Run("Valid severity: moderate", func(t *testing.T) {
-		s := "moderate"
-		expected := models.MODERATE
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
+	// Calculate the expected exit code based on the highest severity
+	expectedExitCode := 14 // CRITICAL has the highest severity
 
-	t.Run("Valid severity: high", func(t *testing.T) {
-		s := "high"
-		expected := models.HIGH
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
+	// Call the function and check the result using assert
+	actualExitCode := HighestSeverityExitCode(vulnerabilities)
+	assert.Equal(t, expectedExitCode, actualExitCode)
+}
 
-	t.Run("Valid severity: critical", func(t *testing.T) {
-		s := "critical"
-		expected := models.CRITICAL
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
+func TestFlattenVulnerabilities(t *testing.T) {
+	// Create some sample data for testing
+	pkg1 := models.Package{
+		Purl: "pkg1",
+		Vulnerabilities: []models.Vulnerability{
+			{DisplayName: "Vuln1", Severity: "LOW"},
+			{DisplayName: "Vuln2", Severity: "HIGH"},
+		},
+	}
 
-	t.Run("Invalid severity: undefined", func(t *testing.T) {
-		s := "invalid"
-		expected := models.UNDEFINED
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
+	pkg2 := models.Package{
+		Purl: "pkg2",
+		Vulnerabilities: []models.Vulnerability{
+			{DisplayName: "Vuln3", Severity: "MODERATE"},
+		},
+	}
 
-	t.Run("Mixed case severity: moderate", func(t *testing.T) {
-		s := "MoDerAte"
-		expected := models.MODERATE
-		result := ParseFailSeverity(s)
-		assert.Equal(t, expected, result)
-	})
+	// Slice of Packages to test
+	packages := []models.Package{pkg1, pkg2}
+
+	// Call the FlattenVulnerabilities function
+	flattenedVulnerabilities := FlattenVulnerabilities(packages)
+
+	// Define the expected result
+	expectedVulnerabilities := []models.Vulnerability{
+		{DisplayName: "Vuln1", Severity: "LOW"},
+		{DisplayName: "Vuln2", Severity: "HIGH"},
+		{DisplayName: "Vuln3", Severity: "MODERATE"},
+	}
+
+	// Check if the actual result matches the expected result using assert.ElementsMatch
+	assert.ElementsMatch(t, expectedVulnerabilities, flattenedVulnerabilities)
 }

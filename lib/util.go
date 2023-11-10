@@ -45,35 +45,50 @@ func AdjustSummary(severity string, summary *models.Summary) {
 // ParseSeverity takes a severity string and returns an int
 func ParseSeverity(severity string) int {
 	severity = strings.ToUpper(severity)
-
 	switch severity {
 	case "LOW":
-		return 11
+		return int(models.LOW)
 	case "MODERATE":
-		return 12
+		return int(models.MODERATE)
 	case "HIGH":
-		return 13
+		return int(models.HIGH)
 	case "CRITICAL":
-		return 14
+		return int(models.CRITICAL)
+	case "UNDEFINED":
+		return int(models.UNDEFINED)
 	default:
-		return 10
+		return 0
 	}
 }
 
-// ParseFailSeverity takes a string and returns a FailSeverity enum
-func ParseFailSeverity(s string) models.FailSeverity {
-	s = strings.ToLower(s)
-
-	switch s {
-	case "low":
-		return models.LOW
-	case "moderate":
-		return models.MODERATE
-	case "high":
-		return models.HIGH
-	case "critical":
-		return models.CRITICAL
-	default:
-		return models.UNDEFINED
+// HighestSeverityExitCode returns the exit code of the highest vulnerability
+func HighestSeverityExitCode(vulnerabilities []models.Vulnerability) int {
+	severityExitCodes := map[string]int{
+		"UNDEFINED": int(models.UNDEFINED),
+		"LOW":       int(models.LOW),
+		"MODERATE":  int(models.MODERATE),
+		"HIGH":      int(models.HIGH),
+		"CRITICAL":  int(models.CRITICAL),
 	}
+
+	highestSeverity := "UNDEFINED" // Initialize with the lowest severity
+	for _, vulnerability := range vulnerabilities {
+		if exitCode, ok := severityExitCodes[vulnerability.Severity]; ok {
+			if exitCode > severityExitCodes[highestSeverity] {
+				highestSeverity = vulnerability.Severity
+			}
+		}
+	}
+
+	return severityExitCodes[highestSeverity]
+}
+
+func FlattenVulnerabilities(packages []models.Package) []models.Vulnerability {
+	var flattenedVulnerabilities []models.Vulnerability
+
+	for _, pkg := range packages {
+		flattenedVulnerabilities = append(flattenedVulnerabilities, pkg.Vulnerabilities...)
+	}
+
+	return flattenedVulnerabilities
 }
