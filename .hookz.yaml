@@ -29,9 +29,9 @@
         - name: "govulncheck: Check for vulnerabilities"
           exec: govulncheck
           args: ["./..."]
-        # - name: "gocyclo: Check cyclomatic complexities"
-        #   exec: gocyclo
-        #   args: ["-over", "13", "."]
+        - name: "gocyclo: Check cyclomatic complexities"
+          exec: gocyclo
+          args: ["-over", "11", "."]
         - name: Hinge
           exec: hinge
           args: ["."]

@@ -1,3 +1,4 @@
+// Package lib contains core functionality to load Software Bill of Materials and contains common functions
 package lib
 
 import (
@@ -18,7 +19,7 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-// Scanner encapsulates the properties needed to scan a file for vulnerabilities
+// Scanner represents a vulnerability scanner.
 type Scanner struct {
 	SeveritySummary models.Summary
 	Credentials     models.Credentials
@@ -30,118 +31,180 @@ type Scanner struct {
 	Output          string
 	ProviderName    string
 	Version         string
+	Afs             *afero.Afero
 }
 
-// Scan scans a file for vulnerabilities and renders it to the selected output
+// Scan performs the vulnerability scan.
 func (s *Scanner) Scan(afs *afero.Afero, args []string) (err error) {
-	scanned, purls, licenses, err := Load(afs, args)
+	// Load packages and associated data
+	s.Afs = afs
+	scanned, purls, licenses, err := Load(s.Afs, args)
 	if err != nil {
 		log.Print(err)
 		return
 	}
-	if len(purls) > 0 {
-		var response []models.Package
 
-		ecosystems := []string{}
-		for _, p := range purls {
-			purl, err := packageurl.FromString(p)
-			if err != nil {
-				util.PrintErr(err)
-			}
-			if !slices.Contains(ecosystems, purl.Type) {
-				ecosystems = append(ecosystems, purl.Type)
-			}
-		}
-		spinner := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
-
-		purls, issues := filters.Sanitize(purls)
-
-		util.DoIf(s.Output != "json", func() {
-			util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
-
-			//for each models.Issue in issues, write a message to the console
-			for _, issue := range issues {
-				util.PrintWarningf("%v (%v)\n", issue.Message, issue.Purl)
-			}
-
-			util.PrintInfof("Scanning %v packages for vulnerabilities...\n", len(purls))
-			util.PrintInfo("Vulnerability Provider:", s.Provider.Info(), "\n")
-			if s.Severity != "" {
-				util.PrintInfof("Showing vulnerabilities with a severity of %s or higher", strings.ToUpper(s.Severity))
-				fmt.Println()
-			}
-
-			spinner.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", s.ProviderName)
-			spinner.Start()
-		})
-
-		response, err := s.Provider.Scan(purls, &s.Credentials)
-		if err != nil {
-			log.Print(err)
-		}
-		var ignoredCVE []string
-		if s.IgnoreFile != "" {
-			ignoredCVE, err = LoadIgnore(afs, s.IgnoreFile)
-			if err != nil {
-				util.PrintWarningf("Ignore flag set, but there was an error: %s", err)
-			}
-		}
-
-		//Get rid of the packages that have a vulnerability lower than its fail severity
-		if s.Severity != "" {
-			for i, p := range response {
-				vulns := []models.Vulnerability{}
-				for _, v := range p.Vulnerabilities {
-					// severity flag passed in
-					fs := ParseSeverity(s.Severity)
-					// severity of vulnerability
-					vs := ParseSeverity(v.Severity)
-					if vs >= fs {
-						vulns = append(vulns, v)
-					} else {
-						log.Printf("Removed vulnerability that was %s when the filter was %s", v.Severity, s.Severity)
-					}
-				}
-				log.Printf("Filtered out %d vulnerabilities for package %s", len(p.Vulnerabilities)-len(vulns), p.Purl)
-				response[i].Vulnerabilities = vulns
-			}
-		}
-
-		for i, p := range response {
-			enrichedVulnerabilities, _ := enrichment.Enrich(p.Vulnerabilities)
-			response[i].Vulnerabilities = enrichedVulnerabilities
-
-			if len(ignoredCVE) > 0 {
-				filteredVulnerabilities := filters.Ignore(p.Vulnerabilities, ignoredCVE)
-				response[i].Vulnerabilities = filteredVulnerabilities
-			}
-		}
-
-		util.DoIf(s.Output != "json", func() {
-			spinner.Stop()
-		})
-		if err != nil {
-			util.PrintErr(err)
-			os.Exit(1)
-		}
-		vulnCount := 0
-		for _, r := range response {
-			vulnCount += len(r.Vulnerabilities)
-			for _, v := range r.Vulnerabilities {
-				AdjustSummary(v.Severity, &s.SeveritySummary)
-			}
-		}
-		results := models.NewResults(response, s.SeveritySummary, scanned, licenses, s.Version, s.ProviderName)
-		if err = s.Renderer.Render(results); err != nil {
-			log.Println(err)
-		}
-		if s.ExitCode {
-			code := HighestSeverityExitCode(FlattenVulnerabilities(results.Packages))
-			log.Printf("fail severity: %d", code)
-			os.Exit(code)
-		}
-	} else {
+	// If no packages are detected, print a message and return
+	if len(purls) == 0 {
 		util.PrintInfo("No packages were detected. Nothing has been scanned.")
+		return
 	}
+
+	// Perform the package scan
+	response, err := s.scanPackages(purls)
+	if err != nil {
+		return err
+	}
+
+	// Process and output the scan results
+	s.processResults(scanned, licenses, response)
 	return
+}
+
+// scanPackages performs the core logic of scanning packages.
+func (s *Scanner) scanPackages(purls []string) ([]models.Package, error) {
+	// Detect and print information about ecosystems
+	ecosystems := s.detectEcosystems(purls)
+	spinner := s.setupSpinner(ecosystems, purls)
+
+	// Sanitize package URLs and handle initial console output
+	purls, issues := filters.Sanitize(purls)
+	s.printInitialInfo(len(purls), ecosystems, issues, spinner)
+
+	// Perform the actual scan with the selected provider
+	response, err := s.Provider.Scan(purls, &s.Credentials)
+	if err != nil {
+		return nil, err
+	}
+
+	// Load ignore data if specified
+	ignoredCVE, err := s.loadIgnoreData(s.Afs, s.IgnoreFile)
+	if err != nil {
+		util.PrintWarningf("Ignore flag set, but there was an error: %s", err)
+	}
+
+	// Filter, enrich, and ignore vulnerabilities as needed
+	s.filterVulnerabilities(response)
+	s.enrichAndIgnoreVulnerabilities(response, ignoredCVE)
+	s.stopSpinner(spinner)
+
+	return response, nil
+}
+
+// detectEcosystems detects the ecosystems from package URLs.
+func (s *Scanner) detectEcosystems(purls []string) []string {
+	ecosystems := []string{}
+	for _, p := range purls {
+		purl, err := packageurl.FromString(p)
+		if err == nil && !slices.Contains(ecosystems, purl.Type) {
+			ecosystems = append(ecosystems, purl.Type)
+		}
+	}
+	return ecosystems
+}
+
+// setupSpinner creates and configures a spinner for console output.
+func (s *Scanner) setupSpinner(ecosystems []string, purls []string) *spinner.Spinner {
+	spinner := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
+	return spinner
+}
+
+// printInitialInfo prints initial information about the scan.
+func (s *Scanner) printInitialInfo(purlCount int, ecosystems []string, issues []models.Issue, spinner *spinner.Spinner) {
+	util.DoIf(s.Output != "json", func() {
+		util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
+
+		for _, issue := range issues {
+			util.PrintWarningf("%v (%v)\n", issue.Message, issue.Purl)
+		}
+
+		util.PrintInfof("Scanning %v packages for vulnerabilities...\n", purlCount)
+		util.PrintInfo("Vulnerability Provider:", s.Provider.Info(), "\n")
+
+		if s.Severity != "" {
+			util.PrintInfof("Showing vulnerabilities with a severity of %s or higher", strings.ToUpper(s.Severity))
+			fmt.Println()
+		}
+
+		spinner.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", s.ProviderName)
+		spinner.Start()
+	})
+}
+
+// loadIgnoreData loads the ignore data from a file if specified.
+func (s *Scanner) loadIgnoreData(afs *afero.Afero, ignoreFile string) ([]string, error) {
+	if ignoreFile != "" {
+		return LoadIgnore(afs, ignoreFile)
+	}
+	return nil, nil
+}
+
+// filterVulnerabilities filters vulnerabilities based on severity.
+func (s *Scanner) filterVulnerabilities(response []models.Package) {
+	if s.Severity != "" {
+		for i, p := range response {
+			vulns := []models.Vulnerability{}
+			for _, v := range p.Vulnerabilities {
+				fs := ParseSeverity(s.Severity)
+				vs := ParseSeverity(v.Severity)
+				if vs >= fs {
+					vulns = append(vulns, v)
+				} else {
+					log.Printf("Removed vulnerability that was %s when the filter was %s", v.Severity, s.Severity)
+				}
+			}
+			log.Printf("Filtered out %d vulnerabilities for package %s", len(p.Vulnerabilities)-len(vulns), p.Purl)
+			response[i].Vulnerabilities = vulns
+		}
+	}
+}
+
+// enrichAndIgnoreVulnerabilities enriches and ignores vulnerabilities as needed.
+func (s *Scanner) enrichAndIgnoreVulnerabilities(response []models.Package, ignoredCVE []string) {
+	for i, p := range response {
+		enrichedVulnerabilities, _ := enrichment.Enrich(p.Vulnerabilities)
+		response[i].Vulnerabilities = enrichedVulnerabilities
+
+		if len(ignoredCVE) > 0 {
+			filteredVulnerabilities := filters.Ignore(p.Vulnerabilities, ignoredCVE)
+			response[i].Vulnerabilities = filteredVulnerabilities
+		}
+	}
+}
+
+// stopSpinner stops the spinner if it was started.
+func (s *Scanner) stopSpinner(spinner *spinner.Spinner) {
+	util.DoIf(s.Output != "json", func() {
+		spinner.Stop()
+	})
+}
+
+// processResults handles the final processing and output of scan results.
+func (s *Scanner) processResults(scanned []models.ScannedFile, licenses []string, response []models.Package) {
+	log.Println("Building severity summary")
+	for _, r := range response {
+		for _, v := range r.Vulnerabilities {
+			AdjustSummary(v.Severity, &s.SeveritySummary)
+		}
+	}
+	log.Println("Creating results")
+	// Create results object
+	results := models.NewResults(response, s.SeveritySummary, scanned, licenses, s.Version, s.ProviderName)
+
+	// Render results using the specified renderer
+	if err := s.Renderer.Render(results); err != nil {
+		log.Println(err)
+	}
+
+	// Exit with code if required
+	s.exitWithCodeIfRequired(results)
+}
+
+// exitWithCodeIfRequired exits the program with the appropriate code based on severity.
+func (s *Scanner) exitWithCodeIfRequired(results models.Results) {
+	if s.ExitCode {
+		code := HighestSeverityExitCode(FlattenVulnerabilities(results.Packages))
+		log.Printf("fail severity: %d", code)
+		os.Exit(code)
+	}
 }
