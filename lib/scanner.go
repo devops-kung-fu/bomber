@@ -65,7 +65,7 @@ func (s *Scanner) Scan(afs *afero.Afero, args []string) (err error) {
 func (s *Scanner) scanPackages(purls []string) ([]models.Package, error) {
 	// Detect and print information about ecosystems
 	ecosystems := s.detectEcosystems(purls)
-	spinner := s.setupSpinner(ecosystems, purls)
+	spinner := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
 
 	// Sanitize package URLs and handle initial console output
 	purls, issues := filters.Sanitize(purls)
@@ -86,7 +86,10 @@ func (s *Scanner) scanPackages(purls []string) ([]models.Package, error) {
 	// Filter, enrich, and ignore vulnerabilities as needed
 	s.filterVulnerabilities(response)
 	s.enrichAndIgnoreVulnerabilities(response, ignoredCVE)
-	s.stopSpinner(spinner)
+
+	if s.Output != "json" {
+		spinner.Stop()
+	}
 
 	return response, nil
 }
@@ -103,15 +106,9 @@ func (s *Scanner) detectEcosystems(purls []string) []string {
 	return ecosystems
 }
 
-// setupSpinner creates and configures a spinner for console output.
-func (s *Scanner) setupSpinner(ecosystems []string, purls []string) *spinner.Spinner {
-	spinner := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
-	return spinner
-}
-
 // printInitialInfo prints initial information about the scan.
 func (s *Scanner) printInitialInfo(purlCount int, ecosystems []string, issues []models.Issue, spinner *spinner.Spinner) {
-	util.DoIf(s.Output != "json", func() {
+	if s.Output != "json" {
 		util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
 
 		for _, issue := range issues {
@@ -128,7 +125,7 @@ func (s *Scanner) printInitialInfo(purlCount int, ecosystems []string, issues []
 
 		spinner.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", s.ProviderName)
 		spinner.Start()
-	})
+	}
 }
 
 // loadIgnoreData loads the ignore data from a file if specified.
@@ -170,13 +167,6 @@ func (s *Scanner) enrichAndIgnoreVulnerabilities(response []models.Package, igno
 			response[i].Vulnerabilities = filteredVulnerabilities
 		}
 	}
-}
-
-// stopSpinner stops the spinner if it was started.
-func (s *Scanner) stopSpinner(spinner *spinner.Spinner) {
-	util.DoIf(s.Output != "json", func() {
-		spinner.Stop()
-	})
 }
 
 // processResults handles the final processing and output of scan results.

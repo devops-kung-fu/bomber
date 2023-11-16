@@ -4,59 +4,41 @@ package lib
 import (
 	"testing"
 
+	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSetupSpinner(t *testing.T) {
-	// Create a mock Scanner instance
+func Test_detectEcosystems(t *testing.T) {
 	scanner := Scanner{}
 
-	// Call the setupSpinner function
-	spinner := scanner.setupSpinner([]string{"ecosystem1", "ecosystem2"}, []string{"package1", "package2"})
+	purls := []string{
+		"pkg:golang/github.com/test/test1@v1.19.0",
+		"pkg:npm/github.com/test/test2@v1.19.0",
+		"invalid_url", // This should be ignored
+	}
 
-	// Assert that the returned spinner is not nil
-	assert.NotNil(t, spinner, "Expected non-nil spinner, got nil")
+	result := scanner.detectEcosystems(purls)
+
+	assert.ElementsMatch(t, []string{"golang", "npm"}, result, "Detected ecosystems do not match expected result")
 }
 
-// func TestExitWithCodeIfRequired(t *testing.T) {
+func TestScanner_loadIgnoreData(t *testing.T) {
+	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-// 	_ = os.Exit
+	err := afs.WriteFile("/.bomber.ignore", []byte("CVE-2022-31163"), 0644)
+	assert.NoError(t, err)
 
-// 	// Create a mock Scanner instance
-// 	scanner := &Scanner{
-// 		ExitCode: true,
-// 	}
+	scanner := Scanner{}
+	results, err := scanner.loadIgnoreData(afs, "/.bomber.ignore")
 
-// 	// Mock results with a specific severity
-// 	severitySummary := models.Summary{
-// 		Unspecified: 1,
-// 		Low:         2,
-// 		Moderate:    3,
-// 		High:        4,
-// 		Critical:    5,
-// 	}
+	assert.NoError(t, err)
+	assert.Len(t, results, 1)
+	assert.Equal(t, results[0], "CVE-2022-31163")
 
-// 	results := models.Results{
-// 		Summary: severitySummary,
-// 	}
+	_, err = scanner.loadIgnoreData(afs, "test")
+	assert.Error(t, err)
 
-// 	// Mock the log.Printf function
-// 	var logOutput string
-// 	log.SetOutput(&mockLogger{&logOutput})
-
-// 	// Call the exitWithCodeIfRequired method
-// 	scanner.exitWithCodeIfRequired(results)
-
-// 	// Assert the log output contains the expected message
-// 	require.Contains(t, logOutput, "fail severity: 5", "Log output does not contain expected message")
-// }
-
-// // mockLogger is a simple implementation of io.Writer to capture log output
-// type mockLogger struct {
-// 	output *string
-// }
-
-// func (m *mockLogger) Write(p []byte) (n int, err error) {
-// 	*m.output += string(p)
-// 	return len(p), nil
-// }
+	results, err = scanner.loadIgnoreData(afs, "")
+	assert.NoError(t, err)
+	assert.Len(t, results, 0)
+}
