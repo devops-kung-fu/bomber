@@ -8,7 +8,7 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-func TestRating(t *testing.T) {
+func Test_Rating(t *testing.T) {
 	rating := 0.0
 	result := Rating(rating)
 	assert.Equal(t, "UNSPECIFIED", result)
@@ -28,6 +28,10 @@ func TestRating(t *testing.T) {
 	rating = 9.0
 	result = Rating(rating)
 	assert.Equal(t, "CRITICAL", result)
+
+	rating = 19.0
+	result = Rating(rating)
+	assert.Equal(t, "UNSPECIFIED", result)
 }
 
 func TestAdjustSummary(t *testing.T) {
@@ -78,7 +82,7 @@ func TestParseSeverity(t *testing.T) {
 		assert.Equal(t, expected, result)
 	})
 
-	t.Run("Invalid severity: undefined", func(t *testing.T) {
+	t.Run("Invalid severity: invalid", func(t *testing.T) {
 		severity := "invalid"
 		expected := 0
 		result := ParseSeverity(severity)
@@ -88,6 +92,13 @@ func TestParseSeverity(t *testing.T) {
 	t.Run("Mixed case severity: moderate", func(t *testing.T) {
 		severity := "MoDerAte"
 		expected := 12
+		result := ParseSeverity(severity)
+		assert.Equal(t, expected, result)
+	})
+
+	t.Run("Valid severity: undefined", func(t *testing.T) {
+		severity := "undefined"
+		expected := 10
 		result := ParseSeverity(severity)
 		assert.Equal(t, expected, result)
 	})
@@ -143,4 +154,23 @@ func TestFlattenVulnerabilities(t *testing.T) {
 
 	// Check if the actual result matches the expected result using assert.ElementsMatch
 	assert.ElementsMatch(t, expectedVulnerabilities, flattenedVulnerabilities)
+}
+
+func Test_UniqueFieldValues(t *testing.T) {
+	type TestStruct struct {
+		CVE string
+		// other properties...
+	}
+	structs := []TestStruct{
+		{CVE: "CVE-2021-1234"},
+		{CVE: "CVE-2021-5678"},
+		{CVE: "CVE-2021-1234"}, // Duplicate
+	}
+
+	// Get unique CVEs using the function
+	uniqueCVEs := UniqueFieldValues(structs, "CVE")
+	assert.Len(t, uniqueCVEs, 2)
+
+	shouldBeNothing := UniqueFieldValues(structs, "ABC")
+	assert.Len(t, shouldBeNothing, 0)
 }

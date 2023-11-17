@@ -39,13 +39,15 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			scanner.Version = version
 			scanner.Output = output
-			if err := scanner.Scan(Afs, args); err != nil {
+			scanner.Afs = Afs
+			code, err := scanner.Scan(args)
+			if err != nil {
 				util.PrintErr(err)
 				os.Exit(1)
 			}
 
 			log.Println("Finished")
-			os.Exit(0)
+			os.Exit(code)
 		},
 	}
 )

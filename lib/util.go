@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"reflect"
 	"strings"
 
 	"github.com/devops-kung-fu/bomber/models"
@@ -83,6 +84,7 @@ func HighestSeverityExitCode(vulnerabilities []models.Vulnerability) int {
 	return severityExitCodes[highestSeverity]
 }
 
+// FlattenVulnerabilities flattens all vulnerabilities for a package
 func FlattenVulnerabilities(packages []models.Package) []models.Vulnerability {
 	var flattenedVulnerabilities []models.Vulnerability
 
@@ -91,4 +93,34 @@ func FlattenVulnerabilities(packages []models.Package) []models.Vulnerability {
 	}
 
 	return flattenedVulnerabilities
+}
+
+// UniqueFieldValues returns a slice of unique field values from a slice of structs given the property
+func UniqueFieldValues[T any](input []T, fieldName string) []interface{} {
+	// Use a map to store unique field values
+	fieldValuesMap := make(map[interface{}]struct{})
+
+	// Iterate through the input slice
+	for _, item := range input {
+		// Use reflection to get the struct's value
+		value := reflect.ValueOf(item)
+
+		// Check if the struct has the specified field
+		if fieldValue := value.FieldByName(fieldName); fieldValue.IsValid() {
+			// If the field exists, add its value to the map
+			fieldValuesMap[fieldValue.Interface()] = struct{}{}
+		}
+		// If the field doesn't exist, do nothing
+
+	}
+
+	// Create a slice to store unique field values
+	var uniqueFieldValuesSlice []interface{}
+
+	// Iterate through the map keys and add them to the slice
+	for fieldValue := range fieldValuesMap {
+		uniqueFieldValuesSlice = append(uniqueFieldValuesSlice, fieldValue)
+	}
+
+	return uniqueFieldValuesSlice
 }

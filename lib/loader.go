@@ -62,6 +62,7 @@ func loadFolderPurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile
 	}
 	return
 }
+
 func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
 	b, err := readFile(afs, arg)
 	if err != nil {
@@ -148,19 +149,3 @@ func LoadIgnore(afs *afero.Afero, ignoreFile string) (cves []string, err error) 
 
 	return
 }
-
-// func LoadIgnore(afs *afero.Afero, ignoreFile string) (cves []string, err error) {
-// 	f, err := afs.Open(ignoreFile)
-// 	if err != nil {
-// 		log.Printf("error opening ignore: %v\n", err)
-// 		return
-// 	}
-// 	r := bufio.NewReader(f)
-// 	line, _, e := r.ReadLine()
-// 	for e == nil {
-// 		cves = append(cves, string(line))
-// 		line, _, e = r.ReadLine()
-// 	}
-
-// 	return
-// }
