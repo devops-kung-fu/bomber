@@ -31,7 +31,7 @@
           args: ["./..."]
         - name: "gocyclo: Check cyclomatic complexities"
           exec: gocyclo
-          args: ["-over", "11", "."]
+          args: ["-over", "9", "."]
         - name: Hinge
           exec: hinge
           args: ["."]

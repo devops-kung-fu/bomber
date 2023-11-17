@@ -75,6 +75,11 @@ func (Renderer) Render(results models.Results) (err error) {
 		t.Style().Options.SeparateRows = true
 		t.Render()
 	}
+	renderFooter(vulnCount, results)
+	return
+}
+
+func renderFooter(vulnCount int, results models.Results) {
 	if vulnCount > 0 {
 		fmt.Println()
 		color.Red.Printf("Total vulnerabilities found: %v\n", vulnCount)
@@ -96,7 +101,6 @@ func (Renderer) Render(results models.Results) (err error) {
 		fmt.Println("not mean that there are no vulnerabilities. Please try the other providers that bomber")
 		fmt.Println("supports (osv, ossindex)")
 	}
-	return
 }
 
 func renderSeveritySummary(summary models.Summary) {
