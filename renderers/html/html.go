@@ -3,12 +3,12 @@ package html
 
 import (
 	"fmt"
-	"html/template"
 	"log"
 	"math"
 	"path/filepath"
 	"strconv"
 	"strings"
+	"text/template"
 	"time"
 
 	"github.com/devops-kung-fu/common/util"
