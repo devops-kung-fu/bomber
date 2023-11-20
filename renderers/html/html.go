@@ -42,12 +42,20 @@ func (Renderer) Render(results models.Results) error {
 	return err
 }
 
+// generateFilename generates a unique filename based on the current timestamp
+// in the format "2006-01-02 15:04:05" and replaces certain characters to
+// create a valid filename. The resulting filename is a combination of the
+// timestamp and a fixed suffix.
 func generateFilename() string {
 	t := time.Now()
 	r := strings.NewReplacer("-", "", " ", "-", ":", "-")
 	return filepath.Join(".", fmt.Sprintf("%s-bomber-results.html", r.Replace(t.Format("2006-01-02 15:04:05"))))
 }
 
+// writeTemplate writes the results to a file with the specified filename,
+// using the given Afero filesystem interface. It creates the file, processes
+// percentiles in the results, converts Markdown to HTML, and writes the
+// templated results to the file. It also sets file permissions to 0777.
 func writeTemplate(afs *afero.Afero, filename string, results models.Results) error {
 	processPercentiles(results)
 
@@ -75,6 +83,9 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) er
 	return nil
 }
 
+// processPercentiles calculates and updates the percentile values for
+// vulnerabilities in the given results. It converts the percentile from
+// a decimal to a percentage and updates the results in place.
 func processPercentiles(results models.Results) {
 	for i, p := range results.Packages {
 		for vi, v := range p.Vulnerabilities {
@@ -93,6 +104,9 @@ func processPercentiles(results models.Results) {
 	}
 }
 
+// markdownToHTML converts the Markdown descriptions of vulnerabilities in
+// the given results to HTML. It uses the Blackfriday library to perform the
+// conversion and sanitizes the HTML using Bluemonday.
 func markdownToHTML(results models.Results) {
 	for i := range results.Packages {
 		for ii := range results.Packages[i].Vulnerabilities {
