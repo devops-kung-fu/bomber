@@ -37,7 +37,7 @@ func Enrich(vulnerabilities []models.Vulnerability) ([]models.Vulnerability, err
 			return nil, err
 		}
 
-		log.Printf("EPSS response total: %v", epss.Total)
+		log.Printf("%v EPSS responses for %v vulnerabilities", epss.Total, len(vulnerabilities))
 
 		for i, v := range vulnerabilities {
 			for _, sv := range epss.Scores {
@@ -57,6 +57,7 @@ func getCveBatch(vulnerabilities []models.Vulnerability) []string {
 	identifiers := make([]string, len(vulnerabilities))
 	for i, v := range vulnerabilities {
 		identifiers[i] = v.Cve
+
 	}
 	return identifiers
 }
