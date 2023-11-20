@@ -83,3 +83,40 @@ func TestScanner_exitWithCodeIfRequired(t *testing.T) {
 	code = scanner.exitWithCodeIfRequired(models.Results{})
 	assert.Equal(t, 10, code)
 }
+
+func Test_FilterVulngerabilities(t *testing.T) {
+	// Create a sample Scanner instance with a severity filter
+	scanner := Scanner{Severity: "HIGH"}
+
+	// Create a sample response with vulnerabilities
+	response := []models.Package{
+		{
+			Purl: "sample/package",
+			Vulnerabilities: []models.Vulnerability{
+				{Severity: "LOW"},
+				{Severity: "MODERATE"},
+				{Severity: "HIGH"},
+				{Severity: "CRITICAL"},
+			},
+		},
+		{
+			Purl: "another/package",
+			Vulnerabilities: []models.Vulnerability{
+				{Severity: "LOW"},
+				{Severity: "HIGH"},
+				{Severity: "CRITICAL"},
+			},
+		},
+	}
+
+	// Call the filterVulnerabilities method
+	scanner.filterVulnerabilities(response)
+
+	// Check if the vulnerabilities have been filtered correctly
+	assert.Equal(t, "HIGH", response[0].Vulnerabilities[0].Severity)
+	assert.Equal(t, 2, len(response[0].Vulnerabilities)) // Expecting other severities to be filtered out
+
+	assert.Equal(t, "HIGH", response[1].Vulnerabilities[0].Severity)
+	assert.Equal(t, "CRITICAL", response[1].Vulnerabilities[1].Severity)
+	assert.Equal(t, 0, len(response[1].Vulnerabilities)-2) // Expecting LOW severity to be filtered out
+}
