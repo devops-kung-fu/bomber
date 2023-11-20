@@ -19,54 +19,44 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-// Renderer contains methods to render results to an HTMLfile
+// Renderer contains methods to render results to an HTML file
 type Renderer struct{}
 
 // Render renders results to an HTML file
-func (Renderer) Render(results models.Results) (err error) {
+func (Renderer) Render(results models.Results) error {
 	var afs *afero.Afero
-	//This is sort of hacky, but since this output writes a file, test cases need to write the output in memory.
+
 	if results.Meta.Provider == "test" {
 		afs = &afero.Afero{Fs: afero.NewMemMapFs()}
 	} else {
 		afs = &afero.Afero{Fs: afero.NewOsFs()}
 	}
-	t := time.Now()
-	r := strings.NewReplacer("-", "", " ", "-", ":", "-")
-	filename := t.Format("2006-01-02 15:04:05")
-	filename, _ = filepath.Abs(fmt.Sprintf("./%s-bomber-results.html", r.Replace(filename)))
 
+	filename := generateFilename()
 	util.PrintInfo("Writing filename:", filename)
-	err = writeTemplate(afs, filename, results)
+
+	err := writeTemplate(afs, filename, results)
 	if err != nil {
 		log.Println(err)
-		return
 	}
-	return
+	return err
 }
 
-func writeTemplate(afs *afero.Afero, filename string, results models.Results) (err error) {
-	for i, p := range results.Packages {
-		percentageString := "N/A"
-		for vi, v := range p.Vulnerabilities {
-			per, err := strconv.ParseFloat(v.Epss.Percentile, 64)
-			if err != nil {
-				log.Println(err)
-			} else {
-				percentage := math.Round(per * 100)
-				if percentage > 0 {
-					percentageString = fmt.Sprintf("%d%%", uint64(percentage))
-				}
-			}
-			results.Packages[i].Vulnerabilities[vi].Epss.Percentile = percentageString
-		}
-	}
+func generateFilename() string {
+	t := time.Now()
+	r := strings.NewReplacer("-", "", " ", "-", ":", "-")
+	return filepath.Join(".", fmt.Sprintf("%s-bomber-results.html", r.Replace(t.Format("2006-01-02 15:04:05"))))
+}
+
+func writeTemplate(afs *afero.Afero, filename string, results models.Results) error {
+	processPercentiles(results)
 
 	file, err := afs.Create(filename)
 	if err != nil {
 		log.Println(err)
 		return err
 	}
+
 	markdownToHTML(results)
 
 	template := genTemplate("output")
@@ -75,13 +65,32 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) (e
 		log.Println(err)
 		return err
 	}
+
 	err = afs.Fs.Chmod(filename, 0777)
 	if err != nil {
 		log.Println(err)
 		return err
 	}
 
-	return
+	return nil
+}
+
+func processPercentiles(results models.Results) {
+	for i, p := range results.Packages {
+		for vi, v := range p.Vulnerabilities {
+			per, err := strconv.ParseFloat(v.Epss.Percentile, 64)
+			if err != nil {
+				log.Println(err)
+			} else {
+				percentage := math.Round(per * 100)
+				if percentage > 0 {
+					results.Packages[i].Vulnerabilities[vi].Epss.Percentile = fmt.Sprintf("%d%%", uint64(percentage))
+				} else {
+					results.Packages[i].Vulnerabilities[vi].Epss.Percentile = "N/A"
+				}
+			}
+		}
+	}
 }
 
 func markdownToHTML(results models.Results) {

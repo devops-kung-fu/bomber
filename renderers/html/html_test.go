@@ -45,6 +45,33 @@ func TestRenderer_Render(t *testing.T) {
 	assert.NotNil(t, output)
 }
 
+func Test_processPercentiles(t *testing.T) {
+	// Create a sample Results struct for testing
+	results := models.Results{
+		Packages: []models.Package{
+			{
+				Vulnerabilities: []models.Vulnerability{
+					{
+						Epss: models.EpssScore{Percentile: "0.75"},
+					},
+					{
+						Epss: models.EpssScore{Percentile: "invalid"}, // Simulate an invalid percentile
+					},
+					{
+						Epss: models.EpssScore{Percentile: "0"}, // Simulate a zero percentile
+					},
+				},
+			},
+		},
+	}
+
+	processPercentiles(results)
+
+	assert.Equal(t, "75%", results.Packages[0].Vulnerabilities[0].Epss.Percentile, "Expected 75% percentile")
+	assert.Equal(t, "invalid", results.Packages[0].Vulnerabilities[1].Epss.Percentile, "Expected invalid for invalid percentile")
+	assert.Equal(t, "N/A", results.Packages[0].Vulnerabilities[2].Epss.Percentile, "Expected N/A for zero percentile")
+}
+
 func Test_markdownToHTML(t *testing.T) {
 	packages := []models.Package{
 		{

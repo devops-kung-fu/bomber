@@ -12,6 +12,18 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
+// MockProvider is a mock implementation of the Provider interface for testing purposes
+type MockProvider struct{}
+
+func (mp MockProvider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
+	return []models.Package{}, nil
+}
+
+// Info returns a mock provider info string
+func (mp MockProvider) Info() string {
+	return "MockProviderInfo"
+}
+
 func Test_detectEcosystems(t *testing.T) {
 	scanner := Scanner{}
 
@@ -47,7 +59,7 @@ func Test_loadIgnoreData(t *testing.T) {
 	assert.Len(t, results, 0)
 }
 
-func TestScanner_Scan(t *testing.T) {
+func Test_Scanner_Scan(t *testing.T) {
 	output := util.CaptureOutput(func() {
 		afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
@@ -59,7 +71,11 @@ func TestScanner_Scan(t *testing.T) {
 			Afs:    afs,
 		}
 
-		code, err := scanner.Scan([]string{"/test-cyclonedx.json"})
+		code, err := scanner.Scan([]string{})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, code)
+
+		code, err = scanner.Scan([]string{"/test-cyclonedx.json"})
 		assert.NoError(t, err)
 		assert.Equal(t, 0, code)
 
@@ -72,7 +88,7 @@ func TestScanner_Scan(t *testing.T) {
 	assert.NotNil(t, output)
 }
 
-func TestScanner_exitWithCodeIfRequired(t *testing.T) {
+func Test_Scanner_exitWithCodeIfRequired(t *testing.T) {
 	scanner := Scanner{
 		ExitCode: false,
 	}
@@ -84,7 +100,53 @@ func TestScanner_exitWithCodeIfRequired(t *testing.T) {
 	assert.Equal(t, 10, code)
 }
 
-func Test_FilterVulngerabilities(t *testing.T) {
+func Test_Scanner_enrichAndIgnoreVulnerabilities(t *testing.T) {
+	t.Run("EnrichVulnerabilities", func(t *testing.T) {
+		// Create a sample Scanner instance
+		scanner := Scanner{}
+
+		// Create a sample response with vulnerabilities
+		response := []models.Package{
+			{
+				Purl: "sample/package",
+				Vulnerabilities: []models.Vulnerability{
+					{ID: "1", Title: "Vuln1"},
+					{ID: "2", Title: "Vuln2"},
+				},
+			},
+		}
+
+		scanner.enrichAndIgnoreVulnerabilities(response, nil)
+
+		assert.Equal(t, "", response[0].Vulnerabilities[0].Description)
+		assert.Equal(t, "", response[0].Vulnerabilities[1].Description)
+	})
+
+	t.Run("IgnoreVulnerabilities", func(t *testing.T) {
+		// Create a sample Scanner instance
+		scanner := Scanner{}
+
+		// Create a sample response with vulnerabilities
+		response := []models.Package{
+			{
+				Purl: "sample/package",
+				Vulnerabilities: []models.Vulnerability{
+					{ID: "1", Title: "Vuln1"},
+					{ID: "2", Title: "Vuln2"},
+				},
+			},
+		}
+
+		// Call the enrichAndIgnoreVulnerabilities method with ignoredCVE
+		scanner.enrichAndIgnoreVulnerabilities(response, []string{"1"})
+
+		// Check if the specified vulnerabilities have been ignored
+		assert.Len(t, response[0].Vulnerabilities, 1)
+		assert.Equal(t, "Vuln2", response[0].Vulnerabilities[0].Title)
+	})
+}
+
+func Test_FilterVulnerabilities(t *testing.T) {
 	// Create a sample Scanner instance with a severity filter
 	scanner := Scanner{Severity: "HIGH"}
 
@@ -119,4 +181,20 @@ func Test_FilterVulngerabilities(t *testing.T) {
 	assert.Equal(t, "HIGH", response[1].Vulnerabilities[0].Severity)
 	assert.Equal(t, "CRITICAL", response[1].Vulnerabilities[1].Severity)
 	assert.Equal(t, 0, len(response[1].Vulnerabilities)-2) // Expecting LOW severity to be filtered out
+}
+
+func Test_ScannerGetProviderInfo(t *testing.T) {
+	t.Run("WithMockProvider", func(t *testing.T) {
+		scanner := Scanner{Provider: MockProvider{}}
+		result := scanner.getProviderInfo()
+
+		assert.Equal(t, "MockProviderInfo", result)
+	})
+
+	t.Run("WithNilProvider", func(t *testing.T) {
+		scanner := Scanner{Provider: nil}
+		result := scanner.getProviderInfo()
+
+		assert.Equal(t, "N/A", result)
+	})
 }
