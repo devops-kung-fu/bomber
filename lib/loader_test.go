@@ -12,17 +12,24 @@ import (
 	syft "github.com/devops-kung-fu/bomber/formats/syft"
 )
 
-func TestLoad_cyclonedx(t *testing.T) {
-	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
+var (
+	afs *afero.Afero
+	l   Loader
+)
 
+func SetupTest() {
+	afs = &afero.Afero{Fs: afero.NewMemMapFs()}
+	l = Loader{Afs: afs}
+}
+
+func TestLoad_cyclonedx(t *testing.T) {
+	SetupTest()
 	err := afs.WriteFile("/test-cyclonedx.json", cyclonedx.TestBytes(), 0644)
 	assert.NoError(t, err)
 
 	files, _ := afs.ReadDir("/")
 	assert.Len(t, files, 1)
-	l := Loader{
-		Afs: afs,
-	}
+
 	scanned, purls, _, err := l.Load([]string{"/"})
 
 	assert.NotNil(t, scanned)
@@ -35,8 +42,7 @@ func TestLoad_cyclonedx(t *testing.T) {
 }
 
 func TestLoad_cyclonedx_stdin(t *testing.T) {
-	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
-
+	SetupTest()
 	tmpfile, err := os.CreateTemp("", "test-cyclonedx.json")
 	assert.NoError(t, err)
 
@@ -53,10 +59,6 @@ func TestLoad_cyclonedx_stdin(t *testing.T) {
 
 	os.Stdin = tmpfile
 
-	l := &Loader{
-		Afs: afs,
-	}
-
 	scanned, purls, _, err := l.Load([]string{"-"})
 
 	assert.NotNil(t, scanned)
@@ -69,17 +71,12 @@ func TestLoad_cyclonedx_stdin(t *testing.T) {
 }
 
 func TestLoad_SPDX(t *testing.T) {
-	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
-
+	SetupTest()
 	err := afs.WriteFile("/test-spdx.json", spdx.TestBytes(), 0644)
 	assert.NoError(t, err)
 
 	files, _ := afs.ReadDir("/")
 	assert.Len(t, files, 1)
-
-	l := &Loader{
-		Afs: afs,
-	}
 
 	scanned, purls, _, err := l.Load([]string{"/"})
 
@@ -93,16 +90,12 @@ func TestLoad_SPDX(t *testing.T) {
 }
 
 func TestLoad_syft(t *testing.T) {
-	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
-
+	SetupTest()
 	err := afs.WriteFile("/test-syft.json", syft.TestBytes(), 0644)
 	assert.NoError(t, err)
 
 	files, _ := afs.ReadDir("/")
 	assert.Len(t, files, 1)
-	l := &Loader{
-		Afs: afs,
-	}
 
 	scanned, purls, _, err := l.Load([]string{"/"})
 
@@ -116,8 +109,7 @@ func TestLoad_syft(t *testing.T) {
 }
 
 func TestLoad_BadJSON_SPDX(t *testing.T) {
-	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
-
+	SetupTest()
 	fudgedFile := spdx.TestBytes()
 	bogusString := "bogus"
 	fudgedFile = append(fudgedFile, bogusString...)
@@ -125,43 +117,29 @@ func TestLoad_BadJSON_SPDX(t *testing.T) {
 	err := afs.WriteFile("/test-spdx.json", fudgedFile, 0644)
 	assert.NoError(t, err)
 
-	l := &Loader{
-		Afs: afs,
-	}
-
 	_, _, _, err = l.loadFilePurls("/test-spdx.json")
 	assert.Error(t, err)
 	assert.Equal(t, "/test-spdx.json is not a SBOM recognized by bomber", err.Error())
 }
 
 func TestLoad_garbage(t *testing.T) {
-	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
-
+	SetupTest()
 	err := afs.WriteFile("/not-a-sbom.json", []byte("test"), 0644)
 	assert.NoError(t, err)
-
-	l := &Loader{
-		Afs: afs,
-	}
 
 	_, _, _, err = l.loadFilePurls("/not-a-sbom.json")
 	assert.Error(t, err)
 	assert.Equal(t, "/not-a-sbom.json is not a SBOM recognized by bomber", err.Error())
 }
 
-func TestloadFilePurls(t *testing.T) {
-
-	l := &Loader{
-		Afs: &afero.Afero{Fs: afero.NewMemMapFs()},
-	}
-
+func Test_loadFilePurls(t *testing.T) {
+	SetupTest()
 	_, _, _, err := l.loadFilePurls("no-file.json")
 	assert.Error(t, err)
 }
 
 func TestLoad_multiple_cyclonedx(t *testing.T) {
-	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
-
+	SetupTest()
 	err := afs.WriteFile("/test-cyclonedx.json", cyclonedx.TestBytes(), 0644)
 	assert.NoError(t, err)
 
@@ -170,10 +148,6 @@ func TestLoad_multiple_cyclonedx(t *testing.T) {
 
 	err = afs.WriteFile("/test2/test2-cyclonedx.json", cyclonedx.TestBytes(), 0644)
 	assert.NoError(t, err)
-
-	l := &Loader{
-		Afs: afs,
-	}
 
 	scanned, purls, _, err := l.Load([]string{"/"})
 
@@ -187,13 +161,9 @@ func TestLoad_multiple_cyclonedx(t *testing.T) {
 }
 
 func TestLoadIgnore(t *testing.T) {
-	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
-
+	SetupTest()
 	afs.WriteFile("test.ignore", []byte("test\ntest2"), 0644)
 
-	l := &Loader{
-		Afs: afs,
-	}
 	cves, err := l.LoadIgnore("test.ignore")
 	assert.NoError(t, err)
 	assert.Len(t, cves, 2)
