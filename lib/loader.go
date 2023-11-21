@@ -22,12 +22,16 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
+type Loader struct {
+	Afs *afero.Afero
+}
+
 // Load retrieves a slice of Purls from various types of SBOMs
-func Load(afs *afero.Afero, args []string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
+func (l *Loader) Load(args []string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
 	for _, arg := range args {
-		isDir, _ := afs.IsDir(arg)
+		isDir, _ := l.Afs.IsDir(arg)
 		if isDir {
-			s, values, lic, err := loadFolderPurls(afs, arg)
+			s, values, lic, err := l.loadFolderPurls(arg)
 			if err != nil {
 				return scanned, nil, nil, err
 			}
@@ -35,7 +39,7 @@ func Load(afs *afero.Afero, args []string) (scanned []models.ScannedFile, purls 
 			purls = append(purls, values...)
 			licenses = append(licenses, lic...)
 		} else {
-			scanned, purls, licenses, err = loadFilePurls(afs, arg)
+			scanned, purls, licenses, err = l.loadFilePurls(arg)
 		}
 		purls = slices.RemoveDuplicates(purls)
 		licenses = slices.RemoveDuplicates(licenses)
@@ -43,15 +47,15 @@ func Load(afs *afero.Afero, args []string) (scanned []models.ScannedFile, purls 
 	return
 }
 
-func loadFolderPurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
+func (l *Loader) loadFolderPurls(arg string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
 	absPath, err := filepath.Abs(arg)
 	if err != nil {
 		return scanned, nil, nil, err
 	}
-	files, err := afs.ReadDir(absPath)
+	files, err := l.Afs.ReadDir(absPath)
 	for _, file := range files {
 		path := filepath.Join(absPath, file.Name())
-		s, values, lic, err := loadFilePurls(afs, path)
+		s, values, lic, err := l.loadFilePurls(path)
 		if err != nil {
 			log.Println(path, err)
 		}
@@ -62,8 +66,8 @@ func loadFolderPurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile
 	return
 }
 
-func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
-	b, err := readFile(afs, arg)
+func (l *Loader) loadFilePurls(arg string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
+	b, err := l.readFile(arg)
 	if err != nil {
 		return scanned, nil, nil, err
 	}
@@ -73,19 +77,19 @@ func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, 
 		SHA256: fmt.Sprintf("%x", sha256.Sum256(b)),
 	})
 
-	if isCycloneDXXML(b) {
+	if l.isCycloneDXXML(b) {
 		log.Println("Detected CycloneDX XML")
-		return processCycloneDX(cyclone.BOMFileFormatXML, b, scanned)
-	} else if isCycloneDXJSON(b) {
+		return l.processCycloneDX(cyclone.BOMFileFormatXML, b, scanned)
+	} else if l.isCycloneDXJSON(b) {
 		log.Println("Detected CycloneDX JSON")
-		return processCycloneDX(cyclone.BOMFileFormatJSON, b, scanned)
-	} else if isSPDX(b) {
+		return l.processCycloneDX(cyclone.BOMFileFormatJSON, b, scanned)
+	} else if l.isSPDX(b) {
 		log.Println("Detected SPDX")
 		var sbom spdx.BOM
 		if err = json.Unmarshal(b, &sbom); err == nil {
 			return scanned, sbom.Purls(), sbom.Licenses(), err
 		}
-	} else if isSyft(b) {
+	} else if l.isSyft(b) {
 		log.Println("Detected Syft")
 		var sbom syft.BOM
 		if err = json.Unmarshal(b, &sbom); err == nil {
@@ -94,35 +98,36 @@ func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, 
 	}
 
 	log.Printf("WARNING: %v isn't a valid SBOM", arg)
+	log.Println(err)
 	return scanned, nil, nil, fmt.Errorf("%v is not a SBOM recognized by bomber", arg)
 }
 
-func readFile(afs *afero.Afero, arg string) ([]byte, error) {
+func (l *Loader) readFile(arg string) ([]byte, error) {
 	if arg == "-" {
 		log.Printf("Reading from stdin")
 		return io.ReadAll(bufio.NewReader(os.Stdin))
 	}
 	log.Printf("Reading: %v", arg)
-	return afs.ReadFile(arg)
+	return l.Afs.ReadFile(arg)
 }
 
-func isCycloneDXXML(b []byte) bool {
+func (l *Loader) isCycloneDXXML(b []byte) bool {
 	return bytes.Contains(b, []byte("xmlns")) && bytes.Contains(b, []byte("CycloneDX"))
 }
 
-func isCycloneDXJSON(b []byte) bool {
+func (l *Loader) isCycloneDXJSON(b []byte) bool {
 	return bytes.Contains(b, []byte("bomFormat")) && bytes.Contains(b, []byte("CycloneDX"))
 }
 
-func isSPDX(b []byte) bool {
+func (l *Loader) isSPDX(b []byte) bool {
 	return bytes.Contains(b, []byte("SPDXRef-DOCUMENT"))
 }
 
-func isSyft(b []byte) bool {
+func (l *Loader) isSyft(b []byte) bool {
 	return bytes.Contains(b, []byte("https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-"))
 }
 
-func processCycloneDX(format cyclone.BOMFileFormat, b []byte, s []models.ScannedFile) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
+func (l *Loader) processCycloneDX(format cyclone.BOMFileFormat, b []byte, s []models.ScannedFile) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
 	var sbom cyclone.BOM
 
 	reader := bytes.NewReader(b)
@@ -135,8 +140,8 @@ func processCycloneDX(format cyclone.BOMFileFormat, b []byte, s []models.Scanned
 }
 
 // LoadIgnore loads a list of CVEs entered one on each line from the filename
-func LoadIgnore(afs *afero.Afero, ignoreFile string) (cves []string, err error) {
-	f, err := afs.Open(ignoreFile)
+func (l *Loader) LoadIgnore(ignoreFile string) (cves []string, err error) {
+	f, err := l.Afs.Open(ignoreFile)
 	if err != nil {
 		log.Printf("error opening ignore: %v\n", err)
 		return

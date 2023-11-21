@@ -33,10 +33,15 @@ type Scanner struct {
 	Afs             *afero.Afero
 }
 
+var loader Loader
+
 // Scan performs the vulnerability scan.
 func (s *Scanner) Scan(args []string) (exitCode int, err error) {
+	loader := Loader{
+		s.Afs,
+	}
 	// Load packages and associated data
-	scanned, purls, licenses, err := Load(s.Afs, args)
+	scanned, purls, licenses, err := loader.Load(args)
 	if err != nil {
 		log.Print(err)
 		return
@@ -77,7 +82,7 @@ func (s *Scanner) scanPackages(purls []string) (response []models.Package, err e
 	}
 
 	// Load ignore data if specified
-	ignoredCVE, err := s.loadIgnoreData(s.Afs, s.IgnoreFile)
+	ignoredCVE, err := s.loadIgnoreData(s.IgnoreFile)
 	if err != nil {
 		util.PrintWarningf("Ignore flag set, but there was an error: %s", err)
 	}
@@ -135,9 +140,9 @@ func (s *Scanner) getProviderInfo() string {
 }
 
 // loadIgnoreData loads the ignore data from a file if specified.
-func (s *Scanner) loadIgnoreData(afs *afero.Afero, ignoreFile string) ([]string, error) {
+func (s *Scanner) loadIgnoreData(ignoreFile string) ([]string, error) {
 	if ignoreFile != "" {
-		return LoadIgnore(afs, ignoreFile)
+		return loader.LoadIgnore(ignoreFile)
 	}
 	return nil, nil
 }

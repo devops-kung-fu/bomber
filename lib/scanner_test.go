@@ -24,7 +24,7 @@ func (mp MockProvider) Info() string {
 	return "MockProviderInfo"
 }
 
-func Test_detectEcosystems(t *testing.T) {
+func TestdetectEcosystems(t *testing.T) {
 	scanner := Scanner{}
 
 	purls := []string{
@@ -38,28 +38,28 @@ func Test_detectEcosystems(t *testing.T) {
 	assert.ElementsMatch(t, []string{"golang", "npm"}, result, "Detected ecosystems do not match expected result")
 }
 
-func Test_loadIgnoreData(t *testing.T) {
+func TestloadIgnoreData(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
 	err := afs.WriteFile("/.bomber.ignore", []byte("CVE-2022-31163"), 0644)
 	assert.NoError(t, err)
 
 	scanner := Scanner{}
-	results, err := scanner.loadIgnoreData(afs, "/.bomber.ignore")
+	results, err := scanner.loadIgnoreData("/.bomber.ignore")
 
 	assert.NoError(t, err)
 	assert.Len(t, results, 1)
 	assert.Equal(t, results[0], "CVE-2022-31163")
 
-	_, err = scanner.loadIgnoreData(afs, "test")
+	_, err = scanner.loadIgnoreData("test")
 	assert.Error(t, err)
 
-	results, err = scanner.loadIgnoreData(afs, "")
+	results, err = scanner.loadIgnoreData("")
 	assert.NoError(t, err)
 	assert.Len(t, results, 0)
 }
 
-func Test_Scanner_Scan(t *testing.T) {
+func TestScanner_Scan(t *testing.T) {
 	output := util.CaptureOutput(func() {
 		afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
@@ -88,7 +88,7 @@ func Test_Scanner_Scan(t *testing.T) {
 	assert.NotNil(t, output)
 }
 
-func Test_Scanner_exitWithCodeIfRequired(t *testing.T) {
+func TestScanner_exitWithCodeIfRequired(t *testing.T) {
 	scanner := Scanner{
 		ExitCode: false,
 	}
@@ -100,7 +100,7 @@ func Test_Scanner_exitWithCodeIfRequired(t *testing.T) {
 	assert.Equal(t, 10, code)
 }
 
-func Test_Scanner_enrichAndIgnoreVulnerabilities(t *testing.T) {
+func TestScanner_enrichAndIgnoreVulnerabilities(t *testing.T) {
 	t.Run("EnrichVulnerabilities", func(t *testing.T) {
 		// Create a sample Scanner instance
 		scanner := Scanner{}
@@ -146,7 +146,7 @@ func Test_Scanner_enrichAndIgnoreVulnerabilities(t *testing.T) {
 	})
 }
 
-func Test_FilterVulnerabilities(t *testing.T) {
+func TestFilterVulnerabilities(t *testing.T) {
 	// Create a sample Scanner instance with a severity filter
 	scanner := Scanner{Severity: "HIGH"}
 
@@ -183,7 +183,7 @@ func Test_FilterVulnerabilities(t *testing.T) {
 	assert.Equal(t, 0, len(response[1].Vulnerabilities)-2) // Expecting LOW severity to be filtered out
 }
 
-func Test_ScannerGetProviderInfo(t *testing.T) {
+func TestScannerGetProviderInfo(t *testing.T) {
 	t.Run("WithMockProvider", func(t *testing.T) {
 		scanner := Scanner{Provider: MockProvider{}}
 		result := scanner.getProviderInfo()
