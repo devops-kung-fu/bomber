@@ -104,24 +104,6 @@ func TestParseSeverity(t *testing.T) {
 	})
 }
 
-func TestHighestSeverityExitCode(t *testing.T) {
-	// Sample vulnerabilities with different severities
-	vulnerabilities := []models.Vulnerability{
-		{Severity: "LOW"},
-		{Severity: "CRITICAL"},
-		{Severity: "MODERATE"},
-		{Severity: "HIGH"},
-		{Severity: "UNDEFINED"},
-	}
-
-	// Calculate the expected exit code based on the highest severity
-	expectedExitCode := 14 // CRITICAL has the highest severity
-
-	// Call the function and check the result using assert
-	actualExitCode := HighestSeverityExitCode(vulnerabilities)
-	assert.Equal(t, expectedExitCode, actualExitCode)
-}
-
 func TestFlattenVulnerabilities(t *testing.T) {
 	// Create some sample data for testing
 	pkg1 := models.Package{

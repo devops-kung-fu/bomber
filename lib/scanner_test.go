@@ -198,3 +198,21 @@ func Test_ScannerGetProviderInfo(t *testing.T) {
 		assert.Equal(t, "N/A", result)
 	})
 }
+
+func TestHighestSeverityExitCode(t *testing.T) {
+	// Sample vulnerabilities with different severities
+	vulnerabilities := []models.Vulnerability{
+		{Severity: "LOW"},
+		{Severity: "CRITICAL"},
+		{Severity: "MODERATE"},
+		{Severity: "HIGH"},
+		{Severity: "UNDEFINED"},
+	}
+
+	// Calculate the expected exit code based on the highest severity
+	expectedExitCode := 14 // CRITICAL has the highest severity
+
+	// Call the function and check the result using assert
+	actualExitCode := highestSeverityExitCode(vulnerabilities)
+	assert.Equal(t, expectedExitCode, actualExitCode)
+}

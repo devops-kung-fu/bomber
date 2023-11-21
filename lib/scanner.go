@@ -201,9 +201,31 @@ func (s *Scanner) processResults(scanned []models.ScannedFile, licenses []string
 // exitWithCodeIfRequired exits the program with the appropriate code based on severity.
 func (s *Scanner) exitWithCodeIfRequired(results models.Results) int {
 	if s.ExitCode {
-		code := HighestSeverityExitCode(FlattenVulnerabilities(results.Packages))
+		code := highestSeverityExitCode(FlattenVulnerabilities(results.Packages))
 		log.Printf("fail severity: %d", code)
 		return code
 	}
 	return 0
+}
+
+// HighestSeverityExitCode returns the exit code of the highest vulnerability
+func highestSeverityExitCode(vulnerabilities []models.Vulnerability) int {
+	severityExitCodes := map[string]int{
+		"UNDEFINED": int(models.UNDEFINED),
+		"LOW":       int(models.LOW),
+		"MODERATE":  int(models.MODERATE),
+		"HIGH":      int(models.HIGH),
+		"CRITICAL":  int(models.CRITICAL),
+	}
+
+	highestSeverity := "UNDEFINED" // Initialize with the lowest severity
+	for _, vulnerability := range vulnerabilities {
+		if exitCode, ok := severityExitCodes[vulnerability.Severity]; ok {
+			if exitCode > severityExitCodes[highestSeverity] {
+				highestSeverity = vulnerability.Severity
+			}
+		}
+	}
+
+	return severityExitCodes[highestSeverity]
 }

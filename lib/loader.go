@@ -6,7 +6,6 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"encoding/json"
-	"encoding/xml"
 	"fmt"
 	"io"
 	"log"
@@ -76,10 +75,10 @@ func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, 
 
 	if isCycloneDXXML(b) {
 		log.Println("Detected CycloneDX XML")
-		return processCycloneDX(b, scanned, xml.Unmarshal)
+		return processCycloneDX(cyclone.BOMFileFormatXML, b, scanned)
 	} else if isCycloneDXJSON(b) {
 		log.Println("Detected CycloneDX JSON")
-		return processCycloneDX(b, scanned, json.Unmarshal)
+		return processCycloneDX(cyclone.BOMFileFormatJSON, b, scanned)
 	} else if isSPDX(b) {
 		log.Println("Detected SPDX")
 		var sbom spdx.BOM
@@ -123,9 +122,13 @@ func isSyft(b []byte) bool {
 	return bytes.Contains(b, []byte("https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-"))
 }
 
-func processCycloneDX(b []byte, s []models.ScannedFile, unmarshal func([]byte, interface{}) error) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
+func processCycloneDX(format cyclone.BOMFileFormat, b []byte, s []models.ScannedFile) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
 	var sbom cyclone.BOM
-	if err = unmarshal(b, &sbom); err == nil {
+
+	reader := bytes.NewReader(b)
+	decoder := cyclone.NewBOMDecoder(reader, format)
+	err = decoder.Decode(&sbom)
+	if err == nil {
 		return s, cyclonedx.Purls(&sbom), cyclonedx.Licenses(&sbom), err
 	}
 	return
