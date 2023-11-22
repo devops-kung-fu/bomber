@@ -86,6 +86,11 @@ func renderFooter(vulnCount int, results models.Results) {
 		fmt.Println()
 		renderSeveritySummary(results.Summary)
 		fmt.Println()
+		if results.Meta.SeverityFilter != "" {
+			util.PrintWarningf("Only displaying vulnerabilities with a severity of %s or higher", strings.ToUpper(results.Meta.SeverityFilter))
+			fmt.Println()
+		}
+		fmt.Println()
 		fmt.Println("NOTES:")
 		fmt.Println()
 		fmt.Println("1. The list of vulnerabilities displayed may differ from provider to provider. This list")
@@ -108,10 +113,21 @@ func renderSeveritySummary(summary models.Summary) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"Rating", "Count"})
-	t.AppendRow([]interface{}{"CRITICAL", summary.Critical})
-	t.AppendRow([]interface{}{"HIGH", summary.High})
-	t.AppendRow([]interface{}{"MODERATE", summary.Moderate})
-	t.AppendRow([]interface{}{"LOW", summary.Low})
+	if summary.Critical > 0 {
+		t.AppendRow([]interface{}{"CRITICAL", summary.Critical})
+	}
+	if summary.High > 0 {
+		t.AppendRow([]interface{}{"HIGH", summary.High})
+	}
+	if summary.Moderate > 0 {
+		t.AppendRow([]interface{}{"MODERATE", summary.Moderate})
+	}
+	if summary.Low > 0 {
+		t.AppendRow([]interface{}{"LOW", summary.Low})
+	}
+	if summary.Unspecified > 0 {
+		t.AppendRow([]interface{}{"UNSPECIFIED", summary.Unspecified})
+	}
 	if summary.Unspecified > 0 {
 		t.AppendRow([]interface{}{"UNSPECIFIED", summary.Unspecified})
 	}

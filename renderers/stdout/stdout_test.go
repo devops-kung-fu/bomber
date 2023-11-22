@@ -23,7 +23,7 @@ func TestRenderer_Render(t *testing.T) {
 			},
 		}
 		renderer := Renderer{}
-		renderer.Render(models.NewResults(packages, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test"))
+		renderer.Render(models.NewResults(packages, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test", ""))
 	})
 	assert.NotNil(t, output)
 	assert.Contains(t, output, "golang │ spinner │ v1.19.0 │ CRITICAL")

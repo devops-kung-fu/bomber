@@ -122,11 +122,6 @@ func (s *Scanner) printHeader(purlCount int, ecosystems []string, issues []model
 		util.PrintInfof("Scanning %v packages for vulnerabilities...\n", purlCount)
 		util.PrintInfo("Vulnerability Provider:", s.getProviderInfo(), "\n")
 
-		if s.Severity != "" {
-			util.PrintInfof("Showing vulnerabilities with a severity of %s or higher", strings.ToUpper(s.Severity))
-			fmt.Println()
-		}
-
 		spinner.Suffix = fmt.Sprintf(" Fetching vulnerability data from %s", s.ProviderName)
 		spinner.Start()
 	}
@@ -190,7 +185,7 @@ func (s *Scanner) processResults(scanned []models.ScannedFile, licenses []string
 	}
 	log.Println("Creating results")
 	// Create results object
-	results := models.NewResults(response, s.SeveritySummary, scanned, licenses, s.Version, s.ProviderName)
+	results := models.NewResults(response, s.SeveritySummary, scanned, licenses, s.Version, s.ProviderName, s.Severity)
 
 	// Render results using the specified renderer
 	if s.Renderer != nil {

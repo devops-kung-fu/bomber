@@ -15,7 +15,7 @@ import (
 func Test_writeTemplate(t *testing.T) {
 	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
 
-	err := writeTemplate(afs, "test.html", models.NewResults([]models.Package{}, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test"))
+	err := writeTemplate(afs, "test.html", models.NewResults([]models.Package{}, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test", ""))
 	assert.NoError(t, err)
 
 	b, err := afs.ReadFile("test.html")
@@ -37,7 +37,7 @@ func Test_genTemplate(t *testing.T) {
 func TestRenderer_Render(t *testing.T) {
 	output := util.CaptureOutput(func() {
 		renderer := Renderer{}
-		err := renderer.Render(models.NewResults([]models.Package{}, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test"))
+		err := renderer.Render(models.NewResults([]models.Package{}, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test", ""))
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -82,7 +82,7 @@ func Test_markdownToHTML(t *testing.T) {
 			},
 		},
 	}
-	results := models.NewResults(packages, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test")
+	results := models.NewResults(packages, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test", "")
 	markdownToHTML(results)
 
 	assert.NotNil(t, results)

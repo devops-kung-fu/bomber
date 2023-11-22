@@ -217,12 +217,25 @@ func genTemplate(output string) (t *template.Template) {
 	{{ end }}
 	{{ if ne (len .Packages) 0 }} 
 		<h1>Vulnerability Summary</h1>
+		{{ if ne (len .Meta.SeverityFilter) 0 }}
+			<p>Only showing vulnerabilities with a severity of <i><b>{{ .Meta.SeverityFilter }}</b></i> or higher.</p>
+		{{ end }}
 		<table id="summary">
+			{{if gt .Summary.Critical 0}}
 			<tr><td>Critical:</td><td>{{ .Summary.Critical }}</td></tr>
+			{{ end }}
+			{{if gt .Summary.High 0}}
 			<tr><td>High:</td><td>{{ .Summary.High }}</td></tr>
+			{{ end }}
+			{{if gt .Summary.Moderate 0}}
 			<tr><td>Moderate:</td><td>{{ .Summary.Moderate }}</td></tr>
+			{{ end }}
+			{{if gt .Summary.Low 0}}
 			<tr><td>Low:</td><td>{{ .Summary.Low }}</td></tr>
+			{{ end }}
+			{{if gt .Summary.Unspecified 0}}
 			<tr><td>Unspecified:</td><td>{{ .Summary.Unspecified }}</td></tr>
+			{{ end }}
 		</table>
 		<h1>Vulnerability Details</h1>
 		{{ range .Packages }}
