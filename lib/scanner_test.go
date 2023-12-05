@@ -88,6 +88,15 @@ func TestScanner_Scan(t *testing.T) {
 	assert.NotNil(t, output)
 }
 
+func TestScanner_Scan_BadFileName(t *testing.T) {
+	scanner := Scanner{
+		ExitCode: false,
+		Afs:      &afero.Afero{Fs: afero.NewMemMapFs()},
+	}
+	_, err := scanner.Scan([]string{"test**.json"})
+	assert.Error(t, err)
+}
+
 func TestScanner_exitWithCodeIfRequired(t *testing.T) {
 	scanner := Scanner{
 		ExitCode: false,

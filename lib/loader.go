@@ -29,7 +29,10 @@ type Loader struct {
 // Load retrieves a slice of Purls from various types of SBOMs
 func (l *Loader) Load(args []string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
 	for _, arg := range args {
-		isDir, _ := l.Afs.IsDir(arg)
+		isDir, err := l.Afs.IsDir(arg)
+		if err != nil && arg != "-" {
+			return scanned, purls, licenses, err
+		}
 		if isDir {
 			s, values, lic, err := l.loadFolderPurls(arg)
 			if err != nil {
@@ -39,7 +42,7 @@ func (l *Loader) Load(args []string) (scanned []models.ScannedFile, purls []stri
 			purls = append(purls, values...)
 			licenses = append(licenses, lic...)
 		} else {
-			scanned, purls, licenses, err = l.loadFilePurls(arg)
+			scanned, purls, licenses, _ = l.loadFilePurls(arg)
 		}
 		purls = slices.RemoveDuplicates(purls)
 		licenses = slices.RemoveDuplicates(licenses)
