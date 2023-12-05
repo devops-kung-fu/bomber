@@ -19,6 +19,7 @@ build: ## Builds the application
 
 test: ## Runs tests and coverage
 	go test -v -coverprofile=coverage.out ./... && go tool cover -func=coverage.out
+	go tool cover -html=coverage.out -o coverage.html
 
 check: build ## Tests the pre-commit hooks if they exist
 	hookz reset --verbose --debug --verbose-output 

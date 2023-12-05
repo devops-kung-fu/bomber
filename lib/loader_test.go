@@ -4,6 +4,7 @@ import (
 	"os"
 	"testing"
 
+	cyclone "github.com/CycloneDX/cyclonedx-go"
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/assert"
 
@@ -169,5 +170,20 @@ func TestLoadIgnore(t *testing.T) {
 	assert.Len(t, cves, 2)
 
 	_, err = l.LoadIgnore("tst.ignore")
+	assert.Error(t, err)
+}
+
+func TestProcessCycloneDX_InvalidFormat(t *testing.T) {
+
+	invalidFile := []byte("{{")
+
+	loader := Loader{}
+
+	_, _, _, err := loader.processCycloneDX(
+		cyclone.BOMFileFormatJSON,
+		invalidFile,
+		nil,
+	)
+
 	assert.Error(t, err)
 }

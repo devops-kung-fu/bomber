@@ -4,7 +4,6 @@ package json
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 
 	"github.com/devops-kung-fu/bomber/models"
 )
@@ -14,12 +13,7 @@ type Renderer struct{}
 
 // Render outputs json to STDOUT
 func (Renderer) Render(results models.Results) error {
-	b, err := json.MarshalIndent(results, "", "\t")
-	if err != nil {
-		log.Println(err)
-		return err
-	}
-
+	b, _ := json.MarshalIndent(results, "", "\t")
 	fmt.Println(string(b))
 	return nil
 }

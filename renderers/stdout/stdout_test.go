@@ -63,3 +63,50 @@ func Test_renderSeveritySummary(t *testing.T) {
 	assert.NotNil(t, output)
 	assert.Contains(t, output, "│ RATING")
 }
+
+func TestRenderFooter(t *testing.T) {
+	output := util.CaptureOutput(func() {
+
+		results := models.Results{
+			Summary: models.Summary{
+				Critical: 1,
+				High:     2,
+				Moderate: 3,
+				Low:      4,
+			},
+			Meta: models.Meta{
+				Provider:       "test",
+				SeverityFilter: "HIGH",
+			},
+		}
+
+		renderFooter(1, results)
+
+	})
+
+	assert.Contains(t, output, "Rendering Severity Summary\n")
+	assert.Contains(t, output, "CRITICAL │     1")
+	assert.Contains(t, output, "Only displaying vulnerabilities with a severity of")
+
+	assert.NotNil(t, output)
+
+	output = util.CaptureOutput(func() {
+
+		results := models.Results{
+			Summary: models.Summary{
+				Critical: 1,
+				High:     2,
+				Moderate: 3,
+				Low:      4,
+			},
+			Meta: models.Meta{
+				Provider:       "test",
+				SeverityFilter: "HIGH",
+			},
+		}
+
+		renderFooter(0, results)
+	})
+	assert.Contains(t, output, "\nNOTE: Just because bomber didn't find any vulnerabilities")
+
+}
