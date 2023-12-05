@@ -36,9 +36,7 @@ func (Renderer) Render(results models.Results) error {
 	util.PrintInfo("Writing filename:", filename)
 
 	err := writeTemplate(afs, filename, results)
-	if err != nil {
-		log.Println(err)
-	}
+
 	return err
 }
 
@@ -75,12 +73,8 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) er
 	}
 
 	err = afs.Fs.Chmod(filename, 0777)
-	if err != nil {
-		log.Println(err)
-		return err
-	}
 
-	return nil
+	return err
 }
 
 // processPercentiles calculates and updates the percentile values for
