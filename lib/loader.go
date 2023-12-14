@@ -6,7 +6,6 @@ import (
 	"bytes"
 	"crypto/sha256"
 	"encoding/json"
-	"encoding/xml"
 	"fmt"
 	"io"
 	"log"
@@ -23,12 +22,19 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
+type Loader struct {
+	Afs *afero.Afero
+}
+
 // Load retrieves a slice of Purls from various types of SBOMs
-func Load(afs *afero.Afero, args []string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
+func (l *Loader) Load(args []string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
 	for _, arg := range args {
-		isDir, _ := afs.IsDir(arg)
+		isDir, err := l.Afs.IsDir(arg)
+		if err != nil && arg != "-" {
+			return scanned, purls, licenses, err
+		}
 		if isDir {
-			s, values, lic, err := loadFolderPurls(afs, arg)
+			s, values, lic, err := l.loadFolderPurls(arg)
 			if err != nil {
 				return scanned, nil, nil, err
 			}
@@ -36,7 +42,7 @@ func Load(afs *afero.Afero, args []string) (scanned []models.ScannedFile, purls 
 			purls = append(purls, values...)
 			licenses = append(licenses, lic...)
 		} else {
-			scanned, purls, licenses, err = loadFilePurls(afs, arg)
+			scanned, purls, licenses, _ = l.loadFilePurls(arg)
 		}
 		purls = slices.RemoveDuplicates(purls)
 		licenses = slices.RemoveDuplicates(licenses)
@@ -44,15 +50,15 @@ func Load(afs *afero.Afero, args []string) (scanned []models.ScannedFile, purls 
 	return
 }
 
-func loadFolderPurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
+func (l *Loader) loadFolderPurls(arg string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
 	absPath, err := filepath.Abs(arg)
 	if err != nil {
 		return scanned, nil, nil, err
 	}
-	files, err := afs.ReadDir(absPath)
+	files, err := l.Afs.ReadDir(absPath)
 	for _, file := range files {
 		path := filepath.Join(absPath, file.Name())
-		s, values, lic, err := loadFilePurls(afs, path)
+		s, values, lic, err := l.loadFilePurls(path)
 		if err != nil {
 			log.Println(path, err)
 		}
@@ -63,68 +69,93 @@ func loadFolderPurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile
 	return
 }
 
-func loadFilePurls(afs *afero.Afero, arg string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
-
-	var b []byte
-
-	if arg == "-" {
-		log.Printf("Reading from stdin")
-		b, err = io.ReadAll(bufio.NewReader(os.Stdin))
-	} else {
-		log.Printf("Reading: %v", arg)
-		b, err = afs.ReadFile(arg)
-	}
-	scanned = append(scanned, models.ScannedFile{
-		Name:   arg,
-		SHA256: fmt.Sprintf("%x", sha256.Sum256(b)),
-	})
+func (l *Loader) loadFilePurls(arg string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
+	b, err := l.readFile(arg)
 	if err != nil {
 		return scanned, nil, nil, err
 	}
 
-	if bytes.Contains(b, []byte("xmlns")) && bytes.Contains(b, []byte("CycloneDX")) {
+	scanned = append(scanned, models.ScannedFile{
+		Name:   arg,
+		SHA256: fmt.Sprintf("%x", sha256.Sum256(b)),
+	})
+
+	if l.isCycloneDXXML(b) {
 		log.Println("Detected CycloneDX XML")
-		return processCycloneDX(b, scanned, xml.Unmarshal)
-	} else if bytes.Contains(b, []byte("bomFormat")) && bytes.Contains(b, []byte("CycloneDX")) {
+		return l.processCycloneDX(cyclone.BOMFileFormatXML, b, scanned)
+	} else if l.isCycloneDXJSON(b) {
 		log.Println("Detected CycloneDX JSON")
-		return processCycloneDX(b, scanned, json.Unmarshal)
-	} else if bytes.Contains(b, []byte("SPDXRef-DOCUMENT")) {
+		return l.processCycloneDX(cyclone.BOMFileFormatJSON, b, scanned)
+	} else if l.isSPDX(b) {
 		log.Println("Detected SPDX")
 		var sbom spdx.BOM
 		if err = json.Unmarshal(b, &sbom); err == nil {
 			return scanned, sbom.Purls(), sbom.Licenses(), err
 		}
-	} else if bytes.Contains(b, []byte("https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-")) {
+	} else if l.isSyft(b) {
 		log.Println("Detected Syft")
 		var sbom syft.BOM
 		if err = json.Unmarshal(b, &sbom); err == nil {
 			return scanned, sbom.Purls(), sbom.Licenses(), err
 		}
 	}
+
 	log.Printf("WARNING: %v isn't a valid SBOM", arg)
+	log.Println(err)
 	return scanned, nil, nil, fmt.Errorf("%v is not a SBOM recognized by bomber", arg)
 }
 
-func processCycloneDX(b []byte, s []models.ScannedFile, unmarshal func([]byte, interface{}) error) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
+func (l *Loader) readFile(arg string) ([]byte, error) {
+	if arg == "-" {
+		log.Printf("Reading from stdin")
+		return io.ReadAll(bufio.NewReader(os.Stdin))
+	}
+	log.Printf("Reading: %v", arg)
+	return l.Afs.ReadFile(arg)
+}
+
+func (l *Loader) isCycloneDXXML(b []byte) bool {
+	return bytes.Contains(b, []byte("xmlns")) && bytes.Contains(b, []byte("CycloneDX"))
+}
+
+func (l *Loader) isCycloneDXJSON(b []byte) bool {
+	return bytes.Contains(b, []byte("bomFormat")) && bytes.Contains(b, []byte("CycloneDX"))
+}
+
+func (l *Loader) isSPDX(b []byte) bool {
+	return bytes.Contains(b, []byte("SPDXRef-DOCUMENT"))
+}
+
+func (l *Loader) isSyft(b []byte) bool {
+	return bytes.Contains(b, []byte("https://raw.githubusercontent.com/anchore/syft/main/schema/json/schema-"))
+}
+
+func (l *Loader) processCycloneDX(format cyclone.BOMFileFormat, b []byte, s []models.ScannedFile) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
 	var sbom cyclone.BOM
-	if err = unmarshal(b, &sbom); err == nil {
+
+	reader := bytes.NewReader(b)
+	decoder := cyclone.NewBOMDecoder(reader, format)
+	err = decoder.Decode(&sbom)
+	if err == nil {
 		return s, cyclonedx.Purls(&sbom), cyclonedx.Licenses(&sbom), err
 	}
 	return
 }
 
-// LoadIgnore loads a list of CVEs entered one on each line from the filename provided
-func LoadIgnore(afs *afero.Afero, ignoreFile string) (cves []string, err error) {
-	f, err := afs.Open(ignoreFile)
+// LoadIgnore loads a list of CVEs entered one on each line from the filename
+func (l *Loader) LoadIgnore(ignoreFile string) (cves []string, err error) {
+	f, err := l.Afs.Open(ignoreFile)
 	if err != nil {
 		log.Printf("error opening ignore: %v\n", err)
 		return
 	}
-	r := bufio.NewReader(f)
-	line, _, e := r.ReadLine()
-	for e == nil {
-		cves = append(cves, string(line))
-		line, _, e = r.ReadLine()
+	defer func() {
+		_ = f.Close()
+	}()
+
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		cves = append(cves, scanner.Text())
 	}
 
 	return

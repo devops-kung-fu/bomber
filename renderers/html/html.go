@@ -19,54 +19,50 @@ import (
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-// Renderer contains methods to render results to an HTMLfile
+// Renderer contains methods to render results to an HTML file
 type Renderer struct{}
 
 // Render renders results to an HTML file
-func (Renderer) Render(results models.Results) (err error) {
+func (Renderer) Render(results models.Results) error {
 	var afs *afero.Afero
-	//This is sort of hacky, but since this output writes a file, test cases need to write the output in memory.
+
 	if results.Meta.Provider == "test" {
 		afs = &afero.Afero{Fs: afero.NewMemMapFs()}
 	} else {
 		afs = &afero.Afero{Fs: afero.NewOsFs()}
 	}
-	t := time.Now()
-	r := strings.NewReplacer("-", "", " ", "-", ":", "-")
-	filename := t.Format("2006-01-02 15:04:05")
-	filename, _ = filepath.Abs(fmt.Sprintf("./%s-bomber-results.html", r.Replace(filename)))
 
+	filename := generateFilename()
 	util.PrintInfo("Writing filename:", filename)
-	err = writeTemplate(afs, filename, results)
-	if err != nil {
-		log.Println(err)
-		return
-	}
-	return
+
+	err := writeTemplate(afs, filename, results)
+
+	return err
 }
 
-func writeTemplate(afs *afero.Afero, filename string, results models.Results) (err error) {
-	for i, p := range results.Packages {
-		percentageString := "N/A"
-		for vi, v := range p.Vulnerabilities {
-			per, err := strconv.ParseFloat(v.Epss.Percentile, 64)
-			if err != nil {
-				log.Println(err)
-			} else {
-				percentage := math.Round(per * 100)
-				if percentage > 0 {
-					percentageString = fmt.Sprintf("%d%%", uint64(percentage))
-				}
-			}
-			results.Packages[i].Vulnerabilities[vi].Epss.Percentile = percentageString
-		}
-	}
+// generateFilename generates a unique filename based on the current timestamp
+// in the format "2006-01-02 15:04:05" and replaces certain characters to
+// create a valid filename. The resulting filename is a combination of the
+// timestamp and a fixed suffix.
+func generateFilename() string {
+	t := time.Now()
+	r := strings.NewReplacer("-", "", " ", "-", ":", "-")
+	return filepath.Join(".", fmt.Sprintf("%s-bomber-results.html", r.Replace(t.Format("2006-01-02 15:04:05"))))
+}
+
+// writeTemplate writes the results to a file with the specified filename,
+// using the given Afero filesystem interface. It creates the file, processes
+// percentiles in the results, converts Markdown to HTML, and writes the
+// templated results to the file. It also sets file permissions to 0777.
+func writeTemplate(afs *afero.Afero, filename string, results models.Results) error {
+	processPercentiles(results)
 
 	file, err := afs.Create(filename)
 	if err != nil {
 		log.Println(err)
 		return err
 	}
+
 	markdownToHTML(results)
 
 	template := genTemplate("output")
@@ -75,15 +71,36 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) (e
 		log.Println(err)
 		return err
 	}
-	err = afs.Fs.Chmod(filename, 0777)
-	if err != nil {
-		log.Println(err)
-		return err
-	}
 
-	return
+	err = afs.Fs.Chmod(filename, 0777)
+
+	return err
 }
 
+// processPercentiles calculates and updates the percentile values for
+// vulnerabilities in the given results. It converts the percentile from
+// a decimal to a percentage and updates the results in place.
+func processPercentiles(results models.Results) {
+	for i, p := range results.Packages {
+		for vi, v := range p.Vulnerabilities {
+			per, err := strconv.ParseFloat(v.Epss.Percentile, 64)
+			if err != nil {
+				log.Println(err)
+			} else {
+				percentage := math.Round(per * 100)
+				if percentage > 0 {
+					results.Packages[i].Vulnerabilities[vi].Epss.Percentile = fmt.Sprintf("%d%%", uint64(percentage))
+				} else {
+					results.Packages[i].Vulnerabilities[vi].Epss.Percentile = "N/A"
+				}
+			}
+		}
+	}
+}
+
+// markdownToHTML converts the Markdown descriptions of vulnerabilities in
+// the given results to HTML. It uses the Blackfriday library to perform the
+// conversion and sanitizes the HTML using Bluemonday.
 func markdownToHTML(results models.Results) {
 	for i := range results.Packages {
 		for ii := range results.Packages[i].Vulnerabilities {
@@ -194,12 +211,25 @@ func genTemplate(output string) (t *template.Template) {
 	{{ end }}
 	{{ if ne (len .Packages) 0 }} 
 		<h1>Vulnerability Summary</h1>
+		{{ if ne (len .Meta.SeverityFilter) 0 }}
+			<p>Only showing vulnerabilities with a severity of <i><b>{{ .Meta.SeverityFilter }}</b></i> or higher.</p>
+		{{ end }}
 		<table id="summary">
+			{{if gt .Summary.Critical 0}}
 			<tr><td>Critical:</td><td>{{ .Summary.Critical }}</td></tr>
+			{{ end }}
+			{{if gt .Summary.High 0}}
 			<tr><td>High:</td><td>{{ .Summary.High }}</td></tr>
+			{{ end }}
+			{{if gt .Summary.Moderate 0}}
 			<tr><td>Moderate:</td><td>{{ .Summary.Moderate }}</td></tr>
+			{{ end }}
+			{{if gt .Summary.Low 0}}
 			<tr><td>Low:</td><td>{{ .Summary.Low }}</td></tr>
+			{{ end }}
+			{{if gt .Summary.Unspecified 0}}
 			<tr><td>Unspecified:</td><td>{{ .Summary.Unspecified }}</td></tr>
+			{{ end }}
 		</table>
 		<h1>Vulnerability Details</h1>
 		{{ range .Packages }}

@@ -9,14 +9,13 @@ import (
 	"strings"
 
 	"github.com/devops-kung-fu/common/github"
-	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 )
 
 var (
-	version = "0.4.7"
+	version = "0.4.8"
 	output  string
 	//Afs stores a global OS Filesystem that is used throughout bomber
 	Afs = &afero.Afero{Fs: afero.NewOsFs()}
@@ -31,7 +30,7 @@ var (
 			if !debug {
 				log.SetOutput(io.Discard)
 			}
-			util.DoIf(output != "json", func() {
+			if output != "json" {
 				log.Println("Start")
 				fmt.Println()
 				color.Style{color.FgWhite, color.OpBold}.Println(" ██▄ ▄▀▄ █▄ ▄█ ██▄ ██▀ █▀▄")
@@ -41,12 +40,11 @@ var (
 				fmt.Println("https://github.com/devops-kung-fu/bomber")
 				fmt.Printf("Version: %s\n", version)
 				fmt.Println()
-
 				latestVersion, _ := github.LatestReleaseTag("devops-kung-fu", "bomber")
 				if !strings.Contains(latestVersion, version) {
 					color.Yellow.Printf("A newer version of bomber is available (%s)\n\n", latestVersion)
 				}
-			})
+			}
 		},
 	}
 )

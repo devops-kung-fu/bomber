@@ -10,7 +10,7 @@ import (
 	"github.com/devops-kung-fu/bomber/renderers/stdout"
 )
 
-func TestNewProvider(t *testing.T) {
+func TestNewRenderer(t *testing.T) {
 	renderer, err := NewRenderer("stdout")
 	assert.NoError(t, err)
 	assert.IsType(t, stdout.Renderer{}, renderer)
@@ -20,6 +20,7 @@ func TestNewProvider(t *testing.T) {
 	assert.IsType(t, json.Renderer{}, renderer)
 
 	renderer, err = NewRenderer("html")
+
 	assert.NoError(t, err)
 	assert.IsType(t, html.Renderer{}, renderer)
 

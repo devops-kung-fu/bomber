@@ -49,11 +49,12 @@ type Results struct {
 
 // Meta contains system and execution information about the results from bomber
 type Meta struct {
-	Generator string    `json:"generator"`
-	URL       string    `json:"url"`
-	Version   string    `json:"version"`
-	Provider  string    `json:"provider"`
-	Date      time.Time `json:"date"`
+	Generator      string    `json:"generator"`
+	URL            string    `json:"url"`
+	Version        string    `json:"version"`
+	Provider       string    `json:"provider"`
+	SeverityFilter string    `json:"severityFilter"`
+	Date           time.Time `json:"date"`
 }
 
 // ScannedFile contains the absolute name and sha256 of a processed file
@@ -69,14 +70,15 @@ type Credentials struct {
 }
 
 // NewResults defines the high level output of bomber
-func NewResults(packages []Package, summary Summary, scanned []ScannedFile, licenses []string, version, providerName string) Results {
+func NewResults(packages []Package, summary Summary, scanned []ScannedFile, licenses []string, version, providerName string, severityFilter string) Results {
 	return Results{
 		Meta: Meta{
-			Generator: "bomber",
-			URL:       "https://github.com/devops-kung-fu/bomber",
-			Version:   version,
-			Provider:  providerName,
-			Date:      time.Now(),
+			Generator:      "bomber",
+			URL:            "https://github.com/devops-kung-fu/bomber",
+			Version:        version,
+			Provider:       providerName,
+			Date:           time.Now(),
+			SeverityFilter: severityFilter,
 		},
 		Files:    scanned,
 		Summary:  summary,

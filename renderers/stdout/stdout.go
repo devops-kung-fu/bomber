@@ -75,11 +75,21 @@ func (Renderer) Render(results models.Results) (err error) {
 		t.Style().Options.SeparateRows = true
 		t.Render()
 	}
+	renderFooter(vulnCount, results)
+	return
+}
+
+func renderFooter(vulnCount int, results models.Results) {
 	if vulnCount > 0 {
 		fmt.Println()
 		color.Red.Printf("Total vulnerabilities found: %v\n", vulnCount)
 		fmt.Println()
 		renderSeveritySummary(results.Summary)
+		fmt.Println()
+		if results.Meta.SeverityFilter != "" {
+			util.PrintWarningf("Only displaying vulnerabilities with a severity of %s or higher", strings.ToUpper(results.Meta.SeverityFilter))
+			fmt.Println()
+		}
 		fmt.Println()
 		fmt.Println("NOTES:")
 		fmt.Println()
@@ -96,7 +106,6 @@ func (Renderer) Render(results models.Results) (err error) {
 		fmt.Println("not mean that there are no vulnerabilities. Please try the other providers that bomber")
 		fmt.Println("supports (osv, ossindex)")
 	}
-	return
 }
 
 func renderSeveritySummary(summary models.Summary) {
@@ -104,10 +113,21 @@ func renderSeveritySummary(summary models.Summary) {
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"Rating", "Count"})
-	t.AppendRow([]interface{}{"CRITICAL", summary.Critical})
-	t.AppendRow([]interface{}{"HIGH", summary.High})
-	t.AppendRow([]interface{}{"MODERATE", summary.Moderate})
-	t.AppendRow([]interface{}{"LOW", summary.Low})
+	if summary.Critical > 0 {
+		t.AppendRow([]interface{}{"CRITICAL", summary.Critical})
+	}
+	if summary.High > 0 {
+		t.AppendRow([]interface{}{"HIGH", summary.High})
+	}
+	if summary.Moderate > 0 {
+		t.AppendRow([]interface{}{"MODERATE", summary.Moderate})
+	}
+	if summary.Low > 0 {
+		t.AppendRow([]interface{}{"LOW", summary.Low})
+	}
+	if summary.Unspecified > 0 {
+		t.AppendRow([]interface{}{"UNSPECIFIED", summary.Unspecified})
+	}
 	if summary.Unspecified > 0 {
 		t.AppendRow([]interface{}{"UNSPECIFIED", summary.Unspecified})
 	}

@@ -98,7 +98,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=ossindex", "--debug=true", "--output=html", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+            "args": ["--provider=ossindex", "--debug=true", "--output=html", "--severity=high", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
         },
         {
             "name": "Debug File, Output HTML (osv - juiceshop)",
@@ -107,6 +107,14 @@
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
             "args": ["--debug=true", "--output=html", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+        },
+        {
+            "name": "Debug File (ossindex - merged)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "args": ["--provider=ossindex", "--debug=true", "scan", "./_TESTDATA_/sbom/merged.json"]
         },
         {
             "name": "Debug File (ossindex - railsgoat)",
