@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.3
 
 require (
-	github.com/CycloneDX/cyclonedx-go v0.7.2
+	github.com/CycloneDX/cyclonedx-go v0.8.0
 	github.com/briandowns/spinner v1.23.0
 	github.com/devops-kung-fu/common v0.2.6
 	github.com/gookit/color v1.5.4
