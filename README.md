@@ -223,7 +223,7 @@ export BOMBER_PROVIDER_TOKEN={{your OSS Index API Token}}
 
 ### Messing around
 
-If you want to kick the tires on ```bomber``` you'll find a selection of test SBOMs in the [test](sbom/test/) folder. 
+If you want to kick the tires on ```bomber``` you'll find a selection of test SBOMs in the [test](_TESTDATA_/sbom/) folder. 
 
 ## Notes
 
