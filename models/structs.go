@@ -65,8 +65,9 @@ type ScannedFile struct {
 
 // Credentials the user credentials used by a provider to authenticate to an API
 type Credentials struct {
-	Username string
-	Token    string
+	Username      string
+	ProviderToken string
+	OpenAIToken   string
 }
 
 // NewResults defines the high level output of bomber

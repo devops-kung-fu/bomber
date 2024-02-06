@@ -44,7 +44,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		var coordinates CoordinateRequest
 		coordinates.Coordinates = append(coordinates.Coordinates, p...)
 		req := HttpRequest.NewRequest()
-		req.SetBasicAuth(credentials.Username, credentials.Token)
+		req.SetBasicAuth(credentials.Username, credentials.ProviderToken)
 
 		resp, _ := req.JSON().Post(ossindexURL, coordinates)
 		defer func() {
@@ -85,11 +85,11 @@ func validateCredentials(credentials *models.Credentials) (err error) {
 		credentials.Username = os.Getenv("BOMBER_PROVIDER_USERNAME")
 	}
 
-	if credentials.Token == "" {
-		credentials.Token = os.Getenv("BOMBER_PROVIDER_TOKEN")
+	if credentials.ProviderToken == "" {
+		credentials.ProviderToken = os.Getenv("BOMBER_PROVIDER_TOKEN")
 	}
 
-	if credentials.Username == "" && credentials.Token == "" {
+	if credentials.Username == "" && credentials.ProviderToken == "" {
 		err = errors.New("bomber requires a username and token to use the OSS Index provider")
 	}
 	return
