@@ -82,7 +82,7 @@ func (s *Scanner) scanPackages(purls []string) (response []models.Package, err e
 	}
 
 	// Load ignore data if specified
-	ignoredCVE, err := s.loadIgnoreData(s.IgnoreFile)
+	ignoredCVE, err := loader.LoadIgnore(s.IgnoreFile)
 	if err != nil {
 		util.PrintWarningf("Ignore flag set, but there was an error: %s", err)
 	}
@@ -132,14 +132,6 @@ func (s *Scanner) getProviderInfo() string {
 		return "N/A" // or any other default value or message
 	}
 	return s.Provider.Info()
-}
-
-// loadIgnoreData loads the ignore data from a file if specified.
-func (s *Scanner) loadIgnoreData(ignoreFile string) ([]string, error) {
-	if ignoreFile != "" {
-		return loader.LoadIgnore(ignoreFile)
-	}
-	return nil, nil
 }
 
 // filterVulnerabilities filters vulnerabilities based on severity.

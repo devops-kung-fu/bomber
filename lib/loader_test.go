@@ -23,7 +23,7 @@ func SetupTest() {
 	l = Loader{Afs: afs}
 }
 
-func TestLoad_cyclonedx(t *testing.T) {
+func Test_Load_cyclonedx(t *testing.T) {
 	SetupTest()
 	err := afs.WriteFile("/test-cyclonedx.json", cyclonedx.TestBytes(), 0644)
 	assert.NoError(t, err)
@@ -71,7 +71,7 @@ func TestLoad_cyclonedx_stdin(t *testing.T) {
 	assert.NoError(t, err)
 }
 
-func TestLoad_SPDX(t *testing.T) {
+func Test_Load_SPDX(t *testing.T) {
 	SetupTest()
 	err := afs.WriteFile("/test-spdx.json", spdx.TestBytes(), 0644)
 	assert.NoError(t, err)
@@ -109,7 +109,7 @@ func TestLoad_syft(t *testing.T) {
 	assert.Error(t, err)
 }
 
-func TestLoad_BadJSON_SPDX(t *testing.T) {
+func Test_Load_BadJSON_SPDX(t *testing.T) {
 	SetupTest()
 	fudgedFile := spdx.TestBytes()
 	bogusString := "bogus"
@@ -161,7 +161,7 @@ func TestLoad_multiple_cyclonedx(t *testing.T) {
 	assert.Error(t, err)
 }
 
-func TestLoadIgnore(t *testing.T) {
+func Test_LoadIgnore(t *testing.T) {
 	SetupTest()
 	afs.WriteFile("test.ignore", []byte("test\ntest2"), 0644)
 
@@ -173,7 +173,27 @@ func TestLoadIgnore(t *testing.T) {
 	assert.Error(t, err)
 }
 
-func TestProcessCycloneDX_InvalidFormat(t *testing.T) {
+func Test_LoadIgnoreData(t *testing.T) {
+	SetupTest()
+
+	err := afs.WriteFile("/.bomber.ignore", []byte("CVE-2022-31163"), 0644)
+	assert.NoError(t, err)
+
+	results, err := l.LoadIgnore("/.bomber.ignore")
+
+	assert.NoError(t, err)
+	assert.Len(t, results, 1)
+	assert.Equal(t, results[0], "CVE-2022-31163")
+
+	_, err = l.LoadIgnore("test")
+	assert.Error(t, err)
+
+	results, err = l.LoadIgnore("")
+	assert.NoError(t, err)
+	assert.Len(t, results, 0)
+}
+
+func Test_ProcessCycloneDX_InvalidFormat(t *testing.T) {
 
 	invalidFile := []byte("{{")
 

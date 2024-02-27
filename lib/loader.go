@@ -144,6 +144,16 @@ func (l *Loader) processCycloneDX(format cyclone.BOMFileFormat, b []byte, s []mo
 
 // LoadIgnore loads a list of CVEs entered one on each line from the filename
 func (l *Loader) LoadIgnore(ignoreFile string) (cves []string, err error) {
+	if ignoreFile == "" {
+		return
+	}
+	log.Printf("Loading ignore file: %v\n", ignoreFile)
+	exists, err := l.Afs.Exists(ignoreFile)
+	if !exists {
+		log.Printf("ignore file not found: %v\n", ignoreFile)
+		return nil, fmt.Errorf("ignore file not found: %v", ignoreFile)
+	}
+	log.Printf("ignore file found: %v\n", ignoreFile)
 	f, err := l.Afs.Open(ignoreFile)
 	if err != nil {
 		log.Printf("error opening ignore: %v\n", err)
