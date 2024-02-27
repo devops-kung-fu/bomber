@@ -67,7 +67,7 @@ type ScannedFile struct {
 type Credentials struct {
 	Username      string
 	ProviderToken string
-	OpenAIToken   string
+	OpenAIAPIKey  string
 }
 
 // NewResults defines the high level output of bomber
