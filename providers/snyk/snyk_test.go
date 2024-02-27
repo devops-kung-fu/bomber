@@ -32,7 +32,7 @@ func Test_validateCredentials(t *testing.T) {
 	os.Unsetenv("SNYK_TOKEN")
 
 	credentials := models.Credentials{
-		Token: "token",
+		ProviderToken: "token",
 	}
 
 	err := validateCredentials(nil)
@@ -41,7 +41,7 @@ func Test_validateCredentials(t *testing.T) {
 	err = validateCredentials(&credentials)
 	assert.NoError(t, err)
 
-	credentials.Token = ""
+	credentials.ProviderToken = ""
 	err = validateCredentials(&credentials)
 	assert.Error(t, err)
 
@@ -49,14 +49,14 @@ func Test_validateCredentials(t *testing.T) {
 
 	err = validateCredentials(&credentials)
 	assert.NoError(t, err)
-	assert.Equal(t, "bomber-token", credentials.Token)
+	assert.Equal(t, "bomber-token", credentials.ProviderToken)
 
 	os.Setenv("SNYK_TOKEN", "snyk-token")
 
-	credentials.Token = ""
+	credentials.ProviderToken = ""
 	err = validateCredentials(&credentials)
 	assert.NoError(t, err)
-	assert.Equal(t, "snyk-token", credentials.Token)
+	assert.Equal(t, "snyk-token", credentials.ProviderToken)
 
 	//reset env
 	os.Setenv("BOMBER_PROVIDER_TOKEN", bomberToken)
@@ -71,7 +71,7 @@ func TestProvider_Scan_FakeCredentials(t *testing.T) {
 	httpmock.RegisterResponder("GET", `=~\/issues`, httpmock.NewBytesResponder(200, issuesResponse))
 
 	credentials := models.Credentials{
-		Token: "token",
+		ProviderToken: "token",
 	}
 
 	provider := Provider{}

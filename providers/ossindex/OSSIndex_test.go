@@ -28,15 +28,15 @@ func Test_validateCredentials(t *testing.T) {
 	os.Unsetenv("BOMBER_PROVIDER_USERNAME")
 	os.Unsetenv("BOMBER_PROVIDER_TOKEN")
 	credentials := models.Credentials{
-		Username: "test",
-		Token:    "token",
+		Username:      "test",
+		ProviderToken: "token",
 	}
 
 	err = validateCredentials(&credentials)
 	assert.NoError(t, err)
 
 	credentials.Username = ""
-	credentials.Token = ""
+	credentials.ProviderToken = ""
 	err = validateCredentials(&credentials)
 	assert.Error(t, err)
 
@@ -46,7 +46,7 @@ func Test_validateCredentials(t *testing.T) {
 	err = validateCredentials(&credentials)
 	assert.NoError(t, err)
 	assert.Equal(t, "test-env", credentials.Username)
-	assert.Equal(t, "token-env", credentials.Token)
+	assert.Equal(t, "token-env", credentials.ProviderToken)
 
 	//reset env
 	os.Setenv("BOMBER_PROVIDER_USERNAME", username)
@@ -61,8 +61,8 @@ func TestProvider_Scan_FakeCredentials(t *testing.T) {
 		httpmock.NewBytesResponder(200, ossTestResponse()))
 
 	credentials := models.Credentials{
-		Username: "test",
-		Token:    "token",
+		Username:      "test",
+		ProviderToken: "token",
 	}
 
 	provider := Provider{}

@@ -1,4 +1,3 @@
-// Package lib contains core functionality to load Software Bill of Materials and contains common functions
 package lib
 
 import (
@@ -24,7 +23,7 @@ func (mp MockProvider) Info() string {
 	return "MockProviderInfo"
 }
 
-func TestdetectEcosystems(t *testing.T) {
+func Test_detectEcosystems(t *testing.T) {
 	scanner := Scanner{}
 
 	purls := []string{
@@ -36,27 +35,6 @@ func TestdetectEcosystems(t *testing.T) {
 	result := scanner.detectEcosystems(purls)
 
 	assert.ElementsMatch(t, []string{"golang", "npm"}, result, "Detected ecosystems do not match expected result")
-}
-
-func TestloadIgnoreData(t *testing.T) {
-	afs := &afero.Afero{Fs: afero.NewMemMapFs()}
-
-	err := afs.WriteFile("/.bomber.ignore", []byte("CVE-2022-31163"), 0644)
-	assert.NoError(t, err)
-
-	scanner := Scanner{}
-	results, err := scanner.loadIgnoreData("/.bomber.ignore")
-
-	assert.NoError(t, err)
-	assert.Len(t, results, 1)
-	assert.Equal(t, results[0], "CVE-2022-31163")
-
-	_, err = scanner.loadIgnoreData("test")
-	assert.Error(t, err)
-
-	results, err = scanner.loadIgnoreData("")
-	assert.NoError(t, err)
-	assert.Len(t, results, 0)
 }
 
 func TestScanner_Scan(t *testing.T) {

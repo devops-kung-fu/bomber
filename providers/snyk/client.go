@@ -12,7 +12,7 @@ const userAgent = "Bomber"
 
 func newClient(c *models.Credentials) *HttpRequest.Request {
 	return HttpRequest.NewRequest().SetHeaders(map[string]string{
-		"Authorization": fmt.Sprintf("token %s", c.Token),
+		"Authorization": fmt.Sprintf("token %s", c.ProviderToken),
 		"User-Agent":    userAgent,
 	})
 }

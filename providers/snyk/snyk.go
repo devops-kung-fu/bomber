@@ -68,15 +68,15 @@ func validateCredentials(credentials *models.Credentials) error {
 		return errors.New("credentials cannot be nil")
 	}
 
-	if credentials.Token == "" {
-		credentials.Token = os.Getenv("SNYK_TOKEN")
+	if credentials.ProviderToken == "" {
+		credentials.ProviderToken = os.Getenv("SNYK_TOKEN")
 	}
 
-	if credentials.Token == "" {
-		credentials.Token = os.Getenv("BOMBER_PROVIDER_TOKEN")
+	if credentials.ProviderToken == "" {
+		credentials.ProviderToken = os.Getenv("BOMBER_PROVIDER_TOKEN")
 	}
 
-	if credentials.Token == "" {
+	if credentials.ProviderToken == "" {
 		return errors.New("bomber requires a token to use the Snyk provider")
 	}
 

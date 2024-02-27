@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/devops-kung-fu/bomber/models"
+	"github.com/devops-kung-fu/bomber/renderers/ai"
 	"github.com/devops-kung-fu/bomber/renderers/html"
 	"github.com/devops-kung-fu/bomber/renderers/json"
 	"github.com/devops-kung-fu/bomber/renderers/stdout"
@@ -19,6 +20,8 @@ func NewRenderer(output string) (renderer models.Renderer, err error) {
 		renderer = json.Renderer{}
 	case "html":
 		renderer = html.Renderer{}
+	case "ai":
+		renderer = ai.Renderer{}
 	default:
 		err = fmt.Errorf("%s is not a valid output type", output)
 	}

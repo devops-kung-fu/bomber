@@ -5,6 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
+	"github.com/devops-kung-fu/bomber/renderers/ai"
 	"github.com/devops-kung-fu/bomber/renderers/html"
 	"github.com/devops-kung-fu/bomber/renderers/json"
 	"github.com/devops-kung-fu/bomber/renderers/stdout"
@@ -20,9 +21,12 @@ func TestNewRenderer(t *testing.T) {
 	assert.IsType(t, json.Renderer{}, renderer)
 
 	renderer, err = NewRenderer("html")
-
 	assert.NoError(t, err)
 	assert.IsType(t, html.Renderer{}, renderer)
+
+	renderer, err = NewRenderer("ai")
+	assert.NoError(t, err)
+	assert.IsType(t, ai.Renderer{}, renderer)
 
 	_, err = NewRenderer("test")
 	assert.Error(t, err)
