@@ -2,6 +2,8 @@ module github.com/devops-kung-fu/bomber
 
 go 1.22
 
+toolchain go1.22.0
+
 require (
 	github.com/CycloneDX/cyclonedx-go v0.8.0
 	github.com/briandowns/spinner v1.23.0
