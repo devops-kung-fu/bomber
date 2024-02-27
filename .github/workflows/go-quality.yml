@@ -34,7 +34,7 @@ jobs:
       - 
         name: Vet
         run: go vet -v
-      - 
+      # - 
         # name: staticcheck
         # run: staticcheck -f stylish -checks all  ./...
       - 
