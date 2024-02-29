@@ -55,5 +55,7 @@
         "vulns",
         "Warningf"
     ],
-    "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false
+    "aws.codeWhisperer.shareCodeWhispererContentWithAWS": false,
+    "terminal.integrated.customGlyphs": true,
+    "terminal.integrated.fontFamily": "'0xProto Nerd Font', 'Droid Sans Mono', 'monospace', monospace"
 }
