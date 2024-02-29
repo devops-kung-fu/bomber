@@ -24,3 +24,6 @@ bomber
 
 *-results.html
 coverage.html
+coverage.lcov
+
+*.log
