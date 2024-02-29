@@ -1,8 +1,69 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "name": "devcontainer-test",
+    "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
     "features": {
-        "ghcr.io/devcontainers/features/aws-cli:1": {},
-        "ghcr.io/devcontainers/features/go:1": {},
-        "ghcr.io/devcontainers-contrib/features/starship:1": {}
-    }
+        "ghcr.io/devcontainers-contrib/features/starship:1": {},
+        "ghcr.io/azutake/devcontainer-features/go-packages-install:0": {
+            "packages": [
+                "github.com/devops-kung-fu/hookz@latest",
+                "github.com/jandelgado/gcov2lcov@latest",
+                "github.com/kisielk/errcheck@latest",
+                "github.com/fzipp/gocyclo/cmd/gocyclo@latest",
+                "golang.org/x/vuln/cmd/govulncheck@latest",
+                "honnef.co/go/tools/cmd/staticcheck@latest"
+            ]
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.fontFamily": "Cascadia Code",
+                "editor.formatOnSave": true,
+                "go.buildTags": "",
+                "go.toolsEnvVars": {
+                    "CGO_ENABLED": "0"
+                },
+                "go.useLanguageServer": true,
+                "go.testEnvVars": {
+                    "CGO_ENABLED": "1"
+                },
+                "go.testFlags": [
+                    "-v",
+                    "-race"
+                ],
+                "go.testTimeout": "10s",
+                "go.coverOnSingleTest": true,
+                "go.coverOnSingleTestFile": true,
+                "go.coverOnTestPackage": true,
+                "go.lintTool": "golangci-lint",
+                "go.lintOnSave": "package",
+                "[go]": {
+                    "editor.codeActionsOnSave": {
+                        "source.organizeImports": "always"
+                    }
+                },
+                "markiscodecoverage.coverageThreshold": 95,
+                "markiscodecoverage.enableOnStartup": true,
+                "markiscodecoverage.searchCriteria": "*.lcov*"
+            },
+            "extensions": [
+                "ms-vscode.go",
+                "golang.go",
+                "github.vscode-pull-request-github",
+                "github.vscode-github-actions",
+                "aleksandra.go-group-imports",
+                "oderwat.indent-rainbow",
+                "yzhang.markdown-all-in-one",
+                "quicktype.quicktype",
+                "jebbs.plantuml",
+                "foxundermoon.shell-format",
+                "ahebrank.yaml2json",
+                "amazonwebservices.aws-toolkit-vscode",
+                "markis.code-coverage",
+                //"defaltd.go-coverage-viewer",
+                "Gruntfuggly.todo-tree" // Highlights TODO comments"
+            ]
+        }
+    },
+    "postCreateCommand": "/usr/bin/zsh ./.devcontainer/post-create.sh > ~/post-create.log"
 }
