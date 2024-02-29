@@ -17,7 +17,8 @@
     "customizations": {
         "vscode": {
             "settings": {
-                "terminal.integrated.fontFamily": "Cascadia Code",
+                "terminal.integrated.customGlyphs": true,
+                "terminal.integrated.fontFamily": "'0xProto Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
                 "editor.formatOnSave": true,
                 "go.buildTags": "",
                 "go.toolsEnvVars": {
@@ -65,5 +66,5 @@
             ]
         }
     },
-    "postCreateCommand": "/usr/bin/zsh ./.devcontainer/post-create.sh > ~/post-create.log"
+    "postCreateCommand": "/usr/bin/bash ./.devcontainer/post-create.sh > ~/post-create.log"
 }

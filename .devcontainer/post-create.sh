@@ -1,6 +1,6 @@
 mkdir -p $HOME/.local/share/fonts
-wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip
-unzip CascadiaCode.zip -d $HOME/.local/share/fonts
-rm CascadiaCode.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/0xProto.zip
+unzip 0xProto.zip -d $HOME/.local/share/fonts
+rm 0xProto.zip
 
-go mod download && go mod tidy
+starship preset nerd-font-symbols -o ~/.config/starship.toml
