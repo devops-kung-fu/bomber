@@ -17,7 +17,7 @@ const (
 	pageSize    = 150
 )
 
-// Provider represents the OSSIndex provider
+// Provider represents an EPSS enricher
 type Enricher struct{}
 
 // TODO: this needs to be refactored so we can batch the scanning and de-duplicate. Each component has it's own list of []models.Vulnerability and this function is called multiple times. At least the implementation here reduces the calls by batching per component.
