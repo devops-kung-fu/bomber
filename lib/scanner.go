@@ -13,8 +13,8 @@ import (
 	"github.com/package-url/packageurl-go"
 	"github.com/spf13/afero"
 
-	"github.com/devops-kung-fu/bomber/lib/enrichment"
-	"github.com/devops-kung-fu/bomber/lib/filters"
+	"github.com/devops-kung-fu/bomber/enrichers"
+	"github.com/devops-kung-fu/bomber/filters"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
@@ -156,8 +156,9 @@ func (s *Scanner) filterVulnerabilities(response []models.Package) {
 
 // enrichAndIgnoreVulnerabilities enriches and ignores vulnerabilities as needed.
 func (s *Scanner) enrichAndIgnoreVulnerabilities(response []models.Package, ignoredCVE []string) {
+	enricher, _ := enrichers.NewEnricher("epss")
 	for i, p := range response {
-		enrichedVulnerabilities, _ := enrichment.Enrich(p.Vulnerabilities)
+		enrichedVulnerabilities, _ := enricher.Enrich(p.Vulnerabilities, &s.Credentials)
 		response[i].Vulnerabilities = enrichedVulnerabilities
 
 		if len(ignoredCVE) > 0 {

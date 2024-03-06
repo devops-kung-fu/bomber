@@ -1,5 +1,5 @@
-// Package enrichment provides functionality to enrich vulnerabilities with epss data.
-package enrichment
+// Package epss provides functionality to enrich vulnerabilities with epss data.
+package epss
 
 import (
 	"encoding/json"
@@ -17,10 +17,13 @@ const (
 	pageSize    = 150
 )
 
+// Provider represents the OSSIndex provider
+type Enricher struct{}
+
 // TODO: this needs to be refactored so we can batch the scanning and de-duplicate. Each component has it's own list of []models.Vulnerability and this function is called multiple times. At least the implementation here reduces the calls by batching per component.
 
 // Enrich adds epss score data to vulnerabilities.
-func Enrich(vulnerabilities []models.Vulnerability) ([]models.Vulnerability, error) {
+func (Enricher) Enrich(vulnerabilities []models.Vulnerability, credentials *models.Credentials) ([]models.Vulnerability, error) {
 	var enrichedVulnerabilities []models.Vulnerability
 
 	for i := 0; i < len(vulnerabilities); i += pageSize {
