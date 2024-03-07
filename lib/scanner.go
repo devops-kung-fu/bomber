@@ -156,15 +156,17 @@ func (s *Scanner) filterVulnerabilities(response []models.Package) {
 
 // enrichAndIgnoreVulnerabilities enriches and ignores vulnerabilities as needed.
 func (s *Scanner) enrichAndIgnoreVulnerabilities(response []models.Package, ignoredCVE []string) {
-	enricher, _ := enrichers.NewEnricher("epss")
+	epssEnricher, _ := enrichers.NewEnricher("epss")
+	openaiEnricher, _ := enrichers.NewEnricher("openai")
 	for i, p := range response {
-		enrichedVulnerabilities, _ := enricher.Enrich(p.Vulnerabilities, &s.Credentials)
-		response[i].Vulnerabilities = enrichedVulnerabilities
-
 		if len(ignoredCVE) > 0 {
 			filteredVulnerabilities := filters.Ignore(p.Vulnerabilities, ignoredCVE)
 			response[i].Vulnerabilities = filteredVulnerabilities
 		}
+
+		enrichedVulnerabilities, _ := epssEnricher.Enrich(p.Vulnerabilities, &s.Credentials)
+		aienrichedVulnerabilities, _ := openaiEnricher.Enrich(enrichedVulnerabilities, &s.Credentials)
+		response[i].Vulnerabilities = aienrichedVulnerabilities
 	}
 }
 

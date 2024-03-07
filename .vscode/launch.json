@@ -5,6 +5,14 @@
     "version": "0.2.0",
     "configurations": [    
         {
+            "name": "Debug File (ossindex - railsgoat - AI Output)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "args": ["--provider=ossindex", "--debug=true", "--output=ai", "scan", "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"]
+        },
+        {
             "name": "Debug Folder (OSV)",
             "type": "go",
             "request": "launch",
