@@ -1,8 +1,7 @@
 project_name: bomber
 
 builds:
-  - 
-    binary: bomber
+  - binary: bomber
     env:
       - CGO_ENABLED=0
     goos:
@@ -20,26 +19,23 @@ universal_binaries:
   - replace: true
 
 brews:
-  -
-    name: bomber
+  - name: bomber
     homepage: "https://github.com/devops-kung-fu/bomber"
     tap:
       owner: devops-kung-fu
       name: homebrew-tap
     commit_author:
-      name: djschleen
-      email: djschleen@gmail.com
+      name: dkfm
+      email: admin@dkfm.io
 
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 
 nfpms:
-  - 
-    maintainer: DevOps Kung Fu Mafia <admin@dkfm.io>
+  - maintainer: DevOps Kung Fu Mafia <admin@dkfm.io>
     description: Scans SBOMs for security vulnerabilities.
     homepage: https://github.com/devops-kung-fu/bomber
     license: MPL
     formats:
       - deb
       - rpm
-

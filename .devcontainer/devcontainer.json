@@ -61,8 +61,7 @@
                 "amazonwebservices.aws-toolkit-vscode",
                 "markis.code-coverage",
                 //"defaltd.go-coverage-viewer",
-                "Gruntfuggly.todo-tree", // Highlights TODO comments",
-                "Semgrep.semgrep"
+                "Gruntfuggly.todo-tree" // Highlights TODO comments",
             ]
         }
     },
