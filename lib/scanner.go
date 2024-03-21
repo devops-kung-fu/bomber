@@ -47,6 +47,9 @@ func (s *Scanner) Scan(args []string) (exitCode int, err error) {
 		log.Print(err)
 		return
 	}
+	if slices.Contains(s.Enrichment, "openai") {
+		util.PrintWarning("OpenAI enrichment is experimental and may increase scanning time significantly")
+	}
 	if len(scanned) > 0 {
 		util.PrintInfo("Scanning Files:")
 		for _, f := range scanned {
@@ -170,14 +173,12 @@ func (s *Scanner) enrichAndIgnoreVulnerabilities(response []models.Package, igno
 			filteredVulnerabilities := filters.Ignore(p.Vulnerabilities, ignoredCVE)
 			response[i].Vulnerabilities = filteredVulnerabilities
 		}
-		var enrichedVulnerabilities, aienrichedVulnerabilities
-		if s.Enrichment.Contains("epss") {
-			enrichedVulnerabilities, _ := epssEnricher.Enrich(p.Vulnerabilities, &s.Credentials)
+		if slices.Contains(s.Enrichment, "epss") {
+			response[i].Vulnerabilities, _ = epssEnricher.Enrich(p.Vulnerabilities, &s.Credentials)
 		}
-		if s.Enrichment.Contains("openai") {
-			aienrichedVulnerabilities, _ := openaiEnricher.Enrich(enrichedVulnerabilities, &s.Credentials)
+		if slices.Contains(s.Enrichment, "openai") {
+			response[i].Vulnerabilities, _ = openaiEnricher.Enrich(response[i].Vulnerabilities, &s.Credentials)
 		}
-		response[i].Vulnerabilities = aienrichedVulnerabilities
 	}
 }
 

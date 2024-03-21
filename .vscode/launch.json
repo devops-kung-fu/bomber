@@ -3,14 +3,20 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [    
+    "configurations": [
         {
             "name": "Debug File (ossindex - railsgoat - AI Output)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=ossindex", "--debug=true", "--output=ai", "scan", "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"]
+            "args": [
+                "--provider=ossindex",
+                "--debug=true",
+                "--output=ai",
+                "scan",
+                "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug Folder (OSV)",
@@ -18,7 +24,13 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "scan", "./_TESTDATA_/sbom"]
+            "args": [
+                "--debug=true",
+                "scan",
+                "--enrich",
+                "epss",
+                "./_TESTDATA_/sbom"
+            ]
         },
         {
             "name": "Debug Expression License (OSV)",
@@ -26,7 +38,11 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "scan", "./_TESTDATA_/sbom/expression-license.json"]
+            "args": [
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom/expression-license.json"
+            ]
         },
         {
             "name": "Debug Folder (ossindex)",
@@ -34,7 +50,12 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=ossindex", "--debug=true", "scan", "./_TESTDATA_/sbom"]
+            "args": [
+                "--provider=ossindex",
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom"
+            ]
         },
         {
             "name": "Debug File (OSS Index - juiceshop, severity = moderate)",
@@ -42,7 +63,14 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "--severity=moderate", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+            "args": [
+                "--debug=true",
+                "--severity=moderate",
+                "--provider=ossindex",
+                "--enrich=epss",
+                "scan",
+                "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File (OSS Index - juiceshop, severity = critical)",
@@ -50,7 +78,14 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "--exitcode","--severity=moderate", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+            "args": [
+                "--debug=true",
+                "--exitcode",
+                "--severity=moderate",
+                "--provider=ossindex",
+                "scan",
+                "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"
+            ]
         },
         {
             "name": "> Debug File (OSS Index - railsgoat, severity = critical, exitcode)",
@@ -58,7 +93,14 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "--exitcode","--severity=critical", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"]
+            "args": [
+                "--debug=true",
+                "--exitcode",
+                "--severity=critical",
+                "--provider=ossindex",
+                "scan",
+                "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File (OSS Index - juiceshop, severity = moderate, exitcode)",
@@ -66,7 +108,13 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "--severity=moderate", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+            "args": [
+                "--debug=true",
+                "--severity=moderate",
+                "--provider=ossindex",
+                "scan",
+                "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File (OSV- cargo-valid)",
@@ -74,7 +122,12 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "--provider=ossindex", "scan", "./_TESTDATA_/sbom/cargo-valid-bom-1.3.json"]
+            "args": [
+                "--debug=true",
+                "--provider=ossindex",
+                "scan",
+                "./_TESTDATA_/sbom/cargo-valid-bom-1.3.json"
+            ]
         },
         {
             "name": "Debug File (Snyk - juiceshop)",
@@ -82,7 +135,12 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=snyk", "--debug=true", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+            "args": [
+                "--provider=snyk",
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File (OSV - juiceshop)",
@@ -90,7 +148,12 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=osv", "--debug=true", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+            "args": [
+                "--provider=osv",
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File (OSV - ubuntu-latest.cyclonedx.json)",
@@ -98,7 +161,12 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=osv", "--debug=true", "scan", "./_TESTDATA_/sbom/ubuntu-latest.cyclonedx.json"]
+            "args": [
+                "--provider=osv",
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom/ubuntu-latest.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File, Output HTML (ossindex - juiceshop)",
@@ -106,7 +174,14 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=ossindex", "--debug=true", "--output=html", "--severity=high", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+            "args": [
+                "--provider=ossindex",
+                "--debug=true",
+                "--output=html",
+                "--severity=high",
+                "scan",
+                "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File, Output HTML (osv - juiceshop)",
@@ -114,7 +189,12 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--debug=true", "--output=html", "scan", "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"]
+            "args": [
+                "--debug=true",
+                "--output=html",
+                "scan",
+                "./_TESTDATA_/sbom/juiceshop.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File (ossindex - merged)",
@@ -122,7 +202,12 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=ossindex", "--debug=true", "scan", "./_TESTDATA_/sbom/merged.json"]
+            "args": [
+                "--provider=ossindex",
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom/merged.json"
+            ]
         },
         {
             "name": "Debug File (ossindex - railsgoat)",
@@ -130,7 +215,12 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=ossindex", "--debug=true", "scan", "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"]
+            "args": [
+                "--provider=ossindex",
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File (osv - railsgoat)",
@@ -138,7 +228,12 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=osv", "--debug=true", "scan", "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"]
+            "args": [
+                "--provider=osv",
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File, Output JSON (ossindex - railsgoat)",
@@ -146,7 +241,13 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=ossindex", "--debug=true", "--output=json", "scan", "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"]
+            "args": [
+                "--provider=ossindex",
+                "--debug=true",
+                "--output=json",
+                "scan",
+                "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"
+            ]
         },
         {
             "name": "Debug File, Ignore, Output JSON (osv - railsgoat)",
@@ -154,8 +255,14 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["--provider=osv", "--debug=true", "--output=json", "--ignore-file=./_TESTDATA_/ignore/bomber.ignore", "scan", "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"]
+            "args": [
+                "--provider=osv",
+                "--debug=true",
+                "--output=json",
+                "--ignore-file=./_TESTDATA_/ignore/bomber.ignore",
+                "scan",
+                "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"
+            ]
         },
-        
     ]
 }
