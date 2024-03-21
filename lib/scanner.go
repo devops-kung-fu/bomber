@@ -24,6 +24,7 @@ type Scanner struct {
 	Credentials     models.Credentials
 	Renderer        models.Renderer
 	Provider        models.Provider
+	Enrichment      []string
 	IgnoreFile      string
 	Severity        string
 	ExitCode        bool
@@ -46,6 +47,12 @@ func (s *Scanner) Scan(args []string) (exitCode int, err error) {
 		log.Print(err)
 		return
 	}
+	if len(scanned) > 0 {
+		util.PrintInfo("Scanning Files:")
+		for _, f := range scanned {
+			util.PrintTabbed(f.Name)
+		}
+	}
 
 	// If no packages are detected, print a message and return
 	if len(purls) == 0 {
@@ -67,7 +74,7 @@ func (s *Scanner) Scan(args []string) (exitCode int, err error) {
 func (s *Scanner) scanPackages(purls []string) (response []models.Package, err error) {
 	// Detect and print information about ecosystems
 	ecosystems := s.detectEcosystems(purls)
-	spinner := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
+	spinner := spinner.New(spinner.CharSets[11], 100*time.Millisecond)
 
 	// Sanitize package URLs and handle initial console output
 	purls, issues := filters.Sanitize(purls)
@@ -163,9 +170,13 @@ func (s *Scanner) enrichAndIgnoreVulnerabilities(response []models.Package, igno
 			filteredVulnerabilities := filters.Ignore(p.Vulnerabilities, ignoredCVE)
 			response[i].Vulnerabilities = filteredVulnerabilities
 		}
-
-		enrichedVulnerabilities, _ := epssEnricher.Enrich(p.Vulnerabilities, &s.Credentials)
-		aienrichedVulnerabilities, _ := openaiEnricher.Enrich(enrichedVulnerabilities, &s.Credentials)
+		var enrichedVulnerabilities, aienrichedVulnerabilities
+		if s.Enrichment.Contains("epss") {
+			enrichedVulnerabilities, _ := epssEnricher.Enrich(p.Vulnerabilities, &s.Credentials)
+		}
+		if s.Enrichment.Contains("openai") {
+			aienrichedVulnerabilities, _ := openaiEnricher.Enrich(enrichedVulnerabilities, &s.Credentials)
+		}
 		response[i].Vulnerabilities = aienrichedVulnerabilities
 	}
 }
