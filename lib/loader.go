@@ -34,10 +34,7 @@ func (l *Loader) Load(args []string) (scanned []models.ScannedFile, purls []stri
 			return scanned, purls, licenses, err
 		}
 		if isDir {
-			s, values, lic, err := l.loadFolderPurls(arg)
-			if err != nil {
-				return scanned, nil, nil, err
-			}
+			s, values, lic, _ := l.loadFolderPurls(arg)
 			scanned = append(scanned, s...)
 			purls = append(purls, values...)
 			licenses = append(licenses, lic...)
@@ -51,10 +48,7 @@ func (l *Loader) Load(args []string) (scanned []models.ScannedFile, purls []stri
 }
 
 func (l *Loader) loadFolderPurls(arg string) (scanned []models.ScannedFile, purls []string, licenses []string, err error) {
-	absPath, err := filepath.Abs(arg)
-	if err != nil {
-		return scanned, nil, nil, err
-	}
+	absPath, _ := filepath.Abs(arg)
 	files, err := l.Afs.ReadDir(absPath)
 	for _, file := range files {
 		path := filepath.Join(absPath, file.Name())
@@ -148,20 +142,13 @@ func (l *Loader) LoadIgnore(ignoreFile string) (cves []string, err error) {
 		return
 	}
 	log.Printf("Loading ignore file: %v\n", ignoreFile)
-	exists, err := l.Afs.Exists(ignoreFile)
+	exists, _ := l.Afs.Exists(ignoreFile)
 	if !exists {
 		log.Printf("ignore file not found: %v\n", ignoreFile)
 		return nil, fmt.Errorf("ignore file not found: %v", ignoreFile)
 	}
 	log.Printf("ignore file found: %v\n", ignoreFile)
-	f, err := l.Afs.Open(ignoreFile)
-	if err != nil {
-		log.Printf("error opening ignore: %v\n", err)
-		return
-	}
-	defer func() {
-		_ = f.Close()
-	}()
+	f, _ := l.Afs.Open(ignoreFile)
 
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {

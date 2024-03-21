@@ -1,4 +1,4 @@
-package enrichment
+package epss
 
 import (
 	"testing"
@@ -10,6 +10,7 @@ import (
 )
 
 func TestEnrich(t *testing.T) {
+	enricher := Enricher{}
 	vulnerabilities := []models.Vulnerability{
 		{
 			Cve: "CVE-2021-43138",
@@ -24,7 +25,7 @@ func TestEnrich(t *testing.T) {
 			Cve: "sonatype-2020-1214",
 		},
 	}
-	enriched, err := Enrich(vulnerabilities)
+	enriched, err := enricher.Enrich(vulnerabilities, nil)
 
 	assert.NoError(t, err)
 	assert.Len(t, enriched, 4)

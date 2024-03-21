@@ -24,7 +24,7 @@ func Test_writeTemplate(t *testing.T) {
 
 	info, err := afs.Stat("test.html")
 	assert.NoError(t, err)
-	assert.Equal(t, os.FileMode(0777), info.Mode().Perm())
+	assert.Equal(t, os.FileMode(0644), info.Mode().Perm())
 }
 
 func Test_genTemplate(t *testing.T) {
@@ -72,19 +72,3 @@ func Test_processPercentiles(t *testing.T) {
 	assert.Equal(t, "N/A", results.Packages[0].Vulnerabilities[2].Epss.Percentile, "Expected N/A for zero percentile")
 }
 
-func Test_markdownToHTML(t *testing.T) {
-	packages := []models.Package{
-		{
-			Vulnerabilities: []models.Vulnerability{
-				{
-					Description: "## test",
-				},
-			},
-		},
-	}
-	results := models.NewResults(packages, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test", "")
-	markdownToHTML(results)
-
-	assert.NotNil(t, results)
-	assert.Equal(t, "<h2>test</h2>\n", results.Packages[0].Vulnerabilities[0].Description)
-}

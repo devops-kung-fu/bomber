@@ -156,3 +156,20 @@ func Test_UniqueFieldValues(t *testing.T) {
 	shouldBeNothing := UniqueFieldValues(structs, "ABC")
 	assert.Len(t, shouldBeNothing, 0)
 }
+
+func Test_MarkdownToHTML(t *testing.T) {
+	packages := []models.Package{
+		{
+			Vulnerabilities: []models.Vulnerability{
+				{
+					Description: "## test",
+				},
+			},
+		},
+	}
+	results := models.NewResults(packages, models.Summary{}, []models.ScannedFile{}, []string{"GPL"}, "0.0.0", "test", "")
+	MarkdownToHTML(results)
+
+	assert.NotNil(t, results)
+	assert.Equal(t, "<h2>test</h2>\n", results.Packages[0].Vulnerabilities[0].Description)
+}

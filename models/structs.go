@@ -19,6 +19,7 @@ type Vulnerability struct {
 	DisplayName        string        `json:"displayName,omitempty"`
 	Title              string        `json:"title,omitempty"`
 	Description        string        `json:"description,omitempty"`
+	Explanation        string        `json:"explanation,omitempty"` //This is an enrichment via OpenAI
 	CvssScore          float64       `json:"cvssScore,omitempty"`
 	CvssVector         string        `json:"cvssVector,omitempty"`
 	Cwe                string        `json:"cwe,omitempty"`
