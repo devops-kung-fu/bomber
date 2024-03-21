@@ -23,12 +23,12 @@ func (Enricher) Enrich(vulnerabilities []models.Vulnerability, credentials *mode
 	if err := validateCredentials(credentials); err != nil {
 		return nil, fmt.Errorf("could not validate openai credentials: %w", err)
 	}
-
+	var enrichedVulnerabilities []models.Vulnerability
 	for _, v := range vulnerabilities {
-		fetch(v, credentials)
-		log.Println(v.Explanation)
+		enriched := fetch(v, credentials)
+		enrichedVulnerabilities = append(enrichedVulnerabilities, enriched)
 	}
-	return nil, nil
+	return enrichedVulnerabilities, nil
 }
 
 func validateCredentials(credentials *models.Credentials) (err error) {
@@ -46,7 +46,8 @@ func validateCredentials(credentials *models.Credentials) (err error) {
 	return
 }
 
-func fetch(vulnerability models.Vulnerability, credentials *models.Credentials) {
+func fetch(vulnerability models.Vulnerability, credentials *models.Credentials) models.Vulnerability {
+	log.Printf("OpenAI: Enriching %s", vulnerability.Cve)
 	prompt := generatePrompt(vulnerability)
 	client := openai.NewClient(credentials.OpenAIAPIKey)
 	resp, err := client.CreateChatCompletion(
@@ -64,11 +65,9 @@ func fetch(vulnerability models.Vulnerability, credentials *models.Credentials) 
 
 	if err != nil {
 		log.Printf("ChatCompletion error: %v\n", err) //TODO: Need to pass the error back up the stack
-		return
 	}
-
 	vulnerability.Explanation = resp.Choices[0].Message.Content
-	log.Println(vulnerability.Explanation)
+	return vulnerability
 
 }
 

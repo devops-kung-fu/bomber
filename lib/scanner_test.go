@@ -87,50 +87,75 @@ func TestScanner_exitWithCodeIfRequired(t *testing.T) {
 	assert.Equal(t, 10, code)
 }
 
-func TestScanner_enrichAndIgnoreVulnerabilities(t *testing.T) {
-	t.Run("EnrichVulnerabilities", func(t *testing.T) {
-		// Create a sample Scanner instance
-		scanner := Scanner{}
+func TestScanner_enrichVulnerabilities(t *testing.T) {
+	// Create a sample Scanner instance
+	scanner := Scanner{}
+	scanner.Enrichment = []string{"epss", "openai"}
 
-		// Create a sample response with vulnerabilities
-		response := []models.Package{
-			{
-				Purl: "sample/package",
-				Vulnerabilities: []models.Vulnerability{
-					{ID: "1", Title: "Vuln1"},
-					{ID: "2", Title: "Vuln2"},
-				},
+	// Create a sample response with vulnerabilities
+	response := []models.Package{
+		{
+			Purl: "sample/package",
+			Vulnerabilities: []models.Vulnerability{
+				{ID: "1", Title: "Vuln1"},
+				{ID: "2", Title: "Vuln2"},
 			},
-		}
+		},
+	}
 
-		scanner.enrichAndIgnoreVulnerabilities(response, nil)
+	scanner.enrichVulnerabilities(response)
 
-		assert.Equal(t, "", response[0].Vulnerabilities[0].Description)
-		assert.Equal(t, "", response[0].Vulnerabilities[1].Description)
-	})
+	assert.Len(t, response[0].Vulnerabilities, 2)
+	assert.NotNil(t, response[0].Vulnerabilities[1].Epss)
+	assert.NotEmpty(t, response[0].Vulnerabilities[1].Explanation)
+	assert.NotEmpty(t, response[0].Vulnerabilities[1].Explanation)
 
-	t.Run("IgnoreVulnerabilities", func(t *testing.T) {
-		// Create a sample Scanner instance
-		scanner := Scanner{}
+	// t.Run("IgnoreVulnerabilities", func(t *testing.T) {
+	// 	// Create a sample Scanner instance
+	// 	scanner := Scanner{}
 
-		// Create a sample response with vulnerabilities
-		response := []models.Package{
-			{
-				Purl: "sample/package",
-				Vulnerabilities: []models.Vulnerability{
-					{ID: "1", Title: "Vuln1"},
-					{ID: "2", Title: "Vuln2"},
-				},
+	// 	// Create a sample response with vulnerabilities
+	// 	response := []models.Package{
+	// 		{
+	// 			Purl: "sample/package",
+	// 			Vulnerabilities: []models.Vulnerability{
+	// 				{ID: "1", Title: "Vuln1"},
+	// 				{ID: "2", Title: "Vuln2"},
+	// 			},
+	// 		},
+	// 	}
+
+	// 	// Call the enrichAndIgnoreVulnerabilities method with ignoredCVE
+	// 	scanner.ignoreVulnerabilities(response, []string{"1"})
+
+	// 	// Check if the specified vulnerabilities have been ignored
+	// 	assert.Len(t, response[0].Vulnerabilities, 1)
+	// 	assert.Equal(t, "Vuln2", response[0].Vulnerabilities[0].Title)
+	// })
+}
+
+func TestScanner_ignoreVulnerabilities(t *testing.T) {
+	// Create a sample Scanner instance
+	scanner := Scanner{}
+
+	// Create a sample response with vulnerabilities
+	response := []models.Package{
+		{
+			Purl: "sample/package",
+			Vulnerabilities: []models.Vulnerability{
+				{ID: "1", Title: "Vuln1"},
+				{ID: "2", Title: "Vuln2"},
 			},
-		}
+		},
+	}
 
-		// Call the enrichAndIgnoreVulnerabilities method with ignoredCVE
-		scanner.enrichAndIgnoreVulnerabilities(response, []string{"1"})
+	// Call the enrichAndIgnoreVulnerabilities method with ignoredCVE
+	scanner.ignoreVulnerabilities(response, []string{"1"})
 
-		// Check if the specified vulnerabilities have been ignored
-		assert.Len(t, response[0].Vulnerabilities, 1)
-		assert.Equal(t, "Vuln2", response[0].Vulnerabilities[0].Title)
-	})
+	// Check if the specified vulnerabilities have been ignored
+	assert.Len(t, response[0].Vulnerabilities, 1)
+	assert.Equal(t, "Vuln2", response[0].Vulnerabilities[0].Title)
+
 }
 
 func TestFilterVulnerabilities(t *testing.T) {

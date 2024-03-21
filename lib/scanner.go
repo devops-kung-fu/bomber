@@ -97,9 +97,16 @@ func (s *Scanner) scanPackages(purls []string) (response []models.Package, err e
 		util.PrintWarningf("Ignore flag set, but there was an error: %s", err)
 	}
 
+	for k, p := range response {
+		if len(p.Vulnerabilities) == 0 {
+			slices.Delete(response, k, k)
+		}
+	}
+
 	// Filter, enrich, and ignore vulnerabilities as needed
 	s.filterVulnerabilities(response)
-	s.enrichAndIgnoreVulnerabilities(response, ignoredCVE)
+	s.ignoreVulnerabilities(response, ignoredCVE)
+	s.enrichVulnerabilities(response)
 
 	if s.Output != "json" {
 		spinner.Stop()
@@ -164,18 +171,25 @@ func (s *Scanner) filterVulnerabilities(response []models.Package) {
 	}
 }
 
-// enrichAndIgnoreVulnerabilities enriches and ignores vulnerabilities as needed.
-func (s *Scanner) enrichAndIgnoreVulnerabilities(response []models.Package, ignoredCVE []string) {
-	epssEnricher, _ := enrichers.NewEnricher("epss")
-	openaiEnricher, _ := enrichers.NewEnricher("openai")
+func (s *Scanner) ignoreVulnerabilities(response []models.Package, ignoredCVE []string) {
 	for i, p := range response {
 		if len(ignoredCVE) > 0 {
 			filteredVulnerabilities := filters.Ignore(p.Vulnerabilities, ignoredCVE)
 			response[i].Vulnerabilities = filteredVulnerabilities
 		}
+	}
+}
+
+// enrichAndIgnoreVulnerabilities enriches and ignores vulnerabilities as needed.
+func (s *Scanner) enrichVulnerabilities(response []models.Package) {
+	epssEnricher, _ := enrichers.NewEnricher("epss")
+	openaiEnricher, _ := enrichers.NewEnricher("openai")
+	for i := range response {
 		if slices.Contains(s.Enrichment, "epss") {
-			response[i].Vulnerabilities, _ = epssEnricher.Enrich(p.Vulnerabilities, &s.Credentials)
+			response[i].Vulnerabilities, _ = epssEnricher.Enrich(response[i].Vulnerabilities, &s.Credentials)
 		}
+	}
+	for i := range response {
 		if slices.Contains(s.Enrichment, "openai") {
 			response[i].Vulnerabilities, _ = openaiEnricher.Enrich(response[i].Vulnerabilities, &s.Credentials)
 		}

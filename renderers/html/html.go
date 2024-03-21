@@ -5,17 +5,13 @@ import (
 	"fmt"
 	"log"
 	"math"
-	"path/filepath"
 	"strconv"
-	"strings"
 	"text/template"
-	"time"
 
 	"github.com/devops-kung-fu/common/util"
-	"github.com/gomarkdown/markdown"
-	"github.com/microcosm-cc/bluemonday"
 	"github.com/spf13/afero"
 
+	"github.com/devops-kung-fu/bomber/lib"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
@@ -32,22 +28,12 @@ func (Renderer) Render(results models.Results) error {
 		afs = &afero.Afero{Fs: afero.NewOsFs()}
 	}
 
-	filename := generateFilename()
-	util.PrintInfo("Writing filename:", filename)
+	filename := lib.GenerateFilename()
+	util.PrintInfo("Writing HTML output:", filename)
 
 	err := writeTemplate(afs, filename, results)
 
 	return err
-}
-
-// generateFilename generates a unique filename based on the current timestamp
-// in the format "2006-01-02 15:04:05" and replaces certain characters to
-// create a valid filename. The resulting filename is a combination of the
-// timestamp and a fixed suffix.
-func generateFilename() string {
-	t := time.Now()
-	r := strings.NewReplacer("-", "", " ", "-", ":", "-")
-	return filepath.Join(".", fmt.Sprintf("%s-bomber-results.html", r.Replace(t.Format("2006-01-02 15:04:05"))))
 }
 
 // writeTemplate writes the results to a file with the specified filename,
@@ -63,7 +49,7 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) er
 		return err
 	}
 
-	markdownToHTML(results)
+	lib.MarkdownToHTML(results)
 
 	template := genTemplate("output")
 	err = template.ExecuteTemplate(file, "output", results)
@@ -72,7 +58,7 @@ func writeTemplate(afs *afero.Afero, filename string, results models.Results) er
 		return err
 	}
 
-	err = afs.Fs.Chmod(filename, 0777)
+	err = afs.Fs.Chmod(filename, 0644)
 
 	return err
 }
@@ -94,19 +80,6 @@ func processPercentiles(results models.Results) {
 					results.Packages[i].Vulnerabilities[vi].Epss.Percentile = "N/A"
 				}
 			}
-		}
-	}
-}
-
-// markdownToHTML converts the Markdown descriptions of vulnerabilities in
-// the given results to HTML. It uses the Blackfriday library to perform the
-// conversion and sanitizes the HTML using Bluemonday.
-func markdownToHTML(results models.Results) {
-	for i := range results.Packages {
-		for ii := range results.Packages[i].Vulnerabilities {
-			md := []byte(results.Packages[i].Vulnerabilities[ii].Description)
-			html := markdown.ToHTML(md, nil, nil)
-			results.Packages[i].Vulnerabilities[ii].Description = string(bluemonday.UGCPolicy().SanitizeBytes(html))
 		}
 	}
 }

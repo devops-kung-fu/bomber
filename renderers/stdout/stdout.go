@@ -42,10 +42,7 @@ func (Renderer) Render(results models.Results) (err error) {
 		rowConfigAutoMerge := table.RowConfig{AutoMerge: true}
 		t.AppendHeader(table.Row{"Type", "Name", "Version", "Severity", "Vulnerability", "EPSS %"}, rowConfigAutoMerge)
 		for _, r := range results.Packages {
-			purl, err := packageurl.FromString(r.Purl)
-			if err != nil {
-				log.Println(err)
-			}
+			purl, _ := packageurl.FromString(r.Purl)
 			for _, v := range r.Vulnerabilities {
 				p, _ := strconv.ParseFloat(v.Epss.Percentile, 64)
 				percentage := math.Round(p * 100)
