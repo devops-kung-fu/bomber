@@ -14,6 +14,7 @@
                 "--provider=ossindex",
                 "--debug=true",
                 "--output=ai",
+                "--severity=critical",
                 "scan",
                 "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"
             ]
@@ -27,8 +28,7 @@
             "args": [
                 "--debug=true",
                 "scan",
-                "--enrich",
-                "epss",
+                "--enrich=epss",
                 "./_TESTDATA_/sbom"
             ]
         },
