@@ -11,7 +11,7 @@ require (
 	github.com/gomarkdown/markdown v0.0.0-20231222211730-1d6d20845b47
 	github.com/gookit/color v1.5.4
 	github.com/jarcoal/httpmock v1.3.1
-	github.com/jedib0t/go-pretty/v6 v6.5.4
+	github.com/jedib0t/go-pretty/v6 v6.5.6
 	github.com/kirinlabs/HttpRequest v1.1.1
 	github.com/microcosm-cc/bluemonday v1.0.26
 	github.com/package-url/packageurl-go v0.1.2
