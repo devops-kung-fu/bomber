@@ -33,11 +33,9 @@ type Scanner struct {
 	Afs             *afero.Afero
 }
 
-var loader Loader
-
 // Scan performs the vulnerability scan.
 func (s *Scanner) Scan(args []string) (exitCode int, err error) {
-	loader := Loader{
+	var loader = Loader{
 		s.Afs,
 	}
 	// Load packages and associated data
@@ -54,7 +52,7 @@ func (s *Scanner) Scan(args []string) (exitCode int, err error) {
 	}
 
 	// Perform the package scan
-	response, err := s.scanPackages(purls)
+	response, err := s.scanPackages(purls, &loader)
 	if err != nil {
 		return 1, err
 	}
@@ -64,7 +62,7 @@ func (s *Scanner) Scan(args []string) (exitCode int, err error) {
 }
 
 // scanPackages performs the core logic of scanning packages.
-func (s *Scanner) scanPackages(purls []string) (response []models.Package, err error) {
+func (s *Scanner) scanPackages(purls []string, loader *Loader) (response []models.Package, err error) {
 	// Detect and print information about ecosystems
 	ecosystems := s.detectEcosystems(purls)
 	spinner := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
