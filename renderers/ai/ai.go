@@ -22,7 +22,7 @@ func (Renderer) Render(results models.Results) error {
 
 	lib.MarkdownToHTML(results) //TODO: This isn't working right for AI output
 
-	if results.Meta.Provider == "test" {
+	if results.Meta.Provider == "test" { 
 		afs = &afero.Afero{Fs: afero.NewMemMapFs()}
 	} else {
 		afs = &afero.Afero{Fs: afero.NewOsFs()}
