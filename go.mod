@@ -12,7 +12,7 @@ require (
 	github.com/gookit/color v1.5.4
 	github.com/jarcoal/httpmock v1.3.1
 	github.com/jedib0t/go-pretty/v6 v6.5.4
-	github.com/kirinlabs/HttpRequest v1.1.1
+	github.com/kirinlabs/HttpRequest v1.1.2
 	github.com/microcosm-cc/bluemonday v1.0.26
 	github.com/package-url/packageurl-go v0.1.2
 	github.com/remeh/sizedwaitgroup v1.0.0
