@@ -5,9 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"net/http"
 	"strings"
-
-	"github.com/kirinlabs/HttpRequest"
 
 	"github.com/devops-kung-fu/bomber/models"
 )
@@ -71,36 +70,64 @@ func getCveBatch(vulnerabilities []models.Vulnerability) []string {
 // the specified CVEs, parses the JSON response, and returns an Epss model
 // containing the fetched data. If the request or parsing fails, an error is returned.
 func fetchEpssData(cves []string) (models.Epss, error) {
-	// Create a new HTTP request.
-	req := HttpRequest.NewRequest()
 
-	// Send a GET request to the EPSS API with the concatenated CVEs.
-	resp, err := req.JSON().Get(fmt.Sprintf("%s%s", epssBaseURL, strings.Join(cves, ",")))
+	// Create the URL by joining the base URL and CVEs.
+	url := fmt.Sprintf("%s%s", epssBaseURL, strings.Join(cves, ","))
+
+	// Send a GET request to the EPSS API.
+	resp, err := http.Get(url)
 	if err != nil {
 		return models.Epss{}, err
 	}
-	defer func() {
-		// Close the response body when done.
-		_ = resp.Close()
-	}()
+	defer resp.Body.Close()
 
 	// Log the response status.
-	log.Println("EPSS Response Status:", resp.StatusCode())
-
-	// Retrieve the response body.
-	body, _ := resp.Body()
+	log.Println("EPSS Response Status:", resp.StatusCode)
 
 	// Check if the request was successful (status code 200).
-	if resp.StatusCode() == 200 {
+	if resp.StatusCode == http.StatusOK {
 		var epss models.Epss
 
-		// Unmarshal the JSON response into the Epss model.
-		if err := json.Unmarshal(body, &epss); err != nil {
+		// Decode the JSON response into the Epss model.
+		if err := json.NewDecoder(resp.Body).Decode(&epss); err != nil {
 			return models.Epss{}, err
 		}
 		return epss, nil
 	}
 
 	// If the request was not successful, return an error with the status code.
-	return models.Epss{}, fmt.Errorf("EPSS API request failed with status code: %d", resp.StatusCode())
+	return models.Epss{}, fmt.Errorf("EPSS API request failed with status code: %d", resp.StatusCode)
+
+	// Create a new HTTP request.
+	// req := HttpRequest.NewRequest()
+
+	// // Send a GET request to the EPSS API with the concatenated CVEs.
+	// resp, err := req.JSON().Get(fmt.Sprintf("%s%s", epssBaseURL, strings.Join(cves, ",")))
+	// if err != nil {
+	// 	return models.Epss{}, err
+	// }
+	// defer func() {
+	// 	// Close the response body when done.
+	// 	_ = resp.Close()
+	// }()
+
+	// // Log the response status.
+	// log.Println("EPSS Response Status:", resp.StatusCode())
+
+	// // Retrieve the response body.
+	// body, _ := resp.Body()
+
+	// // Check if the request was successful (status code 200).
+	// if resp.StatusCode() == 200 {
+	// 	var epss models.Epss
+
+	// 	// Unmarshal the JSON response into the Epss model.
+	// 	if err := json.Unmarshal(body, &epss); err != nil {
+	// 		return models.Epss{}, err
+	// 	}
+	// 	return epss, nil
+	// }
+
+	// // If the request was not successful, return an error with the status code.
+	// return models.Epss{}, fmt.Errorf("EPSS API request failed with status code: %d", resp.StatusCode())
 }

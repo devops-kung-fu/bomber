@@ -6,9 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
-	"strings"
 
-	"github.com/devops-kung-fu/common/github"
 	"github.com/gookit/color"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
@@ -40,10 +38,11 @@ var (
 				fmt.Println("https://github.com/devops-kung-fu/bomber")
 				fmt.Printf("Version: %s\n", version)
 				fmt.Println()
-				latestVersion, _ := github.LatestReleaseTag("devops-kung-fu", "bomber")
-				if !strings.Contains(latestVersion, version) {
-					color.Yellow.Printf("A newer version of bomber is available (%s)\n\n", latestVersion)
-				}
+				// latestVersion, _ := github.LatestReleaseTag("devops-kung-fu", "bomber")
+				//TODO: This crashes now
+				// if !strings.Contains(latestVersion, version) {
+				// 	color.Yellow.Printf("A newer version of bomber is available (%s)\n\n", latestVersion)
+				// }
 			}
 		},
 	}

@@ -2,13 +2,14 @@
 package ossindex
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
-
-	"github.com/kirinlabs/HttpRequest"
 
 	"github.com/devops-kung-fu/bomber/lib"
 	"github.com/devops-kung-fu/bomber/models"
@@ -43,21 +44,29 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		p := purls[startIndex:endIndex]
 		var coordinates CoordinateRequest
 		coordinates.Coordinates = append(coordinates.Coordinates, p...)
-		req := HttpRequest.NewRequest()
-		req.SetBasicAuth(credentials.Username, credentials.ProviderToken)
 
-		resp, _ := req.JSON().Post(ossindexURL, coordinates)
+		b, _ := json.Marshal(coordinates)
+		request, _ := http.NewRequest("POST", ossindexURL, bytes.NewBuffer(b))
+		request.Header.Set("Content-Type", "application/json; charset=UTF-8")
+		request.SetBasicAuth(credentials.Username, credentials.ProviderToken)
+		client := &http.Client{}
+		resp, e := client.Do(request)
+		if e != nil {
+			log.Print(err)
+		}
+		
 		defer func() {
-			_ = resp.Close()
+			_ = resp.Body.Close()
 		}()
 
-		log.Printf("OSSIndex Response Status: %v", resp.StatusCode())
-		body, _ := resp.Body()
-		if resp.StatusCode() == 200 {
+		log.Printf("OSSIndex Response Status: %x", resp.StatusCode)
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			log.Print(err)
+		}
+		if resp.StatusCode == http.StatusOK {
 			var response []models.Package
-			if err = json.Unmarshal(body, &response); err != nil {
-				return
-			}
+			_ = json.Unmarshal(body, &response)
 			for i, pkg := range response {
 				log.Println("Purl:", response[i].Purl)
 				for ii := range response[i].Vulnerabilities {
@@ -69,7 +78,8 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 				}
 			}
 		} else {
-			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.Response().Status)
+			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.StatusCode)
+			log.Println(err)
 			break
 		}
 	}

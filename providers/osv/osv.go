@@ -2,12 +2,13 @@
 package osv
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
+	"net/http"
 	"strings"
-
-	"github.com/kirinlabs/HttpRequest"
 
 	"github.com/devops-kung-fu/bomber/models"
 )
@@ -107,21 +108,34 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		q := Query{
 			Package: p,
 		}
-		req := HttpRequest.NewRequest()
-		log.Println(q)
-		resp, _ := req.JSON().Post(osvURL, q)
-		defer func() {
-			_ = resp.Close()
-		}()
 
-		log.Printf("OSV Response Status: %v", resp.StatusCode())
+		// Encode the query into JSON
+		reqBody, err := json.Marshal(q)
+		if err != nil {
+			return nil, err
+		}
 
-		body, _ := resp.Body()
-		if resp.StatusCode() == 200 {
+		// Send a POST request to the OSV URL with the JSON-encoded query
+		resp, err := http.Post(osvURL, "application/json", bytes.NewBuffer(reqBody))
+		if err != nil {
+			return nil, err
+		}
+		defer resp.Body.Close()
+
+		log.Printf("OSV Response Status: %v", resp.StatusCode)
+
+		// Read the response body
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return nil, err
+		}
+
+		// Check if the request was successful (status code 200)
+		if resp.StatusCode == http.StatusOK {
 			var response Response
 			err = json.Unmarshal(body, &response)
 			if err != nil {
-				return
+				return nil, err
 			}
 			if len(response.Vulns) > 0 {
 				log.Print("*** Vulnerabilities detected...")
@@ -152,9 +166,70 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 				packages = append(packages, pkg)
 			}
 		} else {
-			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.Response().Status)
+			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.Status)
+			log.Println(err)
 			break
 		}
 	}
 	return
+
+	// for _, pp := range purls {
+	// 	log.Println("Purl:", pp)
+	// 	p := PackageClass{
+	// 		Purl: pp,
+	// 	}
+	// 	q := Query{
+	// 		Package: p,
+	// 	}
+
+	// 	req := HttpRequest.NewRequest()
+	// 	log.Println(q)
+	// 	resp, _ := req.JSON().Post(osvURL, q)
+	// 	defer func() {
+	// 		_ = resp.Close()
+	// 	}()
+
+	// 	log.Printf("OSV Response Status: %v", resp.StatusCode())
+
+	// 	body, _ := resp.Body()
+	// 	if resp.StatusCode() == 200 {
+	// 		var response Response
+	// 		err = json.Unmarshal(body, &response)
+	// 		if err != nil {
+	// 			return
+	// 		}
+	// 		if len(response.Vulns) > 0 {
+	// 			log.Print("*** Vulnerabilities detected...")
+	// 			pkg := models.Package{
+	// 				Purl: pp,
+	// 			}
+	// 			for _, v := range response.Vulns {
+	// 				log.Printf("*** %s - %s...", strings.Join(v.Aliases, ","), v.Summary)
+	// 				vuln := models.Vulnerability{
+	// 					ID:          strings.Join(v.Aliases, ","),
+	// 					Title:       v.Summary,
+	// 					Description: v.Details,
+	// 					Cwe:         strings.Join(v.DatabaseSpecific.CweIDS, ","),
+	// 					Cve:         strings.Join(v.Aliases, ","),
+	// 					Severity:    v.DatabaseSpecific.Severity,
+	// 				}
+	// 				if vuln.Severity == "" {
+	// 					vuln.Severity = "UNSPECIFIED"
+	// 				}
+	// 				if vuln.ID == "" {
+	// 					vuln.ID = strings.Join(v.DatabaseSpecific.CweIDS, ",")
+	// 				}
+	// 				if vuln.ID == "" {
+	// 					vuln.ID = "NOT PROVIDED"
+	// 				}
+	// 				pkg.Vulnerabilities = append(pkg.Vulnerabilities, vuln)
+	// 			}
+	// 			packages = append(packages, pkg)
+	// 		}
+	// 	} else {
+	// 		err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.Response().Status)
+	// 		break
+	// 	}
+	// }
+	// return
 }

@@ -97,8 +97,8 @@ func TestScanner_enrichVulnerabilities(t *testing.T) {
 		{
 			Purl: "sample/package",
 			Vulnerabilities: []models.Vulnerability{
-				{ID: "1", Title: "Vuln1"},
-				{ID: "2", Title: "Vuln2"},
+				{ID: "1", Title: "Vuln1", Cve: "CVE-2024-3094"},
+				{ID: "2", Title: "Vuln2", Cve: "CVE-2024-3094"},
 			},
 		},
 	}
