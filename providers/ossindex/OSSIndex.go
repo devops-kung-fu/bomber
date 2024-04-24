@@ -2,20 +2,28 @@
 package ossindex
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+	"time"
+
+	"github.com/go-resty/resty/v2"
 
 	"github.com/devops-kung-fu/bomber/lib"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
 const ossindexURL = "https://ossindex.sonatype.org/api/v3/authorized/component-report"
+
+var client *resty.Client
+
+func init() {
+	client = resty.New()
+	client.SetTransport(&http.Transport{TLSHandshakeTimeout: 60 * time.Second})
+}
 
 // Provider represents the OSSIndex provider
 type Provider struct{}
@@ -45,28 +53,17 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		var coordinates CoordinateRequest
 		coordinates.Coordinates = append(coordinates.Coordinates, p...)
 
-		b, _ := json.Marshal(coordinates)
-		request, _ := http.NewRequest("POST", ossindexURL, bytes.NewBuffer(b))
-		request.Header.Set("Content-Type", "application/json; charset=UTF-8")
-		request.SetBasicAuth(credentials.Username, credentials.ProviderToken)
-		client := &http.Client{}
-		resp, e := client.Do(request)
-		if e != nil {
-			log.Print(err)
-		}
-		
-		defer func() {
-			_ = resp.Body.Close()
-		}()
+		resp, _ := client.R().
+			SetBody(coordinates).
+			SetBasicAuth(credentials.Username, credentials.ProviderToken).
+			Post(ossindexURL)
 
-		log.Printf("OSSIndex Response Status: %x", resp.StatusCode)
-		body, err := ioutil.ReadAll(resp.Body)
-		if err != nil {
-			log.Print(err)
-		}
-		if resp.StatusCode == http.StatusOK {
+		if resp.StatusCode() == http.StatusOK {
 			var response []models.Package
-			_ = json.Unmarshal(body, &response)
+			if err := json.Unmarshal(resp.Body(), &response); err != nil {
+				log.Println("Error:", err)
+				return nil, err
+			}
 			for i, pkg := range response {
 				log.Println("Purl:", response[i].Purl)
 				for ii := range response[i].Vulnerabilities {
@@ -78,9 +75,8 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 				}
 			}
 		} else {
-			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.StatusCode)
-			log.Println(err)
-			break
+			log.Println("Error: unexpected status code: ", resp.StatusCode())
+			return nil, fmt.Errorf("unexpected status code: %x", resp.StatusCode())
 		}
 	}
 	return

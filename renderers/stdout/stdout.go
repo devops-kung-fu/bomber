@@ -96,6 +96,8 @@ func renderFooter(vulnCount int, results models.Results) {
 		fmt.Println("2. EPSS Percentage indicates the % chance that the vulnerability will be exploited. This")
 		fmt.Println("   value will assist in prioritizing remediation. For more information on EPSS, refer to")
 		fmt.Println("   https://www.first.org/epss/")
+		fmt.Println("3. An EPSS Percentage showing as N/A means that no EPSS data was available for the vulnerability")
+		fmt.Println("   or the --enrich=epss flag was not set when running bomber")
 	} else {
 		color.Green.Printf("No vulnerabilities found using the %v provider\n", results.Meta.Provider)
 		fmt.Println()

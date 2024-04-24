@@ -53,6 +53,32 @@ func Test_validateCredentials(t *testing.T) {
 	os.Setenv("BOMBER_PROVIDER_TOKEN", token)
 }
 
+func TestProvider_Scan(t *testing.T) {
+
+	credentials := models.Credentials{
+		Username:      os.Getenv("BOMBER_PROVIDER_USERNAME"),
+		ProviderToken: os.Getenv("BOMBER_PROVIDER_TOKEN"),
+	}
+
+	httpmock.ActivateNonDefault(client.GetClient())
+	defer httpmock.DeactivateAndReset()
+
+	httpmock.RegisterResponder("POST", ossindexURL,
+		httpmock.NewBytesResponder(200, ossTestResponse()))
+
+	provider := Provider{}
+
+	packages, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, &credentials)
+	assert.NoError(t, err)
+	assert.Equal(t, "pkg:gem/tzinfo@1.2.5", packages[0].Purl)
+	assert.Len(t, packages[0].Vulnerabilities, 1)
+
+	_, e := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, nil)
+	assert.Error(t, e)
+
+	httpmock.GetTotalCallCount()
+}
+
 func TestProvider_Scan_FakeCredentials(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
@@ -66,11 +92,8 @@ func TestProvider_Scan_FakeCredentials(t *testing.T) {
 	}
 
 	provider := Provider{}
-	packages, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, &credentials)
-	assert.NoError(t, err)
-	assert.Equal(t, "pkg:gem/tzinfo@1.2.5", packages[0].Purl)
-	assert.Len(t, packages[0].Vulnerabilities, 1)
-	httpmock.GetTotalCallCount()
+	_, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, &credentials)
+	assert.Error(t, err)
 }
 
 func ossTestResponse() []byte {
