@@ -8,7 +8,7 @@ require (
 	github.com/CycloneDX/cyclonedx-go v0.8.0
 	github.com/briandowns/spinner v1.23.0
 	github.com/devops-kung-fu/common v0.2.6
-	github.com/go-resty/resty/v2 v2.11.0
+	github.com/go-resty/resty/v2 v2.12.0
 	github.com/gomarkdown/markdown v0.0.0-20240419095408-642f0ee99ae2
 	github.com/gookit/color v1.5.4
 	github.com/jarcoal/httpmock v1.3.1
@@ -32,7 +32,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.15 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
-	github.com/sashabaranov/go-openai v1.22.0
+	github.com/sashabaranov/go-openai v1.23.0
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	golang.org/x/net v0.24.0 // indirect

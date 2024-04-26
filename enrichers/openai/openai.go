@@ -77,19 +77,13 @@ func generatePrompt(vulnerability models.Vulnerability) (prompt string) {
 		Explain what {{ .Cve }} is and dig into: {{ .Description }} so it could be understood by a non-technical business user.
 	`
 	// Create a new template with a name
-	tmpl, err := template.New("prompt").Parse(promptTemplate)
-	if err != nil {
-		panic(err)
-	}
+	tmpl, _ := template.New("prompt").Parse(promptTemplate)
 
 	// Create a buffer to store the generated result
 	var resultBuffer bytes.Buffer
 
 	// Execute the template and write the result to the buffer
-	err = executeTemplate(&resultBuffer, tmpl, vulnerability)
-	if err != nil {
-		panic(err)
-	}
+	_ = executeTemplate(&resultBuffer, tmpl, vulnerability)
 
 	// Convert the buffer to a string and return it
 	return resultBuffer.String()
