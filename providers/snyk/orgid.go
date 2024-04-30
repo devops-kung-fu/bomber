@@ -27,6 +27,7 @@ type selfDocument struct {
 func getOrgID(token string) (orgID string, err error) {
 
 	client := resty.New()
+	client.Debug = true
 
 	resp, err := client.R().
 		SetHeader("User-Agent", "bomber").

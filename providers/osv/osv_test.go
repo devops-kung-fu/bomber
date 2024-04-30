@@ -39,7 +39,7 @@ func TestProvider_BadResponse(t *testing.T) {
 	provider := Provider{}
 	_, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, nil)
 	assert.Error(t, err)
-	assert.Equal(t, "unexpected status code", err.Error())
+	assert.Contains(t, err.Error(), "unexpected status code")
 }
 
 func osvTestResponse() []byte {

@@ -155,6 +155,7 @@ func getVulnsForPurl(
 	)
 
 	client := resty.New()
+	client.Debug = true
 
 	resp, err := client.R().
 		SetHeader("User-Agent", "bomber").

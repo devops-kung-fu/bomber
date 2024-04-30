@@ -2,6 +2,12 @@ package snyk
 
 import (
 	_ "embed"
+	"os"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+
+	"github.com/devops-kung-fu/bomber/models"
 )
 
 // //go:embed testdata/snyk_package_issues_response.json
@@ -16,45 +22,45 @@ import (
 // 	assert.Equal(t, "Snyk (https://security.snyk.io)", info)
 // }
 
-// func Test_validateCredentials(t *testing.T) {
-// 	// Back up any env tokens
-// 	bomberToken := os.Getenv("BOMBER_PROVIDER_TOKEN")
-// 	snykToken := os.Getenv("SNYK_TOKEN")
+func Test_validateCredentials(t *testing.T) {
+	// Back up any env tokens
+	bomberToken := os.Getenv("BOMBER_PROVIDER_TOKEN")
+	snykToken := os.Getenv("SNYK_TOKEN")
 
-// 	os.Unsetenv("BOMBER_PROVIDER_TOKEN")
-// 	os.Unsetenv("SNYK_TOKEN")
+	os.Unsetenv("BOMBER_PROVIDER_TOKEN")
+	os.Unsetenv("SNYK_TOKEN")
 
-// 	credentials := models.Credentials{
-// 		ProviderToken: "token",
-// 	}
+	credentials := models.Credentials{
+		ProviderToken: "token",
+	}
 
-// 	err := validateCredentials(nil)
-// 	assert.Error(t, err)
+	err := validateCredentials(nil)
+	assert.Error(t, err)
 
-// 	err = validateCredentials(&credentials)
-// 	assert.NoError(t, err)
+	err = validateCredentials(&credentials)
+	assert.NoError(t, err)
 
-// 	credentials.ProviderToken = ""
-// 	err = validateCredentials(&credentials)
-// 	assert.Error(t, err)
+	credentials.ProviderToken = ""
+	err = validateCredentials(&credentials)
+	assert.Error(t, err)
 
-// 	os.Setenv("BOMBER_PROVIDER_TOKEN", "bomber-token")
+	os.Setenv("BOMBER_PROVIDER_TOKEN", "bomber-token")
 
-// 	err = validateCredentials(&credentials)
-// 	assert.NoError(t, err)
-// 	assert.Equal(t, "bomber-token", credentials.ProviderToken)
+	err = validateCredentials(&credentials)
+	assert.NoError(t, err)
+	assert.Equal(t, "bomber-token", credentials.ProviderToken)
 
-// 	os.Setenv("SNYK_TOKEN", "snyk-token")
+	os.Setenv("SNYK_TOKEN", "snyk-token")
 
-// 	credentials.ProviderToken = ""
-// 	err = validateCredentials(&credentials)
-// 	assert.NoError(t, err)
-// 	assert.Equal(t, "snyk-token", credentials.ProviderToken)
+	credentials.ProviderToken = ""
+	err = validateCredentials(&credentials)
+	assert.NoError(t, err)
+	assert.Equal(t, "snyk-token", credentials.ProviderToken)
 
-// 	//reset env
-// 	os.Setenv("BOMBER_PROVIDER_TOKEN", bomberToken)
-// 	os.Setenv("SNYK_TOKEN", snykToken)
-// }
+	//reset env
+	os.Setenv("BOMBER_PROVIDER_TOKEN", bomberToken)
+	os.Setenv("SNYK_TOKEN", snykToken)
+}
 
 // func TestProvider_Scan_FakeCredentials(t *testing.T) {
 // 	httpmock.Activate()
