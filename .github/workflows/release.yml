@@ -38,7 +38,7 @@ jobs:
           sbom-artifact-match: ".*\\.cyclonedx.json$"
       -
         name: GoReleaser Action
-        uses: goreleaser/goreleaser-action@v5.0.0
+        uses: goreleaser/goreleaser-action@v5.1.0
         with:
           version: ${{ env.GITHUB_REF_NAME }}
           args: release --clean
