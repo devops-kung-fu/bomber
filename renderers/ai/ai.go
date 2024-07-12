@@ -20,7 +20,7 @@ type Renderer struct{}
 func (Renderer) Render(results models.Results) error {
 	var afs *afero.Afero
 
-	lib.MarkdownToHTML(results) //TODO: This isn't working right for AI output
+	lib.MarkdownToHTML(results) 
 
 	if results.Meta.Provider == "test" { 
 		afs = &afero.Afero{Fs: afero.NewMemMapFs()}

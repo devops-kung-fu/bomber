@@ -118,6 +118,10 @@ func MarkdownToHTML(results models.Results) {
 			md := []byte(results.Packages[i].Vulnerabilities[ii].Description)
 			html := markdown.ToHTML(md, nil, nil)
 			results.Packages[i].Vulnerabilities[ii].Description = string(bluemonday.UGCPolicy().SanitizeBytes(html))
+			
+			md = []byte(results.Packages[i].Vulnerabilities[ii].Explanation)
+			html = markdown.ToHTML(md, nil, nil)
+			results.Packages[i].Vulnerabilities[ii].Explanation = string(bluemonday.UGCPolicy().SanitizeBytes(html))
 		}
 	}
 }

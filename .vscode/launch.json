@@ -95,8 +95,6 @@
             "program": "${workspaceFolder}/main.go",
             "args": [
                 "--debug=true",
-                "--exitcode",
-                "--severity=critical",
                 "--provider=ossindex",
                 "scan",
                 "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"
