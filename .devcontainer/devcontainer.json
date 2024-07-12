@@ -1,5 +1,5 @@
 {
-    "name": "devcontainer-test",
+    "name": "bomber",
     "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
     "features": {
         "ghcr.io/devcontainers-contrib/features/starship:1": {},
@@ -16,8 +16,6 @@
     "customizations": {
         "vscode": {
             "settings": {
-                "terminal.integrated.customGlyphs": true,
-                "terminal.integrated.fontFamily": "'0xProto Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
                 "editor.formatOnSave": true,
                 "go.buildTags": "",
                 "go.toolsEnvVars": {
@@ -58,10 +56,9 @@
                 "jebbs.plantuml",
                 "foxundermoon.shell-format",
                 "ahebrank.yaml2json",
-                "amazonwebservices.aws-toolkit-vscode",
+                "AmazonWebServices.amazon-q-vscode",
                 "markis.code-coverage",
-                //"defaltd.go-coverage-viewer",
-                "Gruntfuggly.todo-tree" // Highlights TODO comments",
+                "Gruntfuggly.todo-tree"
             ]
         }
     },

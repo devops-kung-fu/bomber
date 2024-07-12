@@ -53,7 +53,7 @@ func fetch(vulnerability models.Vulnerability, credentials *models.Credentials) 
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
-			Model: openai.GPT4Turbo,
+			Model: openai.GPT4Turbo20240409,
 			Messages: []openai.ChatCompletionMessage{
 				{
 					Role:    openai.ChatMessageRoleUser,
@@ -72,24 +72,17 @@ func fetch(vulnerability models.Vulnerability, credentials *models.Credentials) 
 }
 
 func generatePrompt(vulnerability models.Vulnerability) (prompt string) {
-
 	promptTemplate := `
 		Explain what {{ .Cve }} is and dig into: {{ .Description }} so it could be understood by a non-technical business user.
 	`
-	// Create a new template with a name
 	tmpl, _ := template.New("prompt").Parse(promptTemplate)
 
-	// Create a buffer to store the generated result
 	var resultBuffer bytes.Buffer
-
-	// Execute the template and write the result to the buffer
 	_ = executeTemplate(&resultBuffer, tmpl, vulnerability)
 
-	// Convert the buffer to a string and return it
 	return resultBuffer.String()
 }
 
 func executeTemplate(buffer *bytes.Buffer, tmpl *template.Template, data interface{}) error {
-	// Execute the template and write the result to the buffer
 	return tmpl.Execute(buffer, data)
 }
