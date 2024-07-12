@@ -60,10 +60,10 @@ func init() {
 	rootCmd.AddCommand(scanCmd)
 	scanCmd.PersistentFlags().StringVar(&scanner.Credentials.Username, "username", "", "the user name for the provider being used.")
 	scanCmd.PersistentFlags().StringVar(&scanner.Credentials.ProviderToken, "token", "", "the API token for the provider being used.")
-	scanCmd.PersistentFlags().StringVar(&scanner.Credentials.OpenAIAPIKey, "openai-api-key", "", "an OpenAI API key used for generating AI output.")
+	scanCmd.PersistentFlags().StringVar(&scanner.Credentials.OpenAIAPIKey, "openai-api-key", "", "an OpenAI API key used for generating AI output. AI Reports are EXPERIMENTAL.")
 	scanCmd.PersistentFlags().StringVar(&scanner.ProviderName, "provider", "osv", "the vulnerability provider (ossindex, osv).")
 	scanCmd.PersistentFlags().StringVar(&scanner.IgnoreFile, "ignore-file", "", "an optional file containing CVEs to ignore when rendering output.")
 	scanCmd.PersistentFlags().StringVar(&scanner.Severity, "severity", "", "anything equal to or above this severity will be returned with non-zero error code.")
 	scanCmd.PersistentFlags().BoolVar(&scanner.ExitCode, "exitcode", false, "if set will return an exit code representing the highest severity detected.")
-	scanCmd.Flags().StringSliceVar(&scanner.Enrichment, "enrich", nil, "Enrich data with additional fields (epss, openai")
+	scanCmd.Flags().StringSliceVar(&scanner.Enrichment, "enrich", nil, "Enrich data with additional fields (epss, openai (EXTREMELY EXPERIMENTATL)")
 }
