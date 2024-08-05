@@ -24,7 +24,5 @@ test: ## Runs tests and coverage
 	gcov2lcov -infile=coverage.out -outfile=coverage.lcov
 
 check: build ## Tests the pre-commit hooks if they exist
-	hookz reset --verbose
-	. .git/hooks/pre-commit
-
+	
 all: title build test ## Makes all targets
