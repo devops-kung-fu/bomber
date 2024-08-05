@@ -5,6 +5,7 @@
         "ghcr.io/devcontainers-contrib/features/starship:1": {},
         "ghcr.io/azutake/devcontainer-features/go-packages-install:0": {
             "packages": [
+                "github.com/devops-kung-fu/hookz@latest",
                 "github.com/jandelgado/gcov2lcov@latest",
                 "github.com/kisielk/errcheck@latest",
                 "github.com/fzipp/gocyclo/cmd/gocyclo@latest",
