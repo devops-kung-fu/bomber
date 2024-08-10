@@ -5,7 +5,6 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/devops-kung-fu/bomber)](https://goreportcard.com/report/github.com/devops-kung-fu/bomber) 
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/6409/badge)](https://bestpractices.coreinfrastructure.org/projects/6409)
 [![codecov](https://codecov.io/gh/devops-kung-fu/bomber/branch/main/graph/badge.svg?token=P9WBOBQTOB)](https://codecov.io/gh/devops-kung-fu/bomber) 
-[![SBOM](https://img.shields.io/badge/CyloneDX-SBOM-informational)](sbom/bomber.cyclonedx.json)
 
 
 ```bomber``` is an application that scans SBOMs for security vulnerabilities.
@@ -81,7 +80,7 @@ If you wish, you can move the ```bomber``` binary to your ```/usr/local/bin``` d
 To install ```bomber```,  [download the latest release](https://github.com/devops-kung-fu/bomber/releases) for your platform and install locally. For example, install ```bomber``` on Ubuntu:
 
 ```bash
-dpkg -i bomber_0.4.1_linux_arm64.deb
+dpkg -i bomber_0.5.0_linux_arm64.deb
 ```
 
 ## Using bomber
@@ -97,7 +96,7 @@ Note that the default output for ```bomber``` is to STDOUT. Options to output in
 bomber scan cyclonedx.sbom.json
 
 # Using a provider that requires credentials (ossindex)
-bomber scan --provider=xxx --username=xxx --token=xxx spdx-sbom.json
+bomber scan --provider=xxx --username=xxx --token=xxx [sbom.json]
 ```
 If the provider finds vulnerabilities you'll see an output similar to the following:
 
@@ -174,23 +173,12 @@ For example, the following command will return only high and critical vulnerabil
 ``` bash
 bomber --severity=high scan bom.json
 ```
-## Highest Severity Return Codes (Experimental)
-
-Using the flag ```--exitcode```, will return with an exit code representing the highest vulnerability severity found. Without this flag you can expect an exit code of ```0``` for success, or ```1``` if an error was encountered.
-
-Assuming there is no error, the following values  will be returned by ```bomber``` when ```--exitcode```
-
-| Severity | Return Code |
-|---|---|
-| UNSPECIFIED (This is a status where the provider gives us something wacky, or no info) | 10 |
-| LOW | 11 |
-| MODERATE | 12 |
-| HIGH | 13 |
-| CRITICAL | 14 |
 
 ## Data Enrichment
 
 ```bomber``` has the ability to enrich vulnerability data it obtains from the [Providers](#providers). The first "enricher" we have implemented for is for [EPSS](https://www.first.org/epss/)
+
+**NOTE:** EPSS scoring is no longer default in ```bomber 0.5.0 and above```. to show EPSS scores, ensure you use the ```--enrich=epss``` flag.
 
 ### Exploit Prediction Scoring System (EPSS)
 
@@ -221,7 +209,35 @@ export BOMBER_PROVIDER_USERNAME={{your OSS Index user name}}
 export BOMBER_PROVIDER_TOKEN={{your OSS Index API Token}}
 ```
 
-### Messing around
+## Experimantal Features
+
+### Highest Severity Return Codes (Experimental)
+
+Using the flag ```--exitcode```, will return with an exit code representing the highest vulnerability severity found. Without this flag you can expect an exit code of ```0``` for success, or ```1``` if an error was encountered.
+
+Assuming there is no error, the following values  will be returned by ```bomber``` when ```--exitcode```
+
+| Severity                                                                               | Return Code |
+| -------------------------------------------------------------------------------------- | ----------- |
+| UNSPECIFIED (This is a status where the provider gives us something wacky, or no info) | 10          |
+| LOW                                                                                    | 11          |
+| MODERATE                                                                               | 12          |
+| HIGH                                                                                   | 13          |
+| CRITICAL                                                                               | 14          |
+
+### OpenAI AI Enriched HTML Report Output
+
+```bomber``` now contains an experimental feature that enriches the description of vulnerabilities in a ```html``` output. This feature takes a vulnerability and changes the description into something more understandable for a non-technical user.
+
+**NOTE**: This feature is in a major alpha state at this time. It is extremely slow, and the output isn't formatted very well.
+
+To use this feature, you will need to provide an OpenAI API key. You can either pass this key into the CLI using the ```--openai-api-key={{your OpenAI API Key}}``` or add an environment variable:
+
+``` bash
+export OPENAI_API_KEY={{your OpenAI API Key}}
+```
+
+## Messing around
 
 If you want to kick the tires on ```bomber``` you'll find a selection of test SBOMs in the [test](_TESTDATA_/sbom/) folder. 
 
@@ -237,7 +253,7 @@ If you would like to contribute to the development of ```bomber``` please refer 
 ## Software Bill of Materials
 
 ```bomber``` uses Syft to generate a Software Bill of Materials every time a developer commits code to this repository (as long as [Hookz](https://github.com/devops-kung-fu/hookz) is being used and is has been initialized in the working directory). More information for CycloneDX is available [here](https://cyclonedx.org).
-
+  
 The current CycloneDX SBOM for ```bomber``` is available [here](./sbom/bomber.cyclonedx.json).
 
 ## Sponsors

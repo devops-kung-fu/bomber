@@ -2,11 +2,13 @@
 package cmd
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"log"
 	"os"
 
+	"github.com/google/go-github/github"
 	"github.com/gookit/color"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
@@ -38,11 +40,7 @@ var (
 				fmt.Println("https://github.com/devops-kung-fu/bomber")
 				fmt.Printf("Version: %s\n", version)
 				fmt.Println()
-				//TODO: Github appears to have added the need for a PAT to call this endpoint now. Revisit later.
-				// latestVersion, _ := github.LatestReleaseTag("devops-kung-fu", "bomber")
-				// if !strings.Contains(latestVersion, version) {
-				// 	color.Yellow.Printf("A newer version of bomber is available (%s)\n\n", latestVersion)
-				// }
+				checkForNewVersion(version)
 			}
 		},
 	}
@@ -59,4 +57,20 @@ func Execute() {
 func init() {
 	rootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "displays debug level log messages.")
 	rootCmd.PersistentFlags().StringVar(&output, "output", "stdout", "how bomber should output findings (json, html, ai, stdout)")
+}
+
+func checkForNewVersion(currentVersion string) {
+	ctx := context.Background()
+	client := github.NewClient(nil)
+
+	release, _, err := client.Repositories.GetLatestRelease(ctx, "devops-kung-fu", "bomber")
+	if err != nil {
+		fmt.Printf("Error fetching latest release: %v\n", err)
+		return
+	}
+
+	latestVersion := release.GetTagName()[1:] // Remove leading 'v'
+	if latestVersion != currentVersion {
+		color.Yellow.Printf("A newer version of bomber is available (%s)\n\n", latestVersion)
+	}
 }
