@@ -65,7 +65,7 @@ func checkForNewVersion(currentVersion string) {
 
 	release, _, err := client.Repositories.GetLatestRelease(ctx, "devops-kung-fu", "bomber")
 	if err != nil {
-		fmt.Printf("Error fetching latest release: %v\n", err)
+		log.Printf("Error fetching latest release: %v\n", err)
 		return
 	}
 

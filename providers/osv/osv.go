@@ -96,7 +96,6 @@ var client *resty.Client
 func init() {
 	client = resty.New()
 	client.SetTransport(&http.Transport{TLSHandshakeTimeout: 60 * time.Second})
-	client.Debug = true
 }
 
 // Provider represents the OSSIndex provider
