@@ -56,8 +56,8 @@ func Test_validateCredentials(t *testing.T) {
 func TestProvider_Scan(t *testing.T) {
 
 	credentials := models.Credentials{
-	//	Username:      os.Getenv("BOMBER_PROVIDER_USERNAME"),
-	//	ProviderToken: os.Getenv("BOMBER_PROVIDER_TOKEN"),
+		Username:      "test",
+		ProviderToken: "test",
 	}
 
 	httpmock.ActivateNonDefault(client.GetClient())
