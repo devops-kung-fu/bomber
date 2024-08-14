@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"regexp"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -172,4 +173,13 @@ func Test_MarkdownToHTML(t *testing.T) {
 
 	assert.NotNil(t, results)
 	assert.Equal(t, "<h2>test</h2>\n", results.Packages[0].Vulnerabilities[0].Description)
+}
+
+func TestGenerateFilename(t *testing.T) {
+	filename := GenerateFilename()
+
+	pattern := `^\d{8}-\d{2}-\d{2}-\d{2}-bomber-results\.html$`
+
+	assert.NotEqual(t, "", filename)
+	assert.Regexp(t, regexp.MustCompile(pattern), filename)
 }
