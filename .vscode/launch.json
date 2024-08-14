@@ -216,6 +216,8 @@
             "args": [
                 "--provider=ossindex",
                 "--debug=true",
+                "--enrich=epss",
+                "--output=html",
                 "scan",
                 "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"
             ]

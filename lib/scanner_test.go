@@ -103,6 +103,7 @@ func TestScanner_enrichVulnerabilities(t *testing.T) {
 		},
 	}
 
+	//TODO: MOCK THIS OUT.
 	scanner.enrichVulnerabilities(response)
 
 	assert.Len(t, response[0].Vulnerabilities, 2)

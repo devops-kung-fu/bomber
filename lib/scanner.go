@@ -99,7 +99,7 @@ func (s *Scanner) scanPackages(purls []string) (response []models.Package, err e
 
 	for k, p := range response {
 		if len(p.Vulnerabilities) == 0 {
-			slices.Delete(response, k, k)
+			_ = slices.Delete(response, k, k)
 		}
 	}
 
