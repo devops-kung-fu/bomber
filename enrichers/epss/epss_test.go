@@ -50,7 +50,7 @@ func TestEnrich_Error(t *testing.T) {
 	httpmock.RegisterResponder("GET", "https://api.first.org/data/v1/epss",
 		httpmock.NewBytesResponder(404, []byte{}))
 
-	cves := []string{"CVE-2021-43138", "CVE-2020-15084", "CVE-2020-28282", "sonatype-2020-1214"}
+	cves := []string{"CVE-2023-22795", "CVE-2023-22792", "CVE-2022-23633", "CVE-2022-22577"}
 	_, err := fetchEpssData(cves)
 	assert.Error(t, err)
 	assert.Contains(t, err.Error(), "EPSS API request failed with status code")
@@ -58,31 +58,41 @@ func TestEnrich_Error(t *testing.T) {
 
 func epssTestResponse() []byte {
 	response := `
-	[
-		// {
-		// 	"coordinates": "pkg:gem/tzinfo@1.2.5",
-		// 	"description": "TZInfo provides daylight savings aware transformations between times in different time zones.",
-		// 	"reference": "https://ossindex.sonatype.org/component/pkg:gem/tzinfo@1.2.5?utm_source=mozilla&utm_medium=integration&utm_content=5.0",
-		// 	"vulnerabilities": [
-		// 	{
-		// 		"id": "CVE-2022-31163",
-		// 		"displayName": "CVE-2022-31163",
-		// 		"title": "[CVE-2022-31163] CWE-22: Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal')",
-		// 		"description": "TZInfo... ",
-		// 		"cvssScore": 8.1,
-		// 		"cvssVector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
-		// 		"cwe": "CWE-22",
-		// 		"cve": "CVE-2022-31163",
-		// 		"reference": "https://ossindex.sonatype.org/vulnerability/CVE-2022-31163?component-type=gem&component-name=tzinfo&utm_source=mozilla&utm_medium=integration&utm_content=5.0",
-		// 		"externalReferences": [
-		// 			"http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2022-31163",
-		// 			"https://github.com/tzinfo/tzinfo/releases/tag/v0.3.61",
-		// 			"https://github.com/tzinfo/tzinfo/releases/tag/v1.2.10",
-		// 			"https://github.com/tzinfo/tzinfo/security/advisories/GHSA-5cm2-9h8c-rvfx"
-		// 		]
-		// 	}
-		// 	]
-		// }
-	]`
+	{
+		"status": "OK",
+		"status-code": 200,
+		"version": "1.0",
+		"access-control-allow-headers": "x-requested-with",
+		"access": "public",
+		"total": 13,
+		"offset": 0,
+		"limit": 100,
+		"data": [
+			{
+				"cve": "CVE-2023-22795",
+				"epss": "0.027190000",
+				"percentile": "0.906830000",
+				"date": "2024-08-15"
+			},
+			{
+				"cve": "CVE-2023-22792",
+				"epss": "0.001150000",
+				"percentile": "0.458150000",
+				"date": "2024-08-15"
+			},
+			{
+				"cve": "CVE-2022-23633",
+				"epss": "0.002130000",
+				"percentile": "0.597890000",
+				"date": "2024-08-15"
+			},
+			{
+				"cve": "CVE-2022-22577",
+				"epss": "0.005230000",
+				"percentile": "0.772150000",
+				"date": "2024-08-15"
+			}
+		]
+	}`
 	return []byte(response)
 }

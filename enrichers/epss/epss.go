@@ -7,6 +7,9 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"time"
+
+	"github.com/go-resty/resty/v2"
 
 	"github.com/devops-kung-fu/bomber/models"
 )
@@ -18,6 +21,13 @@ const (
 
 // Provider represents an EPSS enricher
 type Enricher struct{}
+
+var client *resty.Client
+
+func init() {
+	client = resty.New().
+		SetTransport(&http.Transport{TLSHandshakeTimeout: 60 * time.Second})
+}
 
 // TODO: this needs to be refactored so we can batch the scanning and de-duplicate. Each component has it's own list of []models.Vulnerability and this function is called multiple times. At least the implementation here reduces the calls by batching per component.
 
@@ -74,60 +84,18 @@ func fetchEpssData(cves []string) (models.Epss, error) {
 	// Create the URL by joining the base URL and CVEs.
 	url := fmt.Sprintf("%s%s", epssBaseURL, strings.Join(cves, ","))
 
-	// Send a GET request to the EPSS API.
-	resp, err := http.Get(url)
-	if err != nil {
-		return models.Epss{}, err
-	}
-	defer resp.Body.Close()
+	resp, _ := client.R().
+		Get(url)
 
-	// Log the response status.
-	log.Println("EPSS Response Status:", resp.StatusCode)
+	log.Println("EPSS Response Status:", resp.StatusCode())
 
-	// Check if the request was successful (status code 200).
-	if resp.StatusCode == http.StatusOK {
+	if resp.StatusCode() == http.StatusOK {
 		var epss models.Epss
-
-		// Decode the JSON response into the Epss model.
-		if err := json.NewDecoder(resp.Body).Decode(&epss); err != nil {
+		if err := json.Unmarshal(resp.Body(), &epss); err != nil {
 			return models.Epss{}, err
 		}
 		return epss, nil
 	}
 
-	// If the request was not successful, return an error with the status code.
-	return models.Epss{}, fmt.Errorf("EPSS API request failed with status code: %d", resp.StatusCode)
-
-	// Create a new HTTP request.
-	// req := HttpRequest.NewRequest()
-
-	// // Send a GET request to the EPSS API with the concatenated CVEs.
-	// resp, err := req.JSON().Get(fmt.Sprintf("%s%s", epssBaseURL, strings.Join(cves, ",")))
-	// if err != nil {
-	// 	return models.Epss{}, err
-	// }
-	// defer func() {
-	// 	// Close the response body when done.
-	// 	_ = resp.Close()
-	// }()
-
-	// // Log the response status.
-	// log.Println("EPSS Response Status:", resp.StatusCode())
-
-	// // Retrieve the response body.
-	// body, _ := resp.Body()
-
-	// // Check if the request was successful (status code 200).
-	// if resp.StatusCode() == 200 {
-	// 	var epss models.Epss
-
-	// 	// Unmarshal the JSON response into the Epss model.
-	// 	if err := json.Unmarshal(body, &epss); err != nil {
-	// 		return models.Epss{}, err
-	// 	}
-	// 	return epss, nil
-	// }
-
-	// // If the request was not successful, return an error with the status code.
-	// return models.Epss{}, fmt.Errorf("EPSS API request failed with status code: %d", resp.StatusCode())
+	return models.Epss{}, fmt.Errorf("EPSS API request failed with status code: %d", resp.StatusCode())
 }
