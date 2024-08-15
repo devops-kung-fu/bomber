@@ -80,20 +80,30 @@ func TestProvider_Scan(t *testing.T) {
 }
 
 func TestProvider_Scan_FakeCredentials(t *testing.T) {
+
+	username := os.Getenv("BOMBER_PROVIDER_USERNAME")
+	token := os.Getenv("BOMBER_PROVIDER_TOKEN")
+
+	os.Unsetenv("BOMBER_PROVIDER_USERNAME")
+	os.Unsetenv("BOMBER_PROVIDER_TOKEN")
+
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
 	httpmock.RegisterResponder("POST", ossindexURL,
-		httpmock.NewBytesResponder(200, ossTestResponse()))
+		httpmock.NewBytesResponder(402, nil))
 
 	credentials := models.Credentials{
-		Username:      "test",
-		ProviderToken: "token",
+		Username:      "",
+		ProviderToken: "",
 	}
 
 	provider := Provider{}
 	_, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, &credentials)
 	assert.Error(t, err)
+
+	os.Setenv("BOMBER_PROVIDER_USERNAME", username)
+	os.Setenv("BOMBER_PROVIDER_TOKEN", token)
 }
 
 func ossTestResponse() []byte {

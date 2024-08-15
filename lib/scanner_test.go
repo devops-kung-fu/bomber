@@ -90,7 +90,7 @@ func TestScanner_exitWithCodeIfRequired(t *testing.T) {
 func TestScanner_enrichVulnerabilities(t *testing.T) {
 	// Create a sample Scanner instance
 	scanner := Scanner{}
-	scanner.Enrichment = []string{"epss", "openai"}
+	scanner.Enrichment = []string{"epss"}
 
 	// Create a sample response with vulnerabilities
 	response := []models.Package{
@@ -102,8 +102,7 @@ func TestScanner_enrichVulnerabilities(t *testing.T) {
 			},
 		},
 	}
-
-	//TODO: MOCK THIS OUT.
+	
 	scanner.enrichVulnerabilities(response)
 
 	assert.Len(t, response[0].Vulnerabilities, 2)

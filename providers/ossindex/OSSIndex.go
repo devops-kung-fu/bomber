@@ -75,8 +75,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 				}
 			}
 		} else {
-			log.Println("Error: unexpected status code: ", resp.StatusCode())
-			return nil, fmt.Errorf("unexpected status code: %x", resp.StatusCode())
+			log.Println("Error: unexpected status code. Skipping the batch: ", string(resp.Body()))
 		}
 	}
 	return

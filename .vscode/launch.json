@@ -222,6 +222,19 @@
             ]
         },
         {
+            "name": "Debug File (ossindex - massive sbom)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "args": [
+                "--provider=ossindex",
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom/erroring-ossindex-sbom.json"
+            ]
+        },
+        {
             "name": "Debug File (ossindex - railsgoat w/epss)",
             "type": "go",
             "request": "launch",

@@ -1,0 +1,51 @@
+{
+    "SPDXID": "SPDXRef-DOCUMENT",
+    "spdxVersion": "SPDX-2.3",
+    "creationInfo": {
+        "created": "2024-06-27T10:03:46Z",
+        "creators": ["Tool: GitHub.com-Dependency-Graph"]
+    },
+    "name": "com.github.AppDirect/marketplace-blimp",
+    "dataLicense": "CC0-1.0",
+    "documentDescribes": ["SPDXRef-com.github.AppDirect-marketplace-blimp"],
+    "documentNamespace": "https://github.com/AppDirect/marketplace-blimp/dependency_graph/sbom-047b3c3f9ffcf7a4",
+    "packages": [
+        {
+        "SPDXID": "SPDXRef-com.github.AppDirect-marketplace-blimp",
+        "name": "com.github.AppDirect/marketplace-blimp",
+        "versionInfo": "",
+        "downloadLocation": "git+https://github.com/AppDirect/marketplace-blimp",
+        "filesAnalyzed": false,
+        "supplier": "NOASSERTION",
+        "externalRefs": [
+            {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:github/AppDirect/marketplace-blimp"
+            }
+        ]
+        },
+        {
+        "SPDXID": "SPDXRef-actions-AppDirect-actions-.github-workflows-dependency-review.yml-master",
+        "name": "actions:AppDirect/actions/.github/workflows/dependency-review.yml",
+        "versionInfo": "master",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "supplier": "NOASSERTION",
+        "externalRefs": [
+            {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceLocator": "pkg:githubactions/AppDirect/actions/.github/workflows/dependency-review.yml@master",
+            "referenceType": "purl"
+            }
+        ]
+        }
+    ],
+    "relationships": [
+        {
+        "relationshipType": "DEPENDS_ON",
+        "spdxElementId": "SPDXRef-com.github.AppDirect-marketplace-blimp",
+        "relatedSpdxElement": "SPDXRef-actions-AppDirect-actions-.github-workflows-dependency-review.yml-master"
+        }
+    ]
+}
