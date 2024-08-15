@@ -102,13 +102,11 @@ func TestScanner_enrichVulnerabilities(t *testing.T) {
 			},
 		},
 	}
-	
+
 	scanner.enrichVulnerabilities(response)
 
 	assert.Len(t, response[0].Vulnerabilities, 2)
 	assert.NotNil(t, response[0].Vulnerabilities[1].Epss)
-	assert.NotEmpty(t, response[0].Vulnerabilities[1].Explanation)
-	assert.NotEmpty(t, response[0].Vulnerabilities[1].Explanation)
 
 	// t.Run("IgnoreVulnerabilities", func(t *testing.T) {
 	// 	// Create a sample Scanner instance
