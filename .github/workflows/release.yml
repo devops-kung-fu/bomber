@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   contents: write
@@ -12,36 +12,30 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      -
-        name: Set up Go
+      - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.23'
+          go-version: "1.23"
           check-latest: true
       - run: go version
-      - 
-        name: Generate SBOM
+      - name: Generate SBOM
         uses: anchore/sbom-action@v0
         with:
           artifact-name: bomber.cyclonedx.json
           path: .
           format: cyclonedx-json
-      - 
-        name: Release SBOM
+      - name: Release SBOM
         uses: anchore/sbom-action/publish-sbom@v0
         with:
           sbom-artifact-match: ".*\\.cyclonedx.json$"
-      -
-        name: GoReleaser Action
+      - name: GoReleaser Action
         uses: goreleaser/goreleaser-action@v5.1.0
         with:
           version: ${{ env.GITHUB_REF_NAME }}
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
-

@@ -4,43 +4,31 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - 
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v4
-      - 
-        name: Setup Go
+      - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
-      - 
-        name: Install Dependencies
+          go-version: "1.22"
+      - name: Install Dependencies
         run: |
           go version
           go install honnef.co/go/tools/cmd/staticcheck@latest
           go install github.com/fzipp/gocyclo/cmd/gocyclo@latest
-      - 
-        name: Test
+      - name: Test
         run: |
           go test -v -coverprofile=coverage.out ./...
           go tool cover -func=coverage.out
-      - 
-        name: CodeCov
+      - name: CodeCov
         run: bash <(curl -s https://codecov.io/bash)
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      - 
-        name: Build
+      - name: Build
         run: go build
-      - 
-        name: Vet
+      - name: Vet
         run: go vet -v
-      # - 
-        # name: staticcheck
-        # run: staticcheck -f stylish -checks all  ./...
-      - 
-        name: gocyclo
+      # -
+      # name: staticcheck
+      # run: staticcheck -f stylish -checks all  ./...
+      - name: gocyclo
         run: gocyclo .
-      -
-        name: OSSF Scorecard action
-        uses: ossf/scorecard-action@v2.3.1
-    
