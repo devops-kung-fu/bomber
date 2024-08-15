@@ -1,8 +1,14 @@
 package lib
 
 import (
+	"fmt"
+	"path/filepath"
 	"reflect"
 	"strings"
+	"time"
+
+	"github.com/gomarkdown/markdown"
+	"github.com/microcosm-cc/bluemonday"
 
 	"github.com/devops-kung-fu/bomber/models"
 )
@@ -101,4 +107,32 @@ func UniqueFieldValues[T any](input []T, fieldName string) []interface{} {
 	}
 
 	return uniqueFieldValuesSlice
+}
+
+// markdownToHTML converts the Markdown descriptions of vulnerabilities in
+// the given results to HTML. It uses the Blackfriday library to perform the
+// conversion and sanitizes the HTML using Bluemonday.
+func MarkdownToHTML(results models.Results) {
+	for i := range results.Packages {
+		for ii := range results.Packages[i].Vulnerabilities {
+			md := []byte(results.Packages[i].Vulnerabilities[ii].Description)
+			html := markdown.ToHTML(md, nil, nil)
+			results.Packages[i].Vulnerabilities[ii].Description = string(bluemonday.UGCPolicy().SanitizeBytes(html))
+			
+			md = []byte(results.Packages[i].Vulnerabilities[ii].Explanation)
+			html = markdown.ToHTML(md, nil, nil)
+			results.Packages[i].Vulnerabilities[ii].Explanation = string(bluemonday.UGCPolicy().SanitizeBytes(html))
+		}
+	}
+}
+
+// generateFilename generates a unique filename based on the current timestamp
+// in the format "2006-01-02 15:04:05" and replaces certain characters to
+// create a valid filename. The resulting filename is a combination of the
+// timestamp and a fixed suffix.
+// TODO: Need to make this generic. It's only being used for HTML Renderers
+func GenerateFilename() string {
+	t := time.Now()
+	r := strings.NewReplacer("-", "", " ", "-", ":", "-")
+	return filepath.Join(".", fmt.Sprintf("%s-bomber-results.html", r.Replace(t.Format("2006-01-02 15:04:05"))))
 }

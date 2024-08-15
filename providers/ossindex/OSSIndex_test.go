@@ -53,24 +53,57 @@ func Test_validateCredentials(t *testing.T) {
 	os.Setenv("BOMBER_PROVIDER_TOKEN", token)
 }
 
-func TestProvider_Scan_FakeCredentials(t *testing.T) {
-	httpmock.Activate()
+func TestProvider_Scan(t *testing.T) {
+
+	credentials := models.Credentials{
+		Username:      "test",
+		ProviderToken: "test",
+	}
+
+	httpmock.ActivateNonDefault(client.GetClient())
 	defer httpmock.DeactivateAndReset()
 
 	httpmock.RegisterResponder("POST", ossindexURL,
 		httpmock.NewBytesResponder(200, ossTestResponse()))
 
-	credentials := models.Credentials{
-		Username:      "test",
-		ProviderToken: "token",
-	}
-
 	provider := Provider{}
+
 	packages, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, &credentials)
 	assert.NoError(t, err)
 	assert.Equal(t, "pkg:gem/tzinfo@1.2.5", packages[0].Purl)
 	assert.Len(t, packages[0].Vulnerabilities, 1)
+
+	_, e := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, nil)
+	assert.Error(t, e)
+
 	httpmock.GetTotalCallCount()
+}
+
+func TestProvider_Scan_FakeCredentials(t *testing.T) {
+
+	username := os.Getenv("BOMBER_PROVIDER_USERNAME")
+	token := os.Getenv("BOMBER_PROVIDER_TOKEN")
+
+	os.Unsetenv("BOMBER_PROVIDER_USERNAME")
+	os.Unsetenv("BOMBER_PROVIDER_TOKEN")
+
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	httpmock.RegisterResponder("POST", ossindexURL,
+		httpmock.NewBytesResponder(402, nil))
+
+	credentials := models.Credentials{
+		Username:      "",
+		ProviderToken: "",
+	}
+
+	provider := Provider{}
+	_, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, &credentials)
+	assert.Error(t, err)
+
+	os.Setenv("BOMBER_PROVIDER_USERNAME", username)
+	os.Setenv("BOMBER_PROVIDER_TOKEN", token)
 }
 
 func ossTestResponse() []byte {

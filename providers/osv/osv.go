@@ -5,17 +5,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"net/http"
 	"strings"
+	"time"
 
-	"github.com/kirinlabs/HttpRequest"
+	"github.com/go-resty/resty/v2"
 
 	"github.com/devops-kung-fu/bomber/models"
 )
 
 const osvURL = "https://api.osv.dev/v1/query"
-
-// Provider represents the OSSIndex provider
-type Provider struct{}
 
 // Query is used for the request sent to the OSV
 type Query struct {
@@ -92,37 +91,42 @@ const (
 	Web      Type = "WEB"
 )
 
+var client *resty.Client
+
+func init() {
+	client = resty.New().
+		SetTransport(&http.Transport{TLSHandshakeTimeout: 60 * time.Second})
+}
+
+// Provider represents the OSSIndex provider
+type Provider struct{}
+
 // Info provides basic information about the OSVProvider
 func (Provider) Info() string {
 	return "OSV Vulnerability Database (https://osv.dev)"
 }
 
-// Scan scans a list of Purls for vulnerabilities against OSV.dev. Note that credentials are not needed for OSV, so can be nil.
+// Scan scans a lisst of Purls for vulnerabilities against OSV.dev. Note that credentials are not needed for OSV, so can be nil.
 func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
 	for _, pp := range purls {
 		log.Println("Purl:", pp)
-		p := PackageClass{
-			Purl: pp,
-		}
 		q := Query{
-			Package: p,
+			Package: PackageClass{
+				Purl: pp,
+			},
 		}
-		req := HttpRequest.NewRequest()
-		log.Println(q)
-		resp, _ := req.JSON().Post(osvURL, q)
-		defer func() {
-			_ = resp.Close()
-		}()
 
-		log.Printf("OSV Response Status: %v", resp.StatusCode())
+		var response Response
+		resp, err := client.R().
+			SetBody(q).
+			Post(osvURL)
 
-		body, _ := resp.Body()
-		if resp.StatusCode() == 200 {
-			var response Response
-			err = json.Unmarshal(body, &response)
-			if err != nil {
-				return
-			}
+		if err != nil {
+			log.Print(err)
+		}
+		_ = json.Unmarshal(resp.Body(), &response)
+		// Check if the request was successful (status code 200)
+		if resp.StatusCode() == http.StatusOK {
 			if len(response.Vulns) > 0 {
 				log.Print("*** Vulnerabilities detected...")
 				pkg := models.Package{
@@ -152,8 +156,8 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 				packages = append(packages, pkg)
 			}
 		} else {
-			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.Response().Status)
-			break
+			log.Println("Error: unexpected status code: ", resp.StatusCode())
+			return nil, fmt.Errorf("unexpected status code: %x", resp.StatusCode())
 		}
 	}
 	return

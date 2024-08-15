@@ -2,12 +2,15 @@ package snyk
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"log"
+	"net/http"
 	"net/url"
 	"strings"
 	"time"
 
-	"github.com/kirinlabs/HttpRequest"
+	"github.com/go-resty/resty/v2"
 	"github.com/package-url/packageurl-go"
 
 	"github.com/devops-kung-fu/bomber/models"
@@ -139,8 +142,8 @@ type SnykIssuesDocument struct {
 
 func getVulnsForPurl(
 	purl string,
-	client *HttpRequest.Request,
 	orgID string,
+	token string,
 ) (vulns []models.Vulnerability, err error) {
 	if err := validatePurl(purl); err != nil {
 		return nil, err
@@ -151,35 +154,36 @@ func getVulnsForPurl(
 		SnykURL, orgID, url.QueryEscape(purl), SnykAPIVersion,
 	)
 
-	res, err := client.Get(issuesURL)
+	client := resty.New()
+	client.Debug = true
+
+	resp, err := client.R().
+		SetHeader("User-Agent", "bomber").
+		SetAuthToken(token).
+		Get(issuesURL)
+
 	if err != nil {
-		return nil, fmt.Errorf("could not fetch vulnerabilities (purl: %s): %w", purl, err)
+		log.Print(err)
+		return nil, err
 	}
 
-	defer func() {
-		_ = res.Close()
-	}()
+	if resp.StatusCode() == http.StatusOK {
+		var response SnykIssuesDocument
+		if err = json.Unmarshal(resp.Body(), &response); err != nil {
+			log.Println("Error:", err)
+			return nil, err
+		}
 
-	body, err := res.Body()
-	if err != nil {
-		return nil, fmt.Errorf("could not read response body (purl: %s): %w", purl, err)
+		for _, v := range response.Data {
+			vuln := snykIssueToBomberVuln(v)
+			vulns = append(vulns, vuln)
+		}
+
+		return vulns, nil
+	} else {
+		log.Println("Error: unexpected status code", resp.StatusCode())
+		return nil, errors.New("unexpected status code")
 	}
-
-	if res.StatusCode() != 200 {
-		return nil, fmt.Errorf("failed request while retrieving vulnerabilities (purl: %s, status: %s)", purl, res.Response().Status)
-	}
-
-	var response SnykIssuesDocument
-	if err = json.Unmarshal(body, &response); err != nil {
-		return nil, fmt.Errorf("could not parse response (purl: %s): %w", purl, err)
-	}
-
-	for _, v := range response.Data {
-		vuln := snykIssueToBomberVuln(v)
-		vulns = append(vulns, vuln)
-	}
-
-	return vulns, nil
 }
 
 func validatePurl(purl string) error {

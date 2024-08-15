@@ -1,11 +1,10 @@
 {
-    "name": "devcontainer-test",
+    "name": "bomber",
     "image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
     "features": {
         "ghcr.io/devcontainers-contrib/features/starship:1": {},
         "ghcr.io/azutake/devcontainer-features/go-packages-install:0": {
             "packages": [
-                "github.com/devops-kung-fu/hookz@latest",
                 "github.com/jandelgado/gcov2lcov@latest",
                 "github.com/kisielk/errcheck@latest",
                 "github.com/fzipp/gocyclo/cmd/gocyclo@latest",
@@ -17,9 +16,12 @@
     "customizations": {
         "vscode": {
             "settings": {
-                "terminal.integrated.customGlyphs": true,
-                "terminal.integrated.fontFamily": "'0xProto Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
                 "editor.formatOnSave": true,
+                "editor.fontFamily": "'0xProto Nerd Font','Courier New', monospace",
+                "terminal.integrated.fontFamily": "'0xProto Nerd Font','Courier New', monospace",
+                "notebook.output.fontFamily" : "'0xProto Nerd Font','Courier New', monospace",
+                "explorer.openEditors.sortOrder": "alphabetical",
+                "explorer.openEditors.minVisible": 0,
                 "go.buildTags": "",
                 "go.toolsEnvVars": {
                     "CGO_ENABLED": "0"
@@ -43,6 +45,12 @@
                         "source.organizeImports": "always"
                     }
                 },
+                "[javascript]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "[markdown]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
                 "markiscodecoverage.coverageThreshold": 95,
                 "markiscodecoverage.enableOnStartup": true,
                 "markiscodecoverage.searchCriteria": "*.lcov*"
@@ -54,17 +62,15 @@
                 "github.vscode-github-actions",
                 "aleksandra.go-group-imports",
                 "oderwat.indent-rainbow",
-                "yzhang.markdown-all-in-one",
                 "quicktype.quicktype",
                 "jebbs.plantuml",
                 "foxundermoon.shell-format",
                 "ahebrank.yaml2json",
-                "amazonwebservices.aws-toolkit-vscode",
+                "AmazonWebServices.amazon-q-vscode",
                 "markis.code-coverage",
-                //"defaltd.go-coverage-viewer",
-                "Gruntfuggly.todo-tree" // Highlights TODO comments"
+                "Gruntfuggly.todo-tree",
+                "esbenp.prettier-vscode"
             ]
         }
-    },
-    "postCreateCommand": "/usr/bin/bash ./.devcontainer/post-create.sh > ~/post-create.log"
+    }
 }

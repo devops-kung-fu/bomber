@@ -14,13 +14,14 @@ func TestInfo(t *testing.T) {
 }
 
 func TestProvider_Scan(t *testing.T) {
-	httpmock.Activate()
+	httpmock.ActivateNonDefault(client.GetClient())
 	defer httpmock.DeactivateAndReset()
 
 	httpmock.RegisterResponder("POST", osvURL,
 		httpmock.NewBytesResponder(200, osvTestResponse()))
 
 	provider := Provider{}
+
 	packages, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "pkg:golang/github.com/briandowns/spinner@v1.19.0", packages[0].Purl)
@@ -29,7 +30,7 @@ func TestProvider_Scan(t *testing.T) {
 }
 
 func TestProvider_BadResponse(t *testing.T) {
-	httpmock.Activate()
+	httpmock.ActivateNonDefault(client.GetClient())
 	defer httpmock.DeactivateAndReset()
 
 	httpmock.RegisterResponder("POST", osvURL,
@@ -38,7 +39,7 @@ func TestProvider_BadResponse(t *testing.T) {
 	provider := Provider{}
 	_, err := provider.Scan([]string{"pkg:golang/github.com/briandowns/spinner@v1.19.0"}, nil)
 	assert.Error(t, err)
-	assert.Equal(t, "error retrieving vulnerability data (500)", err.Error())
+	assert.Contains(t, err.Error(), "unexpected status code")
 }
 
 func osvTestResponse() []byte {

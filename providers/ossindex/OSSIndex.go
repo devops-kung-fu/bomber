@@ -6,15 +6,24 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
+	"time"
 
-	"github.com/kirinlabs/HttpRequest"
+	"github.com/go-resty/resty/v2"
 
 	"github.com/devops-kung-fu/bomber/lib"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
 const ossindexURL = "https://ossindex.sonatype.org/api/v3/authorized/component-report"
+
+var client *resty.Client
+
+func init() {
+	client = resty.New().
+		SetTransport(&http.Transport{TLSHandshakeTimeout: 60 * time.Second})
+}
 
 // Provider represents the OSSIndex provider
 type Provider struct{}
@@ -43,20 +52,17 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		p := purls[startIndex:endIndex]
 		var coordinates CoordinateRequest
 		coordinates.Coordinates = append(coordinates.Coordinates, p...)
-		req := HttpRequest.NewRequest()
-		req.SetBasicAuth(credentials.Username, credentials.ProviderToken)
 
-		resp, _ := req.JSON().Post(ossindexURL, coordinates)
-		defer func() {
-			_ = resp.Close()
-		}()
+		resp, _ := client.R().
+			SetBody(coordinates).
+			SetBasicAuth(credentials.Username, credentials.ProviderToken).
+			Post(ossindexURL)
 
-		log.Printf("OSSIndex Response Status: %v", resp.StatusCode())
-		body, _ := resp.Body()
-		if resp.StatusCode() == 200 {
+		if resp.StatusCode() == http.StatusOK {
 			var response []models.Package
-			if err = json.Unmarshal(body, &response); err != nil {
-				return
+			if err := json.Unmarshal(resp.Body(), &response); err != nil {
+				log.Println("Error:", err)
+				return nil, err
 			}
 			for i, pkg := range response {
 				log.Println("Purl:", response[i].Purl)
@@ -69,8 +75,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 				}
 			}
 		} else {
-			err = fmt.Errorf("error retrieving vulnerability data (%v)", resp.Response().Status)
-			break
+			log.Println("Error: unexpected status code. Skipping the batch: ", string(resp.Body()))
 		}
 	}
 	return

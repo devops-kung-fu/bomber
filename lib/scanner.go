@@ -13,8 +13,8 @@ import (
 	"github.com/package-url/packageurl-go"
 	"github.com/spf13/afero"
 
-	"github.com/devops-kung-fu/bomber/lib/enrichment"
-	"github.com/devops-kung-fu/bomber/lib/filters"
+	"github.com/devops-kung-fu/bomber/enrichers"
+	"github.com/devops-kung-fu/bomber/filters"
 	"github.com/devops-kung-fu/bomber/models"
 )
 
@@ -24,6 +24,7 @@ type Scanner struct {
 	Credentials     models.Credentials
 	Renderer        models.Renderer
 	Provider        models.Provider
+	Enrichment      []string
 	IgnoreFile      string
 	Severity        string
 	ExitCode        bool
@@ -46,6 +47,15 @@ func (s *Scanner) Scan(args []string) (exitCode int, err error) {
 		log.Print(err)
 		return
 	}
+	if slices.Contains(s.Enrichment, "openai") {
+		util.PrintWarning("OpenAI enrichment is experimental and may increase scanning time significantly")
+	}
+	if len(scanned) > 0 {
+		util.PrintInfo("Scanning Files:")
+		for _, f := range scanned {
+			util.PrintTabbed(f.Name)
+		}
+	}
 
 	// If no packages are detected, print a message and return
 	if len(purls) == 0 {
@@ -67,7 +77,7 @@ func (s *Scanner) Scan(args []string) (exitCode int, err error) {
 func (s *Scanner) scanPackages(purls []string) (response []models.Package, err error) {
 	// Detect and print information about ecosystems
 	ecosystems := s.detectEcosystems(purls)
-	spinner := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
+	spinner := spinner.New(spinner.CharSets[11], 100*time.Millisecond)
 
 	// Sanitize package URLs and handle initial console output
 	purls, issues := filters.Sanitize(purls)
@@ -87,9 +97,16 @@ func (s *Scanner) scanPackages(purls []string) (response []models.Package, err e
 		util.PrintWarningf("Ignore flag set, but there was an error: %s", err)
 	}
 
+	for k, p := range response {
+		if len(p.Vulnerabilities) == 0 {
+			_ = slices.Delete(response, k, k)
+		}
+	}
+
 	// Filter, enrich, and ignore vulnerabilities as needed
 	s.filterVulnerabilities(response)
-	s.enrichAndIgnoreVulnerabilities(response, ignoredCVE)
+	s.ignoreVulnerabilities(response, ignoredCVE)
+	s.enrichVulnerabilities(response)
 
 	if s.Output != "json" {
 		spinner.Stop()
@@ -154,15 +171,27 @@ func (s *Scanner) filterVulnerabilities(response []models.Package) {
 	}
 }
 
-// enrichAndIgnoreVulnerabilities enriches and ignores vulnerabilities as needed.
-func (s *Scanner) enrichAndIgnoreVulnerabilities(response []models.Package, ignoredCVE []string) {
+func (s *Scanner) ignoreVulnerabilities(response []models.Package, ignoredCVE []string) {
 	for i, p := range response {
-		enrichedVulnerabilities, _ := enrichment.Enrich(p.Vulnerabilities)
-		response[i].Vulnerabilities = enrichedVulnerabilities
-
 		if len(ignoredCVE) > 0 {
 			filteredVulnerabilities := filters.Ignore(p.Vulnerabilities, ignoredCVE)
 			response[i].Vulnerabilities = filteredVulnerabilities
+		}
+	}
+}
+
+// enrichAndIgnoreVulnerabilities enriches and ignores vulnerabilities as needed.
+func (s *Scanner) enrichVulnerabilities(response []models.Package) {
+	epssEnricher, _ := enrichers.NewEnricher("epss")
+	openaiEnricher, _ := enrichers.NewEnricher("openai")
+	for i := range response {
+		if slices.Contains(s.Enrichment, "epss") {
+			response[i].Vulnerabilities, _ = epssEnricher.Enrich(response[i].Vulnerabilities, &s.Credentials)
+		}
+	}
+	for i := range response {
+		if slices.Contains(s.Enrichment, "openai") {
+			response[i].Vulnerabilities, _ = openaiEnricher.Enrich(response[i].Vulnerabilities, &s.Credentials)
 		}
 	}
 }

@@ -20,7 +20,6 @@ func NewProvider(name string) (provider models.Provider, err error) {
 	case "snyk":
 		provider = snyk.Provider{}
 	default:
-
 		err = fmt.Errorf("%s is not a valid provider type", name)
 	}
 	return

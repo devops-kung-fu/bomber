@@ -3,8 +3,10 @@ package snyk
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
 
-	"github.com/kirinlabs/HttpRequest"
+	"github.com/go-resty/resty/v2"
 )
 
 type selfDocument struct {
@@ -22,27 +24,32 @@ type selfDocument struct {
 	Links   PaginatedLinks `json:"links,omitempty"`
 }
 
-func getOrgID(client *HttpRequest.Request) (orgID string, err error) {
-	res, err := client.Get(SnykURL + "/self" + SnykAPIVersion)
+func getOrgID(token string) (orgID string, err error) {
+
+	client := resty.New()
+	client.Debug = true
+
+	resp, err := client.R().
+		SetHeader("User-Agent", "bomber").
+		SetAuthToken(token).
+		Get(SnykURL + "/self" + SnykAPIVersion)
+
 	if err != nil {
-		return "", fmt.Errorf("unable to retrieve org ID: %w", err)
+		log.Print(err)
+		return "", err
 	}
 
-	body, err := res.Body()
-	if err != nil {
-		return "", fmt.Errorf("unable to retrieve org ID: %w", err)
+	if resp.StatusCode() == http.StatusOK {
+		var userInfo selfDocument
+		if err = json.Unmarshal(resp.Body(), &userInfo); err != nil {
+			return "", fmt.Errorf("unable to retrieve org ID (status: %x): %w", resp.StatusCode(), err)
+		}
+
+		orgID = userInfo.Data.Attributes.DefaultOrgContext
+
+		return orgID, nil
+	} else {
+		log.Println("Error: unexpected status code", resp.StatusCode())
+		return "", fmt.Errorf("unable to retrieve org ID (status: %x)", resp.StatusCode())
 	}
-
-	if res.StatusCode() != 200 {
-		return "", fmt.Errorf("unable to retrieve org ID (status: %s)", res.Response().Status)
-	}
-
-	var userInfo selfDocument
-	if err = json.Unmarshal(body, &userInfo); err != nil {
-		return "", fmt.Errorf("unable to retrieve org ID (status: %s): %w", res.Response().Status, err)
-	}
-
-	orgID = userInfo.Data.Attributes.DefaultOrgContext
-
-	return
 }

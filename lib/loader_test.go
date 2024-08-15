@@ -163,7 +163,7 @@ func TestLoad_multiple_cyclonedx(t *testing.T) {
 
 func Test_LoadIgnore(t *testing.T) {
 	SetupTest()
-	afs.WriteFile("test.ignore", []byte("test\ntest2"), 0644)
+	_ = afs.WriteFile("test.ignore", []byte("test\ntest2"), 0644)
 
 	cves, err := l.LoadIgnore("test.ignore")
 	assert.NoError(t, err)
