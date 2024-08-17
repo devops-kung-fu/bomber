@@ -49,8 +49,8 @@ func generateFilename() string {
 
 // writeTemplate writes the results to a file with the specified filename,
 // using the given Afero filesystem interface. It creates the file, processes
-// percentiles in the results, converts Markdown to HTML, and writes the
-// templated results to the file. It also sets file permissions to 0777.
+// percentiles in the results and writes the templated results to the file.
+// It also sets file permissions to 0777.
 func writeTemplate(afs *afero.Afero, filename string, results models.Results) error {
 	processPercentiles(results)
 
