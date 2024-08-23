@@ -20,15 +20,15 @@ type Renderer struct{}
 func (Renderer) Render(results models.Results) error {
 	var afs *afero.Afero
 
-	lib.MarkdownToHTML(results) 
+	lib.MarkdownToHTML(results)
 
-	if results.Meta.Provider == "test" { 
+	if results.Meta.Provider == "test" {
 		afs = &afero.Afero{Fs: afero.NewMemMapFs()}
 	} else {
 		afs = &afero.Afero{Fs: afero.NewOsFs()}
 	}
 
-	filename := lib.GenerateFilename()
+	filename := lib.GenerateFilename("html")
 	util.PrintInfo("Writing AI Enriched HTML report:", filename)
 
 	resultString, err := generateTemplateResult(templateString(), results)
