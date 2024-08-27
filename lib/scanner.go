@@ -22,7 +22,7 @@ import (
 type Scanner struct {
 	SeveritySummary models.Summary
 	Credentials     models.Credentials
-	Renderer        []models.Renderer
+	Renderers       []models.Renderer
 	Provider        models.Provider
 	Enrichment      []string
 	IgnoreFile      string
@@ -209,7 +209,7 @@ func (s *Scanner) processResults(scanned []models.ScannedFile, licenses []string
 	results := models.NewResults(response, s.SeveritySummary, scanned, licenses, s.Version, s.ProviderName, s.Severity)
 
 	// Render results using the specified renderer(s)
-	for _, r := range s.Renderer {
+	for _, r := range s.Renderers {
 		if err := r.Render(results); err != nil {
 			log.Println(err)
 		}
