@@ -118,7 +118,7 @@ func MarkdownToHTML(results models.Results) {
 			md := []byte(results.Packages[i].Vulnerabilities[ii].Description)
 			html := markdown.ToHTML(md, nil, nil)
 			results.Packages[i].Vulnerabilities[ii].Description = string(bluemonday.UGCPolicy().SanitizeBytes(html))
-			
+
 			md = []byte(results.Packages[i].Vulnerabilities[ii].Explanation)
 			html = markdown.ToHTML(md, nil, nil)
 			results.Packages[i].Vulnerabilities[ii].Explanation = string(bluemonday.UGCPolicy().SanitizeBytes(html))
@@ -131,8 +131,8 @@ func MarkdownToHTML(results models.Results) {
 // create a valid filename. The resulting filename is a combination of the
 // timestamp and a fixed suffix.
 // TODO: Need to make this generic. It's only being used for HTML Renderers
-func GenerateFilename() string {
+func GenerateFilename(format string) string {
 	t := time.Now()
 	r := strings.NewReplacer("-", "", " ", "-", ":", "-")
-	return filepath.Join(".", fmt.Sprintf("%s-bomber-results.html", r.Replace(t.Format("2006-01-02 15:04:05"))))
+	return filepath.Join(".", fmt.Sprintf("%s-bomber-results.%s", r.Replace(t.Format("2006-01-02 15:04:05")), format))
 }

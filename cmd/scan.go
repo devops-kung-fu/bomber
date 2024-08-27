@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"slices"
+	"strings"
 
 	"github.com/devops-kung-fu/common/util"
 	"github.com/gookit/color"
@@ -22,7 +23,7 @@ var (
 		Use:   "scan",
 		Short: "Scans a provided SBOM file or folder containing SBOMs for vulnerabilities.",
 		PreRun: func(cmd *cobra.Command, args []string) {
-			if output == "ai" && !slices.Contains(scanner.Enrichment, "openai") {
+			if slices.Contains(strings.Split(output, ","), "ai") && !slices.Contains(scanner.Enrichment, "openai") {
 				scanner.Enrichment = append(scanner.Enrichment, "openai")
 			}
 			r, err := renderers.NewRenderer(output)
@@ -31,7 +32,7 @@ var (
 				_ = cmd.Help()
 				os.Exit(1)
 			}
-			scanner.Renderer = r
+			scanner.Renderers = r
 			p, err := providers.NewProvider(scanner.ProviderName)
 			if err != nil {
 				color.Red.Printf("%v\n\n", err)

@@ -3,6 +3,7 @@ package renderers
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/devops-kung-fu/bomber/models"
 	"github.com/devops-kung-fu/bomber/renderers/ai"
@@ -12,18 +13,20 @@ import (
 )
 
 // NewRenderer will return a Renderer interface for the requested output
-func NewRenderer(output string) (renderer models.Renderer, err error) {
-	switch output {
-	case "stdout":
-		renderer = stdout.Renderer{}
-	case "json":
-		renderer = json.Renderer{}
-	case "html":
-		renderer = html.Renderer{}
-	case "ai":
-		renderer = ai.Renderer{}
-	default:
-		err = fmt.Errorf("%s is not a valid output type", output)
+func NewRenderer(output string) (renderers []models.Renderer, err error) {
+	for _, s := range strings.Split(output, ",") {
+		switch s {
+		case "stdout":
+			renderers = append(renderers, stdout.Renderer{})
+		case "json":
+			renderers = append(renderers, json.Renderer{})
+		case "html":
+			renderers = append(renderers, html.Renderer{})
+		case "ai":
+			renderers = append(renderers, ai.Renderer{})
+		default:
+			err = fmt.Errorf("%s is not a valid output type", s)
+		}
 	}
 	return
 }
