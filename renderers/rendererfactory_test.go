@@ -33,6 +33,7 @@ func TestNewRenderer(t *testing.T) {
 	assert.IsType(t, stdout.Renderer{}, renderers[0])
 	assert.IsType(t, json.Renderer{}, renderers[1])
 	assert.IsType(t, html.Renderer{}, renderers[2])
+	assert.Len(t, renderers, 3)
 
 	_, err = NewRenderer("test")
 	assert.Error(t, err)
