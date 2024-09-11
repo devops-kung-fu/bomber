@@ -146,6 +146,16 @@ Example command:
 bomber scan bad-bom.json --output=json > filename.json
 ```
 
+### Markdown Output
+
+`bomber` also supports output in Markdown format. This is very similar to the HTML output, but offloads styling to the Markdown renderer, such as GitHub. The output is saved to a file in the format "YYYY-MM-DD-HH-MM-SS-bomber-results.md".
+
+Example command:
+
+```bash
+bomber scan bad-bom.json --output=md
+```
+
 ## Ignoring Vulnerabilities
 
 If needed, you can use the `--ignore-file` flag to load a list of CVEs to ignore in the vulnerability output. This list needs to be in a specific format where each CVE to ignore is entered on a separate line similar to the following:
