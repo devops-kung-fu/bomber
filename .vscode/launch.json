@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug File (gad)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "args": [
+                "--provider=gad",
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom/small.cyclonedx.json"
+            ]
+        },
+        {
             "name": "Debug File (ossindex - railsgoat - AI Output)",
             "type": "go",
             "request": "launch",
