@@ -4,9 +4,13 @@ package gad
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"io/ioutil"
+	"io"
+	"log"
 	"net/http"
+	"os"
+	"strings"
 
 	"github.com/package-url/packageurl-go"
 
@@ -29,24 +33,27 @@ func (Provider) Info() string {
 }
 
 func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
+	if err = validateCredentials(credentials); err != nil {
+		return
+	}
+
 	for _, purl := range purls {
 		response, e := queryGitHubAdvisories(purl, *credentials)
 		if e != nil {
-			fmt.Printf("Error: %v\n", err)
-			return
+			return nil, e
 		}
 
-		fmt.Printf("Vulnerabilities for %s:\n", purl)
 		for _, edge := range response.Data.SecurityVulnerabilities.Edges {
+			log.Printf("Vulnerabilities for %s:\n", purl)
 			advisory := edge.Node.Advisory
-			fmt.Printf("Summary: %s\n", advisory.Summary)
-			fmt.Printf("Severity: %s\n", advisory.Severity)
+			log.Printf("Summary: %s\n", advisory.Summary)
+			log.Printf("Severity: %s\n", advisory.Severity)
 			for _, identifier := range advisory.Identifiers {
 				if identifier.Type == "CVE" {
 					fmt.Printf("CVE: %s\n", identifier.Value)
 				}
 			}
-			fmt.Println("---")
+			log.Println("---")
 		}
 	}
 	return
@@ -106,7 +113,7 @@ func queryGitHubAdvisories(purl string, credentials models.Credentials) (*GraphQ
 	`
 
 	variables := map[string]interface{}{
-		"ecosystem": p.Type,
+		"ecosystem": strings.ToUpper(p.Type),
 		"package":   p.Name,
 	}
 
@@ -120,11 +127,7 @@ func queryGitHubAdvisories(purl string, credentials models.Credentials) (*GraphQ
 		return nil, fmt.Errorf("error creating request: %v", err)
 	}
 
-	token := credentials.ProviderToken
-	if token == "" {
-		return nil, fmt.Errorf("The Github Advisory Database provider requires a token")
-	}
-	req.Header.Set("Authorization", "Bearer "+token)
+	req.Header.Set("Authorization", "Bearer "+credentials.ProviderToken)
 	req.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{}
@@ -134,7 +137,7 @@ func queryGitHubAdvisories(purl string, credentials models.Credentials) (*GraphQ
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("error reading response: %v", err)
 	}
@@ -146,4 +149,15 @@ func queryGitHubAdvisories(purl string, credentials models.Credentials) (*GraphQ
 	}
 
 	return &graphQLResponse, nil
+}
+
+func validateCredentials(credentials *models.Credentials) (err error) {
+	if credentials.ProviderToken == "" {
+		credentials.ProviderToken = os.Getenv("GITHUB_TOKEN")
+	}
+
+	if credentials.ProviderToken == "" {
+		err = errors.New("bomber requires an GitHub PAT to utilize the GitHub Advisory Database")
+	}
+	return
 }
