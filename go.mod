@@ -5,7 +5,7 @@ go 1.22
 toolchain go1.22.2
 
 require (
-	github.com/CycloneDX/cyclonedx-go v0.9.0
+	github.com/CycloneDX/cyclonedx-go v0.9.1
 	github.com/briandowns/spinner v1.23.1
 	github.com/devops-kung-fu/common v0.2.6
 	github.com/go-resty/resty/v2 v2.14.0
