@@ -94,8 +94,10 @@ const (
 var client *resty.Client
 
 func init() {
-	client = resty.New().
-		SetTransport(&http.Transport{TLSHandshakeTimeout: 60 * time.Second})
+	// Cloning the transport ensures a proper working http client that respects the proxy settings
+	transport := http.DefaultTransport.(*http.Transport).Clone()
+	transport.TLSHandshakeTimeout = 60 * time.Second
+	client = resty.New().SetTransport(transport)
 }
 
 // Provider represents the OSSIndex provider
