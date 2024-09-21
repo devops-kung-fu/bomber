@@ -25,8 +25,10 @@ type Enricher struct{}
 var client *resty.Client
 
 func init() {
-	client = resty.New().
-		SetTransport(&http.Transport{TLSHandshakeTimeout: 60 * time.Second})
+	// Cloning the transport ensures a proper working http client that respects the proxy settings
+	transport := http.DefaultTransport.(*http.Transport).Clone()
+	transport.TLSHandshakeTimeout = 60 * time.Second
+	client = resty.New().SetTransport(transport)
 }
 
 // TODO: this needs to be refactored so we can batch the scanning and de-duplicate. Each component has it's own list of []models.Vulnerability and this function is called multiple times. At least the implementation here reduces the calls by batching per component.
