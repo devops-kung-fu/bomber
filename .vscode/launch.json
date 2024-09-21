@@ -5,13 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug File (gad)",
+            "name": "Debug File (github provider)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
             "args": [
-                "--provider=gad",
+                "--provider=github",
                 "--debug=true",
                 "scan",
                 "./_TESTDATA_/sbom/small.cyclonedx.json"
