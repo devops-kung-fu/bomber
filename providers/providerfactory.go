@@ -20,7 +20,7 @@ func NewProvider(name string) (provider models.Provider, err error) {
 		provider = osv.Provider{}
 	case "snyk":
 		provider = snyk.Provider{}
-	case "gad":
+	case "github":
 		provider = gad.Provider{}
 	default:
 		err = fmt.Errorf("%s is not a valid provider type", name)
