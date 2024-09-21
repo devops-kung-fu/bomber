@@ -1,0 +1,21 @@
+{
+    "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.5",
+    "serialNumber": "urn:uuid:3e671687-395b-41f5-a30f-a58921a69b79",
+    "version": 1,
+    "components": [
+        {
+            "purl": "pkg:pypi/pycrypto@2.6.1"
+        },
+        {
+            "purl": "pkg:pypi/pycryptopayapi@0.0.8"
+        },
+        {
+            "purl": "pkg:npm/body-parser@1.19.0"
+        },
+        {
+            "purl": "pkg:npm/qs@6.7.0"
+        }
+    ]
+}

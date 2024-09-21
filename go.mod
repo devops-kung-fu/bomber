@@ -5,10 +5,10 @@ go 1.22
 toolchain go1.22.2
 
 require (
-	github.com/CycloneDX/cyclonedx-go v0.9.0
+	github.com/CycloneDX/cyclonedx-go v0.9.1
 	github.com/briandowns/spinner v1.23.1
 	github.com/devops-kung-fu/common v0.2.6
-	github.com/go-resty/resty/v2 v2.14.0
+	github.com/go-resty/resty/v2 v2.15.0
 	github.com/gomarkdown/markdown v0.0.0-20240730141124-034f12af3bf6
 	github.com/google/go-github v17.0.0+incompatible
 	github.com/gookit/color v1.5.4
@@ -32,15 +32,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
-	github.com/mattn/go-runewidth v0.0.16 // indirect
+	github.com/mattn/go-runewdth v0.0.16 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
-	github.com/sashabaranov/go-openai v1.28.2
-	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
-	golang.org/x/net v0.28.0 // indirect
-	golang.org/x/sys v0.24.0 // indirect
-	golang.org/x/term v0.23.0 // indirect
-	golang.org/x/text v0.17.0 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
-)
+	github.com/sashabaranov/go-openai v1.29.2
