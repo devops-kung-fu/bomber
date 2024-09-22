@@ -33,8 +33,7 @@ var (
 			if output != "json" {
 				log.Println("Start")
 				fmt.Println()
-				color.Style{color.FgWhite, color.OpBold}.Println(" ██▄ ▄▀▄ █▄ ▄█ ██▄ ██▀ █▀▄")
-				color.Style{color.FgWhite, color.OpBold}.Println(" █▄█ ▀▄▀ █ ▀ █ █▄█ █▄▄ █▀▄")
+				printAsciiArt()
 				fmt.Println()
 				fmt.Println("DKFM - DevOps Kung Fu Mafia")
 				fmt.Println("https://github.com/devops-kung-fu/bomber")
@@ -45,6 +44,15 @@ var (
 		},
 	}
 )
+
+func printAsciiArt() {
+	response := `
+   __              __          
+  / /  ___  __ _  / /  ___ ____
+ / _ \/ _ \/  ' \/ _ \/ -_) __/
+/_.__/\___/_/_/_/_.__/\__/_/   `
+	color.Style{color.FgWhite, color.OpBold}.Println(response)
+}
 
 // Execute creates the command tree and handles any error condition returned
 func Execute() {
