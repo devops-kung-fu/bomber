@@ -65,14 +65,24 @@ func (Provider) Scan(purls []string, credentials *m.Credentials) ([]m.Package, e
 					severity = "UNSPECIFIED"
 				}
 				vulnerability := m.Vulnerability{
-					ID:          vuln.ID,
+					ID: func() string {
+						if vuln.ID == "" {
+							return "NOT PROVIDED"
+						}
+						return vuln.ID
+					}(),
 					Title:       vuln.Summary,
 					Description: vuln.Details,
 					Severity:    severity,
-					Cve:         vuln.Aliases[0],
+					Cve: func() string {
+						if len(vuln.Aliases) > 0 {
+							return vuln.Aliases[0]
+						}
+						return "NOT PROVIDED"
+					}(),
 					CvssScore: func() float64 {
 						s, ok := vuln.DatabaseSpecific["cvss_score"].(string)
-						if !ok {
+						if ok {
 							score, _ := strconv.ParseFloat(s, 64)
 							return score
 						}
@@ -85,9 +95,6 @@ func (Provider) Scan(purls []string, credentials *m.Credentials) ([]m.Package, e
 						cweIDs[i] = cweID.(string)
 					}
 					vulnerability.ID = strings.Join(cweIDs, ",")
-				}
-				if vulnerability.ID == "" {
-					vulnerability.ID = "NOT PROVIDED"
 				}
 				pkg.Vulnerabilities = append(pkg.Vulnerabilities, vulnerability)
 			}
