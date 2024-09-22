@@ -66,6 +66,11 @@ func (Provider) Scan(purls []string, credentials *m.Credentials) ([]m.Package, e
 				}
 				vulnerability := m.Vulnerability{
 					ID: func() string {
+						for _, alias := range vuln.Aliases {
+							if strings.HasPrefix(strings.ToLower(alias), "cve") {
+								return alias
+							}
+						}
 						if vuln.ID == "" {
 							return "NOT PROVIDED"
 						}
@@ -76,7 +81,7 @@ func (Provider) Scan(purls []string, credentials *m.Credentials) ([]m.Package, e
 					Severity:    severity,
 					Cve: func() string {
 						if len(vuln.Aliases) > 0 {
-							return vuln.Aliases[0]
+							return strings.Join(vuln.Aliases, ",")
 						}
 						return "NOT PROVIDED"
 					}(),
