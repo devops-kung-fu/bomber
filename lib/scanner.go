@@ -51,9 +51,11 @@ func (s *Scanner) Scan(args []string) (exitCode int, err error) {
 		util.PrintWarning("OpenAI enrichment is experimental and may increase scanning time significantly")
 	}
 	if len(scanned) > 0 {
-		util.PrintInfo("Scanning Files:")
-		for _, f := range scanned {
-			util.PrintTabbed(f.Name)
+		if s.Output != "json" {
+			util.PrintInfo("Scanning Files:")
+			for _, f := range scanned {
+				util.PrintTabbed(f.Name)
+			}
 		}
 	}
 
