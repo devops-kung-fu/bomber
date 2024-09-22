@@ -12,22 +12,27 @@ bomber scan test.cyclonedx.json
 
 At this time, the [OSV](https://osv.dev) supports the following ecosystems:
 
-- Android
-- crates.io
-- Debian
+- Alpine Linux
+- Bitnami
+- Cargo (Rust)
+- ConanCenter
+- Debian Linux
+- GitHub Actions
 - Go
+- Gradle
+- Hex (Erlang/Elixir)
+- Linux Kernel
 - Maven
-- NPM
+- npm
 - NuGet
-- Packagist
+- OSS-Fuzz
+- Packagist (PHP)
 - PyPI
 - RubyGems
-
-and others...
+- SwiftURL
+- and others...
 
 ## OSV Notes
-
-The OSV provider is pretty slow right now when processing large SBOMs. At the time of this writing, their batch endpoint is not functioning, so ```bomber ``` needs to call their API one package at a time. 
 
 Additionally, there are cases where OSV does not return a Severity, or a CVE/CWE. In these rare cases, ```bomber``` will output "UNSPECIFIED", and "UNDEFINED" respectively.
 

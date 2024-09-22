@@ -101,9 +101,9 @@ func renderFooter(vulnCount int, results models.Results) {
 	} else {
 		color.Green.Printf("No vulnerabilities found using the %v provider\n", results.Meta.Provider)
 		fmt.Println()
-		fmt.Printf("NOTE: Just because bomber didn't find any vulnerabilities using the %v provider does\n", results.Meta.Provider)
-		fmt.Println("not mean that there are no vulnerabilities. Please try the other providers that bomber")
-		fmt.Println("supports (osv, ossindex)")
+		fmt.Printf("NOTE: Just because bomber didn't find any vulnerabilities using the %v provider doesn't\n", results.Meta.Provider)
+		fmt.Println("mean there are no vulnerabilities. Please try the other providers that bomber")
+		fmt.Println("supports (osv, github, ossindex)")
 	}
 }
 

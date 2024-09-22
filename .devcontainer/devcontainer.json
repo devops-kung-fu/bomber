@@ -73,7 +73,8 @@
                 "Github.copilot",
                 "markis.code-coverage",
                 "Gruntfuggly.todo-tree",
-                "esbenp.prettier-vscode"
+                "esbenp.prettier-vscode",
+                "Tyriar.luna-paint"
             ]
         }
     }

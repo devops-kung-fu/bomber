@@ -152,7 +152,7 @@ func genTemplate(output string) (t *template.Template) {
 	<p>The following results were detected by <code>{{.Meta.Generator}} {{.Meta.Version}}</code> on {{.Meta.Date}} using the {{.Meta.Provider}} provider.</p>
 	{{ if ne (len .Packages) 0 }} 
 	<p>
-		Vulnerabilities displayed may differ from provider to provider. This list may not contain all possible vulnerabilities. Please try the other providers that <code>bomber</code> supports (osv, ossindex, snyk). There is no guarantee that 
+		Vulnerabilities displayed may differ from provider to provider. This list may not contain all possible vulnerabilities. Please try the other providers that <code>bomber</code> supports (osv, github, ossindex, snyk). There is no guarantee that 
 		the next time you scan for vulnerabilities that there won't be more, or less of them. Threats are continuous.
 	</p>
 	<p>
