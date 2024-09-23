@@ -1,0 +1,85 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:cd2f853a-98cc-475d-b533-6ce32fa3997b",
+  "version": 1,
+  "metadata": {
+    "tools": {
+      "components": [
+        {
+          "type": "application",
+          "bom-ref": "pkg:npm/@cyclonedx/cdxgen@10.9.11",
+          "author": "OWASP Foundation",
+          "publisher": "OWASP Foundation",
+          "group": "@cyclonedx",
+          "name": "cdxgen",
+          "version": "10.9.11",
+          "purl": "pkg:npm/%40cyclonedx/cdxgen@10.9.11"
+        }
+      ]
+    },
+    "component": {
+      "type": "application",
+      "name": "service-name"
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "openjpeg",
+      "version": "2.5.2",
+      "description": "OpenJPEG is an open-source JPEG 2000 codec written in C language.",
+      "purl": "pkg:conan/openjpeg@2.5.2",
+      "externalReferences": [
+        {
+          "url": "https://github.com/uclouvain/openjpeg",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "language",
+          "value": "C\u002B\u002B"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "openssl",
+      "version": "3.3.1",
+      "description": "A toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols",
+      "purl": "pkg:conan/openssl@3.3.1",
+      "externalReferences": [
+        {
+          "url": "https://github.com/openssl/openssl",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "language",
+          "value": "C\u002B\u002B"
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "protobuf",
+      "version": "3.21.12",
+      "description": "Protocol Buffers - Google\u0027s data interchange format",
+      "purl": "pkg:conan/protobuf@3.21.12",
+      "externalReferences": [
+        {
+          "url": "https://github.com/protocolbuffers/protobuf",
+          "type": "distribution"
+        }
+      ],
+      "properties": [
+        {
+          "name": "language",
+          "value": "C\u002B\u002B"
+        }
+      ]
+    }
+  ]
+}

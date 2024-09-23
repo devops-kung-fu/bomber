@@ -5,16 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug File (gad)",
+            "name": "Debug File (github provider)",
             "type": "go",
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
             "args": [
-                "--provider=gad",
+                "--provider=github",
                 "--debug=true",
                 "scan",
-                "./_TESTDATA_/sbom/small.cyclonedx.json"
+                "./_TESTDATA_/sbom/merged/sbom_specver1.6.json"
             ]
         },
         {
@@ -27,7 +27,20 @@
                 "--provider=ossindex",
                 "--debug=true",
                 "scan",
-                "./_TESTDATA_/sbom/small.cyclonedx.json"
+                "./_TESTDATA_/sbom/jena-kafka-1.4.0-SNAPSHOT-bom.json"
+            ]
+        },
+                {
+            "name": "Debug File (osv)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "args": [
+                "--provider=osv",
+                "--debug=true",
+                "scan",
+                "./_TESTDATA_/sbom/jena-kafka-1.4.0-SNAPSHOT-bom.json"
             ]
         },
         {

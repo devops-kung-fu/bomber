@@ -51,9 +51,11 @@ func (s *Scanner) Scan(args []string) (exitCode int, err error) {
 		util.PrintWarning("OpenAI enrichment is experimental and may increase scanning time significantly")
 	}
 	if len(scanned) > 0 {
-		util.PrintInfo("Scanning Files:")
-		for _, f := range scanned {
-			util.PrintTabbed(f.Name)
+		if s.Output != "json" {
+			util.PrintInfo("Scanning Files:")
+			for _, f := range scanned {
+				util.PrintTabbed(f.Name)
+			}
 		}
 	}
 
@@ -131,6 +133,18 @@ func (s *Scanner) detectEcosystems(purls []string) []string {
 func (s *Scanner) printHeader(purlCount int, ecosystems []string, issues []models.Issue, spinner *spinner.Spinner) {
 	if s.Output != "json" {
 		util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
+
+		supportedEcosystems := s.Provider.SupportedEcosystems()
+		if len(supportedEcosystems) > 0 {
+			util.PrintInfo("Provider supported ecosystems: ", strings.Join(supportedEcosystems, ","))
+		}
+
+		//if any ecosystems in the ecosytems slice are not supported by the provider, print a warning
+		for _, e := range ecosystems {
+			if !slices.Contains(supportedEcosystems, e) {
+				util.PrintWarningf("Provider does not support detected ecosystem: %s\n", e)
+			}
+		}
 
 		for _, issue := range issues {
 			util.PrintWarningf("%v (%v)\n", issue.Message, issue.Purl)

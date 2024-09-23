@@ -101,7 +101,7 @@ func genTemplate(output string) (t *template.Template) {
 The following results were detected by `+ "`{{.Meta.Generator}} {{.Meta.Version}}`" + ` on {{.Meta.Date}} using the {{.Meta.Provider}} provider.
 {{ if ne (len .Packages) 0 }} 
 
-Vulnerabilities displayed may differ from provider to provider. This list may not contain all possible vulnerabilities. Please try the other providers that ` + "`bomber`" + ` supports (osv, ossindex, snyk). There is no guarantee that the next time you scan for vulnerabilities that there won't be more, or less of them. Threats are continuous.
+Vulnerabilities displayed may differ from provider to provider. This list may not contain all possible vulnerabilities. Please try the other providers that ` + "`bomber`" + ` supports (osv, github, ossindex, snyk). There is no guarantee that the next time you scan for vulnerabilities that there won't be more, or less of them. Threats are continuous.
 
 EPSS Percentage indicates the % chance that the vulnerability will be exploited. This value will assist in prioritizing remediation. For more information on EPSS, refer to [https://www.first.org/epss/](https://www.first.org/epss/)
 {{ else }}

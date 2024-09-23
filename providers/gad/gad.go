@@ -2,30 +2,48 @@
 package gad
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
 	"os"
 	"strings"
+	"time"
 
+	"github.com/go-resty/resty/v2"
 	"github.com/package-url/packageurl-go"
 
 	"github.com/devops-kung-fu/bomber/models"
 )
 
-//var client *resty.Client
+var client *resty.Client
 
 func init() {
-	//client = resty.New().
-	//	SetTransport(&http.Transport{TLSHandshakeTimeout: 60 * time.Second})
+	// Cloning the transport ensures a proper working http client that respects the proxy settings
+	transport := http.DefaultTransport.(*http.Transport).Clone()
+	transport.TLSHandshakeTimeout = 60 * time.Second
+	client = resty.New().SetTransport(transport)
 }
 
 // Provider represents the OSSIndex provider
 type Provider struct{}
+
+func (Provider) SupportedEcosystems() []string {
+	return []string{
+		"github-actions",
+		"composer",
+		"erlang",
+		"golang",
+		"maven",
+		"npm",
+		"nuget",
+		"pypi",
+		"pypi",
+		"rubygems",
+		"cargo",
+	}
+}
 
 // Info provides basic information about the GAD Provider
 func (Provider) Info() string {
@@ -42,18 +60,35 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		if e != nil {
 			return nil, e
 		}
-
+		pkg := models.Package{
+			Purl: purl,
+		}
 		for _, edge := range response.Data.SecurityVulnerabilities.Edges {
 			log.Printf("Vulnerabilities for %s:\n", purl)
+			//TODO: Add more information to the vulnerability struct and deduplicate
+			vulnerability := models.Vulnerability{}
+
 			advisory := edge.Node.Advisory
-			log.Printf("Summary: %s\n", advisory.Summary)
-			log.Printf("Severity: %s\n", advisory.Severity)
+			vulnerability.DisplayName = advisory.Summary
+			vulnerability.Description = advisory.Description
+			vulnerability.Severity = advisory.Severity
+			for _, identifier := range advisory.Identifiers {
+				if identifier.Type == "CVE" {
+					vulnerability.ID = identifier.Value
+					vulnerability.Cve = identifier.Value
+					vulnerability.Title = identifier.Value
+				}
+			}
+
 			for _, identifier := range advisory.Identifiers {
 				if identifier.Type == "CVE" {
 					fmt.Printf("CVE: %s\n", identifier.Value)
 				}
 			}
-			log.Println("---")
+			pkg.Vulnerabilities = append(pkg.Vulnerabilities, vulnerability)
+		}
+		if len(pkg.Vulnerabilities) > 0 {
+			packages = append(packages, pkg)
 		}
 	}
 	return
@@ -121,31 +156,19 @@ func queryGitHubAdvisories(purl string, credentials models.Credentials) (*GraphQ
 	if err != nil {
 		return nil, fmt.Errorf("error marshalling request: %v", err)
 	}
-
-	req, err := http.NewRequest("POST", githubGraphQLEndpoint, bytes.NewBuffer(requestBody))
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %v", err)
-	}
-
-	req.Header.Set("Authorization", "Bearer "+credentials.ProviderToken)
-	req.Header.Set("Content-Type", "application/json")
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %v", err)
-	}
-	defer resp.Body.Close()
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response: %v", err)
-	}
+	resp, _ := client.R().
+		SetBody(requestBody).
+		SetAuthToken(credentials.ProviderToken).
+		Post(githubGraphQLEndpoint)
 
 	var graphQLResponse GraphQLResponse
-	err = json.Unmarshal(body, &graphQLResponse)
-	if err != nil {
-		return nil, fmt.Errorf("error unmarshalling response: %v", err)
+	if resp.StatusCode() == http.StatusOK {
+		err = json.Unmarshal(resp.Body(), &graphQLResponse)
+		if err != nil {
+			return nil, fmt.Errorf("error unmarshalling response: %v", err)
+		}
+	} else {
+		return nil, fmt.Errorf("unexpected status code: %d", resp.StatusCode())
 	}
 
 	return &graphQLResponse, nil

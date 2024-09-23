@@ -1,10 +1,10 @@
 ![](../../img/providers/osv.png)
 
-[OSV](https://osv.dev) is the default provider for ```bomber```. It is an open, precise, and distributed approach to producing and consuming vulnerability information for open source. 
+[OSV](https://osv.dev) is the default provider for `bomber`. It is an open, precise, and distributed approach to producing and consuming vulnerability information for open source.
 
-**You don't need to register for any service, get a password, or a token.** Just use ```bomber``` without a provider flag and away you go like this:
+**You don't need to register for any service, get a password, or a token.** Just use `bomber` without a provider flag and away you go like this:
 
-``` bash
+```bash
 bomber scan test.cyclonedx.json
 ```
 
@@ -12,24 +12,33 @@ bomber scan test.cyclonedx.json
 
 At this time, the [OSV](https://osv.dev) supports the following ecosystems:
 
+- AlmaLinux
+- Alpine
 - Android
+- Bitnami
 - crates.io
-- Debian
+- Curl
+- Debian GNU/Linux
+- Git (including C/C++)
+- GitHub Actions
 - Go
+- Haskell
+- Hex
+- Linux kernel
 - Maven
-- NPM
+- npm
 - NuGet
+- OSS-Fuzz
 - Packagist
+- Pub
 - PyPI
+- Python
+- R (CRAN and Bioconductor)
+- Rocky Linux
 - RubyGems
-
-and others...
+- SwiftURL
+- Ubuntu OS
 
 ## OSV Notes
 
-The OSV provider is pretty slow right now when processing large SBOMs. At the time of this writing, their batch endpoint is not functioning, so ```bomber ``` needs to call their API one package at a time. 
-
-Additionally, there are cases where OSV does not return a Severity, or a CVE/CWE. In these rare cases, ```bomber``` will output "UNSPECIFIED", and "UNDEFINED" respectively.
-
-
-
+Additionally, there are cases where OSV does not return a Severity, or a CVE/CWE. In these rare cases, `bomber` will output "UNSPECIFIED", and "UNDEFINED" respectively.
