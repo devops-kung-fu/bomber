@@ -134,6 +134,18 @@ func (s *Scanner) printHeader(purlCount int, ecosystems []string, issues []model
 	if s.Output != "json" {
 		util.PrintInfo("Ecosystems detected:", strings.Join(ecosystems, ","))
 
+		supportedEcosystems := s.Provider.SupportedEcosystems()
+		if len(supportedEcosystems) > 0 {
+			util.PrintInfo("Provider supported ecosystems: ", strings.Join(supportedEcosystems, ","))
+		}
+
+		//if any ecosystems in the ecosytems slice are not supported by the provider, print a warning
+		for _, e := range ecosystems {
+			if !slices.Contains(supportedEcosystems, e) {
+				util.PrintWarningf("Provider does not support detected ecosystem: %s\n", e)
+			}
+		}
+
 		for _, issue := range issues {
 			util.PrintWarningf("%v (%v)\n", issue.Message, issue.Purl)
 		}

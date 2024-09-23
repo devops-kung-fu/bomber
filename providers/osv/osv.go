@@ -28,6 +28,37 @@ func init() {
 // Provider represents the OSSIndex provider
 type Provider struct{}
 
+func (Provider) SupportedEcosystems() []string {
+	return []string{
+		"almalinux",
+		"alpine",
+		"android",
+		"bitnami",
+		"cargo",
+		"curl",
+		"debian",
+		"git",
+		"github-actions",
+		"go",
+		"haskell",
+		"hex",
+		"linux",
+		"maven",
+		"npm",
+		"nuget",
+		"oss-fuzz",
+		"packagist",
+		"pub",
+		"pypi",
+		"python",
+		"cran",
+		"rocky",
+		"rubygems",
+		"swift",
+		"ubuntu",
+	}
+}
+
 // Info provides basic information about the OSVProvider
 func (Provider) Info() string {
 	return "OSV Vulnerability Database (https://osv.dev)"

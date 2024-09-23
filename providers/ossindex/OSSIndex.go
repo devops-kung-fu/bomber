@@ -30,6 +30,25 @@ func init() {
 // Provider represents the OSSIndex provider
 type Provider struct{}
 
+func (Provider) SupportedEcosystems() []string {
+	return []string{
+		"maven",
+		"npm",
+		"golang",
+		"pypi",
+		"nuget",
+		"gem",
+		"cargo",
+		"pod",
+		"composer",
+		"conan",
+		"conda",
+		"cran",
+		"rpm",
+		"swift",
+	}
+}
+
 // CoordinateRequest used for the request to the OSSIndex
 type CoordinateRequest struct {
 	Coordinates []string `json:"coordinates"`

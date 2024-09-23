@@ -29,6 +29,22 @@ func init() {
 // Provider represents the OSSIndex provider
 type Provider struct{}
 
+func (Provider) SupportedEcosystems() []string {
+	return []string{
+		"github-actions",
+		"composer",
+		"erlang",
+		"golang",
+		"maven",
+		"npm",
+		"nuget",
+		"pypi",
+		"pypi",
+		"rubygems",
+		"cargo",
+	}
+}
+
 // Info provides basic information about the GAD Provider
 func (Provider) Info() string {
 	return "GitHub Advisory Database (https://github.com/advisories)"

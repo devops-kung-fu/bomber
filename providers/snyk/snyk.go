@@ -25,6 +25,26 @@ func (Provider) Info() string {
 	return "Snyk (https://security.snyk.io)"
 }
 
+func (Provider) SupportedEcosystems() []string {
+	return []string{
+		"npm",
+		"maven",
+		"cocoapods",
+		"composer",
+		"rubygems",
+		"nuget",
+		"pypi",
+		"hex",
+		"cargo",
+		"swift",
+		"conan",
+		"apk",
+		"deb",
+		"docker",
+		"rpm",
+	}
+}
+
 // Scan scans a list of Purls for vulnerabilities against Snyk.
 func (Provider) Scan(purls []string, credentials *models.Credentials) (packages []models.Package, err error) {
 	if err = validateCredentials(credentials); err != nil {

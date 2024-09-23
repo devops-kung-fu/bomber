@@ -11,7 +11,8 @@
                 "golang.org/x/vuln/cmd/govulncheck@latest",
                 "honnef.co/go/tools/cmd/staticcheck@latest"
             ]
-        }
+        },
+        "ghcr.io/dasiths/devcontainer-features/syft:1": {}
     },
     "customizations": {
         "vscode": {
