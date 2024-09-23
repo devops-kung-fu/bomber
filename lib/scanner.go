@@ -38,7 +38,7 @@ var loader Loader
 
 // Scan performs the vulnerability scan.
 func (s *Scanner) Scan(args []string) (exitCode int, err error) {
-	loader := Loader{
+	loader = Loader{
 		s.Afs,
 	}
 	// Load packages and associated data
