@@ -9,7 +9,7 @@ require (
 	github.com/go-resty/resty/v2 v2.15.2
 	github.com/gomarkdown/markdown v0.0.0-20240730141124-034f12af3bf6
 	github.com/google/go-github v17.0.0+incompatible
-	github.com/google/osv-scanner v1.8.5
+	github.com/google/osv-scanner v1.9.0
 	github.com/gookit/color v1.5.4
 	github.com/jarcoal/httpmock v1.3.1
 	github.com/jedib0t/go-pretty/v6 v6.5.9
