@@ -12,7 +12,7 @@ require (
 	github.com/google/osv-scanner v1.8.5
 	github.com/gookit/color v1.5.4
 	github.com/jarcoal/httpmock v1.3.1
-	github.com/jedib0t/go-pretty/v6 v6.5.9
+	github.com/jedib0t/go-pretty/v6 v6.6.0
 	github.com/microcosm-cc/bluemonday v1.0.27
 	github.com/package-url/packageurl-go v0.1.3
 	github.com/remeh/sizedwaitgroup v1.0.0
