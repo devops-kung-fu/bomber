@@ -16,6 +16,41 @@ The first thing you're going to want to do is see if any of the components liste
 
 Finding security vulnerabilities and license information for components identified in a SBOM is exactly what `bomber` is meant to do. `bomber` can read any JSON or XML based [CycloneDX](https://cyclonedx.org) format, or a JSON [SPDX](https://spdx.dev) or [Syft](https://github.com/anchore/syft) formatted SBOM, and tell you pretty quickly if there are any vulnerabilities.
 
+## Table of Contents
+
+- [Open vs. Closed Source](#open-vs-closed-source)
+- [Purpose](#purpose)
+- [Supported SBOM formats](#supported-sbom-formats)
+- [Providers](#providers)
+  - [Provider Support](#provider-support)
+  - [Provider Documentation](#provider-documentation)
+- [Installation](#installation)
+  - [Mac](#mac)
+  - [Linux](#linux)
+- [Using bomber](#using-bomber)
+  - [Single SBOM scan](#single-sbom-scan)
+  - [Entire folder scan](#entire-folder-scan)
+- [Output Formats](#output-formats)
+  - [HTML Output](#html-output)
+  - [JSON Output](#json-output)
+  - [Markdown Output](#markdown-output)
+- [Ignoring Vulnerabilities](#ignoring-vulnerabilities)
+- [Filtering Output](#filtering-output)
+- [Data Enrichment](#data-enrichment)
+  - [Exploit Prediction Scoring System (EPSS)](#exploit-prediction-scoring-system-epss)
+- [Advanced stuff](#advanced-stuff)
+  - [Scanning SBOMs from STDIN](#scanning-sboms-from-stdin)
+  - [Environment Variables](#environment-variables)
+- [Experimental Features](#experimental-features)
+  - [Highest Severity Return Codes (Experimental)](#highest-severity-return-codes-experimental)
+  - [OpenAI AI Enriched HTML Report Output](#openai-ai-enriched-html-report-output)
+- [Messing around](#messing-around)
+- [Notes](#notes)
+- [Contributing](#contributing)
+- [Software Bill of Materials](#software-bill-of-materials)
+- [Sponsors](#sponsors)
+- [Credits](#credits)
+
 ### Open vs. Closed Source
 
 Software can either be open or closed source. You can look at third party components you'll find in Github, or any public source repository as open source. Technically, the software you create internally at your own company is open source as well - it's not public, but your internal teams can see it. Closed source software can also be internal, but usually this is software that you purchase from external vendors.
@@ -38,7 +73,7 @@ There are quite a few SBOM formats available today. `bomber` supports the follow
 
 ![](img/providers/banner.png)
 
-`bomber` supports multiple sources for vulnerability information. We call these _providers_. Currently, `bomber` uses [OSV](doc/providers/osv.md) as the _default_ provider, but you can also use the [Sonatype OSS Index](doc/providers/ossindex.md), or [Snyk](doc/providers/snyk.md).
+`bomber` supports multiple sources for vulnerability information. We call these _providers_. Currently, `bomber` uses [OSV](doc/providers/osv.md) as the _default_ provider, but you can also use the [Github Advisory Database](docs/providers/github.md), the [Sonatype OSS Index](doc/providers/ossindex.md), or [Snyk](doc/providers/snyk.md).
 
 At this time, please note that [OSV](doc/providers/osv.md) is free and does not require any credentials to use, [Sonatype OSS Index](doc/providers/ossindex.md) is free but requires you to register and obtain a token, and [Snyk](doc/providers/snyk.md) support requires a Snyk license.
 
@@ -55,6 +90,7 @@ If `bomber` does not find any vulnerabilities, it doesn't mean that there aren't
 Provider documentation for `bomber` can be found:
 
 - [OSV](doc/providers/osv.md)
+- [GitHub Advisory Database](doc/providers/github.md)
 - [OSSINDEX](doc/providers/ossindex.md)
 - [Snyk](doc/providers/snyk.md)
 
@@ -101,9 +137,9 @@ If the provider finds vulnerabilities you'll see an output similar to the follow
 
 ![](img/bomber-example.png)
 
-If the provider doesn't return any vulnerabilities you'll see something like the following:
+If the provider doesn't return any vulnerabilities you'll see a message saying no vulnerabilities were found. 
 
-![](img/bomber-example-novulns.png)
+__NOTE:__ Just because may not have found any vulnerabilities using a specified provider doesn't mean there are no vulnerabilities. Please try the other providers that bomber supports.
 
 ### Entire folder scan
 
@@ -148,6 +184,16 @@ bomber scan bad-bom.json --output=json
 
 
 This will save a file in your current folder in the format "YYYY-MM-DD-HH-MM-SS-bomber-results.json"
+
+### Markdown Output
+
+`bomber` also supports output in Markdown format. This is very similar to the HTML output, but offloads styling to the Markdown renderer, such as GitHub. The output is saved to a file in the format "YYYY-MM-DD-HH-MM-SS-bomber-results.md".
+
+Example command:
+
+```bash
+bomber scan bad-bom.json --output=md
+```
 
 ## Ignoring Vulnerabilities
 

@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	version = "0.5.0"
+	version = "0.5.1"
 	output  string
 	//Afs stores a global OS Filesystem that is used throughout bomber
 	Afs = &afero.Afero{Fs: afero.NewOsFs()}
@@ -33,8 +33,7 @@ var (
 			if output != "json" {
 				log.Println("Start")
 				fmt.Println()
-				color.Style{color.FgWhite, color.OpBold}.Println(" ██▄ ▄▀▄ █▄ ▄█ ██▄ ██▀ █▀▄")
-				color.Style{color.FgWhite, color.OpBold}.Println(" █▄█ ▀▄▀ █ ▀ █ █▄█ █▄▄ █▀▄")
+				printAsciiArt()
 				fmt.Println()
 				fmt.Println("DKFM - DevOps Kung Fu Mafia")
 				fmt.Println("https://github.com/devops-kung-fu/bomber")
@@ -46,6 +45,15 @@ var (
 	}
 )
 
+func printAsciiArt() {
+	response := `
+   __              __          
+  / /  ___  __ _  / /  ___ ____
+ / _ \/ _ \/  ' \/ _ \/ -_) __/
+/_.__/\___/_/_/_/_.__/\__/_/   `
+	color.Style{color.FgWhite, color.OpBold}.Println(response)
+}
+
 // Execute creates the command tree and handles any error condition returned
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
@@ -56,7 +64,7 @@ func Execute() {
 
 func init() {
 	rootCmd.PersistentFlags().BoolVar(&debug, "debug", false, "displays debug level log messages.")
-	rootCmd.PersistentFlags().StringVar(&output, "output", "stdout", "how bomber should output findings (json, html, ai, stdout)")
+	rootCmd.PersistentFlags().StringVar(&output, "output", "stdout", "how bomber should output findings (json, html, ai, md, stdout)")
 }
 
 func checkForNewVersion(currentVersion string) {

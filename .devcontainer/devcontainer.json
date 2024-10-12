@@ -11,12 +11,12 @@
                 "golang.org/x/vuln/cmd/govulncheck@latest",
                 "honnef.co/go/tools/cmd/staticcheck@latest"
             ]
-        }
+        },
+        "ghcr.io/dasiths/devcontainer-features/syft:1": {}
     },
     "customizations": {
         "vscode": {
             "settings": {
-                "editor.formatOnSave": true,
                 "editor.fontFamily": "'0xProto Nerd Font','Courier New', monospace",
                 "terminal.integrated.fontFamily": "'0xProto Nerd Font','Courier New', monospace",
                 "notebook.output.fontFamily" : "'0xProto Nerd Font','Courier New', monospace",
@@ -45,12 +45,17 @@
                         "source.organizeImports": "always"
                     }
                 },
-                "[javascript]": {
-                    "editor.defaultFormatter": "esbenp.prettier-vscode"
-                },
-                "[markdown]": {
-                    "editor.defaultFormatter": "esbenp.prettier-vscode"
-                },
+				"window.menuBarVisibility": "classic",
+				"workbench.activityBar.location": "top",
+				"debug.toolBarLocation": "docked",
+				"workbench.colorTheme": "Default Light Modern",
+				"editor.useTabStops": true,
+				"editor.formatOnSave": true,
+				"editor.formatOnPaste": true,
+				"git.autofetch": true,
+				"[markdown]": {
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				},
                 "markiscodecoverage.coverageThreshold": 95,
                 "markiscodecoverage.enableOnStartup": true,
                 "markiscodecoverage.searchCriteria": "*.lcov*"
@@ -66,10 +71,11 @@
                 "jebbs.plantuml",
                 "foxundermoon.shell-format",
                 "ahebrank.yaml2json",
-                "AmazonWebServices.amazon-q-vscode",
+                "Github.copilot",
                 "markis.code-coverage",
                 "Gruntfuggly.todo-tree",
-                "esbenp.prettier-vscode"
+                "esbenp.prettier-vscode",
+                "Tyriar.luna-paint"
             ]
         }
     }

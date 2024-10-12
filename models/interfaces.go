@@ -2,6 +2,7 @@ package models
 
 // Provider defines the methods that a provider must contain
 type Provider interface {
+	SupportedEcosystems() []string
 	Info() string
 	Scan(purls []string, credentials *Credentials) (packages []Package, err error)
 }

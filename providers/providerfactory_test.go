@@ -5,6 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
+	"github.com/devops-kung-fu/bomber/providers/gad"
 	"github.com/devops-kung-fu/bomber/providers/ossindex"
 	"github.com/devops-kung-fu/bomber/providers/osv"
 	"github.com/devops-kung-fu/bomber/providers/snyk"
@@ -22,6 +23,10 @@ func TestNewProvider(t *testing.T) {
 	provider, err = NewProvider("snyk")
 	assert.NoError(t, err)
 	assert.IsType(t, snyk.Provider{}, provider)
+
+	provider, err = NewProvider("github")
+	assert.NoError(t, err)
+	assert.IsType(t, gad.Provider{}, provider)
 
 	_, err = NewProvider("test")
 	assert.Error(t, err)

@@ -21,12 +21,33 @@ const ossindexURL = "https://ossindex.sonatype.org/api/v3/authorized/component-r
 var client *resty.Client
 
 func init() {
-	client = resty.New().
-		SetTransport(&http.Transport{TLSHandshakeTimeout: 60 * time.Second})
+	// Cloning the transport ensures a proper working http client that respects the proxy settings
+	transport := http.DefaultTransport.(*http.Transport).Clone()
+	transport.TLSHandshakeTimeout = 60 * time.Second
+	client = resty.New().SetTransport(transport)
 }
 
 // Provider represents the OSSIndex provider
 type Provider struct{}
+
+func (Provider) SupportedEcosystems() []string {
+	return []string{
+		"maven",
+		"npm",
+		"golang",
+		"pypi",
+		"nuget",
+		"gem",
+		"cargo",
+		"pod",
+		"composer",
+		"conan",
+		"conda",
+		"cran",
+		"rpm",
+		"swift",
+	}
+}
 
 // CoordinateRequest used for the request to the OSSIndex
 type CoordinateRequest struct {
