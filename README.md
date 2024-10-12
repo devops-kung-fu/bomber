@@ -179,11 +179,8 @@ This will save a file in your current folder in the format "YYYY-MM-DD-HH-MM-SS-
 Example command:
 
 ```bash
-bomber scan bad-bom.json --output=json
+bomber scan bad-bom.json --output=json > filename.json
 ```
-
-
-This will save a file in your current folder in the format "YYYY-MM-DD-HH-MM-SS-bomber-results.json"
 
 ### Markdown Output
 

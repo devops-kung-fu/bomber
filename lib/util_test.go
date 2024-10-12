@@ -176,7 +176,7 @@ func Test_MarkdownToHTML(t *testing.T) {
 }
 
 func TestGenerateFilename(t *testing.T) {
-	filename := GenerateFilename()
+	filename := GenerateFilename("html")
 
 	pattern := `^\d{8}-\d{2}-\d{2}-\d{2}-bomber-results\.html$`
 

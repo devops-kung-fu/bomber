@@ -36,9 +36,9 @@ func TestNewRenderer(t *testing.T) {
 	assert.IsType(t, html.Renderer{}, renderers[2])
 	assert.Len(t, renderers, 3)
 
-	renderer, err = NewRenderer("md")
+	renderers, err = NewRenderer("md")
 	assert.NoError(t, err)
-	assert.IsType(t, md.Renderer{}, renderer)
+	assert.IsType(t, md.Renderer{}, renderers[0])
 
 	_, err = NewRenderer("test")
 	assert.Error(t, err)
