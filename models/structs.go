@@ -69,6 +69,7 @@ type Credentials struct {
 	Username      string
 	ProviderToken string
 	OpenAIAPIKey  string
+	ProviderURL   string
 }
 
 // NewResults defines the high level output of bomber

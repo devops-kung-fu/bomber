@@ -24,7 +24,7 @@ type selfDocument struct {
 	Links   PaginatedLinks `json:"links,omitempty"`
 }
 
-func getOrgID(token string) (orgID string, err error) {
+func getOrgID(token string, providerURL string) (orgID string, err error) {
 
 	client := resty.New()
 	client.Debug = true
@@ -32,7 +32,12 @@ func getOrgID(token string) (orgID string, err error) {
 	resp, err := client.R().
 		SetHeader("User-Agent", "bomber").
 		SetAuthToken(token).
-		Get(SnykURL + "/self" + SnykAPIVersion)
+		Get(func() string {
+			if providerURL == "" {
+				return SnykURL
+			}
+			return providerURL
+		}() + "/self" + SnykAPIVersion)
 
 	if err != nil {
 		log.Print(err)

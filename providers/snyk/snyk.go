@@ -52,7 +52,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 	}
 	wg := sizedwaitgroup.New(Concurrency)
 
-	orgID, err := getOrgID(credentials.ProviderToken)
+	orgID, err := getOrgID(credentials.ProviderToken, credentials.ProviderURL)
 	if err != nil {
 		return packages, fmt.Errorf("could not infer user’s Snyk organization: %w", err)
 	}
@@ -63,7 +63,7 @@ func (Provider) Scan(purls []string, credentials *models.Credentials) (packages 
 		go func(purl string) {
 			defer wg.Done()
 
-			vulns, err := getVulnsForPurl(purl, orgID, credentials.ProviderToken)
+			vulns, err := getVulnsForPurl(purl, orgID, credentials.ProviderToken, credentials.ProviderURL)
 			if err != nil {
 				log.Printf("Could not get vulnerabilities for package (%s): %s\n", purl, err.Error())
 			}

@@ -144,6 +144,7 @@ func getVulnsForPurl(
 	purl string,
 	orgID string,
 	token string,
+	providerURL string,
 ) (vulns []models.Vulnerability, err error) {
 	if err := validatePurl(purl); err != nil {
 		return nil, err
@@ -151,7 +152,12 @@ func getVulnsForPurl(
 
 	issuesURL := fmt.Sprintf(
 		"%s/orgs/%s/packages/%s/issues%s",
-		SnykURL, orgID, url.QueryEscape(purl), SnykAPIVersion,
+		func() string {
+			if providerURL == "" {
+				return SnykURL
+			}
+			return providerURL
+		}(), orgID, url.QueryEscape(purl), SnykAPIVersion,
 	)
 
 	client := resty.New()

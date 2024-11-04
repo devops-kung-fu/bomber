@@ -14,8 +14,6 @@ import (
 	m "github.com/devops-kung-fu/bomber/models"
 )
 
-const osvURL = "https://api.osv.dev/v1/query"
-
 var client *resty.Client
 
 func init() {
