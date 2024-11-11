@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	SnykURL        = "https://api.snyk.io/rest"
+	SnykURL        = "https://api.snyk.io"
 	SnykAPIVersion = "?version=2022-09-15~experimental"
 	Concurrency    = 10
 )
@@ -101,4 +101,12 @@ func validateCredentials(credentials *models.Credentials) error {
 	}
 
 	return nil
+}
+
+func getSnykAPIURL() string {
+	u := os.Getenv("SNYK_API")
+	if u != "" {
+		return u
+	}
+	return SnykURL
 }

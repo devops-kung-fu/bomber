@@ -25,14 +25,13 @@ type selfDocument struct {
 }
 
 func getOrgID(token string) (orgID string, err error) {
-
 	client := resty.New()
 	client.Debug = true
 
 	resp, err := client.R().
 		SetHeader("User-Agent", "bomber").
 		SetAuthToken(token).
-		Get(SnykURL + "/self" + SnykAPIVersion)
+		Get(getSnykAPIURL() + "/rest/self" + SnykAPIVersion)
 
 	if err != nil {
 		log.Print(err)
