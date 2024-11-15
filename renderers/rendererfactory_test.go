@@ -13,25 +13,32 @@ import (
 )
 
 func TestNewRenderer(t *testing.T) {
-	renderer, err := NewRenderer("stdout")
+	renderers, err := NewRenderer("stdout")
 	assert.NoError(t, err)
-	assert.IsType(t, stdout.Renderer{}, renderer)
+	assert.IsType(t, stdout.Renderer{}, renderers[0])
 
-	renderer, err = NewRenderer("json")
+	renderers, err = NewRenderer("json")
 	assert.NoError(t, err)
-	assert.IsType(t, json.Renderer{}, renderer)
+	assert.IsType(t, json.Renderer{}, renderers[0])
 
-	renderer, err = NewRenderer("html")
+	renderers, err = NewRenderer("html")
 	assert.NoError(t, err)
-	assert.IsType(t, html.Renderer{}, renderer)
+	assert.IsType(t, html.Renderer{}, renderers[0])
 
-	renderer, err = NewRenderer("ai")
+	renderers, err = NewRenderer("ai")
 	assert.NoError(t, err)
-	assert.IsType(t, ai.Renderer{}, renderer)
+	assert.IsType(t, ai.Renderer{}, renderers[0])
 
-	renderer, err = NewRenderer("md")
+	renderers, err = NewRenderer("stdout,json,html")
 	assert.NoError(t, err)
-	assert.IsType(t, md.Renderer{}, renderer)
+	assert.IsType(t, stdout.Renderer{}, renderers[0])
+	assert.IsType(t, json.Renderer{}, renderers[1])
+	assert.IsType(t, html.Renderer{}, renderers[2])
+	assert.Len(t, renderers, 3)
+
+	renderers, err = NewRenderer("md")
+	assert.NoError(t, err)
+	assert.IsType(t, md.Renderer{}, renderers[0])
 
 	_, err = NewRenderer("test")
 	assert.Error(t, err)

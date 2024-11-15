@@ -5,6 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Debug File (no provider - railsgoat - Multiple Outputs)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "args": [
+                "--debug=true",
+                "--output=json,stdout,html",
+                "--severity=high",
+                "scan",
+                "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"
+            ]
+        },
+        {
             "name": "Debug File (github provider)",
             "type": "go",
             "request": "launch",
@@ -30,7 +44,7 @@
                 "./_TESTDATA_/sbom/jena-kafka-1.4.0-SNAPSHOT-bom.json"
             ]
         },
-                {
+        {
             "name": "Debug File (osv)",
             "type": "go",
             "request": "launch",

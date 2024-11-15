@@ -28,7 +28,7 @@ func (Renderer) Render(results models.Results) error {
 		afs = &afero.Afero{Fs: afero.NewOsFs()}
 	}
 
-	filename := lib.GenerateFilename()
+	filename := lib.GenerateFilename("html")
 	util.PrintInfo("Writing HTML output:", filename)
 
 	err := writeTemplate(afs, filename, results)

@@ -154,7 +154,7 @@ You'll see a similar result to what a Single SBOM scan will provide.
 
 ## Output Formats
 
-`bomber` outputs data into three useful formats. By default, output is rendered to the command line. For enhanced reporting, you can output to HTML using the `--output=html` flag. To output to JSON, utilize the `--output=json` flag.
+`bomber` outputs data into three useful formats. By default, output is rendered to the command line. For enhanced reporting, you can output to HTML using the `--output=html` flag. To output to JSON, utilize the `--output=json` flag. Use comma separated output specification to get output in multiple formats `--output=html,stdout,json`.
 
 ### HTML Output
 
