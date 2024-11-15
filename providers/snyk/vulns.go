@@ -150,8 +150,8 @@ func getVulnsForPurl(
 	}
 
 	issuesURL := fmt.Sprintf(
-		"%s/orgs/%s/packages/%s/issues%s",
-		SnykURL, orgID, url.QueryEscape(purl), SnykAPIVersion,
+		"%s/rest/orgs/%s/packages/%s/issues%s",
+		getSnykAPIURL(), orgID, url.QueryEscape(purl), SnykAPIVersion,
 	)
 
 	client := resty.New()

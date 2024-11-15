@@ -62,6 +62,16 @@ func Test_validateCredentials(t *testing.T) {
 	os.Setenv("SNYK_TOKEN", snykToken)
 }
 
+func Test_getSnykAPIURL_default(t *testing.T) {
+	assert.Equal(t, "https://api.snyk.io", getSnykAPIURL())
+}
+
+func Test_getSnykAPIURL_override(t *testing.T) {
+	os.Setenv("SNYK_API", "http://example.com")
+	defer os.Unsetenv("SNYK_API")
+	assert.Equal(t, "http://example.com", getSnykAPIURL())
+}
+
 // func TestProvider_Scan_FakeCredentials(t *testing.T) {
 // 	httpmock.Activate()
 // 	defer httpmock.DeactivateAndReset()
