@@ -6,7 +6,7 @@ require (
 	github.com/CycloneDX/cyclonedx-go v0.9.1
 	github.com/briandowns/spinner v1.23.1
 	github.com/devops-kung-fu/common v0.2.6
-	github.com/go-resty/resty/v2 v2.15.2
+	github.com/go-resty/resty/v2 v2.16.1
 	github.com/gomarkdown/markdown v0.0.0-20240730141124-034f12af3bf6
 	github.com/google/go-github v17.0.0+incompatible
 	github.com/google/osv-scanner v1.8.5
