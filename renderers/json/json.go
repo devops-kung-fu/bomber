@@ -1,14 +1,11 @@
-// Package json contains functionality to render output in json format
 package json
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
-	"os"
 
-	"github.com/devops-kung-fu/bomber/lib"
 	"github.com/devops-kung-fu/bomber/models"
-	"github.com/devops-kung-fu/common/util"
 )
 
 // Renderer contains methods to render to JSON format
@@ -16,11 +13,12 @@ type Renderer struct{}
 
 // Render outputs json to STDOUT
 func (Renderer) Render(results models.Results) error {
-	b, _ := json.MarshalIndent(results, "", "\t")
-	filename := lib.GenerateFilename("json")
-	util.PrintInfo("Writing JSON output:", filename)
-	if err := os.WriteFile(filename, b, 0666); err != nil {
-		log.Fatal(err)
+	b, err := json.MarshalIndent(results, "", "\t")
+	if err != nil {
+		log.Println(err)
+		return err
 	}
+
+	fmt.Println(string(b))
 	return nil
 }

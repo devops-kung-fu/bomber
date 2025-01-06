@@ -8,6 +8,7 @@ import (
 	"github.com/devops-kung-fu/bomber/renderers/ai"
 	"github.com/devops-kung-fu/bomber/renderers/html"
 	"github.com/devops-kung-fu/bomber/renderers/json"
+	"github.com/devops-kung-fu/bomber/renderers/jsonfile"
 	"github.com/devops-kung-fu/bomber/renderers/md"
 	"github.com/devops-kung-fu/bomber/renderers/stdout"
 )
@@ -29,12 +30,17 @@ func TestNewRenderer(t *testing.T) {
 	assert.NoError(t, err)
 	assert.IsType(t, ai.Renderer{}, renderers[0])
 
-	renderers, err = NewRenderer("stdout,json,html")
+	renderers, err = NewRenderer("json-file")
+	assert.NoError(t, err)
+	assert.IsType(t, jsonfile.Renderer{}, renderers[0])
+
+	renderers, err = NewRenderer("stdout,json-file,html,json")
 	assert.NoError(t, err)
 	assert.IsType(t, stdout.Renderer{}, renderers[0])
-	assert.IsType(t, json.Renderer{}, renderers[1])
+	assert.IsType(t, jsonfile.Renderer{}, renderers[1])
 	assert.IsType(t, html.Renderer{}, renderers[2])
-	assert.Len(t, renderers, 3)
+	assert.IsType(t, json.Renderer{}, renderers[3])
+	assert.Len(t, renderers, 4)
 
 	renderers, err = NewRenderer("md")
 	assert.NoError(t, err)
