@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/main.go",
             "args": [
                 "--debug=true",
-                "--output=json,stdout,html",
+                "--output=json-file,stdout,html",
                 "--severity=high",
                 "scan",
                 "./_TESTDATA_/sbom/railsgoat.cyclonedx.json"

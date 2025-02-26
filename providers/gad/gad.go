@@ -29,6 +29,7 @@ func init() {
 // Provider represents the OSSIndex provider
 type Provider struct{}
 
+// SupportedEcosystems returns a list of ecosystems supported by the Github Advisory Database
 func (Provider) SupportedEcosystems() []string {
 	return []string{
 		"github-actions",
@@ -38,7 +39,6 @@ func (Provider) SupportedEcosystems() []string {
 		"maven",
 		"npm",
 		"nuget",
-		"pypi",
 		"pypi",
 		"rubygems",
 		"cargo",
