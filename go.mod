@@ -14,7 +14,7 @@ require (
 	github.com/google/osv-scanner v1.9.2
 	github.com/gookit/color v1.5.4
 	github.com/jarcoal/httpmock v1.3.1
-	github.com/jedib0t/go-pretty/v6 v6.6.5
+	github.com/jedib0t/go-pretty/v6 v6.6.7
 	github.com/microcosm-cc/bluemonday v1.0.27
 	github.com/package-url/packageurl-go v0.1.3
 	github.com/remeh/sizedwaitgroup v1.0.0
@@ -42,9 +42,9 @@ require (
 	golang.org/x/exp v0.0.0-20250106191152-7588d65b2ba8 // indirect
 	golang.org/x/mod v0.22.0 // indirect
 	golang.org/x/net v0.34.0 // indirect
-	golang.org/x/sync v0.10.0 // indirect
-	golang.org/x/sys v0.29.0 // indirect
-	golang.org/x/term v0.28.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/sync v0.11.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/term v0.29.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
