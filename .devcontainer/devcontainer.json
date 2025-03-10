@@ -68,14 +68,15 @@
                 "aleksandra.go-group-imports",
                 "oderwat.indent-rainbow",
                 "quicktype.quicktype",
-                "jebbs.plantuml",
                 "foxundermoon.shell-format",
                 "ahebrank.yaml2json",
                 "Github.copilot",
                 "markis.code-coverage",
                 "Gruntfuggly.todo-tree",
                 "esbenp.prettier-vscode",
-                "Tyriar.luna-paint"
+                "Tyriar.luna-paint",
+                "usernamehw.errorlens",
+                "bierner.markdown-mermaid"
             ]
         }
     }
