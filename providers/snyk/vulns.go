@@ -159,6 +159,7 @@ func getVulnsForPurl(
 
 	resp, err := client.R().
 		SetHeader("User-Agent", "bomber").
+		SetAuthScheme("token").
 		SetAuthToken(token).
 		Get(issuesURL)
 

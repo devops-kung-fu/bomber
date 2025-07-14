@@ -14,7 +14,7 @@ import (
 
 const (
 	SnykURL        = "https://api.snyk.io"
-	SnykAPIVersion = "?version=2022-09-15~experimental"
+	SnykAPIVersion = "?version=2024-10-15"
 	Concurrency    = 10
 )
 
