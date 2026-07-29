@@ -31,9 +31,24 @@ func Rating(score float64) string {
 	}
 }
 
+// NormalizeSeverity maps the severity spellings used by the various vulnerability
+// sources onto the ratings bomber reports. Providers are not consistent: the GitHub
+// Advisory Database and OSV use MODERATE, while OSV records sourced from other
+// databases (and several SBOM producers) use MEDIUM for the same rating.
+func NormalizeSeverity(severity string) string {
+	switch strings.ToUpper(strings.TrimSpace(severity)) {
+	case "MEDIUM":
+		return "MODERATE"
+	case "NONE", "UNKNOWN", "":
+		return "UNSPECIFIED"
+	default:
+		return strings.ToUpper(strings.TrimSpace(severity))
+	}
+}
+
 // AdjustSummary takes a severity string and a pointer to a Summary struct as input, and increments the corresponding severity count in the struct.
 func AdjustSummary(severity string, summary *models.Summary) {
-	severity = strings.ToUpper(severity)
+	severity = NormalizeSeverity(severity)
 
 	switch severity {
 	case "LOW":
@@ -51,7 +66,7 @@ func AdjustSummary(severity string, summary *models.Summary) {
 
 // ParseSeverity takes a severity string and returns an int
 func ParseSeverity(severity string) int {
-	severity = strings.ToUpper(severity)
+	severity = NormalizeSeverity(severity)
 	switch severity {
 	case "LOW":
 		return int(models.LOW)

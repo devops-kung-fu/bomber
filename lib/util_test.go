@@ -183,3 +183,37 @@ func TestGenerateFilename(t *testing.T) {
 	assert.NotEqual(t, "", filename)
 	assert.Regexp(t, regexp.MustCompile(pattern), filename)
 }
+
+func TestNormalizeSeverity(t *testing.T) {
+	// MEDIUM is what several sources emit for the rating bomber calls MODERATE.
+	assert.Equal(t, "MODERATE", NormalizeSeverity("MEDIUM"))
+	assert.Equal(t, "MODERATE", NormalizeSeverity("medium"))
+	assert.Equal(t, "MODERATE", NormalizeSeverity(" Medium "))
+
+	// values that carry no rating
+	assert.Equal(t, "UNSPECIFIED", NormalizeSeverity(""))
+	assert.Equal(t, "UNSPECIFIED", NormalizeSeverity("none"))
+	assert.Equal(t, "UNSPECIFIED", NormalizeSeverity("UNKNOWN"))
+
+	// ratings bomber already knows are passed through, upper-cased
+	assert.Equal(t, "CRITICAL", NormalizeSeverity("critical"))
+	assert.Equal(t, "HIGH", NormalizeSeverity("HIGH"))
+	assert.Equal(t, "MODERATE", NormalizeSeverity("moderate"))
+	assert.Equal(t, "LOW", NormalizeSeverity("low"))
+	assert.Equal(t, "UNSPECIFIED", NormalizeSeverity("unspecified"))
+}
+
+func TestAdjustSummaryCountsMediumAsModerate(t *testing.T) {
+	summary := models.Summary{}
+
+	AdjustSummary("MEDIUM", &summary)
+	AdjustSummary("medium", &summary)
+
+	assert.Equal(t, 2, summary.Moderate)
+	assert.Equal(t, 0, summary.Unspecified)
+}
+
+func TestParseSeverityMedium(t *testing.T) {
+	// a MEDIUM finding must not be filtered out by --severity moderate
+	assert.Equal(t, ParseSeverity("moderate"), ParseSeverity("medium"))
+}
